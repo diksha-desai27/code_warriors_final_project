@@ -35,7 +35,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("System Admin Panel");
 
-        btnManageProvider.setText("Manage Provider");
+        btnManageProvider.setText("Manage Enterprise");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
