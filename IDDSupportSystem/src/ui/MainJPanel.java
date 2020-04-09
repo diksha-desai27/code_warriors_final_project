@@ -30,19 +30,60 @@ public class MainJPanel extends javax.swing.JFrame {
         workAreaJPanel = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         leftJPanel = new javax.swing.JPanel();
+        btnLogin = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
         rightJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnLogin.setText("Login");
+
+        btnLogout.setText("Logout");
+
+        jLabel1.setText("Username:");
+
+        jLabel2.setText("Password:");
 
         javax.swing.GroupLayout leftJPanelLayout = new javax.swing.GroupLayout(leftJPanel);
         leftJPanel.setLayout(leftJPanelLayout);
         leftJPanelLayout.setHorizontalGroup(
             leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(leftJPanelLayout.createSequentialGroup()
+                .addGroup(leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(leftJPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2))
+                            .addGap(13, 13, 13))
+                        .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(15, 15, 15))
         );
         leftJPanelLayout.setVerticalGroup(
             leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 451, Short.MAX_VALUE)
+            .addGroup(leftJPanelLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(btnLogin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLogout)
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(leftJPanel);
@@ -51,7 +92,7 @@ public class MainJPanel extends javax.swing.JFrame {
         rightJPanel.setLayout(rightJPanelLayout);
         rightJPanelLayout.setHorizontalGroup(
             rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 465, Short.MAX_VALUE)
         );
         rightJPanelLayout.setVerticalGroup(
             rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,11 +105,11 @@ public class MainJPanel extends javax.swing.JFrame {
         workAreaJPanel.setLayout(workAreaJPanelLayout);
         workAreaJPanelLayout.setHorizontalGroup(
             workAreaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         workAreaJPanelLayout.setVerticalGroup(
             workAreaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,7 +162,13 @@ public class MainJPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel leftJPanel;
     private javax.swing.JPanel rightJPanel;
     private javax.swing.JPanel workAreaJPanel;
