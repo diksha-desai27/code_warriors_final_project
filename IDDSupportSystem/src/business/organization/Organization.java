@@ -9,6 +9,7 @@ import business.role.Role;
 import business.useraccount.UserAccountDirectory;
 import business.workqueue.WorkQueue;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -41,7 +42,7 @@ public abstract class Organization {
         this.userAccountDirectory = userAccountDirectory;
     }
 
-    public abstract ArrayList<Role> getSupportedRole();
+    public abstract List<Role> getSupportedRole();
     
     public String getName() {
         return name;

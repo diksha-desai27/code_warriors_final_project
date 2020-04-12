@@ -5,6 +5,8 @@
  */
 package business.enterprise;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +16,8 @@ import java.util.List;
 public class EnterpriseDirectory {
     private List<Enterprise> enterpriseList;
 
-    public EnterpriseDirectory(List<Enterprise> enterpriseList) {
-        this.enterpriseList = enterpriseList;
+    public EnterpriseDirectory() {
+        this.enterpriseList = new ArrayList();
     }
 
     
@@ -27,5 +29,17 @@ public class EnterpriseDirectory {
         this.enterpriseList = enterpriseList;
     }
     
+    public Enterprise createEnterprise(String name, Enterprise.EnterpriseType type) {
+        Enterprise enterprise = null;
+        if(type == Enterprise.EnterpriseType.Hospital) {
+            enterprise = new HospitalEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        if(type == Enterprise.EnterpriseType.Facility) {
+            enterprise = new FacilityEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        return enterprise;
+    }
     
 }

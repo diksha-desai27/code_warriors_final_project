@@ -6,7 +6,11 @@
 package ui.systemadmin;
 
 import business.EcoSystem;
+import business.enterprise.Enterprise;
+import business.network.Network;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,8 +27,46 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        
+        dpdEnterpriseType.removeAllItems();
+        this.populateNetwork();
+        this.populateEnterpriseType();
+        this.populateTable();
     }
-
+    
+    private void populateNetwork() {
+        dpdNetwork.removeAllItems();
+        
+        for(Network n: system.getNetworkList())
+        {
+            dpdNetwork.addItem(n);
+        }
+    }
+    
+    private void populateEnterpriseType() {
+        for(Enterprise.EnterpriseType type: Enterprise.EnterpriseType.values())
+        {
+            dpdEnterpriseType.addItem(type);
+        }
+    }
+    
+    public void populateTable() {
+        
+        DefaultTableModel model = (DefaultTableModel) enterpriseTable.getModel();
+        model.setRowCount(0);
+       
+        
+        for(Network n: system.getNetworkList()) {
+            for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList())
+            {
+                Object[] row = new Object[3];
+                row[0] = e.getName();
+                row[1] = n;
+                row[2] = e.getEnterpriseType().getValue();
+                model.addRow(row);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +77,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        enterpriseTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         dpdNetwork = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -44,7 +86,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         enterpriseNameTextField = new javax.swing.JTextField();
         btnCreateEnterprise = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -63,11 +105,16 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(enterpriseTable);
 
         jLabel1.setText("Network: ");
 
         dpdNetwork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dpdNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dpdNetworkActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Enterprise Type:");
 
@@ -76,6 +123,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel3.setText("Name:");
 
         btnCreateEnterprise.setText("Create Enterprise");
+        btnCreateEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateEnterpriseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,16 +178,38 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreateEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEnterpriseActionPerformed
+        // TODO add your handling code here:
+        Network network = (Network)dpdNetwork.getSelectedItem();
+        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) dpdEnterpriseType.getSelectedItem();
+        String name = enterpriseNameTextField.getText();
+        
+        for(Network n: system.getNetworkList()) {
+            if(n.equals(network))
+            {
+                n.getEnterpriseDirectory().createEnterprise(name, type);
+                JOptionPane.showMessageDialog(null, "Enterprise created successfully");
+                break;
+            }
+        }
+        populateTable();
+        System.out.println("Helloo----" + system.getNetworkList());
+    }//GEN-LAST:event_btnCreateEnterpriseActionPerformed
+
+    private void dpdNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdNetworkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dpdNetworkActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateEnterprise;
-    private javax.swing.JComboBox<String> dpdEnterpriseType;
-    private javax.swing.JComboBox<String> dpdNetwork;
+    private javax.swing.JComboBox<Object> dpdEnterpriseType;
+    private javax.swing.JComboBox<Object> dpdNetwork;
     private javax.swing.JTextField enterpriseNameTextField;
+    private javax.swing.JTable enterpriseTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

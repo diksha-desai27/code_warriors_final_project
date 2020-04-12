@@ -5,10 +5,18 @@
  */
 package business.role;
 
+import business.EcoSystem;
+import business.useraccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author dikshadesai
  */
-public class AdminRole {
+public class AdminRole extends Role{
     
+     @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
