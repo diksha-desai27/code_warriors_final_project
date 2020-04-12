@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.individuals.IndividualDirectory;
 import business.network.Network;
 import business.useraccount.UserAccount;
 import business.useraccount.UserAccountDirectory;
@@ -16,19 +17,20 @@ import java.util.List;
  * @author dikshadesai
  */
 public class EcoSystem {
-    
+
     private static EcoSystem system;
     private List<Network> networkList;
     private UserAccountDirectory userAccountDirectory;
+    private IndividualDirectory individualDirectory;
 
     public EcoSystem() {
         this.networkList = new ArrayList();
         this.userAccountDirectory = userAccountDirectory;
+        this.individualDirectory = individualDirectory;
     }
-    
+
     public static EcoSystem getInstance() {
-        if(system == null)
-        {
+        if (system == null) {
             system = new EcoSystem();
         }
         return system;
@@ -41,10 +43,9 @@ public class EcoSystem {
     public void setNetworkList(List<Network> networkList) {
         this.networkList = networkList;
     }
-    
+
     public UserAccountDirectory getUserAccountDirectory() {
-        if(userAccountDirectory == null)
-        {
+        if (userAccountDirectory == null) {
             userAccountDirectory = new UserAccountDirectory();
         }
         return userAccountDirectory;
@@ -56,5 +57,18 @@ public class EcoSystem {
         networkList.add(network);
       return network;
     }
-    
+        
+
+    public IndividualDirectory getIndividualDirectory() {
+        if (individualDirectory == null) {
+            individualDirectory = new IndividualDirectory();
+
+        }
+        return individualDirectory;
+    }
+
+    public void setIndividualDirectory(IndividualDirectory individualDirectory) {
+        this.individualDirectory = individualDirectory;
+    }
+
 }

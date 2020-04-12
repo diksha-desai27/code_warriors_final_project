@@ -6,22 +6,21 @@
 package business.role;
 
 import business.EcoSystem;
-import business.enterprise.Enterprise;
 import business.individuals.Individual;
-import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
+import ui.individuals.IndividualsRegistrationFormJPanel1;
 import ui.systemadmin.SystemAdminWorkAreaJPanel;
 
 /**
  *
- * @author dikshadesai
+ * @author kales
  */
-public class SystemAdminRole extends Role{
-
-    @Override
+public class IndividualRole extends Role {
+    
+     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Individual individual, EcoSystem system) {
-        return new SystemAdminWorkAreaJPanel(userProcessContainer,system);//To change body of generated methods, choose Tools | Templates.
+        return new IndividualsRegistrationFormJPanel1(userProcessContainer,account,individual,system);//To change body of generated methods, choose Tools | Templates.
     }
     
 }

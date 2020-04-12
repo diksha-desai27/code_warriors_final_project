@@ -20,6 +20,8 @@ public class Individual {
     private Date birthDate;
     private String address;
     private int zipCode;
+    private IDD iddInfo;
+    private String serviceType;
 
     public Individual() {
         registrationId = (int) (System.currentTimeMillis() & 0xfffffff);
@@ -81,6 +83,23 @@ public class Individual {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public IDD getIddInfo() {
+        return iddInfo;
+    }
+
+    public void setIddInfo(IDD iddInfo) {
+        this.iddInfo = iddInfo;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+    
         
     @Override
     public String toString(){

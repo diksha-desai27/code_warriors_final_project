@@ -12,6 +12,7 @@ package business.role;
 
 import business.EcoSystem;
 import business.enterprise.Enterprise;
+import business.individuals.Individual;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
@@ -23,7 +24,8 @@ public abstract class Role {
         Doctor("Doctor"),
         Nurse("Nurse"),
         Caregiver("Caregiver"),
-        Analyst("Analyst");
+        Analyst("Analyst"),
+        Individual("Individual");
         
         private String value;
         private RoleType(String value){
@@ -40,7 +42,7 @@ public abstract class Role {
         }
     }
     
-    public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business);
+    public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Individual individual, EcoSystem business);
 
     @Override
     public String toString() {
