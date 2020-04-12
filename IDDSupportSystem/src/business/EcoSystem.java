@@ -50,9 +50,9 @@ public class EcoSystem {
         return userAccountDirectory;
     }   
     
-    public Network createNetwork(String name){
+    public Network createNetwork() {
        
-      Network network = new Network(name);
+      Network network = new Network();
         networkList.add(network);
       return network;
     }
