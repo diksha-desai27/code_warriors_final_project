@@ -43,6 +43,10 @@ public class EcoSystem {
     }
     
     public UserAccountDirectory getUserAccountDirectory() {
+        if(userAccountDirectory == null)
+        {
+            userAccountDirectory = new UserAccountDirectory();
+        }
         return userAccountDirectory;
     }   
     

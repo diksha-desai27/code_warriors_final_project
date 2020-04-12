@@ -53,6 +53,8 @@ public class MainJPanel extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        workAreaJPanel.setLayout(new java.awt.CardLayout());
+
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,29 +119,10 @@ public class MainJPanel extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(leftJPanel);
 
-        javax.swing.GroupLayout rightJPanelLayout = new javax.swing.GroupLayout(rightJPanel);
-        rightJPanel.setLayout(rightJPanelLayout);
-        rightJPanelLayout.setHorizontalGroup(
-            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
-        );
-        rightJPanelLayout.setVerticalGroup(
-            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 451, Short.MAX_VALUE)
-        );
-
+        rightJPanel.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(rightJPanel);
 
-        javax.swing.GroupLayout workAreaJPanelLayout = new javax.swing.GroupLayout(workAreaJPanel);
-        workAreaJPanel.setLayout(workAreaJPanelLayout);
-        workAreaJPanelLayout.setHorizontalGroup(
-            workAreaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
-        );
-        workAreaJPanelLayout.setVerticalGroup(
-            workAreaJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
-        );
+        workAreaJPanel.add(jSplitPane1, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,6 +155,7 @@ public class MainJPanel extends javax.swing.JFrame {
         else{
             CardLayout layout=(CardLayout)rightJPanel.getLayout();
             rightJPanel.add("workArea",userAccount.getRole().createWorkArea(rightJPanel, userAccount, system));
+            layout.next(rightJPanel);
         }
         
         btnLogin.setEnabled(false);
