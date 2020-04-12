@@ -9,6 +9,8 @@ import business.EcoSystem;
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JPanel;
 
 /**
@@ -143,6 +145,14 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
 
     private void jbtnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNextActionPerformed
         // TODO add your handling code here:
+        Date date1 = new Date();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        
+        
+        
+        
+        
         IndividualsRegistrationFormJPanel2 individualsRegJPanel2 = new IndividualsRegistrationFormJPanel2(ecoSystem,userAccount, individual, rightJPanel);
         rightJPanel.add("individualsRegistrationFormJPanel2", individualsRegJPanel2);
 

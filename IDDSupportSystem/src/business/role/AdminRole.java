@@ -19,7 +19,7 @@ import ui.enterprise.AdminWorkAreaJPanel;
 public class AdminRole extends Role{
     
      @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system, Enterprise enterprise) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system, Enterprise enterprise, Individual individual) {
         return new AdminWorkAreaJPanel(userProcessContainer, account, system, enterprise);
     }
 }
