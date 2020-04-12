@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 public class AnalystRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Individual individual, EcoSystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business, Enterprise enterprise) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

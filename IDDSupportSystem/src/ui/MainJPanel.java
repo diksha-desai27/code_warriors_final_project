@@ -165,7 +165,8 @@ public class MainJPanel extends javax.swing.JFrame {
         if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
-        } else {
+        }
+      else {
             System.out.println(system.getIndividualDirectory().getIndividualList().size());
 
             for (Individual ind : system.getIndividualDirectory().getIndividualList()) {

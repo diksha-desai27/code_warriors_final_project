@@ -5,17 +5,30 @@
  */
 package ui.enterprise;
 
+import business.EcoSystem;
+import business.enterprise.Enterprise;
+import business.useraccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author dikshadesai
  */
-public class ManageOrganizationJPanel extends javax.swing.JPanel {
+public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
+    JPanel userProcessContainer;
+    EcoSystem system;
+    Enterprise enterprise;
+    UserAccount userAccount;
     /**
-     * Creates new form ManageOrganizationJPanel
+     * Creates new form AdminWorkAreaJPanel
      */
-    public ManageOrganizationJPanel() {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, EcoSystem system, Enterprise enterprise) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
+        this.system = system;
+        this.enterprise = enterprise;
     }
 
     /**
@@ -31,11 +44,11 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
+            .addGap(0, 458, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 389, Short.MAX_VALUE)
+            .addGap(0, 364, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
