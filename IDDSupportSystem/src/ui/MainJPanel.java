@@ -154,7 +154,7 @@ public class MainJPanel extends javax.swing.JFrame {
         }
         else{
             CardLayout layout=(CardLayout)rightJPanel.getLayout();
-            rightJPanel.add("workArea",userAccount.getRole().createWorkArea(rightJPanel, userAccount, system));
+            rightJPanel.add("workArea",userAccount.getRole().createWorkArea(rightJPanel, userAccount, system, null));
             layout.next(rightJPanel);
         }
         

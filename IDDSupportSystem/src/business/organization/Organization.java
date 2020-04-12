@@ -57,6 +57,10 @@ public abstract class Organization {
     }
 
     public UserAccountDirectory getUserAccountDirectory() {
+        if(userAccountDirectory == null)
+        {
+            userAccountDirectory = new UserAccountDirectory();
+        }
         return userAccountDirectory;
     }   
    

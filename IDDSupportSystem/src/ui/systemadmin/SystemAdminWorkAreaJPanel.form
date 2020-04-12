@@ -30,6 +30,7 @@
                           <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="btnManageEnterpriseAdmin" alignment="0" min="-2" pref="192" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -41,9 +42,11 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
               <Component id="btnManageNetwork" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnManageEnterprise" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="104" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnManageEnterpriseAdmin" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="66" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,11 +70,15 @@
         <Property name="text" type="java.lang.String" value="Manage Enterprise"/>
       </Properties>
       <Events>
-<<<<<<< HEAD
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageEnterpriseActionPerformed"/>
-=======
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageProviderActionPerformed"/>
->>>>>>> 097c4540d59554eacfd8e58ba93e480fdacc22c3
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnManageEnterpriseAdmin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Manage Enterprise Admin"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageEnterpriseAdminActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
