@@ -10,6 +10,7 @@ import business.enterprise.Enterprise;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
+import ui.systemadmin.SystemAdminWorkAreaJPanel;
 
 /**
  *
@@ -18,8 +19,8 @@ import javax.swing.JPanel;
 public class SystemAdminRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
+        return new SystemAdminWorkAreaJPanel(userProcessContainer,system);//To change body of generated methods, choose Tools | Templates.
     }
     
 }
