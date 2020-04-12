@@ -5,6 +5,13 @@
  */
 package ui.systemadmin;
 
+import business.EcoSystem;
+import business.network.Network;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author dikshadesai
@@ -14,8 +21,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageNetworkJPanel
      */
-    public ManageNetworkJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    public ManageNetworkJPanel(JPanel userProcessContainer,EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**
@@ -28,14 +39,14 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        enterpriseJTable = new javax.swing.JTable();
+        networkJTable = new javax.swing.JTable();
         backJButton = new javax.swing.JButton();
         createJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldName = new javax.swing.JTextField();
 
-        enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
+        networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -54,7 +65,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(enterpriseJTable);
+        jScrollPane1.setViewportView(networkJTable);
 
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,22 +129,44 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+     public void populateTable() {
+       DefaultTableModel dtm = (DefaultTableModel) networkJTable.getModel();
+        dtm.setRowCount(0);
+        for (Network nt : system.getNetworkList()) {
+            Object row[] = new Object[1];
+            row[0] = nt;
+            dtm.addRow(row);
+        }
+  
+    }
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-        
+        SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = new SystemAdminWorkAreaJPanel(userProcessContainer, system);
+        userProcessContainer.add("systemAdminWorkAreaJPanel",systemAdminWorkAreaJPanel);
+       
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void createJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJButtonActionPerformed
-
+        String name = jTextFieldName.getText();
+        
+        
+            Network network = system.createNetwork(name);
+         
+       
+        populateTable();
+        jTextFieldName.setText("");
+       
     }//GEN-LAST:event_createJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JButton createJButton;
-    private javax.swing.JTable enterpriseJTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldName;
+    private javax.swing.JTable networkJTable;
     // End of variables declaration//GEN-END:variables
 }

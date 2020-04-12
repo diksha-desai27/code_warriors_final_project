@@ -40,6 +40,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnManageEnterprise = new javax.swing.JButton();
 
         btnManageNetwork.setText("Manage Network");
+        btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageNetworkActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("System Admin Panel");
 
@@ -87,6 +92,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageEnterpriseActionPerformed
+    private void btnManageProviderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProviderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManageProviderActionPerformed
+
+    private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
+        // TODO add your handling code here:
+        ManageNetworkJPanel manageNetworkJPanel = new ManageNetworkJPanel(userProcessContainer,system);
+       userProcessContainer.add("ManageNetworkJPanel",manageNetworkJPanel);
+       
+       CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageNetworkActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
