@@ -5,7 +5,6 @@
  */
 package business.network;
 
-import business.provider.ProviderDirectory;
 
 /**
  *
@@ -13,11 +12,9 @@ import business.provider.ProviderDirectory;
  */
 public class Network {
     private String name;
-    private ProviderDirectory providerDirectory;
 
-    public Network(String name, ProviderDirectory providerDirectory) {
+    public Network(String name) {
         this.name = name;
-        this.providerDirectory = this.providerDirectory;
     }
 
     public String getName() {
@@ -26,14 +23,6 @@ public class Network {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ProviderDirectory getProviderDirectory() {
-        return providerDirectory;
-    }
-
-    public void setProviderDirectory(ProviderDirectory providerDirectory) {
-        this.providerDirectory = providerDirectory;
     }
     
     
