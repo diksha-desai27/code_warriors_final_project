@@ -7,6 +7,7 @@ package business.role;
 
 import business.EcoSystem;
 import business.enterprise.Enterprise;
+import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
 import ui.enterprise.AdminWorkAreaJPanel;

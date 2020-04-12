@@ -5,7 +5,13 @@
  */
 package ui.individuals;
 
+import business.DB4OUtil.DB4OUtil;
+import business.EcoSystem;
 import business.individuals.Individual;
+import business.individuals.IndividualDirectory;
+import business.role.IndividualRole;
+import business.useraccount.UserAccount;
+import business.useraccount.UserAccountDirectory;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -14,6 +20,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -21,11 +28,20 @@ import javax.swing.JOptionPane;
  */
 public class IndividualsSignUpJPanel extends javax.swing.JPanel {
 
+    private JPanel rightJPanel;
+    private UserAccountDirectory userAccountDirectory;
+    private IndividualDirectory individualDirectory;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil;
+
     /**
      * Creates new form IndividualsSignUpJPanel
      */
-    public IndividualsSignUpJPanel() {
+    public IndividualsSignUpJPanel(JPanel rightJPanel,EcoSystem system,DB4OUtil dB4OUtil) {
         initComponents();
+        this.rightJPanel = rightJPanel;
+        this.system = system;
+        this.dB4OUtil =dB4OUtil;
     }
 
     /**
@@ -87,6 +103,11 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         });
 
         btnLogout.setText("LogOut");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         confirmLabel.setText("Confirm Password");
 
@@ -188,7 +209,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-       Date date1 = birthDayChooser.getDate();
+        Date date1 = birthDayChooser.getDate();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         if (firstNamejTextField.getText().equals("") || lastNamejTextField.getText().equals("") || birthDayChooser.equals("") || addressjTextArea.getText().equals("") || zipCodejTextField.getText().equals("") || userNamejTextField.getText().equals("") || passwordJField.getPassword().equals("") || confirmJPassword.getPassword().equals("")) {
@@ -197,18 +218,22 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         } else {
             if (usernamePatternCorrect()) {
                 if (passwordPatternCorrect()) {
-                    if (new String(passwordJField.getPassword()).equals(new String(confirmJPassword.getPassword()))) {
+                    if (String.valueOf(passwordJField.getPassword()).equals(String.valueOf(confirmJPassword.getPassword()))) {
                         if (firstNamePatternCorrect() && lastNamePatternCorrect()) {
                             if (zipCodePatternCorrect()) {
-                                Individual ind = new Individual();
-                                if (!ind.equals(null)) {
-                                    ind.setFirstName(firstNamejTextField.getText());
-                                    ind.setLastName(lastNamejTextField.getText());
-                                    ind.setUserName(userNamejTextField.getText());
-                                    ind.setAddress(addressjTextArea.getText());
-                                    ind.setZipCode(Integer.parseInt(zipCodejTextField.getText()));
-                                    JOptionPane.showMessageDialog(null, "Account created successfully. Please sign out to login.");
-                                    clearFields();
+                                if (system.getUserAccountDirectory().checkIfUsernameIsUnique(userNamejTextField.getText())) {
+                                    Individual ind = new Individual();
+                                    if (ind != null) {
+                                        ind.setFirstName(firstNamejTextField.getText());
+                                        ind.setLastName(lastNamejTextField.getText());
+                                        ind.setUserName(userNamejTextField.getText());
+                                        ind.setAddress(addressjTextArea.getText());
+                                        ind.setZipCode(Integer.parseInt(zipCodejTextField.getText()));
+                                        system.getIndividualDirectory().getIndividualList().add(ind);
+                                        system.getUserAccountDirectory().createUserAccount(userNamejTextField.getText(), String.valueOf(passwordJField.getPassword()), new IndividualRole());
+                                        JOptionPane.showMessageDialog(null, "Account created successfully. Please sign out to login.");
+                                        clearFields();
+                                    }
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Account already exists.");
@@ -239,7 +264,16 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
-    private void clearFields(){
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here: 
+        JPanel blankJP = new JPanel();
+        rightJPanel.add("blank", blankJP);
+        CardLayout crdLyt = (CardLayout) rightJPanel.getLayout();
+        crdLyt.next(rightJPanel);
+        dB4OUtil.storeSystem(system);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void clearFields() {
         firstNamejTextField.setText("");
         lastNamejTextField.setText("");
         userNamejTextField.setText("");
@@ -249,10 +283,9 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         zipCodejTextField.setText("");
         birthDayChooser.setDate(new Date());
     }
-    
-    
+
     private boolean usernamePatternCorrect() {
-        Pattern p = Pattern.compile("^[a-zA-Z0-9]+_[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$");
+        Pattern p = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher m = p.matcher(userNamejTextField.getText());
         Boolean b = m.matches();
         return b;
@@ -280,7 +313,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
     }
 
     private boolean zipCodePatternCorrect() {
-        Pattern p = Pattern.compile("\\\\d{5}(-\\\\d{4})?");
+        Pattern p = Pattern.compile("^[0-9]{5}(?:-[0-9]{4})?$");
         Matcher m = p.matcher(zipCodejTextField.getText());
         Boolean b = m.matches();
         return b;

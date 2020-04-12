@@ -23,11 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-          <Component id="workAreaJPanel" alignment="1" pref="582" max="32767" attributes="0"/>
-=======
           <Component id="workAreaJPanel" alignment="1" pref="730" max="32767" attributes="0"/>
->>>>>>> 097c4540d59554eacfd8e58ba93e480fdacc22c3
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -143,6 +139,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Sign up"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSignUpActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
