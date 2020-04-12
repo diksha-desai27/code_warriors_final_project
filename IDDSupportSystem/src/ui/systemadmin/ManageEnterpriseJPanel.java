@@ -5,17 +5,24 @@
  */
 package ui.systemadmin;
 
+import business.EcoSystem;
+import javax.swing.JPanel;
+
 /**
  *
  * @author dikshadesai
  */
 public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
+    JPanel userProcessContainer;
+    EcoSystem system;
     /**
      * Creates new form ManageEnterpriseJPanel
      */
-    public ManageEnterpriseJPanel() {
+    public ManageEnterpriseJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
     }
 
     /**
