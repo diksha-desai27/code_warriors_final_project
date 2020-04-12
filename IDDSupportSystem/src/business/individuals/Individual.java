@@ -17,7 +17,7 @@ public class Individual {
     private String firstName;
     private String lastName;
     private String userName;
-    private Date birthDate;
+    private String birthDate;
     private String address;
     private int zipCode;
     private IDD iddInfo;
@@ -52,11 +52,11 @@ public class Individual {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
