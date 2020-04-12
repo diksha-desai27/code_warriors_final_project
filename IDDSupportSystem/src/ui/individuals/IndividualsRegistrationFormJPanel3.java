@@ -6,6 +6,8 @@
 package ui.individuals;
 
 import business.EcoSystem;
+import business.individuals.Individual;
+import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -13,19 +15,22 @@ import javax.swing.JPanel;
  *
  * @author sayalipathare
  */
-
-
-public class individualsRegistrationFormJPanel3 extends javax.swing.JPanel {
+public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
 
     /**
-     * Creates new form individualsRegistrationFormJPanel3
+     * Creates new form IndividualsRegistrationFormJPanel3
      */
     EcoSystem ecoSystem;
     JPanel rightJPanel;
-    public individualsRegistrationFormJPanel3(EcoSystem ecoSystem,JPanel rightJPanel) {
+    Individual individual;
+    UserAccount userAccount;
+
+    public IndividualsRegistrationFormJPanel3(JPanel rightJPanel, UserAccount userAccount, Individual individual, EcoSystem ecoSystem) {
         initComponents();
         this.ecoSystem = ecoSystem;
         this.rightJPanel = rightJPanel;
+        this.individual = individual;
+        this.userAccount =userAccount;
     }
 
     /**
@@ -39,14 +44,14 @@ public class individualsRegistrationFormJPanel3 extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        durationTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        serviceJTxtArea = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        employmentDurationJTxtArea = new javax.swing.JTextArea();
         jbtnBack = new javax.swing.JButton();
         jbtnSubmit = new javax.swing.JButton();
 
@@ -58,15 +63,15 @@ public class individualsRegistrationFormJPanel3 extends javax.swing.JPanel {
 
         jLabel6.setText("5. Describe the services and supervision needed");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        serviceJTxtArea.setColumns(20);
+        serviceJTxtArea.setRows(5);
+        jScrollPane3.setViewportView(serviceJTxtArea);
 
         jLabel7.setText("6. Describe the expected duration and goals of placement");
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
+        employmentDurationJTxtArea.setColumns(20);
+        employmentDurationJTxtArea.setRows(5);
+        jScrollPane4.setViewportView(employmentDurationJTxtArea);
 
         jbtnBack.setText("Back");
         jbtnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +95,6 @@ public class individualsRegistrationFormJPanel3 extends javax.swing.JPanel {
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -101,10 +105,11 @@ public class individualsRegistrationFormJPanel3 extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addGap(35, 35, 35)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jLabel3))))))
-                .addContainerGap(80, Short.MAX_VALUE))
+                                    .addComponent(jLabel3)))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +119,7 @@ public class individualsRegistrationFormJPanel3 extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(54, 54, 54)
                 .addComponent(jLabel6)
@@ -134,15 +139,17 @@ public class individualsRegistrationFormJPanel3 extends javax.swing.JPanel {
 
     private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
         // TODO add your handling code here:
-        individualsRegistrationFormJPanel2 individualsregJPanel2 = new individualsRegistrationFormJPanel2(ecoSystem, rightJPanel);
-        rightJPanel.add("individualsregJPanel1",individualsregJPanel2);
-       
-        CardLayout layout=(CardLayout)rightJPanel.getLayout();
-       layout.next(rightJPanel);
+        IndividualsRegistrationFormJPanel2 individualsregJPanel2 = new IndividualsRegistrationFormJPanel2(ecoSystem,userAccount, individual, rightJPanel);
+        rightJPanel.add("individualsregJPanel1", individualsregJPanel2);
+
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
     }//GEN-LAST:event_jbtnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField durationTxt;
+    private javax.swing.JTextArea employmentDurationJTxtArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -150,10 +157,8 @@ public class individualsRegistrationFormJPanel3 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbtnBack;
     private javax.swing.JButton jbtnSubmit;
+    private javax.swing.JTextArea serviceJTxtArea;
     // End of variables declaration//GEN-END:variables
 }

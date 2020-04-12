@@ -7,6 +7,7 @@ package business.role;
 
 import business.EcoSystem;
 import business.enterprise.Enterprise;
+import business.individuals.Individual;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
@@ -18,7 +19,7 @@ import javax.swing.JPanel;
 public class DoctorRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Individual individual, EcoSystem business) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

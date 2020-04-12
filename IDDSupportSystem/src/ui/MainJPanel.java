@@ -7,27 +7,36 @@ package ui;
 
 import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
+import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import ui.individuals.IndividualsSignUpJPanel;
 
 /**
  *
  * @author dikshadesai
  */
 public class MainJPanel extends javax.swing.JFrame {
-    
+
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+
     /**
      * Creates new form MainJPanel
      */
-    
     public MainJPanel() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-        this.setSize(800, 800);
+        this.setSize(1200, 1200);
+        this.setResizable(false);
+        for (int i = 0; i < system.getUserAccountDirectory().getUserAccountList().size(); i++) {
+            System.out.println(system.getUserAccountDirectory().getUserAccountList().get(i).getUsername());
+
+            System.out.println(system.getUserAccountDirectory().getUserAccountList().get(i).getPassword());
+        }
+
     }
 
     /**
@@ -74,6 +83,11 @@ public class MainJPanel extends javax.swing.JFrame {
         jLabel2.setText("Password:");
 
         btnSignUp.setText("Sign up");
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignUpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout leftJPanelLayout = new javax.swing.GroupLayout(leftJPanel);
         leftJPanel.setLayout(leftJPanelLayout);
@@ -144,20 +158,29 @@ public class MainJPanel extends javax.swing.JFrame {
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
-        
-        UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
 
-        if(userAccount==null)
-        {
+        UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+        Individual individual = null;
+
+        if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
-        }
-        else{
-            CardLayout layout=(CardLayout)rightJPanel.getLayout();
-            rightJPanel.add("workArea",userAccount.getRole().createWorkArea(rightJPanel, userAccount, system));
+        } else {
+            System.out.println(system.getIndividualDirectory().getIndividualList().size());
+
+            for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
+                System.out.println(ind.getUserName());
+                if (ind.getUserName().equals(userName)) {
+                    individual = ind;
+                    break;
+                }
+            }
+            System.out.println(individual);
+            CardLayout layout = (CardLayout) rightJPanel.getLayout();
+            rightJPanel.add("workArea", userAccount.getRole().createWorkArea(rightJPanel, userAccount, individual, system));
             layout.next(rightJPanel);
         }
-        
+
         btnLogin.setEnabled(false);
         btnLogout.setEnabled(true);
         usernameJTextField.setEnabled(false);
@@ -181,6 +204,14 @@ public class MainJPanel extends javax.swing.JFrame {
         crdLyt.next(rightJPanel);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        // TODO add your handling code here:
+        IndividualsSignUpJPanel signUpJPanel = new IndividualsSignUpJPanel(rightJPanel, system, dB4OUtil);
+        rightJPanel.add("signUpJPanel", signUpJPanel);
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
+    }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**
      * @param args the command line arguments
