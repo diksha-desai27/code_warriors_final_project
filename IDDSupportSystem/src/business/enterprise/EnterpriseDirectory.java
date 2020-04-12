@@ -42,4 +42,12 @@ public class EnterpriseDirectory {
         return enterprise;
     }
     
+     public Enterprise deleteEnterprise(Enterprise enterprise) {
+       
+       enterpriseList.remove(enterprise);
+       return enterprise;
+        
+       
+    }
+     
 }
