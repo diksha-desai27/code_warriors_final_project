@@ -13,6 +13,11 @@ package business.network;
 public class Network {
     private String name;
 
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
     public Network(String name) {
         this.name = name;
     }
