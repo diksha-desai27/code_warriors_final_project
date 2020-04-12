@@ -3,20 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package business.role;
+package business.enterprise;
 
-import business.EcoSystem;
-import business.useraccount.UserAccount;
-import javax.swing.JPanel;
+import business.role.Role;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author dikshadesai
  */
-public class AdminRole extends Role{
+public class FacilityEnterprise extends Enterprise{
     
-     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    public FacilityEnterprise(String name) {
+        super(name,Enterprise.EnterpriseType.Facility);
+    }
+
+    @Override
+    public List<Role> getSupportedRole() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+   
 }

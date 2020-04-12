@@ -5,6 +5,8 @@
  */
 package business.network;
 
+import business.enterprise.EnterpriseDirectory;
+
 
 /**
  *
@@ -12,14 +14,10 @@ package business.network;
  */
 public class Network {
     private String name;
+    private EnterpriseDirectory enterpriseDirectory;
 
-    @Override
-    public String toString() {
-        return this.getName();
-    }
-
-    public Network(String name) {
-        this.name = name;
+    public Network() {
+        this.enterpriseDirectory = new EnterpriseDirectory();
     }
 
     public String getName() {
@@ -30,5 +28,13 @@ public class Network {
         this.name = name;
     }
     
+    public EnterpriseDirectory getEnterpriseDirectory() {
+        return enterpriseDirectory;
+    }
+    
+    @Override
+    public String toString() {
+        return name;
+    }
     
 }

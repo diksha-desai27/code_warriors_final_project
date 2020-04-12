@@ -5,15 +5,19 @@
  */
 package business.enterprise;
 
+import business.organization.Organization;
+import business.organization.OrganizationDirectory;
+
 /**
  *
  * @author dikshadesai
  */
-public class Enterprise {
-    private EnterpriseType enterpriseType;
+public abstract class Enterprise extends Organization{
+    public EnterpriseType enterpriseType;
+    private OrganizationDirectory organizationDirectory;
     
     public enum EnterpriseType {
-        Hospital("Hospital"), TrainingCentre("Training Centre");
+        Hospital("Hospital"), Facility("Facility");
 
         private String value;
         
@@ -25,5 +29,29 @@ public class Enterprise {
             return value;
         }
         
+        @Override
+        public String toString() {
+            return value;
+        }
+        
     }
+    
+    public Enterprise(String name, EnterpriseType type) {
+        super(name);
+        this.enterpriseType = type;
+        this.organizationDirectory = new OrganizationDirectory();
+    }
+    
+    public EnterpriseType getEnterpriseType() {
+        return enterpriseType;
+    }
+    
+    public void setEnterpriseType(EnterpriseType enterpriseType) {
+        this.enterpriseType = enterpriseType;
+    }
+    
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
+    }
+    
 }

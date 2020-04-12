@@ -5,10 +5,25 @@
  */
 package business.enterprise;
 
+import business.role.Role;
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  *
  * @author dikshadesai
  */
-public class HospitalEnterprise {
+public class HospitalEnterprise extends Enterprise{
     
+    public HospitalEnterprise(String name) {
+        super(name,EnterpriseType.Hospital);
+    }
+
+    @Override
+    public List<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+   
 }

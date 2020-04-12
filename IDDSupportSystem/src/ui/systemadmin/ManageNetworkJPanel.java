@@ -27,7 +27,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        
+        this.populateTable();
     }
 
     /**
@@ -42,10 +42,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         networkJTable = new javax.swing.JTable();
         backJButton = new javax.swing.JButton();
-        createJButton = new javax.swing.JButton();
+        btnCreateNetwork = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldName = new javax.swing.JTextField();
+        nameTextField = new javax.swing.JTextField();
 
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,10 +75,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
 
-        createJButton.setText("Create");
-        createJButton.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateNetwork.setText("Create");
+        btnCreateNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createJButtonActionPerformed(evt);
+                btnCreateNetworkActionPerformed(evt);
             }
         });
 
@@ -101,11 +101,11 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backJButton)
                                 .addGap(18, 18, 18)
-                                .addComponent(createJButton))
+                                .addComponent(btnCreateNetwork))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(58, 58, 58)
-                                .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
                         .addComponent(jLabel1)))
@@ -121,11 +121,11 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backJButton)
-                    .addComponent(createJButton))
+                    .addComponent(btnCreateNetwork))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -133,9 +133,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
      public void populateTable() {
        DefaultTableModel dtm = (DefaultTableModel) networkJTable.getModel();
         dtm.setRowCount(0);
-        for (Network nt : system.getNetworkList()) {
+        for (Network n : system.getNetworkList()) {
             Object row[] = new Object[1];
-            row[0] = nt;
+            row[0] = n;
             dtm.addRow(row);
         }
   
@@ -148,26 +148,23 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
        layout.next(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
-    private void createJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJButtonActionPerformed
-        String name = jTextFieldName.getText();
-        
-        
-            Network network = system.createNetwork(name);
-         
-       
+    private void btnCreateNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNetworkActionPerformed
+        String name = nameTextField.getText();        
+        Network network=system.createNetwork();
+        network.setName(name);
         populateTable();
-        jTextFieldName.setText("");
+        nameTextField.setText("");
        
-    }//GEN-LAST:event_createJButtonActionPerformed
+    }//GEN-LAST:event_btnCreateNetworkActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
-    private javax.swing.JButton createJButton;
+    private javax.swing.JButton btnCreateNetwork;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextFieldName;
+    private javax.swing.JTextField nameTextField;
     private javax.swing.JTable networkJTable;
     // End of variables declaration//GEN-END:variables
 }
