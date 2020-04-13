@@ -5,6 +5,7 @@
  */
 package business.workqueue;
 
+import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import java.util.Date;
 
@@ -21,10 +22,20 @@ public class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private Individual individual;
     
     public WorkRequest(){
         requestDate = new Date();
     }
+
+    public Individual getIndividual() {
+        return individual;
+    }
+
+    public void setIndividual(Individual individual) {
+        this.individual = individual;
+    }
+    
     
     public String getMessage() {
         return message;
