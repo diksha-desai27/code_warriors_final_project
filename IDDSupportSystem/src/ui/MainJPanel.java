@@ -10,6 +10,7 @@ import business.EcoSystem;
 import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.network.Network;
+import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -164,6 +165,7 @@ public class MainJPanel extends javax.swing.JFrame {
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
         Individual individual = null;
         Enterprise isEnterprise = null;
+        Organization isOrganization = null;
         
         if (userAccount == null) 
         {
@@ -184,13 +186,34 @@ public class MainJPanel extends javax.swing.JFrame {
                    for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()) 
                    {
                        userAccount = e.getUserAccountDirectory().authenticateUser(userName, password);
-                       if(userAccount != null)
+                       if(userAccount == null)
+                       {
+                           for(Organization o: e.getOrganizationDirectory().getOrganizationList()) 
+                           {
+                               userAccount = o.getUserAccountDirectory().authenticateUser(userName, password);
+                               if(userAccount != null)
+                               {
+                                   isEnterprise = e;
+                                   isOrganization = o;
+                                   break;
+                               }
+                           }
+                       }
+                       else
                        {
                            isEnterprise = e;
                            break;
                        }
+                       if(isOrganization != null) {
+                           break;
+                       }
+                   }
+                   if(isEnterprise != null) 
+                   {
+                       break;
                    }
                 }
+                
             }
         }
         
