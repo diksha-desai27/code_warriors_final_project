@@ -33,7 +33,7 @@ public class OrganizationDirectory {
             organization = new AdminOrganization();
             organizationList.add(organization);
         }
-        if(type == Organization.Type.Analyst) {
+        if(type == Organization.Type.Reviewer) {
             organization = new ReviewerOrganization();
             organizationList.add(organization);
         }

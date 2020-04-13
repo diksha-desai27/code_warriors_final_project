@@ -5,6 +5,7 @@
  */
 package business.organization;
 
+import business.role.CaregiverRole;
 import business.role.Role;
 import java.util.ArrayList;
 
@@ -20,7 +21,9 @@ public class CaregiverOrganization extends Organization{
     
     @Override
     public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Role> roles = new ArrayList();
+        roles.add(new CaregiverRole());
+        return roles;
     }
     
 }
