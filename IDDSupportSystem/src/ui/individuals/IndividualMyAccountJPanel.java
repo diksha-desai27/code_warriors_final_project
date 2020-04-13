@@ -6,9 +6,12 @@
 package ui.individuals;
 
 import business.EcoSystem;
+import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -27,12 +30,13 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
     JPanel rightJPanel;
     Individual individual;
     UserAccount userAccount;
+    ArrayList<Enterprise> facilityList;
 
-    public IndividualMyAccountJPanel(JPanel rightJPanel, UserAccount userAccount,Individual individual, EcoSystem ecoSystem) {
+    public IndividualMyAccountJPanel(JPanel rightJPanel, UserAccount userAccount,Individual individual,ArrayList<Enterprise> facilityList) {
         initComponents();
         this.rightJPanel = rightJPanel;
         this.individual = individual;
-        this.ecoSystem = ecoSystem;
+        this.facilityList = facilityList;
         this.userAccount = userAccount;
         populateData();
     }
@@ -222,7 +226,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        IndividualsRegistrationFormJPanel1 individualsregJPanel1 = new IndividualsRegistrationFormJPanel1(rightJPanel,userAccount, individual, ecoSystem);
+        IndividualsRegistrationFormJPanel1 individualsregJPanel1 = new IndividualsRegistrationFormJPanel1(rightJPanel,userAccount, individual, facilityList);
         rightJPanel.add("individualsregJPanel1", individualsregJPanel1);
 
         CardLayout layout = (CardLayout) rightJPanel.getLayout();

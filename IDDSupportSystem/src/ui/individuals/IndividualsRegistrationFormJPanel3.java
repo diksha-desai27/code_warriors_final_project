@@ -6,10 +6,21 @@
 package ui.individuals;
 
 import business.EcoSystem;
+import business.enterprise.Enterprise;
 import business.individuals.Individual;
+import business.network.Network;
+import business.organization.Organization;
+import business.role.ReviewerRole;
 import business.useraccount.UserAccount;
+import business.workqueue.WorkQueue;
+import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,13 +35,15 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
     JPanel rightJPanel;
     Individual individual;
     UserAccount userAccount;
+    ArrayList<Enterprise> facilityList;
 
-    public IndividualsRegistrationFormJPanel3(JPanel rightJPanel, UserAccount userAccount, Individual individual, EcoSystem ecoSystem) {
+    public IndividualsRegistrationFormJPanel3(JPanel rightJPanel, UserAccount userAccount, Individual individual, ArrayList<Enterprise> facilityList) {
         initComponents();
-        this.ecoSystem = ecoSystem;
+        this.facilityList = facilityList;
         this.rightJPanel = rightJPanel;
         this.individual = individual;
-        this.userAccount =userAccount;
+        this.userAccount = userAccount;
+        populateFacilities();
     }
 
     /**
@@ -43,44 +56,39 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        durationTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        serviceJTxtArea = new javax.swing.JTextArea();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        employmentDurationJTxtArea = new javax.swing.JTextArea();
-        jbtnBack = new javax.swing.JButton();
-        jbtnSubmit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        facilityJTable = new javax.swing.JTable();
+        requestFacilityBtn = new javax.swing.JButton();
 
         jLabel1.setText("**Welcome to IDD Massachusetts Centre**");
 
-        jLabel2.setText("4.For How Long are you Facing this disability?");
+        facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Facility Name", "Facility Contact Number"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        jLabel3.setText("years");
-
-        jLabel6.setText("5. Describe the services and supervision needed");
-
-        serviceJTxtArea.setColumns(20);
-        serviceJTxtArea.setRows(5);
-        jScrollPane3.setViewportView(serviceJTxtArea);
-
-        jLabel7.setText("6. Describe the expected duration and goals of placement");
-
-        employmentDurationJTxtArea.setColumns(20);
-        employmentDurationJTxtArea.setRows(5);
-        jScrollPane4.setViewportView(employmentDurationJTxtArea);
-
-        jbtnBack.setText("Back");
-        jbtnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnBackActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane1.setViewportView(facilityJTable);
 
-        jbtnSubmit.setText("Submit");
+        requestFacilityBtn.setText("Request Facility ");
+        requestFacilityBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestFacilityBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,77 +96,78 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(requestFacilityBtn)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(43, 43, 43)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jbtnBack)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jbtnSubmit))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(35, 35, 35)
-                                    .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel3)))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addGap(125, 125, 125)
+                        .addComponent(jLabel1)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(54, 54, 54)
-                .addComponent(jLabel6)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel7)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnBack)
-                    .addComponent(jbtnSubmit))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(requestFacilityBtn)
+                .addContainerGap(345, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
-        // TODO add your handling code here:
-        IndividualsRegistrationFormJPanel2 individualsregJPanel2 = new IndividualsRegistrationFormJPanel2(ecoSystem,userAccount, individual, rightJPanel);
-        rightJPanel.add("individualsregJPanel1", individualsregJPanel2);
+    private void requestFacilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFacilityBtnActionPerformed
+        int selectedRow = facilityJTable.getSelectedRow();
+        if (selectedRow > 0) {
+            Enterprise en = (Enterprise) facilityJTable.getValueAt(selectedRow, 0);
+            List<UserAccount> userAccountList = en.getUserAccountDirectory().getUserAccountList();
+            UserAccount selectedUserAccount = null;
+            for (UserAccount ua : userAccountList) {
+                if (ua.getRole().equals(new ReviewerRole())) {
+                    selectedUserAccount = ua;
+                    break;
+                }
+            }
+            if (selectedUserAccount == null) {
+                JOptionPane.showMessageDialog(null, "Oops!! We cannot process your request at this time");
+                return;
+            }
+            WorkRequest workRequest = new WorkRequest();
+            workRequest.setSender(userAccount);
+            workRequest.setStatus("Requested Facility");
+            workRequest.setMessage("");
+            workRequest.setIndividual(individual);
+            JOptionPane.showMessageDialog(null, "Facility Requested Successfully!!. Please keep a track of your request present in 'MyAccount' section");
+            userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
+            selectedUserAccount.getWorkQueue().getWorkRequestList().add(workRequest);
+            rightJPanel.remove(this);
 
-        CardLayout layout = (CardLayout) rightJPanel.getLayout();
-        layout.next(rightJPanel);
-    }//GEN-LAST:event_jbtnBackActionPerformed
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a facility");
+        }
+
+
+    }//GEN-LAST:event_requestFacilityBtnActionPerformed
+
+    private void populateFacilities() {
+        DefaultTableModel model = (DefaultTableModel) facilityJTable.getModel();
+        model.setRowCount(0);
+        for (Enterprise e : facilityList) {
+            Object[] row = new Object[2];
+            row[0] = e;
+            model.addRow(row);
+        }
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField durationTxt;
-    private javax.swing.JTextArea employmentDurationJTxtArea;
+    private javax.swing.JTable facilityJTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JButton jbtnBack;
-    private javax.swing.JButton jbtnSubmit;
-    private javax.swing.JTextArea serviceJTxtArea;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton requestFacilityBtn;
     // End of variables declaration//GEN-END:variables
 }

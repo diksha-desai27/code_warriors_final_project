@@ -6,11 +6,15 @@
 package ui.individuals;
 
 import business.EcoSystem;
+import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -26,13 +30,14 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
     JPanel rightJPanel;
     Individual individual;
     UserAccount userAccount;
-
-    public IndividualsRegistrationFormJPanel1(JPanel rightJPanel, UserAccount userAccount, Individual individual, EcoSystem ecoSystem) {
+    ArrayList<Enterprise> facilityList;
+    
+    public IndividualsRegistrationFormJPanel1(JPanel rightJPanel, UserAccount userAccount, Individual individual, ArrayList<Enterprise> facilityList) {
         initComponents();
-        this.ecoSystem = ecoSystem;
         this.rightJPanel = rightJPanel;
         this.individual = individual;
-        this.userAccount =userAccount;
+        this.userAccount = userAccount;
+        this.facilityList = facilityList;
     }
 
     /**
@@ -149,13 +154,20 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         
+        if (!jRadioBtnHealthCare.isSelected() && !jRadioBtnLongTermCareService.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Please Select one service to Procees");
+            return;
+        }
         
+        if (jRadioBtnHealthCare.isSelected()) {
+            individual.setServiceType("ShortTermService");
+        } else {
+            individual.setServiceType("LongTermService");
+        }
         
-        
-        
-        IndividualsRegistrationFormJPanel2 individualsRegJPanel2 = new IndividualsRegistrationFormJPanel2(ecoSystem,userAccount, individual, rightJPanel);
+        IndividualsRegistrationFormJPanel2 individualsRegJPanel2 = new IndividualsRegistrationFormJPanel2(userAccount, individual, rightJPanel,facilityList);
         rightJPanel.add("individualsRegistrationFormJPanel2", individualsRegJPanel2);
-
+        
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
     }//GEN-LAST:event_jbtnNextActionPerformed
@@ -166,9 +178,9 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
-        IndividualMyAccountJPanel myAccount = new IndividualMyAccountJPanel(rightJPanel,userAccount, individual, ecoSystem);
+        IndividualMyAccountJPanel myAccount = new IndividualMyAccountJPanel(rightJPanel, userAccount, individual,facilityList);
         rightJPanel.add("IndividualMyAccount", myAccount);
-
+        
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
     }//GEN-LAST:event_updateBtnActionPerformed

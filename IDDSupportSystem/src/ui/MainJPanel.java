@@ -8,11 +8,13 @@ package ui;
 import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
 import business.enterprise.Enterprise;
+import business.enterprise.EnterpriseDirectory;
 import business.individuals.Individual;
 import business.network.Network;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.individuals.IndividualsSignUpJPanel;
@@ -166,9 +168,8 @@ public class MainJPanel extends javax.swing.JFrame {
         Individual individual = null;
         Enterprise isEnterprise = null;
         Organization isOrganization = null;
-        
-        if (userAccount == null) 
-        {
+
+        if (userAccount == null) {
             System.out.println(system.getIndividualDirectory().getIndividualList().size());
 
             for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
@@ -178,56 +179,46 @@ public class MainJPanel extends javax.swing.JFrame {
                     break;
                 }
             }
-            
-            if(individual == null) 
-            {
-                for (Network n : system.getNetworkList()) 
-                {
-                   for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()) 
-                   {
-                       userAccount = e.getUserAccountDirectory().authenticateUser(userName, password);
-                       if(userAccount == null)
-                       {
-                           for(Organization o: e.getOrganizationDirectory().getOrganizationList()) 
-                           {
-                               userAccount = o.getUserAccountDirectory().authenticateUser(userName, password);
-                               if(userAccount != null)
-                               {
-                                   isEnterprise = e;
-                                   isOrganization = o;
-                                   break;
-                               }
-                           }
-                       }
-                       else
-                       {
-                           isEnterprise = e;
-                           break;
-                       }
-                       if(isOrganization != null) {
-                           break;
-                       }
-                   }
-                   if(isEnterprise != null) 
-                   {
-                       break;
-                   }
+
+            if (individual == null) {
+                for (Network n : system.getNetworkList()) {
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        userAccount = e.getUserAccountDirectory().authenticateUser(userName, password);
+                        if (userAccount == null) {
+                            for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                                userAccount = o.getUserAccountDirectory().authenticateUser(userName, password);
+                                if (userAccount != null) {
+                                    isEnterprise = e;
+                                    isOrganization = o;
+                                    break;
+                                }
+                            }
+                        } else {
+                            isEnterprise = e;
+                            break;
+                        }
+                        if (isOrganization != null) {
+                            break;
+                        }
+                    }
+                    if (isEnterprise != null) {
+                        break;
+                    }
                 }
-                
+
             }
         }
-        
-        if(userAccount == null)
-        {
+
+      
+
+        if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
-        }
-        else 
-        {
+        } else {
             CardLayout layout = (CardLayout) rightJPanel.getLayout();
-            rightJPanel.add("workArea", userAccount.getRole().createWorkArea(rightJPanel, userAccount, system, isEnterprise,individual));
+            rightJPanel.add("workArea", userAccount.getRole().createWorkArea(rightJPanel, userAccount, system, isEnterprise, individual));
             layout.next(rightJPanel);
-           
+
         }
 
         btnLogin.setEnabled(false);

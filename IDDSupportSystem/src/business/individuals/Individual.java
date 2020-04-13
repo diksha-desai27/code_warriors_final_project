@@ -93,6 +93,9 @@ public class Individual {
     }
 
     public IDD getIddInfo() {
+        if(iddInfo==(null)){
+            iddInfo = new IDD();
+        }
         return iddInfo;
     }
 
