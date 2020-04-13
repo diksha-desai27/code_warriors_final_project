@@ -5,6 +5,7 @@
  */
 package ui.reviewer;
 
+import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -21,11 +22,13 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     UserAccount userAccount;
+    IndividualDirectory individualDirectory;
     
-    public ReviewerWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount) {
+    public ReviewerWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
+        this.individualDirectory = individualDirectory;
     }
 
     /**
@@ -107,7 +110,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
         // TODO add your handling code here:
-        ManageIndividuals manageIndividuals = new ManageIndividuals(userProcessContainer,userAccount);
+        ManageIndividuals manageIndividuals = new ManageIndividuals(userProcessContainer,userAccount, this.individualDirectory);
         userProcessContainer.add("ManageIndividuals",manageIndividuals);
 
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();

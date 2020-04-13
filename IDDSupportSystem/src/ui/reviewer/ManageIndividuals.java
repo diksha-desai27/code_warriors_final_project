@@ -5,9 +5,13 @@
  */
 package ui.reviewer;
 
+import business.individuals.Individual;
+import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,11 +25,15 @@ public class ManageIndividuals extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     UserAccount userAccount;
+    IndividualDirectory individualDirectory;
+    Individual individual;
     
-    public ManageIndividuals(JPanel userProcessContainer,UserAccount userAccount) {
+    public ManageIndividuals(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
+        this.individualDirectory = individualDirectory;
+        this.populateTable();
     }
 
     /**
@@ -39,8 +47,8 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        enterpriseTable = new javax.swing.JTable();
-        btnCreateEnterprise = new javax.swing.JButton();
+        individualTable = new javax.swing.JTable();
+        btnViewDetails = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -55,11 +63,12 @@ public class ManageIndividuals extends javax.swing.JPanel {
         servicesValue = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         assignCareGiverBtn = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Manage Individuals");
 
-        enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
+        individualTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -78,36 +87,38 @@ public class ManageIndividuals extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(enterpriseTable);
+        jScrollPane1.setViewportView(individualTable);
 
-        btnCreateEnterprise.setText("View Details");
-        btnCreateEnterprise.addActionListener(new java.awt.event.ActionListener() {
+        btnViewDetails.setText("View Details");
+        btnViewDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateEnterpriseActionPerformed(evt);
+                btnViewDetailsActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("First Name");
+        jLabel2.setText("First Name:");
 
-        jLabel3.setText("Last Name");
+        jLabel3.setText("Last Name:");
 
-        jLabel4.setText("Birth Date");
+        jLabel4.setText("Birth Date:");
 
-        jLabel5.setText("Disability");
+        jLabel5.setText("Disability:");
 
-        jLabel6.setText("Duration of Disability");
+        jLabel6.setText("Duration of Disability:");
 
         jLabel7.setText("Services Requested:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Individual Information");
 
-        assignCareGiverBtn.setText("Assign Care Giver");
+        assignCareGiverBtn.setText("Assign Caregiver");
         assignCareGiverBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignCareGiverBtnActionPerformed(evt);
             }
         });
+
+        jLabel9.setText("City:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,8 +137,8 @@ public class ManageIndividuals extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(disabilityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                     .addGroup(layout.createSequentialGroup()
@@ -143,21 +154,21 @@ public class ManageIndividuals extends javax.swing.JPanel {
                                         .addGap(81, 81, 81)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(durationValue, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(94, 94, 94)
-                                        .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(420, 420, 420))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(assignCareGiverBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCreateEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnViewDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,6 +179,10 @@ public class ManageIndividuals extends javax.swing.JPanel {
                         .addGap(144, 144, 144)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(assignCareGiverBtn)
+                .addGap(340, 340, 340))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,18 +192,23 @@ public class ManageIndividuals extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateEnterprise))
+                    .addComponent(btnViewDetails))
                 .addGap(23, 23, 23)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(firstNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel4))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel4))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9))))
                     .addComponent(birthDateValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,20 +223,40 @@ public class ManageIndividuals extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(servicesValue, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(23, 23, 23)
                 .addComponent(assignCareGiverBtn)
-                .addGap(178, 178, 178))
+                .addGap(167, 167, 167))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCreateEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEnterpriseActionPerformed
-        // TODO add your handling code here:
+    
+    public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) individualTable.getModel();
+        model.setRowCount(0);
         
-    }//GEN-LAST:event_btnCreateEnterpriseActionPerformed
+        for(Individual i: this.individualDirectory.getIndividualList()) {
+                Object[] row = new Object[3];
+                row[0] = i.getRegistrationId();
+                row[1] = i.getFirstName();
+                row[2] = i.getLastName();
+                model.addRow(row);
+        }
+    }
+    
+    private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
+        // TODO add your handling code here:
+       int selectedRow = individualTable.getSelectedRow();
+       if(selectedRow >= 0) {
+           individual = (Individual)individualTable.getValueAt(selectedRow, 0);
+       }
+       else
+       {
+           JOptionPane.showMessageDialog(null, "Please select a row");
+       }
+    }//GEN-LAST:event_btnViewDetailsActionPerformed
 
     private void assignCareGiverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignCareGiverBtnActionPerformed
         // TODO add your handling code here:
-        AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount);
+        AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual);
         userProcessContainer.add("AssignCareGiver",assignCareGiver);
 
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
@@ -227,11 +267,11 @@ public class ManageIndividuals extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignCareGiverBtn;
     private javax.swing.JLabel birthDateValue;
-    private javax.swing.JButton btnCreateEnterprise;
+    private javax.swing.JButton btnViewDetails;
     private javax.swing.JLabel disabilityValue;
     private javax.swing.JLabel durationValue;
-    private javax.swing.JTable enterpriseTable;
     private javax.swing.JLabel firstNameValue;
+    private javax.swing.JTable individualTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -240,6 +280,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lastNameValue;
     private javax.swing.JLabel servicesValue;
