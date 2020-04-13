@@ -19,11 +19,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnManageUserAccount" min="-2" max="-2" attributes="0"/>
                   <Component id="btnManageEmployee" min="-2" pref="221" max="-2" attributes="0"/>
                   <Component id="btnManageOrganization" min="-2" pref="228" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="117" max="32767" attributes="0"/>
+              <EmptySpace pref="107" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -35,7 +35,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnManageEmployee" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <Component id="btnManageUserAccount" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="179" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -50,10 +50,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageOrganizationActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnManageUserAccount">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Enterprise Information"/>
+        <Property name="text" type="java.lang.String" value="Manage Employees UserAccount"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageUserAccountActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnManageEmployee">
       <Properties>
