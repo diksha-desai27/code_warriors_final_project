@@ -43,7 +43,6 @@ public class EnterpriseDirectory {
     }
     
      public Enterprise deleteEnterprise(Enterprise enterprise) {
-       
        enterpriseList.remove(enterprise);
        return enterprise;
         
