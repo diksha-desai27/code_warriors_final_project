@@ -7,6 +7,8 @@ package ui.reviewer;
 
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -165,6 +167,14 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageIndividuals manageIndividuals = (ManageIndividuals) component;
+        manageIndividuals.populateTable();
+
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
 
