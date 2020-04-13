@@ -11,6 +11,7 @@ import business.individuals.Individual;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
+import ui.nurse.NurseWorkAreaJPanel;
 
 /**
  *
@@ -20,7 +21,7 @@ public class NurseRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business, Enterprise enterprise,Individual individual) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new NurseWorkAreaJPanel(userProcessContainer, account);
     }
     
 }

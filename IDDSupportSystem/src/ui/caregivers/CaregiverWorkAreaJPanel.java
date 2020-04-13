@@ -5,17 +5,24 @@
  */
 package ui.caregivers;
 
+import business.useraccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author sayalipathare
  */
 public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
 
+    JPanel userProcessContainer;
+    UserAccount userAccount;
     /**
      * Creates new form CaregiverWorkAreaJPanel
      */
-    public CaregiverWorkAreaJPanel() {
+    public CaregiverWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
     }
 
     /**

@@ -5,17 +5,24 @@
  */
 package ui.doctor;
 
+import business.useraccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author sayalipathare
  */
 public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
-
+    
+    JPanel userProcessContainer;
+    UserAccount userAccount;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public DoctorWorkAreaJPanel() {
+    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
     }
 
     /**
