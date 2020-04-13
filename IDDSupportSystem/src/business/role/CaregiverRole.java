@@ -11,17 +11,17 @@ import business.individuals.Individual;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
-import ui.doctor.DoctorWorkAreaJPanel;
+import ui.caregivers.CaregiverWorkAreaJPanel;
 
 /**
  *
  * @author dikshadesai
  */
-public class DoctorRole extends Role{
+public class CaregiverRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business, Enterprise enterprise, Individual individual) {
-        return new DoctorWorkAreaJPanel(userProcessContainer, account);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business, Enterprise enterprise,Individual individual) {
+        return new CaregiverWorkAreaJPanel(userProcessContainer, account);
     }
     
 }

@@ -34,7 +34,7 @@ public class OrganizationDirectory {
             organizationList.add(organization);
         }
         if(type == Organization.Type.Analyst) {
-            organization = new AnalystOrganization();
+            organization = new ReviewerOrganization();
             organizationList.add(organization);
         }
         if(type == Organization.Type.Caregiver) {

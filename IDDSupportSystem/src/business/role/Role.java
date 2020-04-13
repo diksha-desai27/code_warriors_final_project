@@ -24,7 +24,7 @@ public abstract class Role {
         Doctor("Doctor"),
         Nurse("Nurse"),
         Caregiver("Caregiver"),
-        Analyst("Analyst"),
+        Reviewer("Reviewer"),
         Individual("Individual");
         
         private String value;
