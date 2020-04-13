@@ -50,6 +50,10 @@ public class UserAccount {
     void setRole(Role role) {
         this.role = role;
     }
+    
+    public String toString() {
+        return this.getUsername();
+    }
 
    
    

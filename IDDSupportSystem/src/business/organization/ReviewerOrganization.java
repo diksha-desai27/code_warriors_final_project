@@ -5,6 +5,7 @@
  */
 package business.organization;
 
+import business.role.ReviewerRole;
 import business.role.Role;
 import java.util.ArrayList;
 
@@ -15,12 +16,14 @@ import java.util.ArrayList;
 public class ReviewerOrganization extends Organization{
     
     public ReviewerOrganization() {
-        super(Type.Analyst.getValue());
+        super(Type.Reviewer.getValue());
     }
     
     @Override
     public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Role> roles = new ArrayList();
+        roles.add(new ReviewerRole());
+        return roles;
     }
     
 }

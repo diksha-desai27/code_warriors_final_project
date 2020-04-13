@@ -255,7 +255,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     public void populateRoles(Organization organization) {
         dpdRole.removeAllItems();
         for(Role role: organization.getSupportedRole()) {
-            dpdEmployee.addItem(role);
+            System.out.println("Roles " + role.toString());
+            dpdRole.addItem(role);
         }
     }
     
@@ -269,7 +270,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         
         org.getUserAccountDirectory().createUserAccount(username, password, role);
         this.populateTable();
-        JOptionPane.showMessageDialog(null, "");
+        JOptionPane.showMessageDialog(null, "User account created successfully.");
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

@@ -8,6 +8,7 @@ package ui.enterprise;
 import business.EcoSystem;
 import business.enterprise.Enterprise;
 import business.organization.Organization;
+import business.organization.Organization.Type;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -67,7 +68,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         if(enterprise.enterpriseType.getValue().equals("Facility")) {
             for(Organization.Type type: Organization.Type.values())
             {
-                dpdOrganizationType.addItem(type.Analyst);
+                dpdOrganizationType.addItem(type.Reviewer);
                 dpdOrganizationType.addItem(type.Caregiver);
                 break;
             }
@@ -164,7 +165,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        Organization.Type type = (Organization.Type)dpdOrganizationType.getSelectedItem();
+        Type type = (Type)dpdOrganizationType.getSelectedItem();
         enterprise.getOrganizationDirectory().createOrganization(type);
         JOptionPane.showMessageDialog(null,type + " added successfully");
         this.populateTable();

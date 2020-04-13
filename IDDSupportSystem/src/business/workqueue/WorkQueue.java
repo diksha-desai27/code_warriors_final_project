@@ -5,10 +5,25 @@
  */
 package business.workqueue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author dikshadesai
  */
 public class WorkQueue {
     
+    private List<WorkRequest> workRequestList;
+
+    public WorkQueue() {
+        workRequestList = new ArrayList();
+    }
+
+    public List<WorkRequest> getWorkRequestList() {
+        if(workRequestList == null){
+            workRequestList = new ArrayList();
+        }
+        return workRequestList;
+    }
 }
