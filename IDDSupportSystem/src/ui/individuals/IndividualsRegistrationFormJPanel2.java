@@ -6,9 +6,15 @@
 package ui.individuals;
 
 import business.EcoSystem;
+import business.enterprise.Enterprise;
+import business.individuals.IDD;
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -24,12 +30,15 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
     JPanel rightJPanel;
     Individual individual;
     UserAccount userAccount;
-    public IndividualsRegistrationFormJPanel2(EcoSystem ecoSystem,UserAccount userAccount,Individual individual,JPanel rightJPanel) {
+    ArrayList<Enterprise> facilityList;
+
+    public IndividualsRegistrationFormJPanel2(UserAccount userAccount, Individual individual, JPanel rightJPanel,ArrayList<Enterprise> faciliyList) {
         initComponents();
-        this.ecoSystem = ecoSystem;
-        this.rightJPanel= rightJPanel;
+        this.facilityList = facilityList;
+        this.rightJPanel = rightJPanel;
         this.individual = individual;
         this.userAccount = userAccount;
+        nextBtn.setEnabled(false);
     }
 
     /**
@@ -43,45 +52,27 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jbtnNext = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
         jbtnBack = new javax.swing.JButton();
         nervousSystemJBtn = new javax.swing.JRadioButton();
         sensorySystemJBtn = new javax.swing.JRadioButton();
         fragileJBtn = new javax.swing.JRadioButton();
         downsJBtn = new javax.swing.JRadioButton();
         pradeWillisSyndromeBtn = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        durationTxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        serviceJTxtArea = new javax.swing.JTextArea();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        employmentDurationJTxtArea = new javax.swing.JTextArea();
+        jbtnSubmit = new javax.swing.JButton();
+        nextBtn = new javax.swing.JButton();
 
         jLabel1.setText("**Welcome to IDD Massachusetts Centre**");
 
         jLabel2.setText("2. Select which IDD are you facing:");
-
-        jbtnNext.setText("Next");
-        jbtnNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnNextActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("3. Where has the Applicant lived in the pas 12 months?(Check all that apply)");
-
-        jCheckBox7.setText("Own home/With Family");
-
-        jCheckBox8.setText("Homeless, not in a shelter");
-
-        jCheckBox9.setText("Shelter");
-
-        jCheckBox11.setText("Boarding Home");
-
-        jCheckBox10.setText("Assisted Living Home");
-
-        jCheckBox12.setText("Skilled Nusrsing Facility");
 
         jbtnBack.setText("Back");
         jbtnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -100,16 +91,46 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
 
         pradeWillisSyndromeBtn.setText("Prade willi's Syndrome");
 
+        jLabel4.setText("3.For How Long are you Facing this disability?");
+
+        durationTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                durationTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("years");
+
+        jLabel6.setText("4. Describe the services and supervision needed");
+
+        serviceJTxtArea.setColumns(20);
+        serviceJTxtArea.setRows(5);
+        jScrollPane3.setViewportView(serviceJTxtArea);
+
+        jLabel7.setText("6. Describe the expected duration and goals of placement");
+
+        employmentDurationJTxtArea.setColumns(20);
+        employmentDurationJTxtArea.setRows(5);
+        jScrollPane4.setViewportView(employmentDurationJTxtArea);
+
+        jbtnSubmit.setText("Submit");
+        jbtnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSubmitActionPerformed(evt);
+            }
+        });
+
+        nextBtn.setText("Next>>");
+        nextBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jbtnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnNext)
-                .addGap(87, 87, 87))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -117,33 +138,44 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(downsJBtn)
-                            .addComponent(jLabel3)
                             .addComponent(nervousSystemJBtn)
                             .addComponent(sensorySystemJBtn)
                             .addComponent(fragileJBtn)
-                            .addComponent(pradeWillisSyndromeBtn)))
+                            .addComponent(pradeWillisSyndromeBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox7)
-                            .addComponent(jCheckBox9)
-                            .addComponent(jCheckBox11))
-                        .addGap(102, 102, 102)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox10)
-                            .addComponent(jCheckBox8)
-                            .addComponent(jCheckBox12)))
+                        .addGap(31, 31, 31)
+                        .addComponent(jbtnBack)
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
-                        .addComponent(jLabel1)))
-                .addContainerGap(144, Short.MAX_VALUE))
+                        .addGap(66, 66, 66)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(261, 261, 261)
+                        .addComponent(jbtnSubmit)
+                        .addGap(39, 39, 39)
+                        .addComponent(nextBtn)))
+                .addGap(75, 381, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addGap(48, 48, 48)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jbtnBack))
+                .addGap(43, 43, 43)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nervousSystemJBtn)
@@ -155,67 +187,114 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
                 .addComponent(downsJBtn)
                 .addGap(18, 18, 18)
                 .addComponent(pradeWillisSyndromeBtn)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox7)
-                            .addComponent(jCheckBox8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox9)
-                            .addComponent(jCheckBox10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox11)
-                            .addComponent(jCheckBox12))
-                        .addGap(55, 186, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbtnBack)
-                            .addComponent(jbtnNext))
-                        .addGap(47, 47, 47))))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addComponent(jLabel4))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnSubmit)
+                    .addComponent(nextBtn))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNextActionPerformed
-        // TODO add your handling code here:
-        IndividualsRegistrationFormJPanel3 individualsRegJPanel3 = new IndividualsRegistrationFormJPanel3(rightJPanel,userAccount,individual,ecoSystem);
-       rightJPanel.add("individualsRegistrationFormJPanel3",individualsRegJPanel3);
-       
-       CardLayout layout=(CardLayout)rightJPanel.getLayout();
-       layout.next(rightJPanel);
-    }//GEN-LAST:event_jbtnNextActionPerformed
-
     private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
         // TODO add your handling code here:
-        IndividualsRegistrationFormJPanel1 individualsregJPanel1 = new IndividualsRegistrationFormJPanel1(rightJPanel,userAccount,individual,ecoSystem);
-        rightJPanel.add("individualsregJPanel1",individualsregJPanel1);
-       
-        CardLayout layout=(CardLayout)rightJPanel.getLayout();
-       layout.next(rightJPanel);
+         
+        rightJPanel.remove(this);
+        Component[] componentArray = rightJPanel.getComponents();
+        Component component = componentArray[componentArray.length - 1];;
+        CardLayout layout = (CardLayout)rightJPanel.getLayout();
+        layout.previous(rightJPanel);
     }//GEN-LAST:event_jbtnBackActionPerformed
+
+    private void jbtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSubmitActionPerformed
+        // TODO add your handling code here:
+        if (!nervousSystemJBtn.isSelected() && !sensorySystemJBtn.isSelected() && !pradeWillisSyndromeBtn.isSelected() && !downsJBtn.isSelected() && !fragileJBtn.isSelected()) {
+            JOptionPane.showMessageDialog(null, "All fields are mandatory");
+            return;
+        }
+        if (durationTxt.getText().equals("") && serviceJTxtArea.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "All fields are mandatory");
+            return;
+        }
+        if(individual.getServiceType().equals("LongTermService")){
+             JOptionPane.showMessageDialog(null, "All fields are mandatory");
+            return;
+        }
+        IDD id_info;
+      //  if( individual.getIddInfo()==null){
+        //}
+        
+        individual.getIddInfo().setDuration(Integer.parseInt(durationTxt.getText()));
+        individual.getIddInfo().setEmploymentDetails(employmentDurationJTxtArea.getText());
+        individual.getIddInfo().setServices(serviceJTxtArea.getSelectedText());
+        JOptionPane.showMessageDialog(null,"Details Saved Successfully");
+        clearFields();
+        nextBtn.setEnabled(true);
+       
+        
+    }//GEN-LAST:event_jbtnSubmitActionPerformed
+
+    private void clearFields(){
+        downsJBtn.setSelected(false);
+        nervousSystemJBtn.setSelected(false);
+        sensorySystemJBtn.setSelected(false);
+        pradeWillisSyndromeBtn.setSelected(false);
+        fragileJBtn.setSelected(false);
+        durationTxt.setText("");
+        serviceJTxtArea.setText("");
+        employmentDurationJTxtArea.setText("");
+    }
+    
+    
+    
+    
+    private void durationTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_durationTxtActionPerformed
+
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
+        // TODO add your handling code here:
+        IndividualsRegistrationFormJPanel3 individualFacilityPanel = new IndividualsRegistrationFormJPanel3(rightJPanel, userAccount, individual,facilityList);
+        rightJPanel.add("individualFacilityPanel", individualFacilityPanel);
+        
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+        layout.next(rightJPanel);
+        
+    }//GEN-LAST:event_nextBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton downsJBtn;
+    private javax.swing.JTextField durationTxt;
+    private javax.swing.JTextArea employmentDurationJTxtArea;
     private javax.swing.JRadioButton fragileJBtn;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jbtnBack;
-    private javax.swing.JButton jbtnNext;
+    private javax.swing.JButton jbtnSubmit;
     private javax.swing.JRadioButton nervousSystemJBtn;
+    private javax.swing.JButton nextBtn;
     private javax.swing.JRadioButton pradeWillisSyndromeBtn;
     private javax.swing.JRadioButton sensorySystemJBtn;
+    private javax.swing.JTextArea serviceJTxtArea;
     // End of variables declaration//GEN-END:variables
 }
