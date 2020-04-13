@@ -51,6 +51,9 @@ public abstract class Enterprise extends Organization{
     }
     
     public OrganizationDirectory getOrganizationDirectory() {
+        if(organizationDirectory == null) {
+            organizationDirectory = new OrganizationDirectory();
+        }
         return organizationDirectory;
     }
     

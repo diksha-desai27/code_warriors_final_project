@@ -58,10 +58,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
        
         
         for(Network n: system.getNetworkList()) {
-            System.out.println("Finding NetworkList");
             for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList())
             {
-                System.out.println("FoundList");
                 Object[] row = new Object[3];
                 row[0] = e;
                 row[1] = n;

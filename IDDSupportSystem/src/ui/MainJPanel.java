@@ -144,7 +144,7 @@ public class MainJPanel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,10 +165,8 @@ public class MainJPanel extends javax.swing.JFrame {
         Individual individual = null;
         Enterprise isEnterprise = null;
         
-        if (userAccount == null) {
-            JOptionPane.showMessageDialog(null, "Invalid credentials");
-        }
-      else {
+        if (userAccount == null) 
+        {
             System.out.println(system.getIndividualDirectory().getIndividualList().size());
 
             for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
@@ -178,9 +176,13 @@ public class MainJPanel extends javax.swing.JFrame {
                     break;
                 }
             }
-           /* if(individual == null) {
-                for (Network n : system.getNetworkList()) {
-                   for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()) {
+            
+            if(individual == null) 
+            {
+                for (Network n : system.getNetworkList()) 
+                {
+                   for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()) 
+                   {
                        userAccount = e.getUserAccountDirectory().authenticateUser(userName, password);
                        if(userAccount != null)
                        {
@@ -189,11 +191,20 @@ public class MainJPanel extends javax.swing.JFrame {
                        }
                    }
                 }
-            }*/
-            System.out.println(userAccount);
+            }
+        }
+        
+        if(userAccount == null)
+        {
+            JOptionPane.showMessageDialog(null, "Invalid credentials");
+            return;
+        }
+        else 
+        {
             CardLayout layout = (CardLayout) rightJPanel.getLayout();
             rightJPanel.add("workArea", userAccount.getRole().createWorkArea(rightJPanel, userAccount, system, isEnterprise,individual));
             layout.next(rightJPanel);
+           
         }
 
         btnLogin.setEnabled(false);

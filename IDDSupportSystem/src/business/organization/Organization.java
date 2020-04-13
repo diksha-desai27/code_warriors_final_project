@@ -23,15 +23,20 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     
    public enum Type {
-    Analyst("Analyst Organization"), Doctor("Doctor Organization"),Caregiver("Caregiver Organization"), Admin("Admin Organization"), Nurse("NurseOrganization");
+    Analyst("Analyst Organization"), Doctor("Doctor Organization"),Caregiver("Caregiver Organization"), Admin("Admin Organization"), Nurse("Nurse Organization");
 
     private String value;
         
-    private Type(String value) {
+        private Type(String value) {
             this.value = value;
         }
         
-    public String getValue() {
+        public String getValue() {
+            return value;
+        }
+    
+        @Override
+        public String toString() {
             return value;
         }
    }
@@ -64,5 +69,9 @@ public abstract class Organization {
         return userAccountDirectory;
     }   
    
+    @Override
+    public String toString() {
+        return this.getName();
+    }
     
 }
