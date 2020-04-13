@@ -19,6 +19,7 @@ public class Individual {
     private String userName;
     private String birthDate;
     private String address;
+    private String city;
     private int zipCode;
     private IDD iddInfo;
     private String serviceType;
@@ -67,7 +68,14 @@ public class Individual {
     public void setAddress(String address) {
         this.address = address;
     }
+    
+    public String getCity() {
+        return city;
+    }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
     public int getZipCode() {
         return zipCode;
     }
