@@ -5,6 +5,7 @@
  */
 package business.organization;
 
+import business.employee.EmployeeDirectory;
 import business.role.Role;
 import business.useraccount.UserAccountDirectory;
 import business.workqueue.WorkQueue;
@@ -19,7 +20,7 @@ public abstract class Organization {
     
     private String name;
     private WorkQueue workQueue;
-   // private EmployeeDirectory employeeDirectory;
+    private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     
    public enum Type {
@@ -67,7 +68,15 @@ public abstract class Organization {
             userAccountDirectory = new UserAccountDirectory();
         }
         return userAccountDirectory;
-    }   
+    }  
+    
+    public EmployeeDirectory getEmployeeDirectory() {
+        if(employeeDirectory == null)
+        {
+            employeeDirectory = new EmployeeDirectory();
+        }
+        return employeeDirectory;
+    }  
    
     @Override
     public String toString() {

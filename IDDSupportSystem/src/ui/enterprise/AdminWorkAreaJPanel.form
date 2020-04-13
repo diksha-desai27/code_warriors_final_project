@@ -20,7 +20,7 @@
               <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="221" max="-2" attributes="0"/>
+                  <Component id="btnManageEmployee" min="-2" pref="221" max="-2" attributes="0"/>
                   <Component id="btnManageOrganization" min="-2" pref="228" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="117" max="32767" attributes="0"/>
@@ -32,9 +32,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Component id="btnManageOrganization" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnManageEmployee" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="179" max="32767" attributes="0"/>
           </Group>
@@ -55,10 +55,13 @@
         <Property name="text" type="java.lang.String" value="Manage Enterprise Information"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="btnManageEmployee">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Organization  Admin"/>
+        <Property name="text" type="java.lang.String" value="Manage Employees"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageEmployeeActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

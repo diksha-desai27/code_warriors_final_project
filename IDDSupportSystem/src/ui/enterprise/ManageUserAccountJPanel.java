@@ -222,7 +222,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
         // TODO add your handling code here:
-        AdminWorkAreaJPanel adminWorkAreaJPanel = new AdminWorkAreaJPanel(userProcessContainer,userAccount, system, null);
+        AdminWorkAreaJPanel adminWorkAreaJPanel = new AdminWorkAreaJPanel(userProcessContainer,userAccount, null);
         userProcessContainer.add("AdminWorkAreaJPanel",adminWorkAreaJPanel);
        
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();

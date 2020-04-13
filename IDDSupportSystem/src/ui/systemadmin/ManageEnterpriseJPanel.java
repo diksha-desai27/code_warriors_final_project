@@ -86,7 +86,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         enterpriseNameTextField = new javax.swing.JTextField();
         btnCreateEnterprise = new javax.swing.JButton();
-        jbtnBack = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
 
         enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -137,10 +137,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
 
-        jbtnBack.setText("Back");
-        jbtnBack.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnBackActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -166,7 +166,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)))
-                            .addComponent(jbtnBack))
+                            .addComponent(btnBack))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dpdEnterpriseType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -206,7 +206,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateEnterprise)
-                    .addComponent(jbtnBack))
+                    .addComponent(btnBack))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -237,14 +237,14 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_dpdEnterpriseTypeActionPerformed
 
-    private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = new SystemAdminWorkAreaJPanel(userProcessContainer, system);
         userProcessContainer.add("systemAdminWorkAreaJPanel",systemAdminWorkAreaJPanel);
        
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
        layout.next(userProcessContainer);
-    }//GEN-LAST:event_jbtnBackActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
@@ -273,6 +273,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateEnterprise;
     private javax.swing.JButton btnDelete;
     private javax.swing.JComboBox<Object> dpdEnterpriseType;
@@ -283,6 +284,5 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbtnBack;
     // End of variables declaration//GEN-END:variables
 }
