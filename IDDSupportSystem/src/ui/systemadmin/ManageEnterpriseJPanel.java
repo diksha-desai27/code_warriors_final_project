@@ -63,7 +63,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             {
                 System.out.println("FoundList");
                 Object[] row = new Object[3];
-                row[0] = e.getName();
+                row[0] = e;
                 row[1] = n;
                 row[2] = e.getEnterpriseType().getValue();
                 model.addRow(row);
@@ -250,19 +250,22 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        Enterprise ent = null;
        
         int selectedRow = enterpriseTable.getSelectedRow();
         if(selectedRow >= 0) {
             Enterprise en = (Enterprise) enterpriseTable.getValueAt(selectedRow, 0);
-            Network n= (Network) system.getNetworkList();
-            if(n.getEnterpriseDirectory().getEnterpriseList().contains(en))
-            {           
-                ent= en;            
+            for(Network n: system.getNetworkList()) {
+                for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()) {
+                    if(en.equals(e))
+                    {
+                        n.getEnterpriseDirectory().deleteEnterprise(en);
+                        this.populateTable();
+                        JOptionPane.showMessageDialog(null, "Enterprise deleted successfully");
+                        break;
+                    }
+                }
             }
                
-            n.getEnterpriseDirectory().deleteEnterprise(ent);
-            populateTable();
         }
         else
         {

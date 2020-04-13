@@ -7,7 +7,9 @@ package ui;
 
 import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
+import business.enterprise.Enterprise;
 import business.individuals.Individual;
+import business.network.Network;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -29,7 +31,7 @@ public class MainJPanel extends javax.swing.JFrame {
     public MainJPanel() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-        this.setSize(1200, 1200);
+        this.setSize(1000, 750);
         this.setResizable(false);
         for (int i = 0; i < system.getUserAccountDirectory().getUserAccountList().size(); i++) {
             System.out.println(system.getUserAccountDirectory().getUserAccountList().get(i).getUsername());
@@ -161,10 +163,10 @@ public class MainJPanel extends javax.swing.JFrame {
 
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
         Individual individual = null;
-
+        Enterprise isEnterprise = null;
+        
         if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
-            return;
         }
       else {
             System.out.println(system.getIndividualDirectory().getIndividualList().size());
@@ -176,9 +178,21 @@ public class MainJPanel extends javax.swing.JFrame {
                     break;
                 }
             }
-            System.out.println(individual);
+           /* if(individual == null) {
+                for (Network n : system.getNetworkList()) {
+                   for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()) {
+                       userAccount = e.getUserAccountDirectory().authenticateUser(userName, password);
+                       if(userAccount != null)
+                       {
+                           isEnterprise = e;
+                           break;
+                       }
+                   }
+                }
+            }*/
+            System.out.println(userAccount);
             CardLayout layout = (CardLayout) rightJPanel.getLayout();
-            rightJPanel.add("workArea", userAccount.getRole().createWorkArea(rightJPanel, userAccount, system,null,individual));
+            rightJPanel.add("workArea", userAccount.getRole().createWorkArea(rightJPanel, userAccount, system, isEnterprise,individual));
             layout.next(rightJPanel);
         }
 
