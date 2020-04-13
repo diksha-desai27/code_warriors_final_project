@@ -20,8 +20,8 @@ import ui.reviewer.ReviewerWorkAreaJPanel;
 public class ReviewerRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business, Enterprise enterprise, Individual individual) {
-        return new ReviewerWorkAreaJPanel(userProcessContainer, account);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system, Enterprise enterprise, Individual individual) {
+        return new ReviewerWorkAreaJPanel(userProcessContainer, account, system.getIndividualDirectory());
     }
     
 }

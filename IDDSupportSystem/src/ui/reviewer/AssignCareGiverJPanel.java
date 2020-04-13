@@ -5,6 +5,7 @@
  */
 package ui.reviewer;
 
+import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
 
@@ -20,11 +21,13 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     
     JPanel userProcessContainer;
     UserAccount userAccount;
+    Individual individual;
     
-    public AssignCareGiverJPanel(JPanel userProcessContainer,UserAccount userAccount) {
+    public AssignCareGiverJPanel(JPanel userProcessContainer,UserAccount userAccount, Individual individual) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
+        this.individual = individual;
     }
 
     /**
