@@ -64,6 +64,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         assignCareGiverBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        cityValue = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Manage Individuals");
@@ -106,7 +107,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         jLabel6.setText("Duration of Disability:");
 
-        jLabel7.setText("Services Requested:");
+        jLabel7.setText("Service Requested:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Individual Information");
@@ -138,20 +139,18 @@ public class ManageIndividuals extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(disabilityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addGap(52, 52, 52)
-                                                .addComponent(birthDateValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addGap(46, 46, 46)
-                                                .addComponent(firstNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(81, 81, 81)))
+                                        .addGap(64, 64, 64)
+                                        .addComponent(disabilityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addGap(52, 52, 52)
+                                            .addComponent(birthDateValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel2)
+                                            .addGap(46, 46, 46)
+                                            .addComponent(firstNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6)
@@ -163,6 +162,8 @@ public class ManageIndividuals extends javax.swing.JPanel {
                                         .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel9)
+                                        .addGap(67, 67, 67)
+                                        .addComponent(cityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(420, 420, 420))
                     .addGroup(layout.createSequentialGroup()
@@ -208,7 +209,9 @@ public class ManageIndividuals extends javax.swing.JPanel {
                                 .addComponent(jLabel4))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(cityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(birthDateValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,6 +250,13 @@ public class ManageIndividuals extends javax.swing.JPanel {
        int selectedRow = individualTable.getSelectedRow();
        if(selectedRow >= 0) {
            individual = (Individual)individualTable.getValueAt(selectedRow, 0);
+           firstNameValue.setText(individual.getFirstName());
+           lastNameValue.setText(individual.getLastName());
+           birthDateValue.setText(individual.getBirthDate());
+           cityValue.setText(individual.getCity());
+           disabilityValue.setText(individual.getIddInfo().getdName());
+           durationValue.setText(String.valueOf(individual.getIddInfo().getDuration()));
+           servicesValue.setText(individual.getServiceType());
        }
        else
        {
@@ -268,6 +278,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
     private javax.swing.JButton assignCareGiverBtn;
     private javax.swing.JLabel birthDateValue;
     private javax.swing.JButton btnViewDetails;
+    private javax.swing.JLabel cityValue;
     private javax.swing.JLabel disabilityValue;
     private javax.swing.JLabel durationValue;
     private javax.swing.JLabel firstNameValue;
