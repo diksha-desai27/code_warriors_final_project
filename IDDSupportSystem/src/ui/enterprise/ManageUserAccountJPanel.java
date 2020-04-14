@@ -288,6 +288,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         org.getUserAccountDirectory().createUserAccount(username, password, role);
         this.populateTable();
         JOptionPane.showMessageDialog(null, "User account created successfully.");
+        usernameTextField.setText("");
+        passwordField.setText("");
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

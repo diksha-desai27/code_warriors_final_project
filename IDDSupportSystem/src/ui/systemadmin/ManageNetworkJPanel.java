@@ -152,6 +152,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         String name = nameTextField.getText();        
         Network network=system.createNetwork();
         network.setName(name);
+        JOptionPane.showMessageDialog(null, "Network created successfully");
         populateTable();
         nameTextField.setText("");
        

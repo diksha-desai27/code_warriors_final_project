@@ -47,6 +47,11 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
         jLabel4.setText("Weight");
 
         jBtnSubmit.setText("Submit Report");
+        jBtnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSubmitActionPerformed(evt);
+            }
+        });
 
         jBtnBack.setText("Back");
 
@@ -101,6 +106,10 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
                 .addGap(55, 55, 55))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSubmitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnSubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

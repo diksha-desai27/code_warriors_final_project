@@ -97,6 +97,11 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(organizationJTable);
 
         dpdOrganizationEmp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dpdOrganizationEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dpdOrganizationEmpActionPerformed(evt);
+            }
+        });
 
         btnCreateEmployee.setText("Create Employee");
         btnCreateEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -231,6 +236,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         org.getEmployeeDirectory().createEmployee(name);
         this.populateTable(org);
         JOptionPane.showMessageDialog(null, "Employee created successfully");
+        nameTextField.setText("");
     }//GEN-LAST:event_btnCreateEmployeeActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -240,6 +246,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void dpdOrganizationEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdOrganizationEmpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dpdOrganizationEmpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
