@@ -38,6 +38,9 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         this.individual = individual;
         this.userAccount = userAccount;
         this.facilityList = facilityList;
+        System.out.println(this.individual);
+                System.out.println(facilityList);
+
     }
 
     /**
@@ -153,12 +156,13 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         Date date1 = new Date();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        
+                   System.out.println("radio"+jRadioBtnHealthCare.isSelected());
+
         if (!jRadioBtnHealthCare.isSelected() && !jRadioBtnLongTermCareService.isSelected()) {
             JOptionPane.showMessageDialog(null, "Please Select one service to Procees");
             return;
         }
-        
+           System.out.println("radio"+jRadioBtnHealthCare.isSelected());
         if (jRadioBtnHealthCare.isSelected()) {
             individual.setServiceType("ShortTermService");
         } else {

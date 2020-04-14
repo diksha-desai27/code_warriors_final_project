@@ -121,15 +121,20 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
 
     private void requestFacilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFacilityBtnActionPerformed
         int selectedRow = facilityJTable.getSelectedRow();
-        if (selectedRow > 0) {
+        if (selectedRow >= 0) {
             Enterprise en = (Enterprise) facilityJTable.getValueAt(selectedRow, 0);
-            List<UserAccount> userAccountList = en.getUserAccountDirectory().getUserAccountList();
+            List<Organization> organization = en.getOrganizationDirectory().getOrganizationList();
             UserAccount selectedUserAccount = null;
-            for (UserAccount ua : userAccountList) {
-                if (ua.getRole().equals(new ReviewerRole())) {
+            for (Organization org:organization) {
+                System.out.println(org.getName());
+                if(org.getName().matches("Reviewer(.*)")){
+                    selectedUserAccount = org.getUserAccountDirectory().getUserAccountList().get(0);
+                }
+                               
+              /*  if (ua.getRole().getClass().getCanonicalName()) {
                     selectedUserAccount = ua;
                     break;
-                }
+                } */
             }
             if (selectedUserAccount == null) {
                 JOptionPane.showMessageDialog(null, "Oops!! We cannot process your request at this time");

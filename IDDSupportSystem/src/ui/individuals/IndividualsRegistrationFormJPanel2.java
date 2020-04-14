@@ -32,13 +32,14 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
     UserAccount userAccount;
     ArrayList<Enterprise> facilityList;
 
-    public IndividualsRegistrationFormJPanel2(UserAccount userAccount, Individual individual, JPanel rightJPanel,ArrayList<Enterprise> faciliyList) {
+    public IndividualsRegistrationFormJPanel2(UserAccount userAccount, Individual individual, JPanel rightJPanel,ArrayList<Enterprise> facilityList) {
         initComponents();
         this.facilityList = facilityList;
         this.rightJPanel = rightJPanel;
         this.individual = individual;
         this.userAccount = userAccount;
         nextBtn.setEnabled(false);
+        System.out.println(facilityList);
     }
 
     /**

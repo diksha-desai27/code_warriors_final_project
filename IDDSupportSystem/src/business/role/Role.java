@@ -27,7 +27,7 @@ public abstract class Role {
         Reviewer("Reviewer"),
         Individual("Individual");
         
-        private String value;
+        private final String value;
         private RoleType(String value){
             this.value = value;
         }

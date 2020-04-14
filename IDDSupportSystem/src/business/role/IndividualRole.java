@@ -29,14 +29,14 @@ public class IndividualRole extends Role {
             for (Network n : system.getNetworkList()) {
                    if(n.getName().equalsIgnoreCase(individual.getCity())){
                        for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
-                           if(e.getEnterpriseType().equals("Facility")){
+                           if(e.enterpriseType.getValue().equals("Facility")){
                                facilityList.add(e);
                            }
                        }
                    }
             }
         }
-        
+        System.out.println(facilityList);
         
         return new IndividualsRegistrationFormJPanel1(userProcessContainer,account,individual,facilityList);//To change body of generated methods, choose Tools | Templates.
     }
