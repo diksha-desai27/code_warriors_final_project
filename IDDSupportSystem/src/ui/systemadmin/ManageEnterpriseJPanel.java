@@ -226,7 +226,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         }
         populateTable();
-        System.out.println("Helloo----" + system.getNetworkList());
+        enterpriseNameTextField.setText("");
     }//GEN-LAST:event_btnCreateEnterpriseActionPerformed
 
     private void dpdNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdNetworkActionPerformed

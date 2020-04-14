@@ -10,6 +10,8 @@ import business.enterprise.Enterprise;
 import business.network.Network;
 import business.role.AdminRole;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -247,13 +249,35 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        String username = usernameTextField.getText();
-        char c[]= passwordTextField.getPassword();
-        String password = String.valueOf(c);
-       
-       enterprise.getUserAccountDirectory().createUserAccount(username, password, new AdminRole());
-        System.out.println(system.getUserAccountDirectory().getUserAccountList());
-        JOptionPane.showMessageDialog(null, "Admin created successfully");
+         if (usernameTextField.getText().equals("") || passwordTextField.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill out all the details");
+            return;
+        }
+        else
+            if (usernamePatternCorrect()) {
+                if (passwordPatternCorrect()) {
+                    String username = usernameTextField.getText();
+                    char c[]= passwordTextField.getPassword();
+                    String password = String.valueOf(c);
+                    enterprise.getUserAccountDirectory().createUserAccount(username, password, new AdminRole());
+                    System.out.println(system.getUserAccountDirectory().getUserAccountList());
+                    JOptionPane.showMessageDialog(null, "Admin created successfully");
+                    
+                    enterpriseNameTextField.setText("");
+                    usernameTextField.setText("");
+                    passwordTextField.setText("");
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Please enter valid password");
+                    return;
+                }
+            }
+            else 
+            {
+
+                JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
+                return;
+            }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -265,7 +289,20 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    
+        private boolean usernamePatternCorrect() {
+        Pattern p = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
+        Matcher m = p.matcher(usernameTextField.getText());
+        Boolean b = m.matches();
+        return b;
+    }
 
+    private boolean passwordPatternCorrect() {
+        Pattern q = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=_])(?=\\S+$).{6,20}$");
+        Matcher n = q.matcher(String.valueOf(passwordTextField.getPassword()));
+        Boolean c = n.matches();
+        return c;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
