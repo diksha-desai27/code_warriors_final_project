@@ -170,8 +170,33 @@ public class MainJPanel extends javax.swing.JFrame {
         Organization isOrganization = null;
 
         if (userAccount == null) {
-            System.out.println(system.getIndividualDirectory().getIndividualList().size());
 
+            for (Network n : system.getNetworkList()) {
+                for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                    userAccount = e.getUserAccountDirectory().authenticateUser(userName, password);
+                    if (userAccount == null) {
+                        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                            userAccount = o.getUserAccountDirectory().authenticateUser(userName, password);
+                            if (userAccount != null) {
+                                isEnterprise = e;
+                                isOrganization = o;
+                                break;
+                            }
+                        }
+                    } else {
+                        isEnterprise = e;
+                        break;
+                    }
+                    if (isOrganization != null) {
+                        break;
+                    }
+                }
+                if (isEnterprise != null) {
+                    break;
+                }
+            }
+
+        } else {
             for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
                 System.out.println(ind.getUserName());
                 if (ind.getUserName().equals(userName)) {
@@ -179,37 +204,7 @@ public class MainJPanel extends javax.swing.JFrame {
                     break;
                 }
             }
-
-            if (individual == null) {
-                for (Network n : system.getNetworkList()) {
-                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-                        userAccount = e.getUserAccountDirectory().authenticateUser(userName, password);
-                        if (userAccount == null) {
-                            for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-                                userAccount = o.getUserAccountDirectory().authenticateUser(userName, password);
-                                if (userAccount != null) {
-                                    isEnterprise = e;
-                                    isOrganization = o;
-                                    break;
-                                }
-                            }
-                        } else {
-                            isEnterprise = e;
-                            break;
-                        }
-                        if (isOrganization != null) {
-                            break;
-                        }
-                    }
-                    if (isEnterprise != null) {
-                        break;
-                    }
-                }
-
-            }
         }
-
-      
 
         if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");

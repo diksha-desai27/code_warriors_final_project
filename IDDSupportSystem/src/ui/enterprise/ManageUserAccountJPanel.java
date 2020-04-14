@@ -9,6 +9,10 @@ import business.EcoSystem;
 import business.employee.Employee;
 import business.enterprise.Enterprise;
 import business.organization.Organization;
+import business.role.CaregiverRole;
+import business.role.DoctorRole;
+import business.role.NurseRole;
+import business.role.ReviewerRole;
 import business.role.Role;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
@@ -254,10 +258,13 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     
     public void populateRoles(Organization organization) {
         dpdRole.removeAllItems();
-        for(Role role: organization.getSupportedRole()) {
-            System.out.println("Roles " + role.toString());
-            dpdRole.addItem(role);
-        }
+       if(enterprise.enterpriseType.Hospital.equals("Hospital")){
+          dpdRole.addItem(Role.RoleType.Doctor.getValue());
+          dpdRole.addItem(Role.RoleType.Nurse.getValue());
+       }else{
+           dpdRole.addItem(Role.RoleType.Caregiver.getValue());
+          dpdRole.addItem(Role.RoleType.Reviewer.getValue());
+       }
     }
     
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -266,7 +273,17 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         String password = String.valueOf(c);
         Organization org = (Organization) dpdOrganization.getSelectedItem();
         Employee emp = (Employee) dpdEmployee.getSelectedItem();
-        Role role = (Role) dpdRole.getSelectedItem();
+        String value= dpdRole.getSelectedItem().toString();
+      Role role= null;
+        if(value.equalsIgnoreCase("Caregiver")){
+          role = new CaregiverRole();
+        }else if(value.equalsIgnoreCase("Doctor")){
+          role = new DoctorRole();
+        }else  if(value.equalsIgnoreCase("Nurse")){
+           role = new NurseRole();
+        }else  if(value.equalsIgnoreCase("Reviewer")){
+           role = new ReviewerRole();
+        }
         
         org.getUserAccountDirectory().createUserAccount(username, password, role);
         this.populateTable();
