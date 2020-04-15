@@ -213,6 +213,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void btnCreateEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEnterpriseActionPerformed
         // TODO add your handling code here:
+        if (enterpriseNameTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill out all the details");
+            return;
+        }
         Network network = (Network)dpdNetwork.getSelectedItem();
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) dpdEnterpriseType.getSelectedItem();
         String name = enterpriseNameTextField.getText();

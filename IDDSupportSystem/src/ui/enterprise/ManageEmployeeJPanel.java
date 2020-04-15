@@ -11,6 +11,8 @@ import business.enterprise.Enterprise;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -231,12 +233,18 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     private void btnCreateEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEmployeeActionPerformed
 
+        if (nameTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill out all the details");
+            return;
+        }
+         
         Organization org = (Organization) dpdOrganizationEmp.getSelectedItem();
         String name = nameTextField.getText();
         org.getEmployeeDirectory().createEmployee(name);
         this.populateTable(org);
         JOptionPane.showMessageDialog(null, "Employee created successfully");
         nameTextField.setText("");
+          
     }//GEN-LAST:event_btnCreateEmployeeActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -247,6 +255,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+ 
     private void dpdOrganizationEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdOrganizationEmpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dpdOrganizationEmpActionPerformed
