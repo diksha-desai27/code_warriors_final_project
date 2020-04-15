@@ -16,6 +16,8 @@ import business.role.ReviewerRole;
 import business.role.Role;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -268,28 +270,47 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }
     
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        String username = usernameTextField.getText();
-        char c[] = passwordField.getPassword();
-        String password = String.valueOf(c);
-        Organization org = (Organization) dpdOrganization.getSelectedItem();
-        Employee emp = (Employee) dpdEmployee.getSelectedItem();
-        String value= dpdRole.getSelectedItem().toString();
-      Role role= null;
-        if(value.equalsIgnoreCase("Caregiver")){
-          role = new CaregiverRole();
-        }else if(value.equalsIgnoreCase("Doctor")){
-          role = new DoctorRole();
-        }else  if(value.equalsIgnoreCase("Nurse")){
-           role = new NurseRole();
-        }else  if(value.equalsIgnoreCase("Reviewer")){
-           role = new ReviewerRole();
-        }
         
-        org.getUserAccountDirectory().createUserAccount(username, password, role);
-        this.populateTable();
-        JOptionPane.showMessageDialog(null, "User account created successfully.");
-        usernameTextField.setText("");
-        passwordField.setText("");
+        if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) {
+             JOptionPane.showMessageDialog(null, "Please fill out all the details");
+            return;
+        }
+        else
+            if (usernamePatternCorrect()) {
+                if (passwordPatternCorrect()) {
+                    String username = usernameTextField.getText();
+                    char c[] = passwordField.getPassword();
+                    String password = String.valueOf(c);
+                    Organization org = (Organization) dpdOrganization.getSelectedItem();
+                    Employee emp = (Employee) dpdEmployee.getSelectedItem();
+                    String value= dpdRole.getSelectedItem().toString();
+                    Role role= null;
+                    if(value.equalsIgnoreCase("Caregiver")){
+                      role = new CaregiverRole();
+                    }else if(value.equalsIgnoreCase("Doctor")){
+                      role = new DoctorRole();
+                    }else  if(value.equalsIgnoreCase("Nurse")){
+                       role = new NurseRole();
+                    }else  if(value.equalsIgnoreCase("Reviewer")){
+                       role = new ReviewerRole();
+                    }
+
+                    org.getUserAccountDirectory().createUserAccount(username, password, role);
+                    this.populateTable();
+                    JOptionPane.showMessageDialog(null, "User account created successfully.");
+                    usernameTextField.setText("");
+                    passwordField.setText("");
+                }
+                     else {
+                    JOptionPane.showMessageDialog(null, "Please enter valid password");
+                    return;
+                }
+            }
+            else 
+            {
+                JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
+                return;
+            }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -313,7 +334,19 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_dpdRoleActionPerformed
 
+   private boolean usernamePatternCorrect() {
+        Pattern p = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
+        Matcher m = p.matcher(usernameTextField.getText());
+        Boolean b = m.matches();
+        return b;
+    }
 
+    private boolean passwordPatternCorrect() {
+        Pattern q = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=_])(?=\\S+$).{6,20}$");
+        Matcher n = q.matcher(String.valueOf(passwordField.getPassword()));
+        Boolean c = n.matches();
+        return c;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
