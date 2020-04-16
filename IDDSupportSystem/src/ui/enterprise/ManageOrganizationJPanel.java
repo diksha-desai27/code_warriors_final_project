@@ -11,6 +11,7 @@ import business.organization.Organization;
 import business.organization.Organization.Type;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -174,11 +175,13 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        AdminWorkAreaJPanel adminWorkAreaJPanel = new AdminWorkAreaJPanel(userProcessContainer, this.userAccount, this.enterprise);
-        userProcessContainer.add("adminWorkAreaJPanel",adminWorkAreaJPanel);
-       
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-       layout.next(userProcessContainer);
+      
+       userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+       Component component = componentArray[componentArray.length - 1];
+        AdminWorkAreaJPanel dwjp = (AdminWorkAreaJPanel) component;
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
 
