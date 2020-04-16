@@ -11,6 +11,7 @@ import business.enterprise.Enterprise;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -248,11 +249,13 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateEmployeeActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        AdminWorkAreaJPanel adminWorkAreaJPanel = new AdminWorkAreaJPanel(userProcessContainer,this.userAccount, this.enterprise);
-        userProcessContainer.add("AdminWorkAreaJPanel",adminWorkAreaJPanel);
-       
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-       layout.next(userProcessContainer);
+     
+     userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+       Component component = componentArray[componentArray.length - 1];
+        AdminWorkAreaJPanel dwjp = (AdminWorkAreaJPanel) component;
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
  
