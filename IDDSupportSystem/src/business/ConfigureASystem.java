@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.role.Role;
 import business.role.SystemAdminRole;
 import business.useraccount.UserAccount;
 
@@ -18,7 +19,7 @@ public class ConfigureASystem {
         
         EcoSystem system = EcoSystem.getInstance();
         
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", new SystemAdminRole());
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", new SystemAdminRole(), Role.RoleType.SystemAdmin);
         
         return system;
     }

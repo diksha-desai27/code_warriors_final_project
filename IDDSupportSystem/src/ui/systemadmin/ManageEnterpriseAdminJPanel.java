@@ -9,6 +9,8 @@ import business.EcoSystem;
 import business.enterprise.Enterprise;
 import business.network.Network;
 import business.role.AdminRole;
+import business.role.Role;
+import business.role.Role.RoleType;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -259,7 +261,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     String username = usernameTextField.getText();
                     char c[]= passwordTextField.getPassword();
                     String password = String.valueOf(c);
-                    enterprise.getUserAccountDirectory().createUserAccount(username, password, new AdminRole());
+                    enterprise.getUserAccountDirectory().createUserAccount(username, password, new AdminRole(), RoleType.Admin);
                     System.out.println(system.getUserAccountDirectory().getUserAccountList());
                     JOptionPane.showMessageDialog(null, "Admin created successfully");
                     

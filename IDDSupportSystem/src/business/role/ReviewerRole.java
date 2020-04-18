@@ -6,6 +6,7 @@
 package business.role;
 
 import business.EcoSystem;
+import business.employee.Employee;
 import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.organization.Organization;
@@ -21,7 +22,8 @@ public class ReviewerRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system, Enterprise enterprise, Individual individual) {
-        return new ReviewerWorkAreaJPanel(userProcessContainer, account, system.getIndividualDirectory());
+        System.out.println("in role " + enterprise.getEmpMap());
+        return new ReviewerWorkAreaJPanel(userProcessContainer, account, system.getIndividualDirectory(), enterprise.getEmpMap(), enterprise );
     }
     
 }

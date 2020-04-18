@@ -105,6 +105,12 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
+        nameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTextFieldActionPerformed(evt);
+            }
+        });
+
         btnCreateEmployee.setText("Create Employee");
         btnCreateEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,6 +247,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         Organization org = (Organization) dpdOrganizationEmp.getSelectedItem();
         String name = nameTextField.getText();
         org.getEmployeeDirectory().createEmployee(name);
+        enterprise.getEmployeeDirectory().createEmployee(name);
         this.populateTable(org);
         JOptionPane.showMessageDialog(null, "Employee created successfully");
         nameTextField.setText("");
@@ -259,6 +266,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private void dpdOrganizationEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdOrganizationEmpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dpdOrganizationEmpActionPerformed
+
+    private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

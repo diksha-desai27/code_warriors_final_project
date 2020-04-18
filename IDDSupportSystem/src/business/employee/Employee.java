@@ -5,17 +5,30 @@
  */
 package business.employee;
 
+import business.useraccount.UserAccount;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author dikshadesai
  */
 public class Employee {
     private String name;
-
+    private UserAccount userAccount;
+    
     public Employee(String name) {
         this.name = name;
     }
 
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+    
     public String getName() {
         return name;
     }
