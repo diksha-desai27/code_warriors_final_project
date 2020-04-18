@@ -20,6 +20,7 @@ import java.awt.CardLayout;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.awt.Component;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -43,7 +44,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
-        this.enterprise = enterprise;
+        this.enterprise = enterprise;  
         this.populateOrganization();
         this.populateTable();
     }
@@ -250,13 +251,24 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     row[1] = ua.getRoleType().getValue();
                     dtm.addRow(row);
             } 
-        }
+        
+//         for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()) {
+//             for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList()) {
+//                 Object row[] = new Object[2];
+//                 row[0] = ua;
+//                 row[1] = ua.getRole();
+//                 dtm.addRow(row);
+//             }
+
+//         }
     }
-    
+     
     public void populateOrganization() {
         dpdOrganization.removeAllItems();
+        System.out.println("enterprise found"+enterprise.getOrganizationDirectory().getOrganizationList());
         for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()) {
             dpdOrganization.addItem(org);
+           
         }
     }
     
@@ -353,11 +365,13 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        AdminWorkAreaJPanel adminWorkAreaJPanel = new AdminWorkAreaJPanel(userProcessContainer,userAccount, null);
-        userProcessContainer.add("AdminWorkAreaJPanel",adminWorkAreaJPanel);
-       
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-       layout.next(userProcessContainer);
+      
+       userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+       Component component = componentArray[componentArray.length - 1];
+        AdminWorkAreaJPanel dwjp = (AdminWorkAreaJPanel) component;
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void dpdOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdOrganizationActionPerformed

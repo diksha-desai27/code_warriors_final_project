@@ -54,6 +54,11 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
         });
 
         jBtnBack.setText("Back");
+        jBtnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,6 +115,10 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
     private void jBtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSubmitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnSubmitActionPerformed
+
+    private void jBtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
