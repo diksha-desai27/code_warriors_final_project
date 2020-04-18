@@ -18,6 +18,7 @@ import business.useraccount.UserAccount;
 import javax.swing.JPanel;
 
 public abstract class Role {
+
     
     public enum RoleType{
         Admin("Admin"),
@@ -25,7 +26,8 @@ public abstract class Role {
         Nurse("Nurse"),
         Caregiver("Caregiver"),
         Reviewer("Reviewer"),
-        Individual("Individual");
+        Individual("Individual"),
+        SystemAdmin("SystemAdmin");
         
         private final String value;
         private RoleType(String value){
@@ -38,16 +40,16 @@ public abstract class Role {
 
         @Override
         public String toString() {
-            return value;
+            return this.getValue();
         }
     }
     
     public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business, Enterprise enterprise,Individual individual);
 
-//
+
 //    @Override
 //    public String toString() {
-//        return this.getClass().getName();
+//       return RoleType;
 //    }
     
     

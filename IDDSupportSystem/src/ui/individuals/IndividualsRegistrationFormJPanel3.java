@@ -6,18 +6,23 @@
 package ui.individuals;
 
 import business.EcoSystem;
+import business.employee.Employee;
 import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.network.Network;
 import business.organization.Organization;
 import business.role.ReviewerRole;
+import business.role.Role;
+import business.role.Role.RoleType;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkQueue;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -121,34 +126,43 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
 
     private void requestFacilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFacilityBtnActionPerformed
         int selectedRow = facilityJTable.getSelectedRow();
-        if (selectedRow >= 0) {
-            Enterprise en = (Enterprise) facilityJTable.getValueAt(selectedRow, 0);
-            List<Organization> organization = en.getOrganizationDirectory().getOrganizationList();
-            UserAccount selectedUserAccount = null;
-            for (Organization org:organization) {
-                System.out.println(org.getName());
-                if(org.getName().matches("Reviewer(.*)")){
-                    selectedUserAccount = org.getUserAccountDirectory().getUserAccountList().get(0);
-                }
-                               
-              /*  if (ua.getRole().getClass().getCanonicalName()) {
+        UserAccount selectedUserAccount = null;
+        if (selectedRow >= 0) 
+        {
+            Enterprise enteprise = (Enterprise) facilityJTable.getValueAt(selectedRow, 0);
+            Iterator empIterator = enteprise.getEmpMap().entrySet().iterator();
+
+            while (empIterator.hasNext()) 
+            { 
+                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
+                Employee e = ((Employee)mapElement.getKey()); 
+                UserAccount ua  =((UserAccount)mapElement.getValue()); 
+                if(ua.getRoleType().getValue().equals("Reviewer"))
+                {
                     selectedUserAccount = ua;
                     break;
-                } */
-            }
+                  
+                }
+               
+            } 
+             System.out.println("Helo" + selectedUserAccount);                  
             if (selectedUserAccount == null) {
                 JOptionPane.showMessageDialog(null, "Oops!! We cannot process your request at this time");
                 return;
             }
-            WorkRequest workRequest = new WorkRequest();
-            workRequest.setSender(userAccount);
-            workRequest.setStatus("Requested Facility");
-            workRequest.setMessage("");
-            workRequest.setIndividual(individual);
-            JOptionPane.showMessageDialog(null, "Facility Requested Successfully!!. Please keep a track of your request present in 'MyAccount' section");
-            userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
-            selectedUserAccount.getWorkQueue().getWorkRequestList().add(workRequest);
-            rightJPanel.remove(this);
+            else
+            {
+                WorkRequest workRequest = new WorkRequest();
+                workRequest.setSender(userAccount);
+                workRequest.setStatus("Requested Facility");
+                workRequest.setMessage("");
+                workRequest.setIndividual(individual);
+                JOptionPane.showMessageDialog(null, "Facility Requested Successfully!!. Please keep a track of your request present in 'MyAccount' section");
+                userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
+                selectedUserAccount.getWorkQueue().getWorkRequestList().add(workRequest);
+                rightJPanel.remove(this);
+            }
+           
 
         } else {
             JOptionPane.showMessageDialog(null, "Please select a facility");

@@ -10,6 +10,8 @@ import business.EcoSystem;
 import business.individuals.Individual;
 import business.individuals.IndividualDirectory;
 import business.role.IndividualRole;
+import business.role.Role;
+import business.role.Role.RoleType;
 import business.useraccount.UserAccount;
 import business.useraccount.UserAccountDirectory;
 import java.awt.CardLayout;
@@ -243,7 +245,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
                                         ind.setBirthDate(birthDateFormatted);
                                         ind.setZipCode(Integer.parseInt(zipCodejTextField.getText()));
                                         system.getIndividualDirectory().getIndividualList().add(ind);
-                                        system.getUserAccountDirectory().createUserAccount(userNamejTextField.getText(), String.valueOf(passwordJField.getPassword()), new IndividualRole());
+                                        system.getUserAccountDirectory().createUserAccount(userNamejTextField.getText(), String.valueOf(passwordJField.getPassword()), new IndividualRole(), RoleType.Individual);
                                         JOptionPane.showMessageDialog(null, "Account created successfully. Please sign out to login.");
                                         clearFields();
                                     }

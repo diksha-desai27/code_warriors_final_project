@@ -5,8 +5,12 @@
  */
 package business.enterprise;
 
+import business.employee.Employee;
 import business.organization.Organization;
 import business.organization.OrganizationDirectory;
+import business.useraccount.UserAccount;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -15,6 +19,19 @@ import business.organization.OrganizationDirectory;
 public abstract class Enterprise extends Organization{
     public EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
+    private Map<Employee, UserAccount> empMap;
+
+    public Map<Employee, UserAccount> getEmpMap() {
+        if(empMap == null)
+        {
+            empMap = new HashMap<>();
+        }
+        return empMap;
+    }
+
+    public void setEmpMap(Map<Employee, UserAccount> empMap) {
+        this.empMap = empMap;
+    }
     
     public enum EnterpriseType {
         Hospital("Hospital"), Facility("Facility");

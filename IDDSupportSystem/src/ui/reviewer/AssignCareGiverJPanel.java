@@ -5,11 +5,20 @@
  */
 package ui.reviewer;
 
+import business.employee.Employee;
+import business.enterprise.Enterprise;
 import business.individuals.Individual;
+import business.role.CaregiverRole;
 import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,12 +33,18 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     Individual individual;
+    Map<Employee, UserAccount> map;
+    Enterprise enterprise;
     
-    public AssignCareGiverJPanel(JPanel userProcessContainer,UserAccount userAccount, Individual individual) {
+    public AssignCareGiverJPanel(JPanel userProcessContainer,UserAccount userAccount, Individual individual,Map<Employee, UserAccount> map, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.individual = individual;
+        this.map = map;
+        this.enterprise = enterprise;
+        this.displayData();
+        this.populateTable();
     }
 
     /**
@@ -43,7 +58,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        enterpriseTable = new javax.swing.JTable();
+        caregiverTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         firstNameValue = new javax.swing.JLabel();
         assignCareGiverBtn = new javax.swing.JButton();
@@ -56,7 +71,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Assign Care Giver");
 
-        enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
+        caregiverTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -75,7 +90,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(enterpriseTable);
+        jScrollPane1.setViewportView(caregiverTable);
 
         jLabel2.setText("First Name");
 
@@ -110,23 +125,22 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addGap(42, 42, 42)
-                                            .addComponent(registrationValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(firstNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(94, 94, 94)
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(firstNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(54, 54, 54)
                                     .addComponent(jLabel3)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGap(28, 28, 28)
+                                    .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(registrationValue, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(291, 291, 291)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(backBtn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(199, 199, 199)
@@ -160,9 +174,80 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                     .addContainerGap(416, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void displayData() {
+        registrationValue.setText(String.valueOf(this.individual.getRegistrationId()));
+        firstNameValue.setText(this.individual.getFirstName());
+        lastNameValue.setText(this.individual.getLastName());
+    }
+    
+    public void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) caregiverTable.getModel();
+        dtm.setRowCount(0);
+         if(this.map != null)
+         {
+            Iterator empIterator = this.map.entrySet().iterator();
 
+            while (empIterator.hasNext()) { 
+                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
+                Employee e = ((Employee)mapElement.getKey()); 
+                UserAccount ua  =((UserAccount)mapElement.getValue()); 
+                if(ua.getRoleType().getValue().equalsIgnoreCase("Caregiver"))
+                {
+                    Object row[] = new Object[3];
+                    row[0] = e;
+                    row[1] = "Available";
+                    dtm.addRow(row);
+                }
+               
+            } 
+        }
+    }
+    
     private void assignCareGiverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignCareGiverBtnActionPerformed
         // TODO add your handling code here:
+        int selectedRow = caregiverTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            UserAccount ua = null;
+            Employee emp = null;
+            Employee e = (Employee)caregiverTable.getValueAt(selectedRow, 0);
+            Iterator empIterator = this.map.entrySet().iterator();
+
+            while (empIterator.hasNext()) { 
+                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
+                Employee e1 = ((Employee)mapElement.getKey());
+                UserAccount caregiver  =((UserAccount)mapElement.getValue());
+                if(e1.equals(e))
+                {
+                    
+                    
+                    ua = caregiver;
+                    emp = e1;
+                    break;
+                }
+            }
+            if(ua != null)
+            {
+                WorkRequest workRequest = new WorkRequest();
+                workRequest.setSender(this.userAccount);
+                workRequest.setStatus("Assigned to Caregiver");
+                workRequest.setMessage("");
+                workRequest.setIndividual(this.individual);
+                System.out.println("this.useraccount" +  this.userAccount);
+                this.userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
+                System.out.println(this.userAccount.getWorkQueue().getWorkRequestList());
+                System.out.println("ua1" +  ua);
+                ua.getWorkQueue().getWorkRequestList().add(workRequest);
+                System.out.println(ua.getWorkQueue().getWorkRequestList());
+                JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to caregiver " + emp);
+//                                        this.userProcessContainer.remove(this);
+            }
+                
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a facility");
+        }
+        
     }//GEN-LAST:event_assignCareGiverBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -181,7 +266,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignCareGiverBtn;
     private javax.swing.JButton backBtn;
-    private javax.swing.JTable enterpriseTable;
+    private javax.swing.JTable caregiverTable;
     private javax.swing.JLabel firstNameValue;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

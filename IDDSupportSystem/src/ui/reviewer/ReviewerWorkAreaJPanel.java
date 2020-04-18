@@ -5,9 +5,15 @@
  */
 package ui.reviewer;
 
+import business.employee.Employee;
+import business.employee.EmployeeDirectory;
+import business.enterprise.Enterprise;
 import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JPanel;
 
 /**
@@ -23,12 +29,16 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     IndividualDirectory individualDirectory;
-    
-    public ReviewerWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory) {
+    Map<Employee, UserAccount> map = new HashMap<>();
+    Enterprise enterprise;
+    public ReviewerWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory, Map<Employee, UserAccount> map, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.individualDirectory = individualDirectory;
+        this.map = map;
+        this.enterprise = enterprise;
+        System.out.println("using HashMap " + this.map.keySet() + " " + this.map.values());
     }
 
     /**
@@ -110,7 +120,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
         // TODO add your handling code here:
-        ManageIndividuals manageIndividuals = new ManageIndividuals(userProcessContainer,userAccount, this.individualDirectory);
+        ManageIndividuals manageIndividuals = new ManageIndividuals(userProcessContainer,userAccount, this.individualDirectory, this.map, this.enterprise);
         userProcessContainer.add("ManageIndividuals",manageIndividuals);
 
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();

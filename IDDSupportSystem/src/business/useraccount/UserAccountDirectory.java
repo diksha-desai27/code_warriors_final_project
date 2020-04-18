@@ -6,6 +6,7 @@
 package business.useraccount;
 
 import business.role.Role;
+import business.role.Role.RoleType;
 import business.workqueue.WorkQueue;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +35,12 @@ public class UserAccountDirectory {
         return null;
     }
     
-    public UserAccount createUserAccount(String username, String password, Role role){
+    public UserAccount createUserAccount(String username, String password, Role role, RoleType roleType){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setRole(role);
+        userAccount.setRoleType(roleType);
         userAccountList.add(userAccount);
         return userAccount;
     }
