@@ -39,12 +39,12 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     Enterprise enterprise;
-    
+
     public ManageUserAccountJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
-        this.enterprise = enterprise;  
+        this.enterprise = enterprise;
         this.populateOrganization();
         this.populateTable();
     }
@@ -235,23 +235,22 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
+
     public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) userTable.getModel();
         dtm.setRowCount(0);
-        if(enterprise.getEmpMap() != null)
-         {
+        if (enterprise.getEmpMap() != null) {
             Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
-            while (empIterator.hasNext()) { 
-                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
-                Employee e = ((Employee)mapElement.getKey()); 
-                UserAccount ua  =((UserAccount)mapElement.getValue()); 
+            while (empIterator.hasNext()) {
+                Map.Entry mapElement = (Map.Entry) empIterator.next();
+                Employee e = ((Employee) mapElement.getKey());
+                UserAccount ua = ((UserAccount) mapElement.getValue());
                 Object row[] = new Object[3];
-                    row[0] = ua.getUsername();
-                    row[1] = ua.getRoleType().getValue();
-                    dtm.addRow(row);
-            } 
-        
+                row[0] = ua.getUsername();
+                row[1] = ua.getRoleType().getValue();
+                dtm.addRow(row);
+            }
+
 //         for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()) {
 //             for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList()) {
 //                 Object row[] = new Object[2];
@@ -259,134 +258,120 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 //                 row[1] = ua.getRole();
 //                 dtm.addRow(row);
 //             }
-
 //         }
-    }
-     
-    public void populateOrganization() {
-        dpdOrganization.removeAllItems();
-        System.out.println("enterprise found"+enterprise.getOrganizationDirectory().getOrganizationList());
-        for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()) {
-            dpdOrganization.addItem(org);
-           
         }
     }
-    
+
+    public void populateOrganization() {
+        dpdOrganization.removeAllItems();
+        System.out.println("enterprise found" + enterprise.getOrganizationDirectory().getOrganizationList());
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            dpdOrganization.addItem(org);
+
+        }
+    }
+
     public void populateEmployees(Organization organization) {
         dpdEmployee.removeAllItems();
-        for(Employee emp: enterprise.getEmployeeDirectory().getEmployeeList()) {
+        for (Employee emp : enterprise.getEmployeeDirectory().getEmployeeList()) {
             dpdEmployee.addItem(emp);
         }
     }
-    
+
     public void populateRoles(Organization organization) {
         dpdRole.removeAllItems();
 //        for (Role role : organization.getSupportedRole()){
 //            dpdRole.addItem(role);
 //        }
-       if(enterprise.enterpriseType.Hospital.equals("Hospital")){
-          dpdRole.addItem(Role.RoleType.Doctor);
-          dpdRole.addItem(Role.RoleType.Nurse);
-       }else{
-           dpdRole.addItem(Role.RoleType.Caregiver);
-          dpdRole.addItem(Role.RoleType.Reviewer);
-       }
-    }
-    
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        
-        if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) {
-             JOptionPane.showMessageDialog(null, "Please fill out all the details");
-            return;
+        if (enterprise.enterpriseType.Hospital.equals("Hospital")) {
+            dpdRole.addItem(Role.RoleType.Doctor);
+            dpdRole.addItem(Role.RoleType.Nurse);
+        } else {
+            dpdRole.addItem(Role.RoleType.Caregiver);
+            dpdRole.addItem(Role.RoleType.Reviewer);
         }
-        else
-            if (usernamePatternCorrect()) {
-                if (passwordPatternCorrect()) {
-                    String username = usernameTextField.getText();
-                    char c[] = passwordField.getPassword();
-                    String password = String.valueOf(c);
-                    Organization org = (Organization) dpdOrganization.getSelectedItem();
-                    Employee emp = (Employee) dpdEmployee.getSelectedItem();
-                    String value= dpdRole.getSelectedItem().toString();
-                    //Role role = (Role)dpdRole.getSelectedItem();
-                    
-                    //System.out.println("role " +  role);
-                    Role role = null;
-                    RoleType roleType =  null;
-                    if(value.equals("Caregiver"))
-                    {
-                        role = new CaregiverRole();
-                        roleType = Role.RoleType.Caregiver; 
-                    }
-                    else if(value.equals("Doctor"))
-                    {
-                      role = new DoctorRole();
-                      roleType = Role.RoleType.Doctor; 
-                    }
-                    else if(value.equals("Nurse"))
-                    {
-                      role = new NurseRole();
-                      roleType = Role.RoleType.Nurse; 
-                    }
-                    else if(value.equals("Reviewer"))     
-                    {
-                      role = new ReviewerRole();
-                       roleType = Role.RoleType.Reviewer; 
-                    }
-                    else
-                    {
-                            //
-                    }
+    }
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+
+        if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill out all the details");
+            return;
+        } else if (usernamePatternCorrect()) {
+            if (passwordPatternCorrect()) {
+                String username = usernameTextField.getText();
+                char c[] = passwordField.getPassword();
+                String password = String.valueOf(c);
+                Organization org = (Organization) dpdOrganization.getSelectedItem();
+                Employee emp = (Employee) dpdEmployee.getSelectedItem();
+                String value = dpdRole.getSelectedItem().toString();
+                //Role role = (Role)dpdRole.getSelectedItem();
+
+                //System.out.println("role " +  role);
+                Role role = null;
+                RoleType roleType = null;
+                if (value.equals("Caregiver")) {
+                    role = new CaregiverRole();
+                    roleType = Role.RoleType.Caregiver;
+                } else if (value.equals("Doctor")) {
+                    role = new DoctorRole();
+                    roleType = Role.RoleType.Doctor;
+                } else if (value.equals("Nurse")) {
+                    role = new NurseRole();
+                    roleType = Role.RoleType.Nurse;
+                } else if (value.equals("Reviewer")) {
+                    role = new ReviewerRole();
+                    roleType = Role.RoleType.Reviewer;
+                } else {
+                    //
+                }
 //
 
-                    UserAccount ua= enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                    enterprise.getEmpMap().put(emp, ua);
-                    enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                    org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                    System.out.println("HashMap " + enterprise.getEmpMap());
+                UserAccount ua = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                enterprise.getEmpMap().put(emp, ua);
+                enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                System.out.println("HashMap " + enterprise.getEmpMap());
 //                    
-                   
-                    this.populateTable();
-                    JOptionPane.showMessageDialog(null, "User account created successfully.");
-                    usernameTextField.setText("");
-                    passwordField.setText("");
-                }
-                     else {
-                    JOptionPane.showMessageDialog(null, "Please enter valid password");
-                    return;
-                }
-            }
-            else 
-            {
-                JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
+
+                this.populateTable();
+                JOptionPane.showMessageDialog(null, "User account created successfully.");
+                usernameTextField.setText("");
+                passwordField.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter valid password");
                 return;
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
+            return;
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-      
-       userProcessContainer.remove(this);
+
+        userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
-       Component component = componentArray[componentArray.length - 1];
+        Component component = componentArray[componentArray.length - 1];
         AdminWorkAreaJPanel dwjp = (AdminWorkAreaJPanel) component;
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void dpdOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdOrganizationActionPerformed
-       Organization org = (Organization) dpdOrganization.getSelectedItem();
-       if(org != null) {
-           this.populateEmployees(org);
-           this.populateRoles(org);
-       }
+        Organization org = (Organization) dpdOrganization.getSelectedItem();
+        if (org != null) {
+            this.populateEmployees(org);
+            this.populateRoles(org);
+        }
     }//GEN-LAST:event_dpdOrganizationActionPerformed
 
     private void dpdRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdRoleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dpdRoleActionPerformed
 
-   private boolean usernamePatternCorrect() {
+    private boolean usernamePatternCorrect() {
         Pattern p = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher m = p.matcher(usernameTextField.getText());
         Boolean b = m.matches();
