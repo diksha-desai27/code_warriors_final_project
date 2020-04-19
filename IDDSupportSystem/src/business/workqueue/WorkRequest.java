@@ -23,9 +23,11 @@ public class WorkRequest {
     private Date requestDate;
     private Date resolveDate;
     private Individual individual;
+    private int requestId;
     
     public WorkRequest(){
         requestDate = new Date();
+        requestId = (int) (System.currentTimeMillis() & 0xfffffff);
     }
 
     public Individual getIndividual() {
@@ -84,5 +86,14 @@ public class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+
+    public int getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(int requestId) {
+        this.requestId = requestId;
+    }
+
 
 }
