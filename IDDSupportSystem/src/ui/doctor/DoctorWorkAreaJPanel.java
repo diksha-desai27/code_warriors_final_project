@@ -5,8 +5,10 @@
  */
 package ui.doctor;
 
+import business.enterprise.Enterprise;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
+import java.util.Iterator;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,9 +17,11 @@ import javax.swing.table.DefaultTableModel;
  * @author sayalipathare
  */
 public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
-    
+
     JPanel userProcessContainer;
     UserAccount userAccount;
+    WorkRequest wr;
+
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -135,36 +139,42 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(79, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    public void populateTable() {
-         DefaultTableModel dtm = (DefaultTableModel) manageApplicantsJTable.getModel();
-            dtm.setRowCount(0);
-            if(this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
-            {
-                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
-                {
-                    if(w.getIndividual()!= null)
-                    {
-                        Object row[] = new Object[5];
-                        row[0] = w.getIndividual().getRegistrationId();
-                        row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
-                        row[2] = w.getSender();
-                        row[3] = w.getStatus();
-                        dtm.addRow(row);
-                    }
 
+    public void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) manageApplicantsJTable.getModel();
+        dtm.setRowCount(0);
+        if (this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
+            for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual() != null) {
+                    Object row[] = new Object[5];
+                    row[0] = w.getIndividual().getRegistrationId();
+                    row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
+                    row[2] = w.getSender();
+                    row[3] = w.getStatus();
+                    dtm.addRow(row);
                 }
+
             }
+        }
     }
-    
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
         // TODO add your handling code here:
-        
+        int selectedRow = manageApplicantsJTable.getSelectedRow();
+        //  UserAccount selectedUserAccount = null;
+        if (selectedRow >= 0) {
+            
+        }else{
+           WorkRequest  en = (WorkRequest) manageApplicantsJTable.getValueAt(selectedRow, 0);
+
+        }
+
+
     }//GEN-LAST:event_btnDeclineActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
