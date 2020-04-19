@@ -5,7 +5,6 @@
  */
 package business.enterprise;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,4 +48,27 @@ public class EnterpriseDirectory {
        
     }
      
-}
+     public boolean checkIfEnterpriseIsUnique(String name,Enterprise.EnterpriseType type){
+        if(type == Enterprise.EnterpriseType.Facility)
+        {
+         for (Enterprise ep : enterpriseList){
+            if(ep.getName().equals(name))
+            return false;
+        }
+         return true;
+        
+       }
+        
+        else if(type == Enterprise.EnterpriseType.Hospital)
+        {
+         for (Enterprise ep : enterpriseList){
+            if(ep.getName().equals(name))
+            return false;
+        }
+        return true;
+        
+       }
+        return false;
+     }
+     }
+

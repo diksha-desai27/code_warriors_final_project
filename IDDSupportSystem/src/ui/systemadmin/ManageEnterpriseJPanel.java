@@ -220,7 +220,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         Network network = (Network)dpdNetwork.getSelectedItem();
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) dpdEnterpriseType.getSelectedItem();
         String name = enterpriseNameTextField.getText();
-        
+        if(network.getEnterpriseDirectory().checkIfEnterpriseIsUnique(name, type))
+        {
         for(Network n: system.getNetworkList()) {
             if(n.equals(network))
             {
@@ -231,6 +232,13 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
         populateTable();
         enterpriseNameTextField.setText("");
+        
+        }
+
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Enterprise has already been used. Please enter another enterprise name.");
+        } 
     }//GEN-LAST:event_btnCreateEnterpriseActionPerformed
 
     private void dpdNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdNetworkActionPerformed

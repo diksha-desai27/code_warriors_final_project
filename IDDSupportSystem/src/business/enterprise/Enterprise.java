@@ -79,4 +79,6 @@ public abstract class Enterprise extends Organization{
     public String toString() {
         return this.getName();
     }
+    
+     
 }
