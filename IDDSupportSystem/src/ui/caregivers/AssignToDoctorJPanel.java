@@ -24,14 +24,16 @@ import javax.swing.table.DefaultTableModel;
  * @author sayalipathare
  */
 public class AssignToDoctorJPanel extends javax.swing.JPanel {
-    
+
     JPanel userProcessContainer;
     UserAccount userAccount;
     Individual individual;
     Enterprise enterprise;
     EcoSystem system;
+
     /**
      * Creates new form AssignToDoctorJPanel
+     *
      * @param userProcessConatiner
      * @param userAccount
      * @param individual
@@ -131,24 +133,19 @@ public class AssignToDoctorJPanel extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) doctorTable.getModel();
         dtm.setRowCount(0);
-        for(Network n: system.getNetworkList())
-        {
+        for (Network n : system.getNetworkList()) {
             System.out.println("city: " + this.individual.getCity());
             System.out.println("city: " + n.getName());
-            if(this.individual.getCity().equalsIgnoreCase(n.getName()))
-            {
-                for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()) 
-                {
-                    if(e.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Hospital.getValue()))
-                    {
+            if (this.individual.getCity().equalsIgnoreCase(n.getName())) {
+                for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (e.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Hospital.getValue())) {
                         Iterator empIterator = e.getEmpMap().entrySet().iterator();
 
-                        while (empIterator.hasNext()) { 
-                            Map.Entry mapElement = (Map.Entry)empIterator.next(); 
-                            Employee emp = ((Employee)mapElement.getKey());
-                            UserAccount doctor  =((UserAccount)mapElement.getValue());
-                            if(doctor.getRoleType().getValue().equals(Role.RoleType.Doctor.getValue()))
-                            {
+                        while (empIterator.hasNext()) {
+                            Map.Entry mapElement = (Map.Entry) empIterator.next();
+                            Employee emp = ((Employee) mapElement.getKey());
+                            UserAccount doctor = ((UserAccount) mapElement.getValue());
+                            if (doctor.getRoleType().getValue().equals(Role.RoleType.Doctor.getValue())) {
                                 Object row[] = new Object[3];
                                 row[0] = emp;
                                 row[1] = e;
@@ -162,46 +159,46 @@ public class AssignToDoctorJPanel extends javax.swing.JPanel {
             }
         }
     }
-    
+
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your h)andling code here:
-       int selectedRow = doctorTable.getSelectedRow();
+        int selectedRow = doctorTable.getSelectedRow();
         if (selectedRow >= 0) {
             UserAccount doctor = null;
             Employee emp = null;
-            Employee e = (Employee)doctorTable.getValueAt(selectedRow, 0);
+            Employee e = (Employee) doctorTable.getValueAt(selectedRow, 0);
             Iterator empIterator = system.getEmpMap().entrySet().iterator();
 
-            while (empIterator.hasNext()) { 
-                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
-                Employee e1 = ((Employee)mapElement.getKey());
-                UserAccount ua  =((UserAccount)mapElement.getValue());
-                if(e1.equals(e))
-                {
+            while (empIterator.hasNext()) {
+                Map.Entry mapElement = (Map.Entry) empIterator.next();
+                Employee e1 = ((Employee) mapElement.getKey());
+                UserAccount ua = ((UserAccount) mapElement.getValue());
+                if (e1.equals(e)) {
                     doctor = ua;
                     emp = e1;
                     break;
                 }
             }
-            if(doctor != null)
-            {
-                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
-                {
-                    if((w.getIndividual()!= null) && (w.getIndividual().getRegistrationId()== individual.getRegistrationId()))
-                    {
-                       w.setSender(this.userAccount);
-                       w.setStatus("Requested to Doctor");
-                       w.setMessage("");
-                       w.setIndividual(this.individual);
-                       doctor.getWorkQueue().getWorkRequestList().add(w);
-                        JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " is in the waiting queue of doctor " + emp + " for scheduling an appointment.");
-                       break;
-                    }
+            if (doctor != null) {
+                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                    if ((w.getIndividual() != null) && (w.getIndividual().getRegistrationId() == individual.getRegistrationId())) {
+                        System.out.println(doctor);
+                        System.out.println(w.getStatus());
+                        if (w.getStatus().equals("Declined") && w.getSender().equals(doctor)) {
+                            JOptionPane.showMessageDialog(null, "Please choose different doctor to schedule appointment");
 
+                        } else {
+                            w.setSender(this.userAccount);
+                            w.setStatus("Requested to Doctor");
+                            w.setMessage("");
+                            w.setIndividual(this.individual);
+                            doctor.getWorkQueue().getWorkRequestList().add(w);
+                            JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " is in the waiting queue of doctor " + emp + " for scheduling an appointment.");
+                        }
+                        break;
+                    }
                 }
             }
-                
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select a doctor to schedule an appointment.");
         }
