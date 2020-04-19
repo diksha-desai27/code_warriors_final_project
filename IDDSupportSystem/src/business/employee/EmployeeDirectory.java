@@ -35,6 +35,12 @@ public class EmployeeDirectory {
         return emp;
     }
     
+    public Employee createEmployee(String name, String specialzation) {
+      Employee emp = new Employee(name, specialzation);
+      employeeList.add(emp);
+      return emp;   
+    }
+    
     public void deleteEmployee(Employee emp) {
         employeeList.remove(emp);
     }
