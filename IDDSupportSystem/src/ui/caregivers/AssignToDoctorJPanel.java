@@ -5,17 +5,46 @@
  */
 package ui.caregivers;
 
+import business.employee.Employee;
+import business.employee.EmployeeDirectory;
+import business.enterprise.Enterprise;
+import business.individuals.Individual;
+import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
+import java.util.Iterator;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sayalipathare
  */
 public class AssignToDoctorJPanel extends javax.swing.JPanel {
-
+    
+    JPanel userProcessContainer;
+    UserAccount userAccount;
+    Individual individual;
+    Enterprise enterprise;
+    EmployeeDirectory employeeDirectory;
     /**
      * Creates new form AssignToDoctorJPanel
+     * @param userProcessConatiner
+     * @param userAccount
+     * @param individual
+     * @param enterprise
+     * @param employeeDirectory
      */
-    public AssignToDoctorJPanel() {
+    public AssignToDoctorJPanel(JPanel userProcessConatiner, UserAccount userAccount, Individual individual, Enterprise enterprise, EmployeeDirectory employeeDirectory) {
         initComponents();
+        this.userProcessContainer = userProcessConatiner;
+        this.userAccount = userAccount;
+        this.individual = individual;
+        this.enterprise = enterprise;
+        this.employeeDirectory = employeeDirectory;
+        dpdSpecialization.removeAllItems();
+        this.populateDropdown();
     }
 
     /**
@@ -28,18 +57,20 @@ public class AssignToDoctorJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        dpdDoctor = new javax.swing.JComboBox<>();
+        dpdSpecialization = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        registrationIdTextField = new javax.swing.JTextField();
         btnAssign = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        registrationIDTextField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        doctorTable = new javax.swing.JTable();
 
-        jLabel4.setText("Select Doctor:");
+        jLabel4.setText("Search Specialization Doctor:");
 
-        dpdDoctor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        dpdDoctor.addActionListener(new java.awt.event.ActionListener() {
+        dpdSpecialization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dpdSpecialization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dpdDoctorActionPerformed(evt);
+                dpdSpecializationActionPerformed(evt);
             }
         });
 
@@ -54,6 +85,19 @@ public class AssignToDoctorJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Assign to Doctor");
 
+        doctorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Doctor name", "Enteprise name"
+            }
+        ));
+        jScrollPane1.setViewportView(doctorTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -61,60 +105,140 @@ public class AssignToDoctorJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAssign)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel1))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(55, 55, 55)
-                                        .addComponent(dpdDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(registrationIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(jLabel2)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                                        .addGap(6, 6, 6)
+                                        .addComponent(registrationIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(dpdSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(87, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAssign)
+                .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(dpdDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(dpdSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(registrationIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(registrationIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(btnAssign)
-                .addGap(77, 77, 77))
+                .addGap(250, 250, 250))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dpdDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdDoctorActionPerformed
+    private void populateDropdown() {
+        for(Employee e: this.employeeDirectory.getEmployeeList()) {
+            System.out.println("hello " + e.getUserAccount().getRoleType().toString());
+            if(e.getUserAccount().getRoleType().toString().equals("Doctor"))
+            {
+                dpdSpecialization.addItem(e.getSpecialization());
+   
+            }
+        }
+    }
+    
+    public void populateTable() 
+    {
+        String s = (String)dpdSpecialization.getSelectedItem();
+        DefaultTableModel dtm = (DefaultTableModel) doctorTable.getModel();
+        dtm.setRowCount(0);
+         if(enterprise.getEmpMap() != null)
+         {
+            Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
 
-    }//GEN-LAST:event_dpdDoctorActionPerformed
-
+            while (empIterator.hasNext()) { 
+                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
+                Employee e = ((Employee)mapElement.getKey()); 
+                UserAccount ua  =((UserAccount)mapElement.getValue()); 
+                if(ua.getRoleType().getValue().equalsIgnoreCase("Doctor"))
+                {
+                    Object row[] = new Object[3];
+                    row[0] = e;
+                    row[1] = enterprise;
+                    dtm.addRow(row);
+                }
+               
+            } 
+        }
+        
+    }
+    
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your h)andling code here:
-       
+       int selectedRow = doctorTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            UserAccount ua = null;
+            Employee emp = null;
+            Employee e = (Employee)doctorTable.getValueAt(selectedRow, 0);
+            Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
+
+            while (empIterator.hasNext()) { 
+                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
+                Employee e1 = ((Employee)mapElement.getKey());
+                UserAccount doctor  =((UserAccount)mapElement.getValue());
+                if(e1.equals(e))
+                {
+                    
+                    
+                    ua = doctor;
+                    emp = e1;
+                    break;
+                }
+            }
+            if(ua != null)
+            {
+                WorkRequest workRequest = new WorkRequest();
+                workRequest.setSender(this.userAccount);
+                workRequest.setStatus("Assigned to Doctor");
+                workRequest.setMessage("");
+                workRequest.setIndividual(this.individual);
+                this.userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
+                ua.getWorkQueue().getWorkRequestList().add(workRequest);
+                JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to doctor " + emp + " for scheduling an appointment.");
+//              this.userProcessContainer.remove(this);
+            }
+                
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a doctor to schedule an appointment.");
+        }
     }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void dpdSpecializationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdSpecializationActionPerformed
+        this.populateTable();
+    }//GEN-LAST:event_dpdSpecializationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssign;
-    private javax.swing.JComboBox<String> dpdDoctor;
+    private javax.swing.JTable doctorTable;
+    private javax.swing.JComboBox<String> dpdSpecialization;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField registrationIdTextField;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField registrationIDTextField;
     // End of variables declaration//GEN-END:variables
 }

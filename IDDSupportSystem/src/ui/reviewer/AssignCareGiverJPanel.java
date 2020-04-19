@@ -245,7 +245,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                 
 
         } else {
-            JOptionPane.showMessageDialog(null, "Please select a facility");
+            JOptionPane.showMessageDialog(null, "Please select a caregiver to assign.");
         }
         
     }//GEN-LAST:event_assignCareGiverBtnActionPerformed

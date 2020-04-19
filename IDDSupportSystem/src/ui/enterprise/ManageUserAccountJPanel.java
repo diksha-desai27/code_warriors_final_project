@@ -264,7 +264,6 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     public void populateOrganization() {
         dpdOrganization.removeAllItems();
-        System.out.println("enterprise found" + enterprise.getOrganizationDirectory().getOrganizationList());
         for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
             dpdOrganization.addItem(org);
 
@@ -280,18 +279,16 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     public void populateRoles(Organization organization) {
         dpdRole.removeAllItems();
-//        for (Role role : organization.getSupportedRole()){
-//            dpdRole.addItem(role);
-//        }
-        if (enterprise.enterpriseType.Hospital.equals("Hospital")) {
+        System.out.println("type: " + enterprise.getEnterpriseType().toString());
+        if (Enterprise.EnterpriseType.Hospital.toString().equals(enterprise.getEnterpriseType().toString())) {
             dpdRole.addItem(Role.RoleType.Doctor);
             dpdRole.addItem(Role.RoleType.Nurse);
-        } else {
+        } else{
             dpdRole.addItem(Role.RoleType.Caregiver);
             dpdRole.addItem(Role.RoleType.Reviewer);
         }
     }
-
+    
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
 
         if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) {

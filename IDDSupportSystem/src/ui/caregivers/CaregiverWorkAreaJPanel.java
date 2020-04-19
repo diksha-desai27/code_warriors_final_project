@@ -5,11 +5,17 @@
  */
 package ui.caregivers;
 
+import business.employee.EmployeeDirectory;
+import business.enterprise.Enterprise;
 import business.individuals.Individual;
+import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ui.reviewer.AssignCareGiverJPanel;
 
 /**
  *
@@ -19,13 +25,25 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     UserAccount userAccount;
+    Individual individual;
+    IndividualDirectory individualDirectory;
+    Enterprise enterprise;
+    EmployeeDirectory employeeDirectory;
     /**
      * Creates new form CaregiverWorkAreaJPanel
+     * @param userProcessContainer
+     * @param userAccount
+     * @param individualDirectory
+     * @param enterprise
+     * @param employeeDirectory
      */
-    public CaregiverWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount) {
+    public CaregiverWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, IndividualDirectory individualDirectory, Enterprise enterprise, EmployeeDirectory employeeDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
+        this.individualDirectory = individualDirectory;
+        this.enterprise = enterprise;
+        this.employeeDirectory = employeeDirectory;
         this.populateTable();
     }
 
@@ -39,12 +57,12 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        manageApplicantsJTable = new javax.swing.JTable();
+        manageApplicantsTable = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
         btnAssign = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        manageApplicantsJTable.setModel(new javax.swing.table.DefaultTableModel(
+        manageApplicantsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -63,7 +81,7 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(manageApplicantsJTable);
+        jScrollPane1.setViewportView(manageApplicantsTable);
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -117,22 +135,25 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     public void populateTable() {
-            DefaultTableModel dtm = (DefaultTableModel) manageApplicantsJTable.getModel();
+        System.out.println("hgelloooo baby");
+            DefaultTableModel dtm = (DefaultTableModel) manageApplicantsTable.getModel();
             dtm.setRowCount(0);
             if(this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
-            System.out.println(this.userAccount);
-            for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
             {
-                if(w.getIndividual()!= null)
+                System.out.println(this.userAccount);
+                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
                 {
-                    Object row[] = new Object[5];
-                    row[0] = w.getIndividual().getRegistrationId();
-                    row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
-                    row[2] = w.getSender();
-                    row[3] = w.getStatus();
-                    dtm.addRow(row);
+                    if(w.getIndividual()!= null)
+                    {
+                        Object row[] = new Object[5];
+                        row[0] = w.getIndividual().getRegistrationId();
+                        row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
+                        row[2] = w.getSender();
+                        row[3] = w.getStatus();
+                        dtm.addRow(row);
+                    }
+
                 }
-  
             }
         
     }
@@ -144,6 +165,24 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
+        int selectedRow = manageApplicantsTable.getSelectedRow();
+        if(selectedRow >= 0) {
+            int id = (Integer)manageApplicantsTable.getValueAt(selectedRow, 0);
+            for(Individual i: this.individualDirectory.getIndividualList()) {
+                if(i.getRegistrationId() == id)
+                {
+                    individual = i;
+                    break;
+                }
+            }
+            AssignToDoctorJPanel assignToDoctorJPanel = new AssignToDoctorJPanel(userProcessContainer,userAccount, individual, enterprise, this.employeeDirectory);
+            userProcessContainer.add("assignToDoctorJPanel",assignToDoctorJPanel);
+            CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select the individual to schedule an appointment with the Doctor.");
+        }
      
 
     }//GEN-LAST:event_btnAssignActionPerformed
@@ -154,6 +193,6 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable manageApplicantsJTable;
+    private javax.swing.JTable manageApplicantsTable;
     // End of variables declaration//GEN-END:variables
 }

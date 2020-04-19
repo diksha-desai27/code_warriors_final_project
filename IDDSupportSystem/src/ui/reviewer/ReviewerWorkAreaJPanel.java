@@ -6,13 +6,11 @@
 package ui.reviewer;
 
 import business.employee.Employee;
-import business.employee.EmployeeDirectory;
 import business.enterprise.Enterprise;
 import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.swing.JPanel;
 
