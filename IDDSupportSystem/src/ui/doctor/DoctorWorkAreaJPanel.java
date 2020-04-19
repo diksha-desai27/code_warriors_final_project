@@ -6,7 +6,9 @@
 package ui.doctor;
 
 import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +25,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
+        System.out.println("UA: " + this.userAccount);
+        this.populateTable();
     }
 
     /**
@@ -131,7 +135,28 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(79, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void populateTable() {
+         DefaultTableModel dtm = (DefaultTableModel) manageApplicantsJTable.getModel();
+            dtm.setRowCount(0);
+            if(this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
+            {
+                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
+                {
+                    if(w.getIndividual()!= null)
+                    {
+                        Object row[] = new Object[5];
+                        row[0] = w.getIndividual().getRegistrationId();
+                        row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
+                        row[2] = w.getSender();
+                        row[3] = w.getStatus();
+                        dtm.addRow(row);
+                    }
 
+                }
+            }
+    }
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
        

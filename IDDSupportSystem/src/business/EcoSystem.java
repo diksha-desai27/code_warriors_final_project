@@ -5,6 +5,7 @@
  */
 package business;
 
+import business.employee.Employee;
 import business.individuals.IndividualDirectory;
 import business.network.Network;
 import business.organization.Organization;
@@ -12,7 +13,9 @@ import business.role.Role;
 import business.useraccount.UserAccount;
 import business.useraccount.UserAccountDirectory;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -24,6 +27,7 @@ public class EcoSystem extends Organization{
     private List<Network> networkList;
     private UserAccountDirectory userAccountDirectory;
     private IndividualDirectory individualDirectory;
+    private Map<Employee, UserAccount> empMap;
 
     public EcoSystem() {
         super(null);
@@ -39,6 +43,18 @@ public class EcoSystem extends Organization{
         return system;
     }
 
+    public Map<Employee, UserAccount> getEmpMap() {
+        if(empMap == null)
+        {
+            empMap = new HashMap<>();
+        }
+        return empMap;
+    }
+
+    public void setEmpMap(Map<Employee, UserAccount> empMap) {
+        this.empMap = empMap;
+    }
+    
     public List<Network> getNetworkList() {
         return networkList;
     }

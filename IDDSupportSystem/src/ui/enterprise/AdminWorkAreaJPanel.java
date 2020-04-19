@@ -6,6 +6,8 @@
 package ui.enterprise;
 
 import business.EcoSystem;
+import business.employee.Employee;
+import business.employee.EmployeeDirectory;
 import business.enterprise.Enterprise;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
@@ -18,18 +20,23 @@ import javax.swing.JPanel;
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
-    EcoSystem system;
     Enterprise enterprise;
     UserAccount userAccount;
+    EcoSystem system;
     /**
      * Creates new form AdminWorkAreaJPanel
+     * @param userProcessContainer
+     * @param userAccount
+     * @param enterprise
+     * @param system
      */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise) {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
-        this.system = system;
         this.enterprise = enterprise;
+        this.system = system;
+        
     }
 
     /**
@@ -102,7 +109,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEmployeeActionPerformed
         // TODO add your handling code here:
-       ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer,userAccount,enterprise);
+       ManageEmployeeJPanel manageEmployeeJPanel = new ManageEmployeeJPanel(userProcessContainer,userAccount,enterprise, system);
        userProcessContainer.add("manageEmployeeJPanel",manageEmployeeJPanel);
        
        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
@@ -111,7 +118,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageUserAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageUserAccountActionPerformed
         // TODO add your handling code here:
-       ManageUserAccountJPanel manageUserAccountJPanel = new ManageUserAccountJPanel(userProcessContainer,userAccount,enterprise);
+       ManageUserAccountJPanel manageUserAccountJPanel = new ManageUserAccountJPanel(userProcessContainer,userAccount,enterprise, system);
        userProcessContainer.add("manageUserAccountJPanel",manageUserAccountJPanel);
        
        CardLayout layout=(CardLayout)userProcessContainer.getLayout();

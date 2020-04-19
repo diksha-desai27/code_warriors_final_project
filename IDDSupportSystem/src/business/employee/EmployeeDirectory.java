@@ -5,7 +5,6 @@
  */
 package business.employee;
 
-import business.useraccount.UserAccount;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,12 +32,6 @@ public class EmployeeDirectory {
         Employee emp = new Employee(name);
         employeeList.add(emp);
         return emp;
-    }
-    
-    public Employee createEmployee(String name, String specialzation) {
-      Employee emp = new Employee(name, specialzation);
-      employeeList.add(emp);
-      return emp;   
     }
     
     public void deleteEmployee(Employee emp) {

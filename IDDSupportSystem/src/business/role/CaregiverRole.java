@@ -20,7 +20,7 @@ public class CaregiverRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business, Enterprise enterprise,Individual individual) {
-        return new CaregiverWorkAreaJPanel(userProcessContainer, account, business.getIndividualDirectory(), enterprise, business.getEmployeeDirectory());
+        return new CaregiverWorkAreaJPanel(userProcessContainer, account, enterprise, business);
     }
     
 }

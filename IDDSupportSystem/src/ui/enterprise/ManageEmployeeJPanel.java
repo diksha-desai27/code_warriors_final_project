@@ -31,14 +31,14 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     Enterprise enterprise;
+    EcoSystem system;
     
-    public ManageEmployeeJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise) {
+    public ManageEmployeeJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
-        this.labelSpecialization.setVisible(false);
-        this.specializationTextField.setVisible(false);
+        this.system = system;
         this.populateDropdown();
     }
 
@@ -64,8 +64,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        specializationTextField = new javax.swing.JTextField();
-        labelSpecialization = new javax.swing.JLabel();
 
         jLabel1.setText("Organization");
 
@@ -139,8 +137,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Create Employees");
 
-        labelSpecialization.setText("Specialization");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,12 +169,9 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(105, 105, 105)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(labelSpecialization))
-                                .addGap(54, 54, 54)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(specializationTextField)
                                     .addComponent(nameTextField)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
@@ -214,11 +207,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(specializationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSpecialization))
-                .addGap(8, 8, 8)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnCreateEmployee))
@@ -264,16 +253,11 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
          
         Organization org = (Organization) dpdOrganizationEmp.getSelectedItem();
         String name = nameTextField.getText();
-        if(dpdOrganizationEmp.getSelectedItem().equals("Doctor Organization")) {
-            String specialization = specializationTextField.getText();
-            org.getEmployeeDirectory().createEmployee(name, specialization);
-            enterprise.getEmployeeDirectory().createEmployee(name);
-        }
-        else
-        {
+   
             org.getEmployeeDirectory().createEmployee(name);
             enterprise.getEmployeeDirectory().createEmployee(name);
-        }
+            system.getEmployeeDirectory().createEmployee(name);
+        
         this.populateTable(org);
         JOptionPane.showMessageDialog(null, "Employee created successfully");
         nameTextField.setText("");
@@ -294,22 +278,19 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private void dpdOrganizationEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdOrganizationEmpActionPerformed
 
         // TODO add your handling code here:
-        if(enterprise.getEnterpriseType().equals(EnterpriseType.Hospital)) {
-            if (dpdOrganizationEmp.getSelectedItem()!=null) {
-                
-               System.out.println(dpdOrganizationEmp.getSelectedItem().toString());
-               System.out.println(Organization.Type.Doctor);
-                System.out.println(dpdOrganizationEmp.getSelectedItem().toString().equals("Doctor Organization"));
-                if(dpdOrganizationEmp.getSelectedItem().toString().equals(Organization.Type.Doctor.toString()))
-                {
-                     specializationTextField.setVisible(true);
-                     labelSpecialization.setVisible(true);
-                }else{
-                    specializationTextField.setVisible(false);
-                     labelSpecialization.setVisible(false);
-                }
-            }
-        }
+//        if(enterprise.getEnterpriseType().equals(EnterpriseType.Hospital)) {
+//            if (dpdOrganizationEmp.getSelectedItem()!=null) {
+//                System.out.println(dpdOrganizationEmp.getSelectedItem().toString().equals("Doctor Organization"));
+//                if(dpdOrganizationEmp.getSelectedItem().toString().equals(Organization.Type.Doctor.toString()))
+//                {
+//                     specializationTextField.setVisible(true);
+//                     labelSpecialization.setVisible(true);
+//                }else{
+//                    specializationTextField.setVisible(false);
+//                     labelSpecialization.setVisible(false);
+//                }
+//            }
+//        }
     }//GEN-LAST:event_dpdOrganizationEmpActionPerformed
 
     private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
@@ -329,9 +310,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel labelSpecialization;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JTable organizationJTable;
-    private javax.swing.JTextField specializationTextField;
     // End of variables declaration//GEN-END:variables
 }

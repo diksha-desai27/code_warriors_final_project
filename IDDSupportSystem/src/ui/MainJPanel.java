@@ -170,7 +170,7 @@ public class MainJPanel extends javax.swing.JFrame {
         Individual individual = null;
         Enterprise isEnterprise = null;
         Organization isOrganization = null;
-
+System.out.println("user"+userAccount);
         if (userAccount == null) {
 
             for (Network n : system.getNetworkList()) {

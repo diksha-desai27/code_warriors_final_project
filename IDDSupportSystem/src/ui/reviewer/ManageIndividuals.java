@@ -31,15 +31,13 @@ public class ManageIndividuals extends javax.swing.JPanel {
     UserAccount userAccount;
     IndividualDirectory individualDirectory;
     Individual individual;
-    Map<Employee, UserAccount> map;
     Enterprise enterprise;
     
-    public ManageIndividuals(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory,  Map<Employee, UserAccount> map, Enterprise enterprise) {
+    public ManageIndividuals(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.individualDirectory = individualDirectory;
-        this.map = map;
         this.enterprise = enterprise;
         this.populateTable();
     }
@@ -293,7 +291,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
                     break;
                 }
             }
-            AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.map, this.enterprise);
+            AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise);
             userProcessContainer.add("AssignCareGiver",assignCareGiver);
 
             CardLayout layout=(CardLayout)userProcessContainer.getLayout();

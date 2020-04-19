@@ -5,17 +5,20 @@
  */
 package ui.caregivers;
 
+import business.EcoSystem;
+import business.employee.Employee;
 import business.employee.EmployeeDirectory;
 import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
+import business.useraccount.UserAccountDirectory;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import ui.reviewer.AssignCareGiverJPanel;
 
 /**
  *
@@ -26,24 +29,21 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     Individual individual;
-    IndividualDirectory individualDirectory;
     Enterprise enterprise;
-    EmployeeDirectory employeeDirectory;
+    EcoSystem system;
     /**
      * Creates new form CaregiverWorkAreaJPanel
      * @param userProcessContainer
      * @param userAccount
-     * @param individualDirectory
      * @param enterprise
-     * @param employeeDirectory
+     * @param system
      */
-    public CaregiverWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, IndividualDirectory individualDirectory, Enterprise enterprise, EmployeeDirectory employeeDirectory) {
+    public CaregiverWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
-        this.individualDirectory = individualDirectory;
+        this.system = system;
         this.enterprise = enterprise;
-        this.employeeDirectory = employeeDirectory;
         this.populateTable();
     }
 
@@ -135,12 +135,10 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     
     public void populateTable() {
-        System.out.println("hgelloooo baby");
             DefaultTableModel dtm = (DefaultTableModel) manageApplicantsTable.getModel();
             dtm.setRowCount(0);
             if(this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
             {
-                System.out.println(this.userAccount);
                 for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
                 {
                     if(w.getIndividual()!= null)
@@ -168,14 +166,15 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = manageApplicantsTable.getSelectedRow();
         if(selectedRow >= 0) {
             int id = (Integer)manageApplicantsTable.getValueAt(selectedRow, 0);
-            for(Individual i: this.individualDirectory.getIndividualList()) {
+            for(Individual i: system.getIndividualDirectory().getIndividualList()) {
                 if(i.getRegistrationId() == id)
                 {
-                    individual = i;
+                    this.individual = i;
                     break;
                 }
             }
-            AssignToDoctorJPanel assignToDoctorJPanel = new AssignToDoctorJPanel(userProcessContainer,userAccount, individual, enterprise, this.employeeDirectory);
+     
+            AssignToDoctorJPanel assignToDoctorJPanel = new AssignToDoctorJPanel(userProcessContainer,userAccount,individual, enterprise, system);
             userProcessContainer.add("assignToDoctorJPanel",assignToDoctorJPanel);
             CardLayout layout=(CardLayout)userProcessContainer.getLayout();
             layout.next(userProcessContainer);
