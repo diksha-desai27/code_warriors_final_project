@@ -94,5 +94,13 @@ public class EcoSystem extends Organization{
     public List<Role> getSupportedRole() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+     public boolean checkIfNetworkIsUnique(String name){
+        for (Network na : networkList){
+            if(na.getName().equals(name))
+            return false;
+        }
+        return true;
+    }
 
 }
