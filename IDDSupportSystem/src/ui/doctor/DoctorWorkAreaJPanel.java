@@ -9,6 +9,7 @@ import business.enterprise.Enterprise;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -168,13 +169,24 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = manageApplicantsJTable.getSelectedRow();
         //  UserAccount selectedUserAccount = null;
         if (selectedRow >= 0) {
-            
-        }else{
-           WorkRequest  en = (WorkRequest) manageApplicantsJTable.getValueAt(selectedRow, 0);
-
+            Integer registrationId = (Integer) manageApplicantsJTable.getValueAt(selectedRow, 0);
+            for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
+                if (wr.getIndividual().getRegistrationId() == registrationId) {
+                    if (wr.getStatus().equalsIgnoreCase("Requested to Doctor")) {
+                        wr.setStatus("Declined");
+                        wr.setSender(userAccount);
+                        JOptionPane.showMessageDialog(null, "Request Declined successfully");
+                        populateTable();
+                        break;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "You cannot decline this request");
+                    }
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a work request to take action.");
         }
-
-
     }//GEN-LAST:event_btnDeclineActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
