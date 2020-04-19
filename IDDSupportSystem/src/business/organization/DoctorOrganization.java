@@ -7,13 +7,27 @@ package business.organization;
 
 import business.role.DoctorRole;
 import business.role.Role;
+import business.schedule.Schedule;
+import business.useraccount.UserAccount;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
  * @author dikshadesai
  */
 public class DoctorOrganization extends Organization{
+    
+    
+    Map<Schedule, UserAccount> doctorSchedule;
+
+    public Map<Schedule, UserAccount> getDoctorSchedule() {
+        return doctorSchedule;
+    }
+
+    public void setDoctorSchedule(Map<Schedule, UserAccount> doctorSchedule) {
+        this.doctorSchedule = doctorSchedule;
+    }
     
     public DoctorOrganization() {
         super(Type.Doctor.getValue());
