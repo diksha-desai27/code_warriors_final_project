@@ -39,12 +39,14 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     Enterprise enterprise;
+    EcoSystem system;
 
-    public ManageUserAccountJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise) {
+    public ManageUserAccountJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
+        this.system = system;
         this.populateOrganization();
         this.populateTable();
     }
@@ -328,7 +330,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 enterprise.getEmpMap().put(emp, ua);
                 enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                 org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                System.out.println("HashMap " + enterprise.getEmpMap());
+                system.getEmpMap().put(emp, ua);
+                System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
+                System.out.println("System HashMap " + system.getEmpMap());
 //                    
 
                 this.populateTable();
@@ -337,11 +341,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 passwordField.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter valid password");
-                return;
             }
         } else {
             JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
-            return;
         }
     }//GEN-LAST:event_btnCreateActionPerformed
 

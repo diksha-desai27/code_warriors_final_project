@@ -6,8 +6,6 @@
 package business.employee;
 
 import business.useraccount.UserAccount;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -15,17 +13,10 @@ import java.util.Map;
  */
 public class Employee {
     private String name;
-    private String specialization;
     private UserAccount userAccount;
     
     public Employee(String name) {
         this.name = name;
-    }
-    
-    public Employee(String name, String specialization) {
-        this.name = name;
-        this.specialization = specialization;
-        
     }
 
     public UserAccount getUserAccount() {
@@ -43,15 +34,6 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-    
     
     @Override
     public String toString() {

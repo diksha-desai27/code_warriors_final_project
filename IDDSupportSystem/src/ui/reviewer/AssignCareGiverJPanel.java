@@ -36,12 +36,11 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     Map<Employee, UserAccount> map;
     Enterprise enterprise;
     
-    public AssignCareGiverJPanel(JPanel userProcessContainer,UserAccount userAccount, Individual individual,Map<Employee, UserAccount> map, Enterprise enterprise) {
+    public AssignCareGiverJPanel(JPanel userProcessContainer,UserAccount userAccount, Individual individual, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.individual = individual;
-        this.map = map;
         this.enterprise = enterprise;
         this.displayData();
         this.populateTable();
@@ -184,9 +183,9 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) caregiverTable.getModel();
         dtm.setRowCount(0);
-         if(this.map != null)
+         if(enterprise.getEmpMap() != null)
          {
-            Iterator empIterator = this.map.entrySet().iterator();
+            Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
 
             while (empIterator.hasNext()) { 
                 Map.Entry mapElement = (Map.Entry)empIterator.next(); 
@@ -211,16 +210,14 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
             UserAccount ua = null;
             Employee emp = null;
             Employee e = (Employee)caregiverTable.getValueAt(selectedRow, 0);
-            Iterator empIterator = this.map.entrySet().iterator();
+            Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
 
             while (empIterator.hasNext()) { 
                 Map.Entry mapElement = (Map.Entry)empIterator.next(); 
                 Employee e1 = ((Employee)mapElement.getKey());
                 UserAccount caregiver  =((UserAccount)mapElement.getValue());
                 if(e1.equals(e))
-                {
-                    
-                    
+                {                    
                     ua = caregiver;
                     emp = e1;
                     break;
