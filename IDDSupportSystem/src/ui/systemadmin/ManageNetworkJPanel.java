@@ -149,12 +149,19 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void btnCreateNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNetworkActionPerformed
-        String name = nameTextField.getText();        
-        Network network=system.createNetwork();
-        network.setName(name);
-        JOptionPane.showMessageDialog(null, "Network created successfully");
-        populateTable();
-        nameTextField.setText("");
+        String name = nameTextField.getText();   
+        if(system.checkIfNetworkIsUnique(name))
+        {
+            Network network=system.createNetwork();
+            network.setName(name);
+            JOptionPane.showMessageDialog(null, "Network created successfully");
+            populateTable();
+            nameTextField.setText("");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Network has already been used. Please enter another network.");
+        } 
        
     }//GEN-LAST:event_btnCreateNetworkActionPerformed
 
