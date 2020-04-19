@@ -185,15 +185,20 @@ public class AssignToDoctorJPanel extends javax.swing.JPanel {
             }
             if(doctor != null)
             {
-                WorkRequest workRequest = new WorkRequest();
-                workRequest.setSender(this.userAccount);
-                workRequest.setStatus("Requested to Doctor");
-                workRequest.setMessage("");
-                workRequest.setIndividual(this.individual);
-//                this.userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
-                doctor.getWorkQueue().getWorkRequestList().add(workRequest);
-                JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " is in the waiting queue of doctor " + emp + " for scheduling an appointment.");
-                this.userProcessContainer.remove(this);
+                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
+                {
+                    if((w.getIndividual()!= null) && (w.getIndividual().getRegistrationId()== individual.getRegistrationId()))
+                    {
+                       w.setSender(this.userAccount);
+                       w.setStatus("Requested to Doctor");
+                       w.setMessage("");
+                       w.setIndividual(this.individual);
+                       doctor.getWorkQueue().getWorkRequestList().add(w);
+                        JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " is in the waiting queue of doctor " + emp + " for scheduling an appointment.");
+                       break;
+                    }
+
+                }
             }
                 
 
