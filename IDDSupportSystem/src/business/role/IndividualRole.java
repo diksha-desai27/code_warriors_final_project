@@ -13,6 +13,7 @@ import business.useraccount.UserAccount;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import ui.individuals.IndividualMyAccountJPanel;
 import ui.individuals.IndividualsRegistrationFormJPanel1;
 import ui.systemadmin.SystemAdminWorkAreaJPanel;
 
@@ -21,24 +22,28 @@ import ui.systemadmin.SystemAdminWorkAreaJPanel;
  * @author kales
  */
 public class IndividualRole extends Role {
-    
-    ArrayList<Enterprise> facilityList=new ArrayList<Enterprise>();
-     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system,Enterprise enterprise,Individual individual) {
-          if (individual != null) {
+
+    ArrayList<Enterprise> facilityList = new ArrayList<Enterprise>();
+
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system, Enterprise enterprise, Individual individual) {
+        if (individual != null) {
             for (Network n : system.getNetworkList()) {
-                   if(n.getName().equalsIgnoreCase(individual.getCity())){
-                       for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
-                           if(e.enterpriseType.getValue().equals("Facility")){
-                               facilityList.add(e);
-                           }
-                       }
-                   }
+                if (n.getName().equalsIgnoreCase(individual.getCity())) {
+                    for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (e.enterpriseType.getValue().equals("Facility")) {
+                            facilityList.add(e);
+                        }
+                    }
+                }
             }
         }
-        System.out.println(facilityList);
-        
-        return new IndividualsRegistrationFormJPanel1(userProcessContainer,account,individual,facilityList);//To change body of generated methods, choose Tools | Templates.
+        System.out.println(individual.getIddInfo().getdName());
+        if (individual.getIddInfo().getdName() == null || individual.getIddInfo().getdName().equals("")) {
+            return new IndividualsRegistrationFormJPanel1(userProcessContainer, account, individual, facilityList);//To change body of generated methods, choose Tools | Templates.
+
+        }
+        return new IndividualMyAccountJPanel(userProcessContainer, account, individual, facilityList);//To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

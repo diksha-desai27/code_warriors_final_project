@@ -16,13 +16,17 @@ import business.useraccount.UserAccount;
 import business.useraccount.UserAccountDirectory;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import ui.MainJPanel;
 
 /**
  *
@@ -35,15 +39,25 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
     private IndividualDirectory individualDirectory;
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
+    JButton signUpBtn;
 
     /**
      * Creates new form IndividualsSignUpJPanel
      */
-    public IndividualsSignUpJPanel(JPanel rightJPanel,EcoSystem system,DB4OUtil dB4OUtil) {
+    public IndividualsSignUpJPanel(JButton signUpBtn,JPanel rightJPanel, EcoSystem system, DB4OUtil dB4OUtil) {
         initComponents();
         this.rightJPanel = rightJPanel;
         this.system = system;
-        this.dB4OUtil =dB4OUtil;
+        this.dB4OUtil = dB4OUtil;
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -25);//15 year before
+        Date min = cal.getTime();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.add(Calendar.YEAR, -10);//15 year before
+        Date max = cal1.getTime();//actual date
+        birthDayChooser.setSelectableDateRange(min, max);
+        this.signUpBtn = signUpBtn;
+
     }
 
     /**
@@ -286,6 +300,12 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         CardLayout crdLyt = (CardLayout) rightJPanel.getLayout();
         crdLyt.next(rightJPanel);
         dB4OUtil.storeSystem(system);
+        
+        //        Component[] componentArray = rightJPanel.getComponents();
+       // Component component = componentArray[componentArray.length - 1];
+       // MainJPanel mainJPanel = (MainJPanel) component;
+      //  mainJPanel.getBtnSignUp().setEnabled(true);
+      signUpBtn.setEnabled(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void clearFields() {

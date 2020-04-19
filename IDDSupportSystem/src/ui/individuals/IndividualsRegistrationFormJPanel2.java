@@ -32,7 +32,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
     UserAccount userAccount;
     ArrayList<Enterprise> facilityList;
 
-    public IndividualsRegistrationFormJPanel2(UserAccount userAccount, Individual individual, JPanel rightJPanel,ArrayList<Enterprise> facilityList) {
+    public IndividualsRegistrationFormJPanel2(UserAccount userAccount, Individual individual, JPanel rightJPanel, ArrayList<Enterprise> facilityList) {
         initComponents();
         this.facilityList = facilityList;
         this.rightJPanel = rightJPanel;
@@ -91,6 +91,11 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         downsJBtn.setText("Down's Syndrome");
 
         pradeWillisSyndromeBtn.setText("Prade willi's Syndrome");
+        pradeWillisSyndromeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pradeWillisSyndromeBtnActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("3.For How Long are you Facing this disability?");
 
@@ -186,9 +191,9 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
                 .addComponent(fragileJBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(downsJBtn)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pradeWillisSyndromeBtn)
-                .addGap(22, 22, 22)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,11 +217,11 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
 
     private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
         // TODO add your handling code here:
-         
+
         rightJPanel.remove(this);
         Component[] componentArray = rightJPanel.getComponents();
         Component component = componentArray[componentArray.length - 1];;
-        CardLayout layout = (CardLayout)rightJPanel.getLayout();
+        CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.previous(rightJPanel);
     }//GEN-LAST:event_jbtnBackActionPerformed
 
@@ -230,25 +235,37 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "All fields are mandatory");
             return;
         }
-        if(individual.getServiceType().equals("LongTermService")){
-             JOptionPane.showMessageDialog(null, "All fields are mandatory");
+        if (individual.getServiceType().equals("LongTermService")) {
+            JOptionPane.showMessageDialog(null, "All fields are mandatory");
             return;
         }
         IDD id_info;
-      //  if( individual.getIddInfo()==null){
+
+        if (nervousSystemJBtn.isSelected()) {
+            individual.getIddInfo().setdName("Nervous System");
+        } else if (sensorySystemJBtn.isSelected()) {
+            individual.getIddInfo().setdName("Sensory System");
+        } else if (pradeWillisSyndromeBtn.isSelected()) {
+            individual.getIddInfo().setdName("Prade Willis Syndrome");
+        } else if (downsJBtn.isSelected()) {
+            individual.getIddInfo().setdName("Down's Syndrome");
+        } else {
+            individual.getIddInfo().setdName("Fragile X Syndrome");
+        }
+
+        //  if( individual.getIddInfo()==null){
         //}
-        
         individual.getIddInfo().setDuration(Integer.parseInt(durationTxt.getText()));
         individual.getIddInfo().setEmploymentDetails(employmentDurationJTxtArea.getText());
         individual.getIddInfo().setServices(serviceJTxtArea.getSelectedText());
-        JOptionPane.showMessageDialog(null,"Details Saved Successfully");
+        JOptionPane.showMessageDialog(null, "Details Saved Successfully");
         clearFields();
         nextBtn.setEnabled(true);
-       
-        
+
+
     }//GEN-LAST:event_jbtnSubmitActionPerformed
 
-    private void clearFields(){
+    private void clearFields() {
         downsJBtn.setSelected(false);
         nervousSystemJBtn.setSelected(false);
         sensorySystemJBtn.setSelected(false);
@@ -258,23 +275,25 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         serviceJTxtArea.setText("");
         employmentDurationJTxtArea.setText("");
     }
-    
-    
-    
-    
+
+
     private void durationTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_durationTxtActionPerformed
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        IndividualsRegistrationFormJPanel3 individualFacilityPanel = new IndividualsRegistrationFormJPanel3(rightJPanel, userAccount, individual,facilityList);
+        IndividualsRegistrationFormJPanel3 individualFacilityPanel = new IndividualsRegistrationFormJPanel3(rightJPanel, userAccount, individual, facilityList);
         rightJPanel.add("individualFacilityPanel", individualFacilityPanel);
-        
+
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
-        
+
     }//GEN-LAST:event_nextBtnActionPerformed
+
+    private void pradeWillisSyndromeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pradeWillisSyndromeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pradeWillisSyndromeBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
