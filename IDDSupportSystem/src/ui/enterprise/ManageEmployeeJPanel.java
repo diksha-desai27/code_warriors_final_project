@@ -8,6 +8,7 @@ package ui.enterprise;
 import business.EcoSystem;
 import business.employee.Employee;
 import business.enterprise.Enterprise;
+import business.enterprise.Enterprise.EnterpriseType;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
@@ -210,7 +211,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(dpdOrganizationEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -225,12 +226,14 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    public void populateDropdown() {
+    private void populateDropdown() {
         dpdOrganization.removeAllItems();
         dpdOrganizationEmp.removeAllItems();
         for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()) {
             dpdOrganization.addItem(org);
             dpdOrganizationEmp.addItem(org);
+                 //   dpdOrganizationEmp.setSelectedItem(org);
+
         }
     }
     
@@ -289,11 +292,23 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
  
     private void dpdOrganizationEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdOrganizationEmpActionPerformed
+
         // TODO add your handling code here:
-        if(dpdOrganizationEmp.getSelectedItem().equals("Doctor Organization"))
-        {
-           specializationTextField.setVisible(true);
-           labelSpecialization.setVisible(true);
+        if(enterprise.getEnterpriseType().equals(EnterpriseType.Hospital)) {
+            if (dpdOrganizationEmp.getSelectedItem()!=null) {
+                
+               System.out.println(dpdOrganizationEmp.getSelectedItem().toString());
+               System.out.println(Organization.Type.Doctor);
+                System.out.println(dpdOrganizationEmp.getSelectedItem().toString().equals("Doctor Organization"));
+                if(dpdOrganizationEmp.getSelectedItem().toString().equals(Organization.Type.Doctor.toString()))
+                {
+                     specializationTextField.setVisible(true);
+                     labelSpecialization.setVisible(true);
+                }else{
+                    specializationTextField.setVisible(false);
+                     labelSpecialization.setVisible(false);
+                }
+            }
         }
     }//GEN-LAST:event_dpdOrganizationEmpActionPerformed
 

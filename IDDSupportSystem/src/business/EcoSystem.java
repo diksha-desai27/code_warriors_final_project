@@ -7,6 +7,8 @@ package business;
 
 import business.individuals.IndividualDirectory;
 import business.network.Network;
+import business.organization.Organization;
+import business.role.Role;
 import business.useraccount.UserAccount;
 import business.useraccount.UserAccountDirectory;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import java.util.List;
  *
  * @author dikshadesai
  */
-public class EcoSystem {
+public class EcoSystem extends Organization{
 
     private static EcoSystem system;
     private List<Network> networkList;
@@ -24,6 +26,7 @@ public class EcoSystem {
     private IndividualDirectory individualDirectory;
 
     public EcoSystem() {
+        super(null);
         this.networkList = new ArrayList();
         this.userAccountDirectory = userAccountDirectory;
         this.individualDirectory = individualDirectory;
@@ -69,6 +72,11 @@ public class EcoSystem {
 
     public void setIndividualDirectory(IndividualDirectory individualDirectory) {
         this.individualDirectory = individualDirectory;
+    }
+
+    @Override
+    public List<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

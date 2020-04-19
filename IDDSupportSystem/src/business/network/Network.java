@@ -14,7 +14,7 @@ import business.enterprise.EnterpriseDirectory;
  */
 public class Network {
     private String name;
-    private EnterpriseDirectory enterpriseDirectory;
+    private final EnterpriseDirectory enterpriseDirectory;
 
     public Network() {
         this.enterpriseDirectory = new EnterpriseDirectory();

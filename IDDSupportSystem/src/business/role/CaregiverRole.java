@@ -8,7 +8,6 @@ package business.role;
 import business.EcoSystem;
 import business.enterprise.Enterprise;
 import business.individuals.Individual;
-import business.organization.Organization;
 import business.useraccount.UserAccount;
 import javax.swing.JPanel;
 import ui.caregivers.CaregiverWorkAreaJPanel;
@@ -21,7 +20,7 @@ public class CaregiverRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business, Enterprise enterprise,Individual individual) {
-        return new CaregiverWorkAreaJPanel(userProcessContainer, account);
+        return new CaregiverWorkAreaJPanel(userProcessContainer, account, business.getIndividualDirectory(), enterprise, business.getEmployeeDirectory());
     }
     
 }
