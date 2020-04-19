@@ -17,7 +17,6 @@ import business.role.Role;
 import business.role.Role.RoleType;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.awt.Component;
@@ -39,12 +38,14 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     Enterprise enterprise;
+    EcoSystem system;
 
-    public ManageUserAccountJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise) {
+    public ManageUserAccountJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.enterprise = enterprise;
+        this.system = system;
         this.populateOrganization();
         this.populateTable();
     }
@@ -250,15 +251,6 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 row[1] = ua.getRoleType().getValue();
                 dtm.addRow(row);
             }
-
-//         for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()) {
-//             for(UserAccount ua: org.getUserAccountDirectory().getUserAccountList()) {
-//                 Object row[] = new Object[2];
-//                 row[0] = ua;
-//                 row[1] = ua.getRole();
-//                 dtm.addRow(row);
-//             }
-//         }
         }
     }
 
@@ -290,21 +282,22 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }
     
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+   
 
-        if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) {
+        if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) 
+        {
             JOptionPane.showMessageDialog(null, "Please fill out all the details");
-            return;
-        } else if (usernamePatternCorrect()) {
+        } 
+        else if (usernamePatternCorrect()) 
+        {
             if (passwordPatternCorrect()) {
                 String username = usernameTextField.getText();
                 char c[] = passwordField.getPassword();
                 String password = String.valueOf(c);
+                
                 Organization org = (Organization) dpdOrganization.getSelectedItem();
                 Employee emp = (Employee) dpdEmployee.getSelectedItem();
                 String value = dpdRole.getSelectedItem().toString();
-                //Role role = (Role)dpdRole.getSelectedItem();
-
-                //System.out.println("role " +  role);
                 Role role = null;
                 RoleType roleType = null;
                 if (value.equals("Caregiver")) {
@@ -323,25 +316,60 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     //
                 }
 //
-
-                UserAccount ua = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                enterprise.getEmpMap().put(emp, ua);
-                enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                System.out.println("HashMap " + enterprise.getEmpMap());
-//                    
-
+    
+                System.out.println("getMap: " + enterprise.getEmpMap());
+                if (enterprise.getEmpMap().isEmpty()) 
+                {
+                    System.out.println("if");
+                    UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                    enterprise.getEmpMap().put(emp, ua1);
+                    enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                    org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                    system.getEmpMap().put(emp, ua1);
+                    System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
+                    System.out.println("System HashMap " + system.getEmpMap());
+                    JOptionPane.showMessageDialog(null, "User account created successfully.");
+                }
+                else
+                {
+                    Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
+                    while (empIterator.hasNext()) 
+                    {
+                        Map.Entry mapElement = (Map.Entry) empIterator.next();
+                        Employee e = ((Employee) mapElement.getKey());
+                        UserAccount ua = ((UserAccount) mapElement.getValue());
+                        if(ua.getUsername().equals(username))
+                        {
+                            JOptionPane.showMessageDialog(null, "Username has been already taken. Please use another username");
+                            break;
+                        }       
+                        else
+                        {
+                            UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                            enterprise.getEmpMap().put(emp, ua1);
+                            enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                            org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                            system.getEmpMap().put(emp, ua1);
+                            System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
+                            System.out.println("System HashMap " + system.getEmpMap());
+                            JOptionPane.showMessageDialog(null, "User account created successfully.");
+                            
+                        }       
+                    }
+                    
+                }
                 this.populateTable();
-                JOptionPane.showMessageDialog(null, "User account created successfully.");
                 usernameTextField.setText("");
                 passwordField.setText("");
-            } else {
+            } 
+            else 
+            {
                 JOptionPane.showMessageDialog(null, "Please enter valid password");
-                return;
             }
-        } else {
+        } 
+        else
+        {
             JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
-            return;
         }
     }//GEN-LAST:event_btnCreateActionPerformed
 

@@ -15,6 +15,7 @@ import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.individuals.IndividualsSignUpJPanel;
@@ -160,6 +161,7 @@ public class MainJPanel extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         String userName = usernameJTextField.getText();
+        this.btnSignUp.setEnabled(false);
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
@@ -168,7 +170,7 @@ public class MainJPanel extends javax.swing.JFrame {
         Individual individual = null;
         Enterprise isEnterprise = null;
         Organization isOrganization = null;
-
+System.out.println("user"+userAccount);
         if (userAccount == null) {
 
             for (Network n : system.getNetworkList()) {
@@ -224,6 +226,7 @@ public class MainJPanel extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        btnSignUp.setEnabled(true);
         btnLogout.setEnabled(false);
         usernameJTextField.setEnabled(true);
         passwordField.setEnabled(true);
@@ -242,10 +245,12 @@ public class MainJPanel extends javax.swing.JFrame {
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
-        IndividualsSignUpJPanel signUpJPanel = new IndividualsSignUpJPanel(rightJPanel, system, dB4OUtil);
+        
+        IndividualsSignUpJPanel signUpJPanel = new IndividualsSignUpJPanel(btnSignUp,rightJPanel, system, dB4OUtil);
         rightJPanel.add("signUpJPanel", signUpJPanel);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
+        btnSignUp.setEnabled(false);
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**
@@ -283,6 +288,32 @@ public class MainJPanel extends javax.swing.JFrame {
         });
     }
 
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public void setBtnLogin(JButton btnLogin) {
+        this.btnLogin = btnLogin;
+    }
+
+    public JButton getBtnLogout() {
+        return btnLogout;
+    }
+
+    public void setBtnLogout(JButton btnLogout) {
+        this.btnLogout = btnLogout;
+    }
+
+    public JButton getBtnSignUp() {
+        return btnSignUp;
+    }
+
+    public void setBtnSignUp(JButton btnSignUp) {
+        this.btnSignUp = btnSignUp;
+    }
+
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLogout;

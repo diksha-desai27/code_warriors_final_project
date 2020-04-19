@@ -27,16 +27,13 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     IndividualDirectory individualDirectory;
-    Map<Employee, UserAccount> map = new HashMap<>();
     Enterprise enterprise;
-    public ReviewerWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory, Map<Employee, UserAccount> map, Enterprise enterprise) {
+    public ReviewerWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.individualDirectory = individualDirectory;
-        this.map = map;
         this.enterprise = enterprise;
-        System.out.println("using HashMap " + this.map.keySet() + " " + this.map.values());
     }
 
     /**
@@ -118,7 +115,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
         // TODO add your handling code here:
-        ManageIndividuals manageIndividuals = new ManageIndividuals(userProcessContainer,userAccount, this.individualDirectory, this.map, this.enterprise);
+        ManageIndividuals manageIndividuals = new ManageIndividuals(userProcessContainer,userAccount, this.individualDirectory, this.enterprise);
         userProcessContainer.add("ManageIndividuals",manageIndividuals);
 
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();

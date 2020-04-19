@@ -6,16 +6,21 @@
 package ui.individuals;
 
 import business.EcoSystem;
+import business.employee.Employee;
 import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,17 +36,14 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
     Individual individual;
     UserAccount userAccount;
     ArrayList<Enterprise> facilityList;
+    boolean flag = false;
 
-    public IndividualMyAccountJPanel(JPanel rightJPanel, UserAccount userAccount,Individual individual,ArrayList<Enterprise> facilityList) {
+    public IndividualMyAccountJPanel(JPanel rightJPanel, UserAccount userAccount, Individual individual, ArrayList<Enterprise> facilityList) {
         initComponents();
         this.rightJPanel = rightJPanel;
         this.individual = individual;
         this.facilityList = facilityList;
         this.userAccount = userAccount;
-        populateData();
-    }
-
-    public void populateData() {
         firstNamejTextField.setText(individual.getFirstName());
         lastNamejTextField.setText(individual.getLastName());
         userNamejTextField.setText(individual.getUserName());
@@ -50,6 +52,60 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         lastNamejTextField.setEnabled(false);
         userNamejTextField.setEnabled(false);
 
+        if (userAccount.getWorkQueue().getWorkRequestList().isEmpty()) {
+            this.populateFacilities();
+            facilityJTable.setVisible(true);
+            this.requestFacilityBtn.setVisible(true);
+            this.btnAvailableFacility.setVisible(true);
+            this.requestJLabel.setVisible(false);
+        } else {
+            for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
+                if (!wr.getStatus().equalsIgnoreCase("Completed")) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) {
+                facilityJTable.setVisible(false);
+                this.requestFacilityBtn.setEnabled(false);
+                this.btnAvailableFacility.setEnabled(false);
+                this.requestJLabel.setVisible(true);
+                this.populateData();
+            } else {
+                this.populateFacilities();
+                facilityJTable.setVisible(true);
+                this.requestFacilityBtn.setVisible(true);
+                this.btnAvailableFacility.setVisible(true);
+                this.individualWRequestJTable.setVisible(false);
+                this.requestJLabel.setVisible(false);
+            }
+
+        }
+
+    }
+
+    public void populateData() {
+        DefaultTableModel model = (DefaultTableModel) individualWRequestJTable.getModel();
+        model.setRowCount(0);
+
+        for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[4];
+            row[0] = wr.getRequestId();
+            row[1] = wr.getSender();
+            row[2] = wr.getReceiver();
+            row[3] = wr.getStatus();
+            model.addRow(row);
+        }
+    }
+
+    private void populateFacilities() {
+        DefaultTableModel model = (DefaultTableModel) facilityJTable.getModel();
+        model.setRowCount(0);
+        for (Enterprise e : facilityList) {
+            Object[] row = new Object[2];
+            row[0] = e;
+            model.addRow(row);
+        }
     }
 
     /**
@@ -61,7 +117,6 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         firstNamejTextField = new javax.swing.JTextField();
@@ -75,15 +130,13 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         confirmJPassword = new javax.swing.JPasswordField();
         btnUpdate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-
-        btnBack.setText("<< Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
+        individualWRequestJTable = new javax.swing.JTable();
+        requestJLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        facilityJTable = new javax.swing.JTable();
+        requestFacilityBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        btnAvailableFacility = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("MY ACCOUNT");
@@ -105,7 +158,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        individualWRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -124,10 +177,48 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(individualWRequestJTable);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setText("MY REQUESTS");
+        requestJLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        requestJLabel.setText("MY REQUESTS");
+
+        facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Facility Name", "Facility Contact Number"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(facilityJTable);
+
+        requestFacilityBtn.setText("Request Facility ");
+        requestFacilityBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestFacilityBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setText("Available Facility ");
+
+        btnAvailableFacility.setText("Check Available Facility ");
+        btnAvailableFacility.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvailableFacilityActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -136,44 +227,50 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(confirmJPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(152, 152, 152)
-                                .addComponent(firstNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lastNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(userNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(userNamejTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                                    .addComponent(passwordJField))))
-                        .addGap(579, 579, 579))))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                        .addGap(749, 749, 749))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(761, 761, 761))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(152, 152, 152)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lastNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(firstNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(50, 50, 50)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(userNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(confirmJPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(182, 182, 182)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUpdate)
-                            .addComponent(jLabel4)))
+                        .addComponent(requestJLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(requestFacilityBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(btnUpdate)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAvailableFacility)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -183,22 +280,21 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                             .addGap(198, 198, 198)
                             .addComponent(jLabel1))
                         .addComponent(jLabel2))
-                    .addContainerGap(535, Short.MAX_VALUE)))
+                    .addContainerGap(732, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(29, 29, 29)
-                .addComponent(firstNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lastNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userNameLabel)
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(firstNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(lastNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addComponent(userNameLabel))
                     .addComponent(userNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -209,38 +305,39 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                     .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmJPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(btnUpdate)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnAvailableFacility))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(requestFacilityBtn))
+                .addGap(47, 47, 47)
+                .addComponent(requestJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabel1)
                     .addGap(36, 36, 36)
                     .addComponent(jLabel2)
-                    .addContainerGap(590, Short.MAX_VALUE)))
+                    .addContainerGap(684, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        IndividualsRegistrationFormJPanel1 individualsregJPanel1 = new IndividualsRegistrationFormJPanel1(rightJPanel,userAccount, individual, facilityList);
-        rightJPanel.add("individualsregJPanel1", individualsregJPanel1);
-
-        CardLayout layout = (CardLayout) rightJPanel.getLayout();
-        layout.next(rightJPanel);
-    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
 
         if (passwordPatternCorrect()) {
             if (String.valueOf(passwordJField.getPassword()).equals(String.valueOf(confirmJPassword.getPassword()))) {
-                    userAccount.setPassword(String.valueOf(passwordJField.getPassword()));
-                    JOptionPane.showMessageDialog(null, "Password Updated Successfully!!");
+                userAccount.setPassword(String.valueOf(passwordJField.getPassword()));
+                JOptionPane.showMessageDialog(null, "Password Updated Successfully!!");
+                this.passwordJField.setText("");
+                this.confirmJPassword.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "Password and Confirm Password do not match.");
                 return;
@@ -252,28 +349,79 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void requestFacilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFacilityBtnActionPerformed
+        int selectedRow = facilityJTable.getSelectedRow();
+        UserAccount selectedUserAccount = null;
+        if (selectedRow >= 0) {
+            Enterprise enteprise = (Enterprise) facilityJTable.getValueAt(selectedRow, 0);
+            Iterator empIterator = enteprise.getEmpMap().entrySet().iterator();
+
+            while (empIterator.hasNext()) {
+                Map.Entry mapElement = (Map.Entry) empIterator.next();
+                Employee e = ((Employee) mapElement.getKey());
+                UserAccount ua = ((UserAccount) mapElement.getValue());
+                if (ua.getRoleType().getValue().equals("Reviewer")) {
+                    selectedUserAccount = ua;
+                    break;
+                }
+            }
+            if (selectedUserAccount == null) {
+                JOptionPane.showMessageDialog(null, "Oops!! We cannot process your request at this time");
+                return;
+            } else {
+                WorkRequest workRequest = new WorkRequest();
+                workRequest.setSender(userAccount);
+                workRequest.setStatus("Requested Facility");
+                workRequest.setMessage("");
+                workRequest.setIndividual(individual);
+                JOptionPane.showMessageDialog(null, "Facility Requested Successfully!!. Please keep a track of your request present in 'MyAccount' section");
+                userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
+                selectedUserAccount.getWorkQueue().getWorkRequestList().add(workRequest);
+                //       rightJPanel.remove(this);
+                populateData();
+              //  this.facilityJTable.setVisible(false);
+                this.requestFacilityBtn.setEnabled(false);
+                this.btnAvailableFacility.setEnabled(false);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a facility");
+        }
+
+    }//GEN-LAST:event_requestFacilityBtnActionPerformed
+
+    private void btnAvailableFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvailableFacilityActionPerformed
+        // TODO add your handling code here:
+        this.facilityJTable.setVisible(true);
+        this.requestFacilityBtn.setVisible(true);
+    }//GEN-LAST:event_btnAvailableFacilityActionPerformed
+
     private boolean passwordPatternCorrect() {
         Pattern q = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=_])(?=\\S+$).{6,20}$");
-        Matcher n = q.matcher(passwordJField.getPassword().toString());
+        Matcher n = q.matcher(String.valueOf(passwordJField.getPassword()));
         Boolean c = n.matches();
         return c;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnAvailableFacility;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPasswordField confirmJPassword;
     private javax.swing.JLabel confirmLabel;
+    private javax.swing.JTable facilityJTable;
     private javax.swing.JTextField firstNamejTextField;
+    private javax.swing.JTable individualWRequestJTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lastNamejTextField;
     private javax.swing.JPasswordField passwordJField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JButton requestFacilityBtn;
+    private javax.swing.JLabel requestJLabel;
     private javax.swing.JLabel userNameLabel;
     private javax.swing.JTextField userNamejTextField;
     // End of variables declaration//GEN-END:variables

@@ -127,31 +127,26 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
     private void requestFacilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFacilityBtnActionPerformed
         int selectedRow = facilityJTable.getSelectedRow();
         UserAccount selectedUserAccount = null;
-        if (selectedRow >= 0) 
-        {
+        if (selectedRow >= 0) {
             Enterprise enteprise = (Enterprise) facilityJTable.getValueAt(selectedRow, 0);
             Iterator empIterator = enteprise.getEmpMap().entrySet().iterator();
 
-            while (empIterator.hasNext()) 
-            { 
-                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
-                Employee e = ((Employee)mapElement.getKey()); 
-                UserAccount ua  =((UserAccount)mapElement.getValue()); 
-                if(ua.getRoleType().getValue().equals("Reviewer"))
-                {
+            while (empIterator.hasNext()) {
+                Map.Entry mapElement = (Map.Entry) empIterator.next();
+                Employee e = ((Employee) mapElement.getKey());
+                UserAccount ua = ((UserAccount) mapElement.getValue());
+                if (ua.getRoleType().getValue().equals("Reviewer")) {
                     selectedUserAccount = ua;
                     break;
-                  
+
                 }
-               
-            } 
-             System.out.println("Helo" + selectedUserAccount);                  
+
+            }
+            System.out.println("Helo" + selectedUserAccount);
             if (selectedUserAccount == null) {
                 JOptionPane.showMessageDialog(null, "Oops!! We cannot process your request at this time");
                 return;
-            }
-            else
-            {
+            } else {
                 WorkRequest workRequest = new WorkRequest();
                 workRequest.setSender(userAccount);
                 workRequest.setStatus("Requested Facility");
@@ -161,8 +156,11 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
                 userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
                 selectedUserAccount.getWorkQueue().getWorkRequestList().add(workRequest);
                 rightJPanel.remove(this);
+                IndividualMyAccountJPanel individualMyAccount = new IndividualMyAccountJPanel(rightJPanel, userAccount, individual,facilityList);
+                rightJPanel.add("individualFacilityPanel", individualMyAccount);
+                CardLayout layout = (CardLayout) rightJPanel.getLayout();
+                layout.next(rightJPanel);
             }
-           
 
         } else {
             JOptionPane.showMessageDialog(null, "Please select a facility");

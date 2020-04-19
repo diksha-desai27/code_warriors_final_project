@@ -36,12 +36,11 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     Map<Employee, UserAccount> map;
     Enterprise enterprise;
     
-    public AssignCareGiverJPanel(JPanel userProcessContainer,UserAccount userAccount, Individual individual,Map<Employee, UserAccount> map, Enterprise enterprise) {
+    public AssignCareGiverJPanel(JPanel userProcessContainer,UserAccount userAccount, Individual individual, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.individual = individual;
-        this.map = map;
         this.enterprise = enterprise;
         this.displayData();
         this.populateTable();
@@ -184,9 +183,9 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) caregiverTable.getModel();
         dtm.setRowCount(0);
-         if(this.map != null)
+         if(enterprise.getEmpMap() != null)
          {
-            Iterator empIterator = this.map.entrySet().iterator();
+            Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
 
             while (empIterator.hasNext()) { 
                 Map.Entry mapElement = (Map.Entry)empIterator.next(); 
@@ -211,16 +210,14 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
             UserAccount ua = null;
             Employee emp = null;
             Employee e = (Employee)caregiverTable.getValueAt(selectedRow, 0);
-            Iterator empIterator = this.map.entrySet().iterator();
+            Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
 
             while (empIterator.hasNext()) { 
                 Map.Entry mapElement = (Map.Entry)empIterator.next(); 
                 Employee e1 = ((Employee)mapElement.getKey());
                 UserAccount caregiver  =((UserAccount)mapElement.getValue());
                 if(e1.equals(e))
-                {
-                    
-                    
+                {                    
                     ua = caregiver;
                     emp = e1;
                     break;
@@ -228,22 +225,22 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
             }
             if(ua != null)
             {
-                WorkRequest workRequest = new WorkRequest();
-                workRequest.setSender(this.userAccount);
-                workRequest.setStatus("Assigned to Caregiver");
-                workRequest.setMessage("");
-                workRequest.setIndividual(this.individual);
-                System.out.println("this.useraccount" +  this.userAccount);
-                this.userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
-                System.out.println(this.userAccount.getWorkQueue().getWorkRequestList());
-                System.out.println("ua1" +  ua);
-                ua.getWorkQueue().getWorkRequestList().add(workRequest);
-                System.out.println(ua.getWorkQueue().getWorkRequestList());
-                JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to caregiver " + emp);
-//                                        this.userProcessContainer.remove(this);
+                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
+                {
+                    if((w.getIndividual()!= null) && (w.getIndividual().getRegistrationId()== this.individual.getRegistrationId()))
+                    {
+                       w.setSender(this.userAccount);
+                       w.setStatus("Assigned to Caregiver");
+                       w.setMessage("");
+                       w.setIndividual(this.individual);
+                       ua.getWorkQueue().getWorkRequestList().add(w);
+                       JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to caregiver " + emp);
+                       break;
+                    }
+
+                }
             }
                 
-
         } else {
             JOptionPane.showMessageDialog(null, "Please select a caregiver to assign.");
         }
