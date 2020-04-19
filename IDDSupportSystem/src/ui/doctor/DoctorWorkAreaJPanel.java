@@ -5,13 +5,14 @@
  */
 package ui.doctor;
 
-import business.enterprise.Enterprise;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
+import java.awt.CardLayout;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ui.caregivers.AssignToDoctorJPanel;
 
 /**
  *
@@ -30,7 +31,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
-        System.out.println("UA: " + this.userAccount);
         this.populateTable();
     }
 
@@ -191,6 +191,34 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
+       int selectedRow = manageApplicantsJTable.getSelectedRow();
+       if(selectedRow >= 0)
+       {
+           int  id = (Integer) manageApplicantsJTable.getValueAt(selectedRow, 0);
+           for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual().getRegistrationId() == id) 
+                {
+                   wr = w;
+                   if(wr.getStatus().equalsIgnoreCase("Requested to Doctor"))
+                   {
+                       wr.setStatus("Accepted");
+                       JOptionPane.showMessageDialog(null, "Request Accepted by doctor " + this.userAccount);
+                       this.populateTable();
+                       
+                   }
+                   else
+                   {
+                       JOptionPane.showMessageDialog(null, "You cannot accept this work request");
+                   }
+                   break;
+                }
+
+            }
+       }
+       else
+       {
+           JOptionPane.showMessageDialog(null, "Please select a work request to accept");
+       }
     }//GEN-LAST:event_btnAcceptActionPerformed
 
 
