@@ -155,7 +155,7 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Facility Requested Successfully!!. Please keep a track of your request present in 'MyAccount' section");
                 userAccount.getWorkQueue().getWorkRequestList().add(workRequest);
                 selectedUserAccount.getWorkQueue().getWorkRequestList().add(workRequest);
-                rightJPanel.remove(this);
+               // rightJPanel.remove(this);
                 IndividualMyAccountJPanel individualMyAccount = new IndividualMyAccountJPanel(rightJPanel, userAccount, individual,facilityList);
                 rightJPanel.add("individualMyAccount", individualMyAccount);
                 CardLayout layout = (CardLayout) rightJPanel.getLayout();
