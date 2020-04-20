@@ -53,7 +53,6 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jbtnBack = new javax.swing.JButton();
         nervousSystemJBtn = new javax.swing.JRadioButton();
         sensorySystemJBtn = new javax.swing.JRadioButton();
         fragileJBtn = new javax.swing.JRadioButton();
@@ -70,30 +69,18 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         employmentDurationJTxtArea = new javax.swing.JTextArea();
         jbtnSubmit = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
-        jLabel1.setText("**Welcome to IDD Massachusetts Centre**");
+        jLabel1.setText("WELCOME TO IDD SUPPORT CENTRE");
         add(jLabel1);
-        jLabel1.setBounds(124, 36, 523, 30);
+        jLabel1.setBounds(130, 40, 451, 40);
 
         jLabel2.setText("2. Select which IDD are you facing:");
         add(jLabel2);
         jLabel2.setBounds(43, 114, 219, 16);
-
-        jbtnBack.setBackground(new java.awt.Color(97, 206, 229));
-        jbtnBack.setForeground(new java.awt.Color(255, 255, 255));
-        jbtnBack.setText("Back");
-        jbtnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnBackActionPerformed(evt);
-            }
-        });
-        add(jbtnBack);
-        jbtnBack.setBounds(30, 660, 75, 29);
 
         nervousSystemJBtn.setText("Nervous System");
         add(nervousSystemJBtn);
@@ -158,8 +145,8 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         add(jScrollPane4);
         jScrollPane4.setBounds(69, 546, 250, 84);
 
-        jbtnSubmit.setBackground(new java.awt.Color(97, 206, 229));
-        jbtnSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnSubmit.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jbtnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/submit.png"))); // NOI18N
         jbtnSubmit.setText("Submit");
         jbtnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,34 +154,19 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
             }
         });
         add(jbtnSubmit);
-        jbtnSubmit.setBounds(261, 664, 88, 29);
+        jbtnSubmit.setBounds(70, 660, 150, 40);
 
-        nextBtn.setBackground(new java.awt.Color(97, 206, 229));
-        nextBtn.setForeground(new java.awt.Color(255, 255, 255));
-        nextBtn.setText("Next>>");
+        nextBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        nextBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/next.png"))); // NOI18N
+        nextBtn.setText("Next");
         nextBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextBtnActionPerformed(evt);
             }
         });
         add(nextBtn);
-        nextBtn.setBounds(388, 664, 94, 29);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/back.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
-        add(jLabel5);
-        jLabel5.setBounds(40, 30, 650, 50);
+        nextBtn.setBounds(530, 660, 120, 40);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
-        // TODO add your handling code here:
-
-        rightJPanel.remove(this);
-        Component[] componentArray = rightJPanel.getComponents();
-        Component component = componentArray[componentArray.length - 1];;
-        CardLayout layout = (CardLayout) rightJPanel.getLayout();
-        layout.previous(rightJPanel);
-    }//GEN-LAST:event_jbtnBackActionPerformed
 
     private void jbtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSubmitActionPerformed
         // TODO add your handling code here:
@@ -276,12 +248,10 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JButton jbtnBack;
     private javax.swing.JButton jbtnSubmit;
     private javax.swing.JRadioButton nervousSystemJBtn;
     private javax.swing.JButton nextBtn;

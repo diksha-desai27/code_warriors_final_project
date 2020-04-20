@@ -92,6 +92,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         cityTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -99,11 +100,11 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Sign Up Form");
         add(jLabel1);
-        jLabel1.setBounds(232, 25, 161, 29);
+        jLabel1.setBounds(210, 20, 161, 29);
 
         jLabel2.setText("First Name");
         add(jLabel2);
-        jLabel2.setBounds(34, 90, 68, 16);
+        jLabel2.setBounds(40, 90, 68, 16);
 
         jLabel3.setText("Last Name");
         add(jLabel3);
@@ -138,8 +139,8 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         add(userNamejTextField);
         userNamejTextField.setBounds(176, 367, 163, 26);
 
-        btnRegister.setBackground(new java.awt.Color(97, 206, 229));
-        btnRegister.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegister.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/customer.png"))); // NOI18N
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,10 +148,10 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
             }
         });
         add(btnRegister);
-        btnRegister.setBounds(207, 526, 95, 29);
+        btnRegister.setBounds(207, 505, 150, 50);
 
-        btnLogout.setBackground(new java.awt.Color(97, 206, 229));
-        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Logout2.png"))); // NOI18N
         btnLogout.setText("Sign Out");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +159,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
             }
         });
         add(btnLogout);
-        btnLogout.setBounds(34, 526, 98, 29);
+        btnLogout.setBounds(34, 505, 140, 50);
         add(birthDayChooser);
         birthDayChooser.setBounds(176, 138, 174, 26);
 
@@ -185,7 +186,11 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/back.png"))); // NOI18N
         jLabel9.setText("jLabel9");
         add(jLabel9);
-        jLabel9.setBounds(105, 16, 560, 50);
+        jLabel9.setBounds(80, 10, 540, 50);
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/consent.png"))); // NOI18N
+        add(jLabel10);
+        jLabel10.setBounds(30, 10, 50, 50);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -320,6 +325,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel confirmLabel;
     private javax.swing.JTextField firstNamejTextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
