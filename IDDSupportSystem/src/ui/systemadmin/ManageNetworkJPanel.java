@@ -155,13 +155,15 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             Network network=system.createNetwork();
             network.setName(name);
             JOptionPane.showMessageDialog(null, "Network created successfully");
-            populateTable();
             nameTextField.setText("");
         }
         else
         {
             JOptionPane.showMessageDialog(null, "Network has already been used. Please enter another network.");
+            nameTextField.setText("");
         } 
+        populateTable();
+
        
     }//GEN-LAST:event_btnCreateNetworkActionPerformed
 
