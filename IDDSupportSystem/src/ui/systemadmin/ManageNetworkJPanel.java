@@ -152,7 +152,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void btnCreateNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNetworkActionPerformed
         String name = nameTextField.getText();   
-        if(namePatternRegex())
+        if(networkNamePatternRegex())
         {
             if(system.checkIfNetworkIsUnique(name))
             {
@@ -165,7 +165,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             {
                 JOptionPane.showMessageDialog(null, "Network has already been used. Please enter another network.");
                 nameTextField.setText("");
-            } 
+            }
         }
         else
         {
@@ -177,7 +177,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
        
     }//GEN-LAST:event_btnCreateNetworkActionPerformed
 
-     private boolean namePatternRegex() {
+    private boolean networkNamePatternRegex() {
         Pattern p = Pattern.compile("^[a-zA-Z-\\s.]+$");
         Matcher m = p.matcher(nameTextField.getText());
         Boolean b = m.matches();

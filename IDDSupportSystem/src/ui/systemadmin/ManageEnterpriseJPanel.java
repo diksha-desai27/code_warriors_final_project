@@ -283,7 +283,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select an Enterprise to delete.");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
