@@ -41,10 +41,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.workRequest = workRequest;
         this.enterprise = enterprise;
-        DefaultListModel model = (DefaultListModel) conditionJList.getModel();
-        for (int i = 0; i < list.length; i++) {
-            model.add(i, list[i]);
-        }
+       conditionJList.setListData(list);
         populateNurses();
 
     }
