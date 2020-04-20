@@ -43,6 +43,11 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.displayData();
         this.populateTable();
+        if (individual.getServiceType().equals("Medical")) {
+            jLabel5.setText("Care Giver");
+        } else {
+            jLabel5.setText("Trainer");
+        }
     }
 
     /**
@@ -65,23 +70,24 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         registrationValue = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Assign Care Giver");
+        jLabel1.setText("Assign ");
 
         caregiverTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Name", "Status"
+                "Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -137,19 +143,21 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                                     .addGap(291, 291, 291)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(backBtn)))
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(199, 199, 199)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(150, Short.MAX_VALUE)))
+                        .addComponent(backBtn)
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel1)
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
@@ -164,12 +172,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(assignCareGiverBtn)
-                .addContainerGap(71, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(416, Short.MAX_VALUE)))
+                .addGap(68, 68, 68))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -191,11 +194,14 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                 UserAccount ua = ((UserAccount) mapElement.getValue());
                 if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) {
                     if (e.getStatus().equals("Available")) {
-                        Object row[] = new Object[3];
+                        Object row[] = new Object[1];
                         row[0] = e;
-                        row[1] = e.getStatus();
                         dtm.addRow(row);
                     }
+                } else {
+                    Object row[] = new Object[1];
+                    row[0] = e;
+                    dtm.addRow(row);
                 }
 
             }
@@ -224,16 +230,26 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
             if (ua != null) {
                 for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
                     if ((w.getIndividual() != null) && (w.getIndividual().getRegistrationId() == this.individual.getRegistrationId())) {
-                        w.setSender(this.userAccount);
-                        w.setStatus("Assigned to Caregiver");
-                        w.setMessage("");
-                        w.setIndividual(this.individual);
-                        ua.getWorkQueue().getWorkRequestList().add(w);
-                        emp.setStatus("Reserved");
-                        JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to caregiver " + emp);
-                        break;
-                    }
+                        if (individual.getServiceType().equals("Medical")) {
+                            w.setSender(this.userAccount);
+                            w.setStatus("Assigned to Caregiver");
+                            w.setMessage("");
+                            w.setIndividual(this.individual);
+                            ua.getWorkQueue().getWorkRequestList().add(w);
+                            emp.setStatus("Reserved");
+                            JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to caregiver " + emp);
+                            break;
+                        } else {
 
+                            w.setSender(this.userAccount);
+                            w.setStatus("Assigned to Trainer");
+                            w.setMessage("");
+                            w.setIndividual(this.individual);
+                            ua.getWorkQueue().getWorkRequestList().add(w);
+                            JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to trainer " + emp);
+                            break;
+                        }
+                    }
                 }
             }
 
@@ -265,6 +281,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lastNameValue;
     private javax.swing.JLabel registrationValue;

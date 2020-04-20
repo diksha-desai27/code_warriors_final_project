@@ -144,7 +144,7 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
                     .addComponent(updateBtn))
                 .addGap(39, 39, 39)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioBtnHealthCare)
                     .addComponent(jLabel4))
@@ -173,9 +173,9 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         }
            System.out.println("radio"+jRadioBtnHealthCare.isSelected());
         if (jRadioBtnHealthCare.isSelected()) {
-            individual.setServiceType("ShortTermService");
+            individual.setServiceType("MedicalService");
         } else {
-            individual.setServiceType("LongTermService");
+            individual.setServiceType("EmploymentService");
         }
         
         IndividualsRegistrationFormJPanel2 individualsRegJPanel2 = new IndividualsRegistrationFormJPanel2(userAccount, individual, rightJPanel,facilityList);

@@ -27,7 +27,9 @@ public abstract class Role {
         Caregiver("Caregiver"),
         Reviewer("Reviewer"),
         Individual("Individual"),
-        SystemAdmin("SystemAdmin");
+        SystemAdmin("SystemAdmin"),
+        Trainer("Trainer");
+        
         
         private final String value;
         private RoleType(String value){

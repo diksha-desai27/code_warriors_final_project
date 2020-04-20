@@ -56,7 +56,6 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         this.lastNameValue.setText(this.individual.getLastName());
         this.birthDateValue.setText(this.individual.getBirthDate());
         this.disabailityValue.setText(this.individual.getIddInfo().getdName());
-        this.durationValue.setText(Integer.toString(this.individual.getIddInfo().getDuration()));
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 1);//15 year before
         Date min = cal.getTime();
@@ -105,8 +104,6 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         birthDateValue = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         disabilityValue = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        durationValue = new javax.swing.JLabel();
         servicesValue = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         scheduleAppointmentBtn = new javax.swing.JButton();
@@ -125,8 +122,6 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         jLabel4.setText("Birth Date:");
 
         jLabel5.setText("Disability:");
-
-        jLabel6.setText("Duration of Disability:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Individual Information");
@@ -161,51 +156,44 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(servicesValue, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(134, 134, 134)
-                                .addComponent(disabilityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(disabailityValue, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(dpdTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(appointmentDatehooser, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                        .addComponent(birthDateValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(firstNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(90, 90, 90)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(durationValue, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(cityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(scheduleAppointmentBtn)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(376, 376, 376))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(servicesValue, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(448, 448, 448))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(134, 134, 134)
+                            .addComponent(disabilityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(46, 46, 46)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(disabailityValue, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dpdTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(appointmentDatehooser, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                                    .addComponent(birthDateValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(firstNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGap(90, 90, 90)
+                    .addComponent(jLabel3)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(436, 436, 436))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(199, 199, 199)
+                    .addComponent(cityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
+                    .addComponent(scheduleAppointmentBtn)
+                    .addGap(0, 552, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(btnBack)
@@ -238,14 +226,10 @@ public class AppointmentJPanel extends javax.swing.JPanel {
                                 .addGap(6, 6, 6)))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel6))
-                                    .addGap(32, 32, 32)
-                                    .addComponent(jLabel5))
-                                .addComponent(durationValue, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel5))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(birthDateValue, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -281,6 +265,56 @@ public class AppointmentJPanel extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        userJProcessContainer.remove(this);
+        Component[] componentArray = userJProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
+        dwjp.populateTable();
+        CardLayout layout = (CardLayout) userJProcessContainer.getLayout();
+        layout.previous(userJProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void appointmentDatehooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_appointmentDatehooserPropertyChange
+        // TODO add your handling code here:
+        Date date1 = appointmentDatehooser.getDate();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        if (appointmentDatehooser.getDate() != null) {
+            String appointmentFormatted = simpleDateFormat.format(date1);
+            Iterator appointmentIterator = dateSchedule.entrySet().iterator();
+
+            while (appointmentIterator.hasNext()) {
+                Map.Entry mappedElement = (Map.Entry) appointmentIterator.next();
+                Date date = ((Date) mappedElement.getKey());
+                String newDate = simpleDateFormat.format(date);
+                //  sch = ((  System.out.println("in if");Schedule) mapElement.getValue());
+                System.out.println(appointmentFormatted);
+
+                System.out.println(newDate);
+                if (appointmentFormatted.equals(newDate)) {
+                    System.out.println("in if");
+                    slotList.clear();
+                    Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
+                    Iterator timeIterator = getTime.entrySet().iterator();
+
+                    while (timeIterator.hasNext()) {
+                        Map.Entry mappingElement = (Map.Entry) timeIterator.next();
+                        String slot = ((String) mappingElement.getKey());
+                        Boolean status = ((Boolean) mappingElement.getValue());
+                        if (status) {
+                            //  dateSchedule = sch.getDateSchedule();
+                            slotList.add(slot);
+                        }
+                    }
+                    populateTimeSlot(slotList);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_appointmentDatehooserPropertyChange
 
     private void scheduleAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtnActionPerformed
         Date date1 = appointmentDatehooser.getDate();
@@ -323,56 +357,6 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
 
-    private void appointmentDatehooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_appointmentDatehooserPropertyChange
-        // TODO add your handling code here:
-        Date date1 = appointmentDatehooser.getDate();
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        if (appointmentDatehooser.getDate() != null) {
-            String appointmentFormatted = simpleDateFormat.format(date1);
-            Iterator appointmentIterator = dateSchedule.entrySet().iterator();
-
-            while (appointmentIterator.hasNext()) {
-                Map.Entry mappedElement = (Map.Entry) appointmentIterator.next();
-                Date date = ((Date) mappedElement.getKey());
-                String newDate = simpleDateFormat.format(date);
-                //  sch = ((  System.out.println("in if");Schedule) mapElement.getValue());
-                    System.out.println(appointmentFormatted);
-                    
-                        System.out.println(newDate);
-                if (appointmentFormatted.equals(newDate)) {
-                    System.out.println("in if");
-                    slotList.clear();
-                    Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
-                    Iterator timeIterator = getTime.entrySet().iterator();
-
-                    while (timeIterator.hasNext()) {
-                        Map.Entry mappingElement = (Map.Entry) timeIterator.next();
-                        String slot = ((String) mappingElement.getKey());
-                        Boolean status = ((Boolean) mappingElement.getValue());
-                        if (status) {
-                            //  dateSchedule = sch.getDateSchedule();
-                            slotList.add(slot);
-                        }
-                    }
-                    populateTimeSlot(slotList);
-                    break;
-                }
-            }
-        }
-    }//GEN-LAST:event_appointmentDatehooserPropertyChange
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
-        userJProcessContainer.remove(this);
-        Component[] componentArray = userJProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateTable();
-        CardLayout layout = (CardLayout) userJProcessContainer.getLayout();
-        layout.previous(userJProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser appointmentDatehooser;
@@ -382,13 +366,11 @@ public class AppointmentJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel disabailityValue;
     private javax.swing.JLabel disabilityValue;
     private javax.swing.JComboBox<Object> dpdTime;
-    private javax.swing.JLabel durationValue;
     private javax.swing.JLabel firstNameValue;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

@@ -6,24 +6,27 @@
 package business.organization;
 
 import business.role.DoctorRole;
+import business.role.ReviewerRole;
 import business.role.Role;
+import business.role.TrainerRole;
 import java.util.ArrayList;
 
 /**
  *
- * @author dikshadesai
+ * @author kales
  */
-public class DoctorOrganization extends Organization{
-   
-    public DoctorOrganization() {
-        super(Type.Doctor.getValue());
+public class TrainerOrganization extends Organization {
+    
+ 
+    public TrainerOrganization() {
+        super(Type.Trainer.getValue());
     }
     
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new DoctorRole());
-        return  roles;
+        roles.add(new TrainerRole());
+        return roles;
     }
     
 }

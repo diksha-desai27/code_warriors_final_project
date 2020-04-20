@@ -15,6 +15,7 @@ import business.role.NurseRole;
 import business.role.ReviewerRole;
 import business.role.Role;
 import business.role.Role.RoleType;
+import business.role.TrainerRole;
 import business.schedule.Schedule;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
@@ -281,7 +282,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         } else if (Organization.Type.Nurse.getValue().equalsIgnoreCase(organization.getName())) {
             dpdRole.addItem(Role.RoleType.Nurse);
         } else {
-            //
+            dpdRole.addItem(Role.RoleType.Trainer);
         }
     }
 
@@ -313,9 +314,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     role = new ReviewerRole();
                     roleType = Role.RoleType.Reviewer;
                 } else {
-                    //
-                }
-//
+                     role = new TrainerRole();
+                    roleType = Role.RoleType.Trainer;
+                } 
 
                 System.out.println("getMap: " + enterprise.getEmpMap());
                 if (enterprise.getEmpMap().isEmpty())
@@ -324,7 +325,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                     
                     
-                        if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue())) 
+                        if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue())) 
                         {
                             Schedule sch = new Schedule();
                             enterprise.getSchedule().put(ua1, sch);
@@ -362,7 +363,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                                 org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                                 system.getEmpMap().put(emp, ua1);
 
-                                if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue())) 
+                                if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue())) 
                                 {
                                     Schedule sch = new Schedule();
                                     enterprise.getSchedule().put(ua1, sch);

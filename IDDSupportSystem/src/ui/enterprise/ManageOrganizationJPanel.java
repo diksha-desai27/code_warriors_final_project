@@ -71,6 +71,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             {
                 dpdOrganizationType.addItem(type.Reviewer);
                 dpdOrganizationType.addItem(type.Caregiver);
+                 dpdOrganizationType.addItem(type.Trainer);
                 break;
             }
         }

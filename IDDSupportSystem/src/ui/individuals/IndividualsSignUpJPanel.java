@@ -21,12 +21,19 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.mail.Message;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.MainJPanel;
+import javax.mail.Session;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -251,6 +258,35 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
                 return;
             }
         }
+        
+        String toEmail ="kalesai04@gmail.com";
+        String fromEmail ="kalesai04@gmail.com";
+        String fromEmailPassword = "S@!k@le504";
+        String subjects = "AED Testing";
+        
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable","true");
+        properties.put("mail.smtp.host", "smptp.gmail.com");
+        properties.put("mail.smptp.port","587");
+        
+        Session session = Session.getDefaultInstance(properties,new javax.mail.Authenticator(){
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(fromEmail, fromEmailPassword);
+            }
+    });
+        
+        try{
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(fromEmail));
+            message.addRecipients(Message.RecipientType.TO, toEmail);
+            message.setSubject(subjects);
+            message.setText("testing");
+            Transport.send(message);
+        }catch(Exception ex){
+            
+        }
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
