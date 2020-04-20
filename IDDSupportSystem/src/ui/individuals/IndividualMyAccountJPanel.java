@@ -145,46 +145,40 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("MY ACCOUNT");
         add(jLabel1);
-        jLabel1.setBounds(90, 30, 570, 40);
+        jLabel1.setBounds(110, 30, 570, 40);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("First Name");
         add(jLabel2);
-        jLabel2.setBounds(6, 127, 72, 16);
+        jLabel2.setBounds(6, 127, 68, 16);
         add(firstNamejTextField);
         firstNamejTextField.setBounds(161, 122, 164, 26);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Last Name");
         add(jLabel3);
         jLabel3.setBounds(6, 169, 84, 26);
         add(lastNamejTextField);
         lastNamejTextField.setBounds(161, 169, 164, 26);
 
-        userNameLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         userNameLabel.setText("User Name");
         add(userNameLabel);
-        userNameLabel.setBounds(6, 233, 102, 16);
+        userNameLabel.setBounds(10, 220, 102, 16);
         add(userNamejTextField);
-        userNamejTextField.setBounds(161, 223, 164, 26);
+        userNamejTextField.setBounds(160, 210, 164, 26);
 
-        passwordLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         passwordLabel.setText("Password");
         add(passwordLabel);
-        passwordLabel.setBounds(6, 280, 331, 16);
+        passwordLabel.setBounds(10, 260, 331, 16);
         add(passwordJField);
-        passwordJField.setBounds(161, 275, 164, 26);
+        passwordJField.setBounds(160, 250, 164, 26);
 
-        confirmLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         confirmLabel.setText("Confirm Password");
         add(confirmLabel);
-        confirmLabel.setBounds(6, 313, 137, 26);
+        confirmLabel.setBounds(10, 300, 137, 26);
         add(confirmJPassword);
-        confirmJPassword.setBounds(161, 313, 164, 26);
+        confirmJPassword.setBounds(160, 300, 164, 26);
 
-        btnUpdate.setBackground(new java.awt.Color(97, 206, 229));
-        btnUpdate.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/refresh.png"))); // NOI18N
         btnUpdate.setText("Update ");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +186,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(btnUpdate);
-        btnUpdate.setBounds(112, 369, 97, 29);
+        btnUpdate.setBounds(110, 350, 150, 42);
 
         individualWRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -216,12 +210,12 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(individualWRequestJTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(6, 665, 601, 97);
+        jScrollPane1.setBounds(10, 650, 601, 97);
 
         requestJLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         requestJLabel.setText("MY REQUESTS");
         add(requestJLabel);
-        requestJLabel.setBounds(182, 610, 172, 29);
+        requestJLabel.setBounds(30, 600, 172, 29);
 
         facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -247,8 +241,8 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         add(jScrollPane2);
         jScrollPane2.setBounds(6, 484, 501, 97);
 
-        requestFacilityBtn.setBackground(new java.awt.Color(97, 206, 229));
-        requestFacilityBtn.setForeground(new java.awt.Color(255, 255, 255));
+        requestFacilityBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        requestFacilityBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
         requestFacilityBtn.setText("Request Facility ");
         requestFacilityBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,16 +250,15 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(requestFacilityBtn);
-        requestFacilityBtn.setBounds(530, 480, 147, 29);
+        requestFacilityBtn.setBounds(520, 480, 170, 40);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setText("Available Facility ");
+        jLabel5.setText("AVAILABLE FACILITY ");
         add(jLabel5);
-        jLabel5.setBounds(176, 429, 208, 29);
+        jLabel5.setBounds(20, 430, 270, 29);
 
-        btnAvailableFacility.setBackground(new java.awt.Color(97, 206, 229));
-        btnAvailableFacility.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnAvailableFacility.setForeground(new java.awt.Color(255, 255, 255));
+        btnAvailableFacility.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnAvailableFacility.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/time.png"))); // NOI18N
         btnAvailableFacility.setText("Check Available Facility ");
         btnAvailableFacility.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,7 +266,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAvailableFacility);
-        btnAvailableFacility.setBounds(222, 369, 207, 29);
+        btnAvailableFacility.setBounds(300, 350, 220, 42);
 
         jLabel6.setBackground(new java.awt.Color(107, 200, 223));
         jLabel6.setForeground(new java.awt.Color(102, 204, 255));
@@ -284,7 +277,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/back.png"))); // NOI18N
         jLabel4.setText("jLabel4");
         add(jLabel4);
-        jLabel4.setBounds(10, 20, 640, 60);
+        jLabel4.setBounds(80, 20, 560, 60);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
