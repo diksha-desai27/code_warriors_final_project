@@ -11,10 +11,8 @@ import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
-import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -340,11 +338,9 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                 this.confirmJPassword.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "Password and Confirm Password do not match.");
-                return;
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please enter valid password");
-            return;
         }
 
     }//GEN-LAST:event_btnUpdateActionPerformed
