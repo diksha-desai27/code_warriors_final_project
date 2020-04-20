@@ -29,16 +29,16 @@
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="nameValue" min="-2" pref="176" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Component id="registrationIdValue" min="-2" pref="61" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="btnConfirmMeeting" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="dpdMeetingTime" alignment="0" max="32767" attributes="0"/>
                                   <Component id="meetingDate" alignment="0" pref="157" max="32767" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Component id="registrationIdValue" min="-2" pref="134" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
