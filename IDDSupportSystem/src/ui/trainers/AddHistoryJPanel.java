@@ -43,6 +43,7 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
         dpdStatus.insertItemAt("--Select--", 0);
         dpdStatus.insertItemAt("Completed", 1);
         dpdStatus.insertItemAt("Rescheduled", 2);
+        dpdStatus.setSelectedIndex(0);
     }
 
     /**
@@ -192,9 +193,10 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
              
             if(Integer.parseInt(progressJTxt.getText())<0 || Integer.parseInt(progressJTxt.getText())>100){
                 JOptionPane.showMessageDialog(null, "Please enter progress in valid range(0-100)");
+                return;
             }
             for (IndividualHistory indHistory : workRequest.getIndividual().getHistory()) {
-                if (indHistory.getStatus().equals("")) {
+                if (indHistory.getStatus().equals("Meeting Scheduled")) {
                     indHistory.setProgress(Integer.parseInt(progressJTxt.getText()));
                     indHistory.setComments(commentsTxtArea.getText());
                     indHistory.setStatus(dpdStatus.getSelectedItem().toString());

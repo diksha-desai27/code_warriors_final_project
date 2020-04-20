@@ -137,7 +137,7 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
             for (WorkRequest w : this.account.getWorkQueue().getWorkRequestList()) {
                 if (w.getIndividual().getRegistrationId() == id) {
 
-                    AddHistoryJPanel addHistoryJPanel = new AddHistoryJPanel(userProcessContainer, account, enterprise, w);
+                    AddDetailsJPanel addHistoryJPanel = new AddDetailsJPanel(userProcessContainer, account, enterprise, w);
                     userProcessContainer.add("appointmentJPanel", addHistoryJPanel);
                     CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                     layout.next(userProcessContainer);

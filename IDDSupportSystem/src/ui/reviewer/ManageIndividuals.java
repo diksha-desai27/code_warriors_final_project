@@ -315,6 +315,26 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
     private void assignTrainerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignTrainerBtnActionPerformed
         // TODO add your handling code here:
+        int selectedRow = individualTable.getSelectedRow();
+        if(selectedRow >= 0) {
+            int id = (Integer)individualTable.getValueAt(selectedRow, 0);
+            for(Individual i: this.individualDirectory.getIndividualList()) {
+                if(i.getRegistrationId() == id)
+                {
+                    individual = i;
+                    break;
+                }
+            }
+            AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise);
+            userProcessContainer.add("AssignCareGiver",assignCareGiver);
+
+            CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Please select an individual to assign it to the trainer.");
+        }
+        
     }//GEN-LAST:event_assignTrainerBtnActionPerformed
 
 
