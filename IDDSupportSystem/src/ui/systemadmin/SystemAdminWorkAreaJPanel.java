@@ -89,9 +89,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel3);
         jLabel3.setBounds(90, 40, 650, 50);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/AdminPortalWelcome.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/AdminPortalWelcome.png")); // NOI18N
         add(jLabel4);
-        jLabel4.setBounds(80, 50, 250, 500);
+        jLabel4.setBounds(90, 50, 250, 500);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
