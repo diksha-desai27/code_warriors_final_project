@@ -6,6 +6,7 @@
 package business.history;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,30 +16,27 @@ import java.util.List;
 public class IndividualHistory {
 
     
-    public int weeks;
-    public String comments;
-    public List<String> condition;
-
+    private String status;
+    private String comments;
+    private List<String> condition;
+    private Date meetingDate;
+    private int progress;
+    
+    
     public IndividualHistory() {
-        this.weeks = weeks;
-        this.comments = comments;
+        this.status = status;
         this.condition = condition;
-    }
-
-    public int getWeeks() {
-        return weeks;
-    }
-
-    public void setWeeks(int weeks) {
-        this.weeks = weeks;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
         this.comments = comments;
+        this.progress = progress;
+        this.meetingDate = meetingDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     } 
     
     public List<String> getCondition() {
@@ -51,6 +49,32 @@ public class IndividualHistory {
     public void setCondition(List<String> condition) {
         this.condition = condition;
     }
+
+    public Date getMeetingDate() {
+        return meetingDate;
+    }
+
+    public void setMeetingDate(Date meetingDate) {
+        this.meetingDate = meetingDate;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+    
+    
     
     
 }

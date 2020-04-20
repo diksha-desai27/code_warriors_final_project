@@ -6,7 +6,8 @@
 package business.individuals;
 
 import business.history.IndividualHistory;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,13 +25,13 @@ public class Individual {
     private int zipCode;
     private IDD iddInfo;
     private String serviceType;
-    private IndividualHistory history;
+    private List<IndividualHistory> history;
 
     public Individual() {
         registrationId = (int) (System.currentTimeMillis() & 0xfffffff);
     }
     
-   
+    
     public int getRegistrationId() {
         return registrationId;
     }
@@ -113,14 +114,14 @@ public class Individual {
         this.serviceType = serviceType;
     }
 
-    public IndividualHistory getHistory() {
+    public List<IndividualHistory> getHistory() {
         if(history==null){
-            history = new IndividualHistory();
+            history = new ArrayList();
         }
         return history;
     }
 
-    public void setHistory(IndividualHistory history) {
+    public void setHistory(List<IndividualHistory> history) {
         this.history = history;
     }
     
