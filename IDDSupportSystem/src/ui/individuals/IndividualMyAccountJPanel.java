@@ -135,26 +135,64 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         requestFacilityBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnAvailableFacility = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
+        jLabel1.setBackground(new java.awt.Color(51, 153, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("MY ACCOUNT");
+        add(jLabel1);
+        jLabel1.setBounds(90, 30, 570, 40);
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("First Name");
+        add(jLabel2);
+        jLabel2.setBounds(6, 127, 72, 16);
+        add(firstNamejTextField);
+        firstNamejTextField.setBounds(161, 122, 164, 26);
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Last Name");
+        add(jLabel3);
+        jLabel3.setBounds(6, 169, 84, 26);
+        add(lastNamejTextField);
+        lastNamejTextField.setBounds(161, 169, 164, 26);
 
+        userNameLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         userNameLabel.setText("User Name");
+        add(userNameLabel);
+        userNameLabel.setBounds(6, 233, 102, 16);
+        add(userNamejTextField);
+        userNamejTextField.setBounds(161, 223, 164, 26);
 
+        passwordLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         passwordLabel.setText("Password");
+        add(passwordLabel);
+        passwordLabel.setBounds(6, 280, 331, 16);
+        add(passwordJField);
+        passwordJField.setBounds(161, 275, 164, 26);
 
+        confirmLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         confirmLabel.setText("Confirm Password");
+        add(confirmLabel);
+        confirmLabel.setBounds(6, 313, 137, 26);
+        add(confirmJPassword);
+        confirmJPassword.setBounds(161, 313, 164, 26);
 
+        btnUpdate.setBackground(new java.awt.Color(97, 206, 229));
+        btnUpdate.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update ");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
+        add(btnUpdate);
+        btnUpdate.setBounds(112, 369, 97, 29);
 
         individualWRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -177,8 +215,13 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(individualWRequestJTable);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(6, 665, 601, 97);
+
         requestJLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         requestJLabel.setText("MY REQUESTS");
+        add(requestJLabel);
+        requestJLabel.setBounds(182, 610, 172, 29);
 
         facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -201,130 +244,47 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(facilityJTable);
 
+        add(jScrollPane2);
+        jScrollPane2.setBounds(6, 484, 501, 97);
+
+        requestFacilityBtn.setBackground(new java.awt.Color(97, 206, 229));
+        requestFacilityBtn.setForeground(new java.awt.Color(255, 255, 255));
         requestFacilityBtn.setText("Request Facility ");
         requestFacilityBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestFacilityBtnActionPerformed(evt);
             }
         });
+        add(requestFacilityBtn);
+        requestFacilityBtn.setBounds(530, 480, 147, 29);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Available Facility ");
+        add(jLabel5);
+        jLabel5.setBounds(176, 429, 208, 29);
 
+        btnAvailableFacility.setBackground(new java.awt.Color(97, 206, 229));
+        btnAvailableFacility.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnAvailableFacility.setForeground(new java.awt.Color(255, 255, 255));
         btnAvailableFacility.setText("Check Available Facility ");
         btnAvailableFacility.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAvailableFacilityActionPerformed(evt);
             }
         });
+        add(btnAvailableFacility);
+        btnAvailableFacility.setBounds(222, 369, 207, 29);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                        .addGap(749, 749, 749))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(761, 761, 761))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(152, 152, 152)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lastNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(firstNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(50, 50, 50)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(userNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(confirmJPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(requestJLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
-                        .addComponent(requestFacilityBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(btnUpdate)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAvailableFacility)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(198, 198, 198)
-                            .addComponent(jLabel1))
-                        .addComponent(jLabel2))
-                    .addContainerGap(732, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(firstNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(lastNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addComponent(userNameLabel))
-                    .addComponent(userNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordLabel)
-                    .addComponent(passwordJField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirmJPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnAvailableFacility))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(requestFacilityBtn))
-                .addGap(47, 47, 47)
-                .addComponent(requestJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel1)
-                    .addGap(36, 36, 36)
-                    .addComponent(jLabel2)
-                    .addContainerGap(684, Short.MAX_VALUE)))
-        );
+        jLabel6.setBackground(new java.awt.Color(107, 200, 223));
+        jLabel6.setForeground(new java.awt.Color(102, 204, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/patient.png"))); // NOI18N
+        add(jLabel6);
+        jLabel6.setBounds(20, 20, 70, 50);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/back.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        add(jLabel4);
+        jLabel4.setBounds(10, 20, 640, 60);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -410,7 +370,9 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lastNamejTextField;

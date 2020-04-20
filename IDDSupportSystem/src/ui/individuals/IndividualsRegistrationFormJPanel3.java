@@ -64,9 +64,18 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         facilityJTable = new javax.swing.JTable();
         requestFacilityBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("**Welcome to IDD Massachusetts Centre**");
+        add(jLabel1);
+        jLabel1.setBounds(43, 42, 523, 30);
 
+        facilityJTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -88,40 +97,29 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(facilityJTable);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(43, 120, 501, 97);
+
+        requestFacilityBtn.setBackground(new java.awt.Color(97, 206, 229));
+        requestFacilityBtn.setForeground(new java.awt.Color(255, 255, 255));
         requestFacilityBtn.setText("Request Facility ");
         requestFacilityBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestFacilityBtnActionPerformed(evt);
             }
         });
+        add(requestFacilityBtn);
+        requestFacilityBtn.setBounds(397, 263, 147, 29);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(requestFacilityBtn)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(43, 43, 43)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel1)))
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(requestFacilityBtn)
-                .addContainerGap(345, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/facilitator request.gif"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2);
+        jLabel2.setBounds(267, 298, 443, 344);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/back.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3);
+        jLabel3.setBounds(20, 30, 640, 50);
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestFacilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFacilityBtnActionPerformed
@@ -184,6 +182,8 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable facilityJTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton requestFacilityBtn;
     // End of variables declaration//GEN-END:variables
