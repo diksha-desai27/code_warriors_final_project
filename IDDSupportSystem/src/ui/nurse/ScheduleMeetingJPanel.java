@@ -65,6 +65,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         
         //iterate through map
         Iterator empIterator = enterprise.getSchedule().entrySet().iterator();
+        System.out.println("empIterator: " + empIterator);
         while (empIterator.hasNext()) {
             Map.Entry mapElement = (Map.Entry) empIterator.next();
             UserAccount user = ((UserAccount) mapElement.getKey());
@@ -158,14 +159,14 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(registrationIdValue, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btnConfirmMeeting)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(dpdMeetingTime, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(meetingDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))))
+                                    .addComponent(meetingDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(registrationIdValue, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,12 +219,8 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                 Map.Entry mappedElement = (Map.Entry) appointmentIterator.next();
                 Date date = ((Date) mappedElement.getKey());
                 String newDate = simpleDateFormat.format(date);
-                //  sch = ((  System.out.println("in if");Schedule) mapElement.getValue());
-                    System.out.println(appointmentFormatted);
                     
-                        System.out.println(newDate);
                 if (appointmentFormatted.equals(newDate)) {
-                    System.out.println("in if");
                     slotList.clear();
                     Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
                     Iterator timeIterator = getTime.entrySet().iterator();
@@ -249,7 +246,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         
         Date date1 = meetingDate.getDate();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dddd");
-     
+
         if (date1 != null && dpdMeetingTime.getSelectedIndex() != 0) 
         {
             String meetingDate = simpleDateFormat.format(date1);
@@ -277,15 +274,35 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                         }
                     }
                     // populateTimeSlot(slotList);
-                    IndividualHistory id = null;
-                    for(IndividualHistory id2: individual.getHistory())
+                    if(individual.getHistory().isEmpty())
                     {
-                        id.setMeetingDate(date);
-                        id.setStatus("Meeting Scheduled");
-                        id = id2;
+                        IndividualHistory history = new IndividualHistory();
+                        history.setMeetingDate(date);
+                        history.setStatus("Meeting Scheduled");
+                        individual.getHistory().add(history);
                     }
-                    individual.getHistory().add(id);
-                   
+                    else
+                    {
+                        for(IndividualHistory id: individual.getHistory())
+                        {
+                            if(date.equals(id.getMeetingDate()) || id.getMeetingDate().compareTo(date) > 0)
+                            {
+                                JOptionPane.showMessageDialog(null, "You can't schedule a meeting on this date.");
+                                break;
+                            }
+                            else
+                            {
+                                IndividualHistory history = new IndividualHistory();
+                                history.setMeetingDate(date);
+                                history.setStatus("Meeting Scheduled");
+                                individual.getHistory().add(history);
+                                break;
+                            }
+                        }
+                    }
+                    
+
+                    System.out.println("history " + individual.getHistory());
                 }
             }
         } 
@@ -298,14 +315,19 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
     
     public void populateTable(Individual individual)
     {
-      DefaultTableModel dtm = (DefaultTableModel) individualHistoryTable.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) individualHistoryTable.getModel();
         dtm.setRowCount(0);
-//        for(IndividualHistory history: individua.getEmployeeList())
-//        {
-//            Object[] row = new Object[2];
-//            row[0] = e;
-//            dtm.addRow(row);
-//        }  
+        for(IndividualHistory history: individual.getHistory())
+        {
+            Object[] row = new Object[6];
+            row[0] = individual.getRegistrationId();
+            row[1] = individual.getFirstName() + " " + individual.getLastName();
+            row[2] = history.getMeetingDate();
+            row[3] = history.getComments();
+            row[4] = history.getStatus();
+            row[5] = history.getProgress();
+            dtm.addRow(row);
+        }  
     }
     
     public void populateDropdown(List<String> slotList)
