@@ -29,8 +29,11 @@
                               <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnAccept" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnDecline" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="scheduleAppointmentBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="594" max="-2" attributes="0"/>
                       </Group>
@@ -38,7 +41,7 @@
                       <Component id="jBtnViewReport" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace pref="277" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,8 +65,9 @@
                   <Component id="btnDecline" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAccept" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="scheduleAppointmentBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="79" max="32767" attributes="0"/>
+              <EmptySpace pref="283" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,6 +130,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="View Report"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="scheduleAppointmentBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Schedule Appointment"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="scheduleAppointmentBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
