@@ -7,6 +7,7 @@ package ui.doctor;
 
 import business.employee.Employee;
 import business.enterprise.Enterprise;
+import business.individuals.Individual;
 import business.network.Network;
 import business.schedule.Schedule;
 import business.useraccount.UserAccount;
@@ -36,6 +37,7 @@ public class AppointmentJPanel extends javax.swing.JPanel {
     Schedule sch;
     Map<Date, HashMap<String, Boolean>> dateSchedule;
     List<String> slotList = new ArrayList<>();
+    Individual individual;
 
     public AppointmentJPanel(JPanel userProcessContainer, UserAccount userAccount, WorkRequest workRequest, Enterprise enterprise) {
         initComponents();
@@ -44,6 +46,13 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         this.userJProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         Iterator empIterator = enterprise.getSchedule().entrySet().iterator();
+        this.individual = workRequest.getIndividual();
+
+        this.firstNameValue.setText(this.individual.getFirstName());
+        this.lastNameValue.setText(this.individual.getLastName());
+        this.birthDateValue.setText(this.individual.getBirthDate());
+        this.disabailityValue.setText(this.individual.getIddInfo().getdName());
+        this.durationValue.setText(Integer.toString(this.individual.getIddInfo().getDuration()));
 
         while (empIterator.hasNext()) {
             Map.Entry mapElement = (Map.Entry) empIterator.next();
@@ -251,7 +260,38 @@ public class AppointmentJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void scheduleAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtnActionPerformed
+        Date date1 = appointmentDatehooser.getDate();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        if (appointmentDatehooser.getDate() != null) {
+            String appointmentFormatted = simpleDateFormat.format(date1);
+            Iterator appointmentIterator = dateSchedule.entrySet().iterator();
 
+            while (appointmentIterator.hasNext()) {
+                Map.Entry mappedElement = (Map.Entry) appointmentIterator.next();
+                Date date = ((Date) mappedElement.getKey());
+                String newDate = simpleDateFormat.format(date);
+                //  sch = ((Schedule) mapElement.getValue());
+                Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
+                if (appointmentFormatted.equals(newDate)) {
+                    Iterator timeIterator = getTime.entrySet().iterator();
+
+                    while (timeIterator.hasNext()) {
+                        Map.Entry mappingElement = (Map.Entry) timeIterator.next();
+                        String slot = ((String) mappingElement.getKey());
+                        Boolean status = ((Boolean) mappingElement.getValue());
+                        if (!dpdTime.getSelectedItem().equals("")) {
+                            if (slot.equals(dpdTime.getSelectedItem())) {
+                                status =false;
+                                mappingElement.setValue(false);
+                            }
+                        }
+                    }
+                    populateTimeSlot(slotList);
+                    break;
+                }
+            }
+        }
     }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
 
     private void appointmentDatehooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_appointmentDatehooserPropertyChange
