@@ -49,6 +49,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -70,12 +73,17 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(networkJTable);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(171, 85, 322, 95);
+
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton);
+        backJButton.setBounds(260, 290, 97, 29);
 
         btnCreateNetwork.setText("Create");
         btnCreateNetwork.addActionListener(new java.awt.event.ActionListener() {
@@ -83,53 +91,16 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 btnCreateNetworkActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Manage Network Panel");
+        add(btnCreateNetwork);
+        btnCreateNetwork.setBounds(420, 290, 84, 29);
+        add(jLabel1);
+        jLabel1.setBounds(240, 30, 0, 0);
 
         jLabel2.setText("Name");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backJButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCreateNetwork))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(58, 58, 58)
-                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jLabel1)))
-                .addContainerGap(86, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backJButton)
-                    .addComponent(btnCreateNetwork))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
+        add(jLabel2);
+        jLabel2.setBounds(290, 218, 36, 16);
+        add(nameTextField);
+        nameTextField.setBounds(399, 213, 94, 26);
     }// </editor-fold>//GEN-END:initComponents
 
      public void populateTable() {
