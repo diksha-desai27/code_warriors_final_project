@@ -157,7 +157,7 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
                 selectedUserAccount.getWorkQueue().getWorkRequestList().add(workRequest);
                 rightJPanel.remove(this);
                 IndividualMyAccountJPanel individualMyAccount = new IndividualMyAccountJPanel(rightJPanel, userAccount, individual,facilityList);
-                rightJPanel.add("individualFacilityPanel", individualMyAccount);
+                rightJPanel.add("individualMyAccount", individualMyAccount);
                 CardLayout layout = (CardLayout) rightJPanel.getLayout();
                 layout.next(rightJPanel);
             }
