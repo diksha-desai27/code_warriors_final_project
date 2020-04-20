@@ -5,9 +5,18 @@
  */
 package ui.nurse;
 
+import business.EcoSystem;
 import business.enterprise.Enterprise;
 import business.individuals.Individual;
+import business.schedule.Schedule;
 import business.useraccount.UserAccount;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JPanel;
 
 /**
@@ -20,6 +29,10 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     Individual individual;
     Enterprise enterprise;
+    EcoSystem system;
+    Schedule sch;
+    List<String> slotList = new ArrayList<>();
+    Map<Date, Map<String, Boolean>> dateSchedule;
     /**
      * Creates new form ScheduleMeetingJPanel
      * @param userProcessContainer
@@ -27,9 +40,36 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
      * @param individual
      * @param enterprise
      */
-    public ScheduleMeetingJPanel(JPanel userProcessContainer, UserAccount userAccount, Individual individual, Enterprise enterprise) {
+    public ScheduleMeetingJPanel(JPanel userProcessContainer, UserAccount userAccount, Individual individual, Enterprise enterprise, EcoSystem system) {
         initComponents();
-        this.populateDropdown();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
+        this.individual = individual;
+        this.enterprise = enterprise;
+        this.system = system;
+        registrationIdValue.setText(String.valueOf(individual.getRegistrationId()));
+        nameValue.setText(individual.getFirstName() + " " + individual.getLastName());
+        
+        //date validation
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 1);//15 year before
+        Date min = cal.getTime();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.add(Calendar.DATE, 30);//15 year before
+        Date max = cal1.getTime();//actual date
+        meetingDate.setSelectableDateRange(min, max);
+        
+        //iterate through map
+        Iterator empIterator = enterprise.getSchedule().entrySet().iterator();
+        while (empIterator.hasNext()) {
+            Map.Entry mapElement = (Map.Entry) empIterator.next();
+            UserAccount user = ((UserAccount) mapElement.getKey());
+            sch = ((Schedule) mapElement.getValue());
+            if (user.equals(userAccount)) {
+                dateSchedule = sch.getDateSchedule();
+                break;
+            }
+        }
     }
 
     /**
@@ -81,6 +121,12 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Date");
 
+        meetingDate.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                meetingDatePropertyChange(evt);
+            }
+        });
+
         jLabel4.setText("Time");
 
         dpdMeetingTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -122,9 +168,9 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(registrationIdValue, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(registrationIdValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
@@ -149,10 +195,53 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    public void populateDropdown()
+
+    private void meetingDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_meetingDatePropertyChange
+        // TODO add your handling code here:
+        Date date1 = meetingDate.getDate();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        if (meetingDate.getDate() != null) {
+            String appointmentFormatted = simpleDateFormat.format(date1);
+            Iterator appointmentIterator = dateSchedule.entrySet().iterator();
+
+            while (appointmentIterator.hasNext()) {
+                Map.Entry mappedElement = (Map.Entry) appointmentIterator.next();
+                Date date = ((Date) mappedElement.getKey());
+                String newDate = simpleDateFormat.format(date);
+                //  sch = ((  System.out.println("in if");Schedule) mapElement.getValue());
+                    System.out.println(appointmentFormatted);
+                    
+                        System.out.println(newDate);
+                if (appointmentFormatted.equals(newDate)) {
+                    System.out.println("in if");
+                    slotList.clear();
+                    Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
+                    Iterator timeIterator = getTime.entrySet().iterator();
+
+                    while (timeIterator.hasNext()) {
+                        Map.Entry mappingElement = (Map.Entry) timeIterator.next();
+                        String slot = ((String) mappingElement.getKey());
+                        Boolean status = ((Boolean) mappingElement.getValue());
+                        if (status) {
+                            //  dateSchedule = sch.getDateSchedule();
+                            slotList.add(slot);
+                        }
+                    }
+                    populateDropdown(slotList);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_meetingDatePropertyChange
+    public void populateDropdown(List<String> slotList)
     {
         dpdMeetingTime.removeAllItems();
-//        enterprise.getSchedule().
+        dpdMeetingTime.insertItemAt("--Select--", 0);
+        dpdMeetingTime.setSelectedIndex(0);
+        for (String s : slotList) {
+            dpdMeetingTime.addItem(s);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
