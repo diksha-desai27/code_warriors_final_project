@@ -65,15 +65,14 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
         facilityJTable = new javax.swing.JTable();
         requestFacilityBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
-        jLabel1.setText("**Welcome to IDD Massachusetts Centre**");
+        jLabel1.setText("WELCOME TO IDD SUPPORT CENTRE");
         add(jLabel1);
-        jLabel1.setBounds(43, 42, 523, 30);
+        jLabel1.setBounds(43, 42, 451, 30);
 
         facilityJTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -100,8 +99,8 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
         add(jScrollPane1);
         jScrollPane1.setBounds(43, 120, 501, 97);
 
-        requestFacilityBtn.setBackground(new java.awt.Color(97, 206, 229));
-        requestFacilityBtn.setForeground(new java.awt.Color(255, 255, 255));
+        requestFacilityBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        requestFacilityBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
         requestFacilityBtn.setText("Request Facility ");
         requestFacilityBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,17 +108,12 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
             }
         });
         add(requestFacilityBtn);
-        requestFacilityBtn.setBounds(397, 263, 147, 29);
+        requestFacilityBtn.setBounds(470, 240, 190, 42);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/facilitator request.gif"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(267, 298, 443, 344);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/back.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        add(jLabel3);
-        jLabel3.setBounds(20, 30, 640, 50);
+        jLabel2.setBounds(320, 300, 443, 344);
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestFacilityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFacilityBtnActionPerformed
@@ -183,7 +177,6 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
     private javax.swing.JTable facilityJTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton requestFacilityBtn;
     // End of variables declaration//GEN-END:variables
