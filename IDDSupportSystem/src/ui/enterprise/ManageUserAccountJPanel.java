@@ -15,6 +15,7 @@ import business.role.NurseRole;
 import business.role.ReviewerRole;
 import business.role.Role;
 import business.role.Role.RoleType;
+import business.schedule.Schedule;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.Iterator;
@@ -275,26 +276,22 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         if (Enterprise.EnterpriseType.Hospital.toString().equals(enterprise.getEnterpriseType().toString())) {
             dpdRole.addItem(Role.RoleType.Doctor);
             dpdRole.addItem(Role.RoleType.Nurse);
-        } else{
+        } else {
             dpdRole.addItem(Role.RoleType.Caregiver);
             dpdRole.addItem(Role.RoleType.Reviewer);
         }
     }
-    
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-   
 
-        if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) 
-        {
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+
+        if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill out all the details");
-        } 
-        else if (usernamePatternCorrect()) 
-        {
+        } else if (usernamePatternCorrect()) {
             if (passwordPatternCorrect()) {
                 String username = usernameTextField.getText();
                 char c[] = passwordField.getPassword();
                 String password = String.valueOf(c);
-                
+
                 Organization org = (Organization) dpdOrganization.getSelectedItem();
                 Employee emp = (Employee) dpdEmployee.getSelectedItem();
                 String value = dpdRole.getSelectedItem().toString();
@@ -316,59 +313,58 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     //
                 }
 //
-    
+
                 System.out.println("getMap: " + enterprise.getEmpMap());
-                if (enterprise.getEmpMap().isEmpty()) 
-                {
+                if (enterprise.getEmpMap().isEmpty()) {
                     System.out.println("if");
                     UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                    if (org.getName().equals("Doctor Organization")) {
+                        Schedule sch = new Schedule();
+                        enterprise.getSchedule().put(ua1, sch);
+                        System.out.println("hi" + enterprise.getSchedule());
+                    }
                     enterprise.getEmpMap().put(emp, ua1);
                     enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                     org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                     system.getEmpMap().put(emp, ua1);
-                    System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
-                    System.out.println("System HashMap " + system.getEmpMap());
+                    //  System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
+                    //  System.out.println("System HashMap " + system.getEmpMap());
                     JOptionPane.showMessageDialog(null, "User account created successfully.");
-                }
-                else
-                {
+                } else {
                     Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
-                    while (empIterator.hasNext()) 
-                    {
+                    while (empIterator.hasNext()) {
                         Map.Entry mapElement = (Map.Entry) empIterator.next();
                         Employee e = ((Employee) mapElement.getKey());
                         UserAccount ua = ((UserAccount) mapElement.getValue());
-                        if(ua.getUsername().equals(username))
-                        {
+                        if (ua.getUsername().equals(username)) {
                             JOptionPane.showMessageDialog(null, "Username has been already taken. Please use another username");
                             break;
-                        }       
-                        else
-                        {
+                        } else {
                             UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                             enterprise.getEmpMap().put(emp, ua1);
                             enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                             org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                             system.getEmpMap().put(emp, ua1);
+                            if (org.getName().equals("Doctor Organization")) {
+                                Schedule sch = new Schedule();
+                                enterprise.getSchedule().put(ua1, sch);
+                                System.out.println("hi" + enterprise.getSchedule());
+                            }
                             System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
                             System.out.println("System HashMap " + system.getEmpMap());
                             JOptionPane.showMessageDialog(null, "User account created successfully.");
-                            
-                        }       
+
+                        }
                     }
-                    
+
                 }
                 this.populateTable();
                 usernameTextField.setText("");
                 passwordField.setText("");
-            } 
-            else 
-            {
+            } else {
                 JOptionPane.showMessageDialog(null, "Please enter valid password");
             }
-        } 
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
         }
     }//GEN-LAST:event_btnCreateActionPerformed

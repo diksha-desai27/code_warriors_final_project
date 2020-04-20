@@ -7,23 +7,38 @@ package business.organization;
 
 import business.role.CaregiverRole;
 import business.role.Role;
+import business.schedule.Schedule;
+import business.useraccount.UserAccount;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
  * @author dikshadesai
  */
-public class CaregiverOrganization extends Organization{
-    
+public class CaregiverOrganization extends Organization {
+
+    Map<Schedule, UserAccount> careGiverSchedule;
+
     public CaregiverOrganization() {
         super(Type.Caregiver.getValue());
     }
-    
+
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new CaregiverRole());
         return roles;
     }
+
+    public Map<Schedule, UserAccount> getCareGiverSchedule() {
+        return careGiverSchedule;
+    }
+
+    public void setCareGiverSchedule(Map<Schedule, UserAccount> careGiverSchedule) {
+        this.careGiverSchedule = careGiverSchedule;
+    }
     
+    
+
 }

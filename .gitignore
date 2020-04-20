@@ -25,3 +25,7 @@ hs_err_pid*
 /IDDSupportSystem/build/
 *.DB40
 /IDDSupportSystem/dist/
+*.idea
+*.db4o
+*.DS_Store
+*.iml
