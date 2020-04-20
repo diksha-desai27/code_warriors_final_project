@@ -226,7 +226,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
 
         int selectedRow = nurseTable.getSelectedRow();
         if (selectedRow >= 0) {
-            if (iarr.length == 0 || commentsTxtArea.getText().equals("") || medicationPeriodTxt.getText().equals("")) {
+            if (iarr.length == 0 || commentsTxtArea.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please enter all details to prepare report");
             } else {
                 for (int i = 0; i < iarr.length; i++) {
@@ -237,9 +237,9 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
                 for(IndividualHistory id: ind.getHistory())
                 {
                     id.setStatus(commentsTxtArea.getText());
-                    id.setWeeks(Integer.parseInt(medicationPeriodTxt.getText()));
+                  //  id.setWeeks(Integer.parseInt(medicationPeriodTxt.getText()));
                     id.setCondition(selectedIssues);
-                    id.
+                  //  id.
                 }
                 
 

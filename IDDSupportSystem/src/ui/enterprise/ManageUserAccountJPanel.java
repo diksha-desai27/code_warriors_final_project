@@ -324,7 +324,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                     
                     
-                        if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue())) 
+                        if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue())) 
                         {
                             Schedule sch = new Schedule();
                             enterprise.getSchedule().put(ua1, sch);
@@ -362,7 +362,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                                 org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                                 system.getEmpMap().put(emp, ua1);
 
-                                if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue())) 
+                                if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue())) 
                                 {
                                     Schedule sch = new Schedule();
                                     enterprise.getSchedule().put(ua1, sch);

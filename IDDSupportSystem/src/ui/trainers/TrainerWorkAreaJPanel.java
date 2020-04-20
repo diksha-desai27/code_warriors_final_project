@@ -7,6 +7,9 @@ package ui.trainers;
 
 import business.enterprise.Enterprise;
 import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -14,8 +17,7 @@ import javax.swing.JPanel;
  * @author kales
  */
 public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
-    
-    
+
     JPanel userProcessContainer;
     UserAccount account;
     Enterprise enterprise;
@@ -23,10 +25,10 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form TrainerWorkAreaJPanel
      */
-    public TrainerWorkAreaJPanel(JPanel userProcessContainer,UserAccount account,Enterprise enterprise) {
+    public TrainerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.account=account;
+        this.account = account;
         this.enterprise = enterprise;
     }
 
@@ -39,15 +41,12 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        manageApplicantsJTable1 = new javax.swing.JTable();
+        manageApplicantsJTable = new javax.swing.JTable();
         scheduleAppointmentBtn = new javax.swing.JButton();
-        jBtnViewReport = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
-        jLabel2.setText("Trainer Work Area");
-
-        manageApplicantsJTable1.setModel(new javax.swing.table.DefaultTableModel(
+        manageApplicantsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,21 +65,16 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(manageApplicantsJTable1);
+        jScrollPane2.setViewportView(manageApplicantsJTable);
 
-        scheduleAppointmentBtn.setText("Schedule Appointment");
+        scheduleAppointmentBtn.setText("Schedule Trainings");
         scheduleAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scheduleAppointmentBtnActionPerformed(evt);
             }
         });
 
-        jBtnViewReport.setText("Add Details");
-        jBtnViewReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnViewReportActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Trainer Work Area");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,33 +82,28 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(442, 442, 442)
+                            .addComponent(scheduleAppointmentBtn)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(301, 301, 301)
-                                .addComponent(scheduleAppointmentBtn))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(38, 38, 38)
-                        .addComponent(jBtnViewReport)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                        .addGap(251, 251, 251)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(326, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnViewReport))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(scheduleAppointmentBtn)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(329, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -124,22 +113,14 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = manageApplicantsJTable.getSelectedRow();
         if (selectedRow >= 0) {
             int id = (Integer) manageApplicantsJTable.getValueAt(selectedRow, 0);
-            for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+            for (WorkRequest w : this.account.getWorkQueue().getWorkRequestList()) {
                 if (w.getIndividual().getRegistrationId() == id) {
-                    wr = w;
-                    if (wr.getStatus().equalsIgnoreCase("Accepted")) {
-                        // wr.setStatus("Appointment Scheduled");
-                        // JOptionPane.showMessageDialog(null, "R " + this.userAccount);
-                        //   this.populateTable();
-                        AppointmentJPanel appointmentJPanel = new AppointmentJPanel(userProcessContainer, userAccount, wr,enterprise);
-                        userProcessContainer.add("appointmentJPanel", appointmentJPanel);
+                   
+                    AddHistoryJPanel addHistoryJPanel = new AddHistoryJPanel(userProcessContainer, account, enterprise, w);
+                    userProcessContainer.add("appointmentJPanel", addHistoryJPanel);
+                    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                    layout.next(userProcessContainer);
 
-                        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                        layout.next(userProcessContainer);
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "You cannot schedule an apointment for" + wr.getIndividual().getFirstName() + wr.getIndividual().getLastName());
-                    }
                     break;
                 }
 
@@ -149,43 +130,11 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
 
-    private void jBtnViewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnViewReportActionPerformed
-        // TODO add your handling code here:
-
-        int selectedRow = manageApplicantsJTable.getSelectedRow();
-        if (selectedRow >= 0) {
-            int id = (Integer) manageApplicantsJTable.getValueAt(selectedRow, 0);
-            for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
-                if (w.getIndividual().getRegistrationId() == id) {
-                    wr = w;
-                    if (wr.getStatus().equalsIgnoreCase("Appointment Confirmed")) {
-                        // wr.setStatus("Appointment Scheduled");
-                        // JOptionPane.showMessageDialog(null, "R " + this.userAccount);
-                        //   this.populateTable();
-                        IndividualReportJPanel reportJPanel = new IndividualReportJPanel(userProcessContainer, userAccount, wr,enterprise);
-                        userProcessContainer.add("reportJPanel", reportJPanel);
-
-                        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-                        layout.next(userProcessContainer);
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "You cannot chek/generate report for" + wr.getIndividual().getFirstName() + wr.getIndividual().getLastName());
-                    }
-                    break;
-                }
-
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a work request to view/generate report");
-        }
-    }//GEN-LAST:event_jBtnViewReportActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBtnViewReport;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable manageApplicantsJTable1;
+    private javax.swing.JTable manageApplicantsJTable;
     private javax.swing.JButton scheduleAppointmentBtn;
     // End of variables declaration//GEN-END:variables
 }

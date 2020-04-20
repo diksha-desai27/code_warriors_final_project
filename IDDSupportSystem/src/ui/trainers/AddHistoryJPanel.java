@@ -5,17 +5,44 @@
  */
 package ui.trainers;
 
+import business.enterprise.Enterprise;
+import business.history.IndividualHistory;
+import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import ui.reviewer.ManageIndividuals;
+
 /**
  *
  * @author kales
  */
 public class AddHistoryJPanel extends javax.swing.JPanel {
 
+    JPanel userProcessContainer;
+    UserAccount account;
+    Enterprise enterprise;
+    WorkRequest workRequest;
+
     /**
      * Creates new form AddHistoryJPanel
      */
-    public AddHistoryJPanel() {
+    public AddHistoryJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, WorkRequest workRequest) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.enterprise = enterprise;
+        this.workRequest = workRequest;
+        populateStatus();
+    }
+
+    public void populateStatus() {
+        dpdStatus.removeAllItems();;
+        dpdStatus.insertItemAt("--Select--", 0);
+        dpdStatus.insertItemAt("Completed", 1);
+        dpdStatus.insertItemAt("Rescheduled", 2);
     }
 
     /**
@@ -34,7 +61,7 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
         commentsTxtArea = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        dpdNetwork = new javax.swing.JComboBox<>();
+        dpdStatus = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         progressJTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -54,10 +81,10 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Status:");
 
-        dpdNetwork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        dpdNetwork.addActionListener(new java.awt.event.ActionListener() {
+        dpdStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dpdStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dpdNetworkActionPerformed(evt);
+                dpdStatusActionPerformed(evt);
             }
         });
 
@@ -109,7 +136,7 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(dpdNetwork, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dpdStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(progressJTxt, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -141,7 +168,7 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dpdNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpdStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(saveBtn)
@@ -149,9 +176,9 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dpdNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdNetworkActionPerformed
+    private void dpdStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdStatusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dpdNetworkActionPerformed
+    }//GEN-LAST:event_dpdStatusActionPerformed
 
     private void progressJTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_progressJTxtActionPerformed
         // TODO add your handling code here:
@@ -159,10 +186,32 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+        if (commentsTxtArea.getText().equals("") || dpdStatus.getSelectedIndex() == 0 || progressJTxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter all details");
+        } else {
+            for (IndividualHistory indHistory : workRequest.getIndividual().getHistory()) {
+                if (indHistory.getStatus().equals("")) {
+                    indHistory.setProgress(Integer.parseInt(progressJTxt.getText()));
+                    indHistory.setComments(commentsTxtArea.getText());
+                    indHistory.setStatus(dpdStatus.getSelectedItem().toString());
+                    JOptionPane.showMessageDialog(null, "Details Saved Successfully");
+                }
+            }
+
+        }
+
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        AddDetailsJPanel addDetailsJPanel = (AddDetailsJPanel) component;
+        addDetailsJPanel.populateHistoryDetails();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+
     }//GEN-LAST:event_backBtnActionPerformed
 
 
@@ -170,7 +219,7 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel appointmentDate;
     private javax.swing.JButton backBtn;
     private javax.swing.JTextArea commentsTxtArea;
-    private javax.swing.JComboBox<Object> dpdNetwork;
+    private javax.swing.JComboBox<Object> dpdStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

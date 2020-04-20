@@ -5,17 +5,78 @@
  */
 package ui.trainers;
 
+import business.enterprise.Enterprise;
+import business.schedule.Schedule;
+import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import ui.systemadmin.ManageNetworkJPanel;
+
 /**
  *
  * @author kales
  */
 public class AddDetailsJPanel extends javax.swing.JPanel {
 
+    JPanel userProcessContainer;
+    UserAccount account;
+    Enterprise enterprise;
+    WorkRequest workRequest;
+    Schedule sch;
+    Map<Date, Map<String, Boolean>> dateSchedule;
+    List<String> slotList = new ArrayList<>();
+
     /**
      * Creates new form AddDetailsJPanel
      */
-    public AddDetailsJPanel() {
+    public AddDetailsJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, WorkRequest workRequest) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.enterprise = enterprise;
+        this.workRequest = workRequest;
+        populateHistoryDetails();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 1);//15 year before
+        Date min = cal.getTime();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.add(Calendar.DATE, 30);//15 year before
+        Date max = cal1.getTime();//actual date
+        appointmentDatehooser.setSelectableDateRange(min, max);
+        Iterator empIterator = enterprise.getSchedule().entrySet().iterator();
+        while (empIterator.hasNext()) {
+            Map.Entry mapElement = (Map.Entry) empIterator.next();
+            UserAccount user = ((UserAccount) mapElement.getKey());
+            sch = ((Schedule) mapElement.getValue());
+            if (user.equals(account)) {
+                dateSchedule = sch.getDateSchedule();
+                break;
+            }
+        }
+    }
+
+    public void populateTimeSlot(List<String> slotList) {
+        dpdTime.removeAllItems();
+        dpdTime.insertItemAt("--Select--", 0);
+        dpdTime.setSelectedIndex(0);
+        for (String s : slotList) {
+            dpdTime.addItem(s);
+        }
+
+    }
+
+    public void populateHistoryDetails() {
+
     }
 
     /**
@@ -49,7 +110,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         historyJTable = new javax.swing.JTable();
-        scheduleAppointmentBtn1 = new javax.swing.JButton();
+        meetingDetailsBtn = new javax.swing.JButton();
 
         jLabel1.setText("Provide Details");
 
@@ -86,6 +147,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setText("Meeting History");
 
         historyJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -109,10 +171,10 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(historyJTable);
 
-        scheduleAppointmentBtn1.setText("Add Meeting Details");
-        scheduleAppointmentBtn1.addActionListener(new java.awt.event.ActionListener() {
+        meetingDetailsBtn.setText("Add Meeting Details");
+        meetingDetailsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                scheduleAppointmentBtn1ActionPerformed(evt);
+                meetingDetailsBtnActionPerformed(evt);
             }
         });
 
@@ -147,7 +209,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                                         .addComponent(firstNameValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(scheduleAppointmentBtn1)
+                                    .addComponent(meetingDetailsBtn)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -157,7 +219,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(disabilityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 315, Short.MAX_VALUE)))
+                                .addGap(0, 338, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(254, 254, 254)
@@ -230,7 +292,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(34, 34, 34)
-                .addComponent(scheduleAppointmentBtn1)
+                .addComponent(meetingDetailsBtn)
                 .addGap(111, 111, 111))
         );
 
@@ -292,8 +354,12 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                         }
                     }
                     // populateTimeSlot(slotList);
-                    workRequest.setSender(userAccount);
-                    workRequest.setStatus("Appointment Confirmed");
+                    workRequest.setSender(account);
+                    if(workRequest.getIndividual().getHistory().size()==0){
+                    workRequest.setStatus("Initial Appointment scheduled by Trainer");
+                    }else{
+                         workRequest.setStatus("Training in progress");
+                    }
                     JOptionPane.showMessageDialog(null, "Appointment Scheduled Successfully");
                     break;
                 }
@@ -344,18 +410,34 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
-        userJProcessContainer.remove(this);
-        Component[] componentArray = userJProcessContainer.getComponents();
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateTable();
-        CardLayout layout = (CardLayout) userJProcessContainer.getLayout();
-        layout.previous(userJProcessContainer);
+        TrainerWorkAreaJPanel dwjp = (TrainerWorkAreaJPanel) component;
+        //dwjp.populateTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void scheduleAppointmentBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtn1ActionPerformed
+    private void meetingDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meetingDetailsBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_scheduleAppointmentBtn1ActionPerformed
+        int selectedRow = historyJTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int id = (Integer) historyJTable.getValueAt(selectedRow, 0);
+            String status = (String) historyJTable.getValueAt(selectedRow, 4);
+            if (status.equals("")) {
+                AddDetailsJPanel addDetails = new AddDetailsJPanel(userProcessContainer, account, enterprise, workRequest);
+                userProcessContainer.add("AddDetailsJPanel", addDetails);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "You cannot add Details for this appointment");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_meetingDetailsBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -379,8 +461,8 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lastNameValue;
+    private javax.swing.JButton meetingDetailsBtn;
     private javax.swing.JButton scheduleAppointmentBtn;
-    private javax.swing.JButton scheduleAppointmentBtn1;
     private javax.swing.JLabel servicesValue;
     // End of variables declaration//GEN-END:variables
 }
