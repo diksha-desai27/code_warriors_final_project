@@ -6,7 +6,9 @@
 package ui.nurse;
 
 import business.EcoSystem;
+import business.employee.Employee;
 import business.enterprise.Enterprise;
+import business.history.IndividualHistory;
 import business.individuals.Individual;
 import business.schedule.Schedule;
 import business.useraccount.UserAccount;
@@ -17,7 +19,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -83,7 +87,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
 
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        individualHistoryTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         registrationIdValue = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -94,26 +98,26 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         dpdMeetingTime = new javax.swing.JComboBox<>();
         btnConfirmMeeting = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        individualHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Registration ID", "Name", "Date", "Comments"
+                "Registration ID", "Name", "Date", "Comments", "Status", "Progress"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(individualHistoryTable);
 
         jLabel1.setText("Registration ID#");
 
@@ -132,6 +136,11 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         dpdMeetingTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnConfirmMeeting.setText("Confirm Meeting");
+        btnConfirmMeeting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmMeetingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -160,9 +169,9 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,6 +243,71 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_meetingDatePropertyChange
+
+    private void btnConfirmMeetingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmMeetingActionPerformed
+        // TODO add your handling code here:
+        
+        Date date1 = meetingDate.getDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dddd");
+     
+        if (date1 != null && dpdMeetingTime.getSelectedIndex() != 0) 
+        {
+            String meetingDate = simpleDateFormat.format(date1);
+            Iterator meetingIterator = dateSchedule.entrySet().iterator();
+
+            while (meetingIterator.hasNext()) {
+                Map.Entry mappedElement = (Map.Entry) meetingIterator.next();
+                Date date = ((Date) mappedElement.getKey());
+                String newDate = simpleDateFormat.format(date);
+                //  sch = ((Schedule) mapElement.getValue());
+                Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
+                if (meetingDate.equals(newDate)) {
+                    Iterator timeIterator = getTime.entrySet().iterator();
+
+                    while (timeIterator.hasNext()) {
+                        Map.Entry mappingElement = (Map.Entry) timeIterator.next();
+                        String slot = ((String) mappingElement.getKey());
+                        Boolean status = ((Boolean) mappingElement.getValue());
+                        if (!dpdMeetingTime.getSelectedItem().equals("")) {
+                            if (slot.equals(dpdMeetingTime.getSelectedItem())) {
+                                status = false;
+                                mappingElement.setValue(false);
+                                break;
+                            }
+                        }
+                    }
+                    // populateTimeSlot(slotList);
+                    IndividualHistory id = null;
+                    for(IndividualHistory id2: individual.getHistory())
+                    {
+                        id.setMeetingDate(date);
+                        id.setStatus("Meeting Scheduled");
+                        id = id2;
+                    }
+                    individual.getHistory().add(id);
+                   
+                }
+            }
+        } 
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Please select both time and date to schedule appointment");
+        }
+        this.populateTable(individual);
+    }//GEN-LAST:event_btnConfirmMeetingActionPerformed
+    
+    public void populateTable(Individual individual)
+    {
+      DefaultTableModel dtm = (DefaultTableModel) individualHistoryTable.getModel();
+        dtm.setRowCount(0);
+//        for(IndividualHistory history: individua.getEmployeeList())
+//        {
+//            Object[] row = new Object[2];
+//            row[0] = e;
+//            dtm.addRow(row);
+//        }  
+    }
+    
     public void populateDropdown(List<String> slotList)
     {
         dpdMeetingTime.removeAllItems();
@@ -247,13 +321,13 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmMeeting;
     private javax.swing.JComboBox<String> dpdMeetingTime;
+    private javax.swing.JTable individualHistoryTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private com.toedter.calendar.JDateChooser meetingDate;
     private javax.swing.JLabel nameValue;
     private javax.swing.JLabel registrationIdValue;
