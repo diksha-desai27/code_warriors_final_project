@@ -29,14 +29,13 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AssignCareGiverJPanel
      */
-    
     JPanel userProcessContainer;
     UserAccount userAccount;
     Individual individual;
     Map<Employee, UserAccount> map;
     Enterprise enterprise;
-    
-    public AssignCareGiverJPanel(JPanel userProcessContainer,UserAccount userAccount, Individual individual, Enterprise enterprise) {
+
+    public AssignCareGiverJPanel(JPanel userProcessContainer, UserAccount userAccount, Individual individual, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
@@ -173,78 +172,75 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                     .addContainerGap(416, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
+
     public void displayData() {
         registrationValue.setText(String.valueOf(this.individual.getRegistrationId()));
         firstNameValue.setText(this.individual.getFirstName());
         lastNameValue.setText(this.individual.getLastName());
     }
-    
+
     public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) caregiverTable.getModel();
         dtm.setRowCount(0);
-         if(enterprise.getEmpMap() != null)
-         {
+        if (enterprise.getEmpMap() != null) {
             Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
 
-            while (empIterator.hasNext()) { 
-                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
-                Employee e = ((Employee)mapElement.getKey()); 
-                UserAccount ua  =((UserAccount)mapElement.getValue()); 
-                if(ua.getRoleType().getValue().equalsIgnoreCase("Caregiver"))
-                {
-                    Object row[] = new Object[3];
-                    row[0] = e;
-                    row[1] = "Available";
-                    dtm.addRow(row);
+            while (empIterator.hasNext()) {
+                Map.Entry mapElement = (Map.Entry) empIterator.next();
+                Employee e = ((Employee) mapElement.getKey());
+                UserAccount ua = ((UserAccount) mapElement.getValue());
+                if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) {
+                    if (e.getStatus().equals("Available")) {
+                        Object row[] = new Object[3];
+                        row[0] = e;
+                        row[1] = e.getStatus();
+                        dtm.addRow(row);
+                    }
                 }
-               
-            } 
+
+            }
         }
     }
-    
+
     private void assignCareGiverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignCareGiverBtnActionPerformed
         // TODO add your handling code here:
         int selectedRow = caregiverTable.getSelectedRow();
         if (selectedRow >= 0) {
             UserAccount ua = null;
             Employee emp = null;
-            Employee e = (Employee)caregiverTable.getValueAt(selectedRow, 0);
+            Employee e = (Employee) caregiverTable.getValueAt(selectedRow, 0);
             Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
 
-            while (empIterator.hasNext()) { 
-                Map.Entry mapElement = (Map.Entry)empIterator.next(); 
-                Employee e1 = ((Employee)mapElement.getKey());
-                UserAccount caregiver  =((UserAccount)mapElement.getValue());
-                if(e1.equals(e))
-                {                    
+            while (empIterator.hasNext()) {
+                Map.Entry mapElement = (Map.Entry) empIterator.next();
+                Employee e1 = ((Employee) mapElement.getKey());
+                UserAccount caregiver = ((UserAccount) mapElement.getValue());
+                if (e1.equals(e)) {
                     ua = caregiver;
                     emp = e1;
                     break;
                 }
             }
-            if(ua != null)
-            {
-                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
-                {
-                    if((w.getIndividual()!= null) && (w.getIndividual().getRegistrationId()== this.individual.getRegistrationId()))
-                    {
-                       w.setSender(this.userAccount);
-                       w.setStatus("Assigned to Caregiver");
-                       w.setMessage("");
-                       w.setIndividual(this.individual);
-                       ua.getWorkQueue().getWorkRequestList().add(w);
-                       JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to caregiver " + emp);
-                       break;
+            if (ua != null) {
+                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                    if ((w.getIndividual() != null) && (w.getIndividual().getRegistrationId() == this.individual.getRegistrationId())) {
+                        w.setSender(this.userAccount);
+                        w.setStatus("Assigned to Caregiver");
+                        w.setMessage("");
+                        w.setIndividual(this.individual);
+                        ua.getWorkQueue().getWorkRequestList().add(w);
+                        emp.setStatus("Reserved");
+                        JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to caregiver " + emp);
+                        break;
                     }
 
                 }
             }
-                
+
         } else {
             JOptionPane.showMessageDialog(null, "Please select a caregiver to assign.");
         }
-        
+
     }//GEN-LAST:event_assignCareGiverBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -255,7 +251,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
         ManageIndividuals manageIndividuals = (ManageIndividuals) component;
         manageIndividuals.populateTable();
 
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 

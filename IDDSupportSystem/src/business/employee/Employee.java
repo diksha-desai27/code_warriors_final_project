@@ -13,6 +13,7 @@ import business.useraccount.UserAccount;
  */
 public class Employee {
     private String name;
+    private String status;
     private UserAccount userAccount;
     
     public Employee(String name) {
@@ -33,6 +34,14 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
     @Override
