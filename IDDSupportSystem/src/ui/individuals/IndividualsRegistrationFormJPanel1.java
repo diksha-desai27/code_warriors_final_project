@@ -96,6 +96,7 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         jLabel5.setText("Note: Employment Care Service is available only for individuals of  18+ age");
 
         updateBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        updateBtn.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/user1.png")); // NOI18N
         updateBtn.setText("My Account");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

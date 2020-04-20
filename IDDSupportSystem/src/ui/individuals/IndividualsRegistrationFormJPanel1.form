@@ -154,6 +154,9 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="14" style="0"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/user1.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="My Account"/>
       </Properties>
       <Events>

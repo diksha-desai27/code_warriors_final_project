@@ -38,78 +38,54 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
         jBtnSubmit = new javax.swing.JButton();
         jBtnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
         jLabel1.setText("Blood Pressure");
+        add(jLabel1);
+        jLabel1.setBounds(120, 120, 92, 16);
+        add(jTextField1);
+        jTextField1.setBounds(260, 110, 94, 26);
 
         jLabel2.setText("Heart Rate");
+        add(jLabel2);
+        jLabel2.setBounds(120, 170, 65, 16);
+        add(jTextField2);
+        jTextField2.setBounds(260, 160, 94, 26);
 
         jLabel3.setText("Height");
+        add(jLabel3);
+        jLabel3.setBounds(130, 220, 42, 16);
+        add(jTextField3);
+        jTextField3.setBounds(260, 210, 94, 26);
 
         jLabel4.setText("Weight");
+        add(jLabel4);
+        jLabel4.setBounds(130, 270, 43, 16);
+        add(jTextField4);
+        jTextField4.setBounds(260, 260, 94, 26);
 
+        jBtnSubmit.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jBtnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/survey.png"))); // NOI18N
         jBtnSubmit.setText("Submit Report");
         jBtnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnSubmitActionPerformed(evt);
             }
         });
+        add(jBtnSubmit);
+        jBtnSubmit.setBounds(210, 330, 200, 60);
 
+        jBtnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jBtnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
         jBtnBack.setText("Back");
         jBtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnBackActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                    .addComponent(jTextField4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jBtnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
-                .addComponent(jBtnSubmit)
-                .addGap(187, 187, 187))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnSubmit)
-                    .addComponent(jBtnBack))
-                .addGap(55, 55, 55))
-        );
+        add(jBtnBack);
+        jBtnBack.setBounds(10, 340, 110, 42);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSubmitActionPerformed
