@@ -84,8 +84,6 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         commentsTxtArea = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        medicationPeriodTxt = new javax.swing.JTextField();
         assignBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         nurseTable = new javax.swing.JTable();
@@ -112,8 +110,6 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
         commentsTxtArea.setColumns(20);
         commentsTxtArea.setRows(5);
         jScrollPane2.setViewportView(commentsTxtArea);
-
-        jLabel6.setText("Medication Period:");
 
         assignBtn.setText("Assign To Nurse");
         assignBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -173,12 +169,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel5))
-                        .addContainerGap(219, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(medicationPeriodTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(219, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -208,22 +199,16 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
                                 .addComponent(jLabel5))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(medicationPeriodTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(firstNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,7 +224,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
 
         int selectedRow = nurseTable.getSelectedRow();
         if (selectedRow >= 0) {
-            if (iarr.length == 0 || commentsTxtArea.getText().equals("") || medicationPeriodTxt.getText().equals("")) {
+            if (iarr.length == 0 || commentsTxtArea.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please enter all details to prepare report");
             } else {
                 for (int i = 0; i < iarr.length; i++) {
@@ -249,10 +234,8 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
                 
                 for(IndividualHistory id: ind.getHistory())
                 {
-                    id.setStatus(commentsTxtArea.getText());
-                    id.setWeeks(Integer.parseInt(medicationPeriodTxt.getText()));
+                    id.setComments(commentsTxtArea.getText());
                     id.setCondition(selectedIssues);
-                    id.
                 }
                 
 
@@ -296,14 +279,12 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lastNameValue;
-    private javax.swing.JTextField medicationPeriodTxt;
     private javax.swing.JTable nurseTable;
     // End of variables declaration//GEN-END:variables
 }
