@@ -5,6 +5,7 @@
  */
 package ui.doctor;
 
+import business.enterprise.Enterprise;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import ui.caregivers.AssignToDoctorJPanel;
+import ui.enterprise.ManageUserAccountJPanel;
 
 /**
  *
@@ -23,14 +25,15 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     UserAccount userAccount;
     WorkRequest wr;
-
+    Enterprise enterprise;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount) {
+    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount,Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
+        this.enterprise = enterprise;
         this.populateTable();
     }
 
@@ -50,6 +53,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         btnDecline = new javax.swing.JButton();
         btnAccept = new javax.swing.JButton();
         jBtnViewReport = new javax.swing.JButton();
+        scheduleAppointmentBtn = new javax.swing.JButton();
 
         jLabel1.setText("Doctor Work Area");
 
@@ -97,6 +101,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         jBtnViewReport.setText("View Report");
 
+        scheduleAppointmentBtn.setText("Schedule Appointment");
+        scheduleAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scheduleAppointmentBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,12 +124,15 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(btnBack)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAccept)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDecline))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnDecline)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(scheduleAppointmentBtn)
+                                .addGap(4, 4, 4))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jBtnViewReport)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,8 +150,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDecline)
                     .addComponent(btnBack)
-                    .addComponent(btnAccept))
-                .addContainerGap(79, Short.MAX_VALUE))
+                    .addComponent(btnAccept)
+                    .addComponent(scheduleAppointmentBtn))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -191,35 +206,60 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-       int selectedRow = manageApplicantsJTable.getSelectedRow();
-       if(selectedRow >= 0)
-       {
-           int  id = (Integer) manageApplicantsJTable.getValueAt(selectedRow, 0);
-           for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
-                if (w.getIndividual().getRegistrationId() == id) 
-                {
-                   wr = w;
-                   if(wr.getStatus().equalsIgnoreCase("Requested to Doctor"))
-                   {
-                       wr.setStatus("Accepted");
-                       JOptionPane.showMessageDialog(null, "Request Accepted by doctor " + this.userAccount);
-                       this.populateTable();
-                       
-                   }
-                   else
-                   {
-                       JOptionPane.showMessageDialog(null, "You cannot accept this work request");
-                   }
-                   break;
+        int selectedRow = manageApplicantsJTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int id = (Integer) manageApplicantsJTable.getValueAt(selectedRow, 0);
+            for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual().getRegistrationId() == id) {
+                    wr = w;
+                    if (wr.getStatus().equalsIgnoreCase("Requested to Doctor")) {
+                        wr.setStatus("Accepted");
+                        JOptionPane.showMessageDialog(null, "Request Accepted by doctor " + this.userAccount);
+                        this.populateTable();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "You cannot accept this work request");
+                    }
+                    break;
                 }
 
             }
-       }
-       else
-       {
-           JOptionPane.showMessageDialog(null, "Please select a work request to accept");
-       }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a work request to accept");
+        }
     }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void scheduleAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtnActionPerformed
+        // TODO add your handling code here:
+
+        int selectedRow = manageApplicantsJTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int id = (Integer) manageApplicantsJTable.getValueAt(selectedRow, 0);
+            for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual().getRegistrationId() == id) {
+                    wr = w;
+                    if (wr.getStatus().equalsIgnoreCase("Accepted")) {
+                        // wr.setStatus("Appointment Scheduled");
+                        // JOptionPane.showMessageDialog(null, "R " + this.userAccount);
+                        //   this.populateTable();  
+                        AppointmentJPanel appointmentJPanel = new AppointmentJPanel(userProcessContainer, userAccount, wr,enterprise);
+                        userProcessContainer.add("appointmentJPanel", appointmentJPanel);
+
+                        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                        layout.next(userProcessContainer);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "You cannotschedule an apointment for" + wr.getIndividual().getFirstName() + wr.getIndividual().getLastName());
+                    }
+                    break;
+                }
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a work request to accept");
+        }
+
+    }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -230,5 +270,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable manageApplicantsJTable;
+    private javax.swing.JButton scheduleAppointmentBtn;
     // End of variables declaration//GEN-END:variables
 }
