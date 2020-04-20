@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author dikshadesai
  */
 public class DoctorOrganization extends Organization{
-    
+   
     public DoctorOrganization() {
         super(Type.Doctor.getValue());
     }
@@ -23,7 +23,7 @@ public class DoctorOrganization extends Organization{
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new DoctorRole());
-        return roles;
+        return  roles;
     }
     
 }

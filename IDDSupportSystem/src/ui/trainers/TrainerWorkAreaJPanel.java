@@ -6,11 +6,13 @@
 package ui.trainers;
 
 import business.enterprise.Enterprise;
+import business.network.Network;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,6 +32,25 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.enterprise = enterprise;
+        populateTable();
+    }
+
+    public void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) manageApplicantsJTable.getModel();
+        dtm.setRowCount(0);
+        if (this.account.getWorkQueue().getWorkRequestList().size() > 0) {
+            for (WorkRequest w : this.account.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual() != null) {
+                    Object row[] = new Object[4];
+                    row[0] = w.getIndividual().getRegistrationId();
+                    row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
+                    row[2] = w.getSender();
+                    row[3] = w.getStatus();
+                    dtm.addRow(row);
+                }
+            }
+        }
+
     }
 
     /**
@@ -115,7 +136,7 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
             int id = (Integer) manageApplicantsJTable.getValueAt(selectedRow, 0);
             for (WorkRequest w : this.account.getWorkQueue().getWorkRequestList()) {
                 if (w.getIndividual().getRegistrationId() == id) {
-                   
+
                     AddHistoryJPanel addHistoryJPanel = new AddHistoryJPanel(userProcessContainer, account, enterprise, w);
                     userProcessContainer.add("appointmentJPanel", addHistoryJPanel);
                     CardLayout layout = (CardLayout) userProcessContainer.getLayout();

@@ -92,7 +92,6 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="meetingDetailsBtn" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jScrollPane1" alignment="0" min="-2" pref="594" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
@@ -100,13 +99,17 @@
                                               <Component id="jLabel4" min="-2" pref="145" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
+                                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="completedBtn" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="meetingDetailsBtn" alignment="1" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="disabilityValue" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                                       <Component id="cityValue" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="338" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="360" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -209,7 +212,9 @@
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="meetingDetailsBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="completedBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -334,6 +339,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="meetingDetailsBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="completedBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mark as Completed"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="completedBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

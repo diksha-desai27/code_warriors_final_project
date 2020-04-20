@@ -49,6 +49,10 @@ public class OrganizationDirectory {
             organization = new NurseOrganization();
             organizationList.add(organization);
         }
+        if(type == Organization.Type.Trainer) {
+            organization = new TrainerOrganization();
+            organizationList.add(organization);
+        }
         return organization;
     }
     

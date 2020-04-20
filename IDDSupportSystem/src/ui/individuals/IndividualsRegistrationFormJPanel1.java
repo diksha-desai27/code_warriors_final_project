@@ -183,9 +183,9 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         }
            System.out.println("radio"+jRadioBtnHealthCare.isSelected());
         if (jRadioBtnHealthCare.isSelected()) {
-            individual.setServiceType("ShortTermService");
+            individual.setServiceType("MedicalService");
         } else {
-            individual.setServiceType("LongTermService");
+            individual.setServiceType("EmploymentService");
         }
         
         IndividualsRegistrationFormJPanel2 individualsRegJPanel2 = new IndividualsRegistrationFormJPanel2(userAccount, individual, rightJPanel,facilityList);

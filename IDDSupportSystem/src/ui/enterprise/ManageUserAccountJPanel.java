@@ -15,6 +15,7 @@ import business.role.NurseRole;
 import business.role.ReviewerRole;
 import business.role.Role;
 import business.role.Role.RoleType;
+import business.role.TrainerRole;
 import business.schedule.Schedule;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
@@ -281,7 +282,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         } else if (Organization.Type.Nurse.getValue().equalsIgnoreCase(organization.getName())) {
             dpdRole.addItem(Role.RoleType.Nurse);
         } else {
-            //
+            dpdRole.addItem(Role.RoleType.Trainer);
         }
     }
 
@@ -313,9 +314,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     role = new ReviewerRole();
                     roleType = Role.RoleType.Reviewer;
                 } else {
-                    //
-                }
-//
+                     role = new TrainerRole();
+                    roleType = Role.RoleType.Trainer;
+                } 
 
                 System.out.println("getMap: " + enterprise.getEmpMap());
                 if (enterprise.getEmpMap().isEmpty())

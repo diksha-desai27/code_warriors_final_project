@@ -189,6 +189,10 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
         if (commentsTxtArea.getText().equals("") || dpdStatus.getSelectedIndex() == 0 || progressJTxt.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter all details");
         } else {
+             
+            if(Integer.parseInt(progressJTxt.getText())<0 || Integer.parseInt(progressJTxt.getText())>100){
+                JOptionPane.showMessageDialog(null, "Please enter progress in valid range(0-100)");
+            }
             for (IndividualHistory indHistory : workRequest.getIndividual().getHistory()) {
                 if (indHistory.getStatus().equals("")) {
                     indHistory.setProgress(Integer.parseInt(progressJTxt.getText()));
