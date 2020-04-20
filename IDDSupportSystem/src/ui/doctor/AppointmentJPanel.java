@@ -35,7 +35,7 @@ public class AppointmentJPanel extends javax.swing.JPanel {
     WorkRequest workRequest;
     Enterprise enterprise;
     Schedule sch;
-    Map<Date, HashMap<String, Boolean>> dateSchedule;
+    Map<Date, Map<String, Boolean>> dateSchedule;
     List<String> slotList = new ArrayList<>();
     Individual individual;
 
