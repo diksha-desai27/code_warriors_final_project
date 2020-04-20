@@ -67,14 +67,14 @@ public class Schedule {
 
         }
         
-        try {
-             List<Date> sorted = new ArrayList<>(dateSchedule.keySet());
-             Collections.sort(sorted);
-        }
-        catch(ConcurrentModificationException e)
-        {
-            System.out.println("e" + e);
-        }
+//        try {
+//             List<Date> sorted = new ArrayList<>(dateSchedule.keySet());
+//             Collections.sort(sorted);
+//        }
+//        catch(ConcurrentModificationException e)
+//        {
+//            System.out.println("e" + e);
+//        }
        
        
     }
