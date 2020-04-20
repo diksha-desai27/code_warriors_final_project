@@ -222,23 +222,24 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         String name = enterpriseNameTextField.getText();
         if(network.getEnterpriseDirectory().checkIfEnterpriseIsUnique(name, type))
         {
-        for(Network n: system.getNetworkList()) {
-            if(n.equals(network))
-            {
-                n.getEnterpriseDirectory().createEnterprise(name, type);
-                JOptionPane.showMessageDialog(null, "Enterprise created successfully");
-                break;
+            for(Network n: system.getNetworkList()) {
+                if(n.equals(network))
+                {
+                    n.getEnterpriseDirectory().createEnterprise(name, type);
+                    JOptionPane.showMessageDialog(null, "Enterprise created successfully");
+                    break;
+                }
             }
-        }
-        populateTable();
-        enterpriseNameTextField.setText("");
+            enterpriseNameTextField.setText("");
         
         }
-
         else
         {
             JOptionPane.showMessageDialog(null, "Enterprise has already been used. Please enter another enterprise name.");
+            enterpriseNameTextField.setText("");
         } 
+        populateTable();
+
     }//GEN-LAST:event_btnCreateEnterpriseActionPerformed
 
     private void dpdNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdNetworkActionPerformed
@@ -282,7 +283,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select an Enterprise to delete.");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

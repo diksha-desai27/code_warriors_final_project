@@ -97,7 +97,7 @@ public class EcoSystem extends Organization{
     
      public boolean checkIfNetworkIsUnique(String name){
         for (Network na : networkList){
-            if(na.getName().equals(name))
+            if(na.getName().equalsIgnoreCase(name))
             return false;
         }
         return true;

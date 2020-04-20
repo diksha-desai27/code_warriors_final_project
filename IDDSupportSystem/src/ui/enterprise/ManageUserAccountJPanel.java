@@ -265,20 +265,32 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     public void populateEmployees(Organization organization) {
         dpdEmployee.removeAllItems();
-        for (Employee emp : enterprise.getEmployeeDirectory().getEmployeeList()) {
+        for (Employee emp : organization.getEmployeeDirectory().getEmployeeList()) {
             dpdEmployee.addItem(emp);
         }
     }
 
     public void populateRoles(Organization organization) {
         dpdRole.removeAllItems();
-        System.out.println("type: " + enterprise.getEnterpriseType().toString());
-        if (Enterprise.EnterpriseType.Hospital.toString().equals(enterprise.getEnterpriseType().toString())) {
-            dpdRole.addItem(Role.RoleType.Doctor);
-            dpdRole.addItem(Role.RoleType.Nurse);
-        } else {
+        if (Organization.Type.Caregiver.getValue().equalsIgnoreCase(organization.getName()))
+        {
             dpdRole.addItem(Role.RoleType.Caregiver);
+        }
+        else if(Organization.Type.Reviewer.getValue().equalsIgnoreCase(organization.getName()))
+        {
             dpdRole.addItem(Role.RoleType.Reviewer);
+        }
+        else if(Organization.Type.Doctor.getValue().equalsIgnoreCase(organization.getName()))
+        {
+            dpdRole.addItem(Role.RoleType.Doctor);
+        }
+        else if(Organization.Type.Nurse.getValue().equalsIgnoreCase(organization.getName()))
+        {
+           dpdRole.addItem(Role.RoleType.Nurse);
+        }
+        else
+        {
+            //
         }
     }
 

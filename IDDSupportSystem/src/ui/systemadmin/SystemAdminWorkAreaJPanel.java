@@ -36,63 +36,56 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         btnManageNetwork = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         btnManageEnterprise = new javax.swing.JButton();
         btnManageEnterpriseAdmin = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
+        btnManageNetwork.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnManageNetwork.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Network.png"))); // NOI18N
         btnManageNetwork.setText("Manage Network");
         btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageNetworkActionPerformed(evt);
             }
         });
+        add(btnManageNetwork);
+        btnManageNetwork.setBounds(10, 170, 210, 62);
 
-        jLabel1.setText("System Admin Panel");
-
+        btnManageEnterprise.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnManageEnterprise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/case.png"))); // NOI18N
         btnManageEnterprise.setText("Manage Enterprise");
         btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageEnterpriseActionPerformed(evt);
             }
         });
+        add(btnManageEnterprise);
+        btnManageEnterprise.setBounds(250, 170, 210, 62);
 
+        btnManageEnterpriseAdmin.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnManageEnterpriseAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Admin3.png"))); // NOI18N
         btnManageEnterpriseAdmin.setText("Manage Enterprise Admin");
         btnManageEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageEnterpriseAdminActionPerformed(evt);
             }
         });
+        add(btnManageEnterpriseAdmin);
+        btnManageEnterpriseAdmin.setBounds(500, 170, 247, 62);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnManageNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(128, 128, 128))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnManageEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(97, 97, 97)))
-                    .addComponent(btnManageEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(70, 70, 70)
-                .addComponent(btnManageNetwork)
-                .addGap(18, 18, 18)
-                .addComponent(btnManageEnterprise)
-                .addGap(18, 18, 18)
-                .addComponent(btnManageEnterpriseAdmin)
-                .addContainerGap(66, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/admin1.png"))); // NOI18N
+        jLabel2.setText("System Admin");
+        add(jLabel2);
+        jLabel2.setBounds(10, 0, 238, 129);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/disability12.gif"))); // NOI18N
+        add(jLabel1);
+        jLabel1.setBounds(0, 270, 760, 300);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
@@ -131,5 +124,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageEnterpriseAdmin;
     private javax.swing.JButton btnManageNetwork;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
