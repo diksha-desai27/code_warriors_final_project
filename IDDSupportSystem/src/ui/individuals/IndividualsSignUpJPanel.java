@@ -98,9 +98,9 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Sign Up Form");
+        jLabel1.setText("SIGN UP FORM");
         add(jLabel1);
-        jLabel1.setBounds(210, 20, 161, 29);
+        jLabel1.setBounds(210, 20, 190, 29);
 
         jLabel2.setText("First Name");
         add(jLabel2);

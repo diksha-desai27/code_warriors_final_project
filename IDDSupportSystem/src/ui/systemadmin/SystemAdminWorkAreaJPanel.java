@@ -39,7 +39,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnManageEnterprise = new javax.swing.JButton();
         btnManageEnterpriseAdmin = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -53,7 +54,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageNetwork);
-        btnManageNetwork.setBounds(10, 170, 210, 62);
+        btnManageNetwork.setBounds(460, 130, 250, 100);
 
         btnManageEnterprise.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnManageEnterprise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/case.png"))); // NOI18N
@@ -64,7 +65,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageEnterprise);
-        btnManageEnterprise.setBounds(250, 170, 210, 62);
+        btnManageEnterprise.setBounds(460, 250, 250, 100);
 
         btnManageEnterpriseAdmin.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnManageEnterpriseAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Admin3.png"))); // NOI18N
@@ -75,17 +76,22 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageEnterpriseAdmin);
-        btnManageEnterpriseAdmin.setBounds(500, 170, 247, 62);
+        btnManageEnterpriseAdmin.setBounds(460, 370, 250, 90);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/admin1.png"))); // NOI18N
-        jLabel2.setText("System Admin");
+        jLabel2.setText("    SYSTEM ADMIN");
         add(jLabel2);
-        jLabel2.setBounds(10, 0, 238, 129);
+        jLabel2.setBounds(10, 0, 330, 129);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/disability12.gif"))); // NOI18N
-        add(jLabel1);
-        jLabel1.setBounds(0, 270, 760, 300);
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
+        add(jLabel3);
+        jLabel3.setBounds(90, 40, 650, 50);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/AdminPortalWelcome.png"))); // NOI18N
+        add(jLabel4);
+        jLabel4.setBounds(80, 50, 250, 500);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
@@ -123,7 +129,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageEnterprise;
     private javax.swing.JButton btnManageEnterpriseAdmin;
     private javax.swing.JButton btnManageNetwork;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
