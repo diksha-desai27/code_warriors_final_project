@@ -77,6 +77,9 @@ public abstract class Enterprise extends Organization {
     }
 
     public Map<UserAccount, Schedule> getSchedule() {
+        if(schedule==null){
+            schedule = new HashMap<>();
+        }
         return schedule;
     }
 
