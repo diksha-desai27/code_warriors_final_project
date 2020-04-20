@@ -99,7 +99,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jBtnViewReport.setText("View Report");
+        jBtnViewReport.setText("Check/Provide Status");
+        jBtnViewReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnViewReportActionPerformed(evt);
+            }
+        });
 
         scheduleAppointmentBtn.setText("Schedule Appointment");
         scheduleAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +137,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jBtnViewReport)))
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,17 +254,50 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         layout.next(userProcessContainer);
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "You cannotschedule an apointment for" + wr.getIndividual().getFirstName() + wr.getIndividual().getLastName());
+                        JOptionPane.showMessageDialog(null, "You cannot schedule an apointment for" + wr.getIndividual().getFirstName() + wr.getIndividual().getLastName());
                     }
                     break;
                 }
 
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Please select a work request to accept");
+            JOptionPane.showMessageDialog(null, "Please select a work request to schedule appointment");
         }
 
     }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
+
+    private void jBtnViewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnViewReportActionPerformed
+        // TODO add your handling code here:
+        
+        
+         int selectedRow = manageApplicantsJTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int id = (Integer) manageApplicantsJTable.getValueAt(selectedRow, 0);
+            for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual().getRegistrationId() == id) {
+                    wr = w;
+                    if (wr.getStatus().equalsIgnoreCase("Appointment Confirmed")) {
+                        // wr.setStatus("Appointment Scheduled");
+                        // JOptionPane.showMessageDialog(null, "R " + this.userAccount);
+                        //   this.populateTable();  
+                        IndividualReportJPanel reportJPanel = new IndividualReportJPanel(userProcessContainer, userAccount, wr,enterprise);
+                        userProcessContainer.add("reportJPanel", reportJPanel);
+
+                        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                        layout.next(userProcessContainer);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "You cannot chek/generate report for" + wr.getIndividual().getFirstName() + wr.getIndividual().getLastName());
+                    }
+                    break;
+                }
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a work request to view/generate report");
+        }
+
+    }//GEN-LAST:event_jBtnViewReportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

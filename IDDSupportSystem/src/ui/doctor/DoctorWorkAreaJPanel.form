@@ -41,7 +41,7 @@
                       <Component id="jBtnViewReport" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="277" max="32767" attributes="0"/>
+              <EmptySpace pref="215" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -128,8 +128,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBtnViewReport">
       <Properties>
-        <Property name="text" type="java.lang.String" value="View Report"/>
+        <Property name="text" type="java.lang.String" value="Check/Provide Status"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnViewReportActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="scheduleAppointmentBtn">
       <Properties>
