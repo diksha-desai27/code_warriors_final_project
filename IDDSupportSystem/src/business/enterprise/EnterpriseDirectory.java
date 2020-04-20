@@ -52,7 +52,7 @@ public class EnterpriseDirectory {
         if(type == Enterprise.EnterpriseType.Facility)
         {
          for (Enterprise ep : enterpriseList){
-            if(ep.getName().equals(name))
+            if(ep.getName().equalsIgnoreCase(name))
             return false;
         }
          return true;
@@ -62,7 +62,7 @@ public class EnterpriseDirectory {
         else if(type == Enterprise.EnterpriseType.Hospital)
         {
          for (Enterprise ep : enterpriseList){
-            if(ep.getName().equals(name))
+            if(ep.getName().equalsIgnoreCase(name))
             return false;
         }
         return true;

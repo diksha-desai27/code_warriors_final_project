@@ -11,6 +11,7 @@ import business.network.Network;
 import business.role.AdminRole;
 import business.role.Role;
 import business.role.Role.RoleType;
+import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -228,6 +229,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void btnCreateAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAdminActionPerformed
         // TODO add your handling code here:
+        dpdNetwork.removeAllItems();
+        dpdEnterpriseType.removeAllItems();
         int SelectedRow = enterpriseTable.getSelectedRow();
         if(SelectedRow >= 0) {
             Enterprise e = (Enterprise)enterpriseTable.getValueAt(SelectedRow, 0);
@@ -236,8 +239,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 {
                     if(e1.equals(e)) {
                         enterprise = e;
-                        System.out.println(n);
-                        System.out.println(e1.enterpriseType.getValue());
                         dpdNetwork.insertItemAt(n, 0);
                         dpdNetwork.setSelectedIndex(0);
                         dpdEnterpriseType.insertItemAt(e1.enterpriseType.getValue(), 0);
@@ -258,7 +259,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
          if (usernameTextField.getText().equals("") || passwordTextField.getPassword().equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill out all the details");
-            return;
         }
         else
             if (usernamePatternCorrect()) {
@@ -266,24 +266,31 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     String username = usernameTextField.getText();
                     char c[]= passwordTextField.getPassword();
                     String password = String.valueOf(c);
-                    enterprise.getUserAccountDirectory().createUserAccount(username, password, new AdminRole(), RoleType.Admin);
-                    System.out.println(system.getUserAccountDirectory().getUserAccountList());
-                    JOptionPane.showMessageDialog(null, "Admin created successfully");
-                    
+                    System.out.println("list: " + enterprise.getUserAccountDirectory().getUserAccountList());
+                    if(enterprise.getUserAccountDirectory().getUserAccountList().isEmpty())
+                    {
+                        System.out.println("id");
+                        enterprise.getUserAccountDirectory().createUserAccount(username, password, new AdminRole(), RoleType.Admin);
+                        System.out.println(system.getUserAccountDirectory().getUserAccountList());
+                        JOptionPane.showMessageDialog(null, "Admin created successfully");
+                    }
+                     else
+                    {
+                        System.out.println("else");
+                        JOptionPane.showMessageDialog(null, "Enterprise Admin already exists.");
+                    }
                     enterpriseNameTextField.setText("");
                     usernameTextField.setText("");
                     passwordTextField.setText("");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Please enter valid password");
-                    return;
                 }
             }
             else 
             {
 
                 JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
-                return;
             }
     }//GEN-LAST:event_btnCreateActionPerformed
 
