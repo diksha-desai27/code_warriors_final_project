@@ -6,16 +6,11 @@
 package ui.caregivers;
 
 import business.EcoSystem;
-import business.employee.Employee;
-import business.employee.EmployeeDirectory;
 import business.enterprise.Enterprise;
 import business.individuals.Individual;
-import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
-import business.useraccount.UserAccountDirectory;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;

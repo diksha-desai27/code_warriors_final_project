@@ -10,10 +10,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -22,8 +25,9 @@ import java.util.Map;
 public class Schedule {
 
     private int id;
-    Map<Date, HashMap<String, Boolean>> dateSchedule;
-
+    Map<Date, Map<String, Boolean>> dateSchedule;
+    Map<Date, Map<String, Boolean>> sortedSchdule = new HashMap<>();
+    
     public Schedule() {
         //   this.dateSchedule = ;
         Calendar c1 = Calendar.getInstance();
@@ -31,7 +35,7 @@ public class Schedule {
         // Date startDate = c1.getTime();
 
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE, 1);
+        //c.add(Calendar.DATE, 1);
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String incDate = sdf.format(c.getTime());
@@ -44,16 +48,15 @@ public class Schedule {
 
             c.add(Calendar.DATE, 1);
             incDate = sdf.format(c.getTime());
-            System.out.println("in for");
             HashMap<String, Boolean> slotSchedule = new HashMap<>();
             slotSchedule.put("9 am", true);
             slotSchedule.put("10 am", true);
             slotSchedule.put("11 am", true);
             slotSchedule.put("5 pm", true);
             slotSchedule.put("6 pm", true);
-            System.out.println(incDate);
+            //System.out.println(incDate);
             if (dateSchedule == null) {
-                dateSchedule = new HashMap<Date, HashMap<String, Boolean>>();
+                dateSchedule = new HashMap<>();
             }
             try{
             dateSchedule.put(sdf.parse(incDate), slotSchedule); //   this.dateSchedule.put(date,timeList);
@@ -63,8 +66,17 @@ public class Schedule {
             // c2.add(, 1);
 
         }
-
-        System.out.println(dateSchedule);
+        
+        try {
+             List<Date> sorted = new ArrayList<>(dateSchedule.keySet());
+             Collections.sort(sorted);
+        }
+        catch(ConcurrentModificationException e)
+        {
+            System.out.println("e" + e);
+        }
+       
+       
     }
 
     public int getId() {
@@ -75,14 +87,14 @@ public class Schedule {
         this.id = id;
     }
 
-    public Map<Date, HashMap<String, Boolean>> getDateSchedule() {
+    public Map<Date, Map<String, Boolean>> getDateSchedule() {
         if (dateSchedule == null) {
-            dateSchedule = new HashMap<Date, HashMap<String, Boolean>>();
+            dateSchedule = new HashMap<>();
         }
         return dateSchedule;
     }
 
-    public void setDateSchedule(Map<Date, HashMap<String, Boolean>> dateSchedule) {
+    public void setDateSchedule(Map<Date, Map<String, Boolean>> dateSchedule) {
         this.dateSchedule = dateSchedule;
     }
 

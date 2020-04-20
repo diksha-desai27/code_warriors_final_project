@@ -5,8 +5,15 @@
  */
 package ui.nurse;
 
+import business.EcoSystem;
+import business.enterprise.Enterprise;
+import business.individuals.Individual;
 import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,13 +23,23 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     UserAccount userAccount;
+    Enterprise enterprise;
+    EcoSystem system;
+    Individual individual;
     /**
      * Creates new form NurseWorkAreaJPanel
+     * @param userProcessContainer
+     * @param userAccount
+     * @param enterprise
+     * @param system
      */
-    public NurseWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount) {
+    public NurseWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
+        this.system = system;
+        this.enterprise = enterprise;
+        this.populateTable();
     }
 
     /**
@@ -35,12 +52,11 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        nurseJTable = new javax.swing.JTable();
+        individualsListTable = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
-        btnGenerateReport = new javax.swing.JButton();
-        jBtnViewReport = new javax.swing.JButton();
+        btnSchedule = new javax.swing.JButton();
 
-        nurseJTable.setModel(new javax.swing.table.DefaultTableModel(
+        individualsListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,7 +75,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(nurseJTable);
+        jScrollPane1.setViewportView(individualsListTable);
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -68,62 +84,95 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnGenerateReport.setText("Generate Report");
-        btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
+        btnSchedule.setText("Schedule Meeting");
+        btnSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerateReportActionPerformed(evt);
+                btnScheduleActionPerformed(evt);
             }
         });
-
-        jBtnViewReport.setText("View Report");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
-                        .addGap(276, 276, 276)
-                        .addComponent(btnGenerateReport)
-                        .addGap(27, 27, 27)
-                        .addComponent(jBtnViewReport)
-                        .addGap(129, 129, 129))))
+                        .addGap(316, 316, 316)
+                        .addComponent(btnSchedule))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(87, 87, 87)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
-                    .addComponent(btnGenerateReport)
-                    .addComponent(jBtnViewReport))
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addComponent(btnSchedule))
+                .addGap(162, 162, 162))
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void populateTable() {
+         DefaultTableModel dtm = (DefaultTableModel) individualsListTable.getModel();
+            dtm.setRowCount(0);
+            if(this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
+            {
+                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
+                {
+                    if(w.getIndividual()!= null)
+                    {
+                        Object row[] = new Object[5];
+                        row[0] = w.getIndividual().getRegistrationId();
+                        row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
+                        row[2] = w.getSender();
+                        row[3] = w.getStatus();
+                        dtm.addRow(row);
+                    }
 
+                }
+            }
+    }
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
        
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
+    private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerateReportActionPerformed
+        int selectedRow = individualsListTable.getSelectedRow();
+        if(selectedRow >= 0) 
+        {
+            int id = (Integer)individualsListTable.getValueAt(selectedRow, 0);
+            for(Individual i: system.getIndividualDirectory().getIndividualList()){
+                if(i.getRegistrationId() == id)
+                {
+                    individual = i;
+                }
+            }
+            ScheduleMeetingJPanel schedule = new ScheduleMeetingJPanel(userProcessContainer, userAccount, individual, enterprise);
+            userProcessContainer.add("schedule",schedule);
+
+            CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please select an individual to view details.");
+        }
+    }//GEN-LAST:event_btnScheduleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnGenerateReport;
-    private javax.swing.JButton jBtnViewReport;
+    private javax.swing.JButton btnSchedule;
+    private javax.swing.JTable individualsListTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable nurseJTable;
     // End of variables declaration//GEN-END:variables
 }
