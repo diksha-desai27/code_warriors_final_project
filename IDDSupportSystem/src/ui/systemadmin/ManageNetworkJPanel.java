@@ -8,6 +8,8 @@ package ui.systemadmin;
 import business.EcoSystem;
 import business.network.Network;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -150,24 +152,37 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void btnCreateNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNetworkActionPerformed
         String name = nameTextField.getText();   
-        if(system.checkIfNetworkIsUnique(name))
+        if(networkNamePatternRegex())
         {
-            Network network=system.createNetwork();
-            network.setName(name);
-            JOptionPane.showMessageDialog(null, "Network created successfully");
-            nameTextField.setText("");
+            if(system.checkIfNetworkIsUnique(name))
+            {
+                Network network=system.createNetwork();
+                network.setName(name);
+                JOptionPane.showMessageDialog(null, "Network created successfully");
+                nameTextField.setText("");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Network has already been used. Please enter another network.");
+                nameTextField.setText("");
+            }
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Network has already been used. Please enter another network.");
-            nameTextField.setText("");
-        } 
+            JOptionPane.showMessageDialog(null, "Please enter valid network name.");
+        }
+        
         populateTable();
 
        
     }//GEN-LAST:event_btnCreateNetworkActionPerformed
 
-
+    private boolean networkNamePatternRegex() {
+        Pattern p = Pattern.compile("^[a-zA-Z-\\s.]+$");
+        Matcher m = p.matcher(nameTextField.getText());
+        Boolean b = m.matches();
+        return b;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
     private javax.swing.JButton btnCreateNetwork;
