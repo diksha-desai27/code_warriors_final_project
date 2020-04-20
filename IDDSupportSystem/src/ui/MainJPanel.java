@@ -72,7 +72,6 @@ public class MainJPanel extends javax.swing.JFrame {
         btnSignUp = new javax.swing.JButton();
         rightJPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,7 +131,7 @@ public class MainJPanel extends javax.swing.JFrame {
                         .addGroup(leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(usernameJTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         leftJPanelLayout.setVerticalGroup(
             leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,34 +156,11 @@ public class MainJPanel extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(leftJPanel);
 
         rightJPanel.setBackground(new java.awt.Color(255, 255, 255));
+        rightJPanel.setLayout(new java.awt.CardLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/IDD.jpg"))); // NOI18N
         jLabel4.setMaximumSize(new java.awt.Dimension(1200, 800));
-
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel3.setText("IDD Support System");
-
-        javax.swing.GroupLayout rightJPanelLayout = new javax.swing.GroupLayout(rightJPanel);
-        rightJPanel.setLayout(rightJPanelLayout);
-        rightJPanelLayout.setHorizontalGroup(
-            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rightJPanelLayout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 987, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(rightJPanelLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        rightJPanelLayout.setVerticalGroup(
-            rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightJPanelLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        rightJPanel.add(jLabel4, "card2");
 
         jSplitPane1.setRightComponent(rightJPanel);
 
@@ -366,7 +342,6 @@ System.out.println("user"+userAccount);
     private javax.swing.JButton btnSignUp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel leftJPanel;
