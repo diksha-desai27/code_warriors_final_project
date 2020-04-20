@@ -24,7 +24,7 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     
    public enum Type {
-    Reviewer("Reviewer Organization"), Doctor("Doctor Organization"),Caregiver("Caregiver Organization"), Admin("Admin Organization"), Nurse("Nurse Organization");
+    Reviewer("Reviewer Organization"), Doctor("Doctor Organization"),Caregiver("Caregiver Organization"), Admin("Admin Organization"), Nurse("Nurse Organization"),Trainer("Trainer Organization");
 
     private String value;
         
