@@ -7,6 +7,7 @@ package ui.doctor;
 
 import business.employee.Employee;
 import business.enterprise.Enterprise;
+import business.history.IndividualHistory;
 import business.individuals.Individual;
 import business.role.Role;
 import business.useraccount.UserAccount;
@@ -232,9 +233,15 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
                     selectedIssues.add(String.valueOf(conditionJList.getModel().getElementAt(conditionJList.getSelectedIndex())));
                 }
                 Individual ind = workRequest.getIndividual();
-                ind.getHistory().setComments(commentsTxtArea.getText());
-                ind.getHistory().setWeeks(Integer.parseInt(medicationPeriodTxt.getText()));
-                ind.getHistory().setCondition(selectedIssues);
+                
+                for(IndividualHistory id: ind.getHistory())
+                {
+                    id.setStatus(commentsTxtArea.getText());
+                    id.setWeeks(Integer.parseInt(medicationPeriodTxt.getText()));
+                    id.setCondition(selectedIssues);
+                    id.
+                }
+                
 
                 UserAccount nurse = null;
                 Employee emp = null;

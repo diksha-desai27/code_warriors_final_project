@@ -70,25 +70,46 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         employmentDurationJTxtArea = new javax.swing.JTextArea();
         jbtnSubmit = new javax.swing.JButton();
         nextBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("**Welcome to IDD Massachusetts Centre**");
+        add(jLabel1);
+        jLabel1.setBounds(124, 36, 523, 30);
 
         jLabel2.setText("2. Select which IDD are you facing:");
+        add(jLabel2);
+        jLabel2.setBounds(43, 114, 219, 16);
 
+        jbtnBack.setBackground(new java.awt.Color(97, 206, 229));
+        jbtnBack.setForeground(new java.awt.Color(255, 255, 255));
         jbtnBack.setText("Back");
         jbtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnBackActionPerformed(evt);
             }
         });
+        add(jbtnBack);
+        jbtnBack.setBounds(30, 660, 75, 29);
 
         nervousSystemJBtn.setText("Nervous System");
+        add(nervousSystemJBtn);
+        nervousSystemJBtn.setBounds(43, 142, 133, 23);
 
         sensorySystemJBtn.setText("Sensory System");
+        add(sensorySystemJBtn);
+        sensorySystemJBtn.setBounds(43, 177, 130, 23);
 
         fragileJBtn.setText("Fragile X Syndrome");
+        add(fragileJBtn);
+        fragileJBtn.setBounds(43, 208, 152, 23);
 
         downsJBtn.setText("Down's Syndrome");
+        add(downsJBtn);
+        downsJBtn.setBounds(43, 243, 144, 23);
 
         pradeWillisSyndromeBtn.setText("Prade willi's Syndrome");
         pradeWillisSyndromeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -96,123 +117,73 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
                 pradeWillisSyndromeBtnActionPerformed(evt);
             }
         });
+        add(pradeWillisSyndromeBtn);
+        pradeWillisSyndromeBtn.setBounds(43, 278, 172, 23);
 
         jLabel4.setText("3.For How Long are you Facing this disability?");
+        add(jLabel4);
+        jLabel4.setBounds(43, 343, 289, 16);
 
         durationTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 durationTxtActionPerformed(evt);
             }
         });
+        add(durationTxt);
+        durationTxt.setBounds(350, 333, 86, 26);
 
         jLabel3.setText("years");
+        add(jLabel3);
+        jLabel3.setBounds(448, 338, 33, 16);
 
         jLabel6.setText("4. Describe the services and supervision needed");
+        add(jLabel6);
+        jLabel6.setBounds(43, 388, 303, 16);
 
         serviceJTxtArea.setColumns(20);
         serviceJTxtArea.setRows(5);
         jScrollPane3.setViewportView(serviceJTxtArea);
 
+        add(jScrollPane3);
+        jScrollPane3.setBounds(66, 422, 242, 84);
+
         jLabel7.setText("6. Describe the expected duration and goals of placement");
+        add(jLabel7);
+        jLabel7.setBounds(43, 518, 541, 16);
 
         employmentDurationJTxtArea.setColumns(20);
         employmentDurationJTxtArea.setRows(5);
         jScrollPane4.setViewportView(employmentDurationJTxtArea);
 
+        add(jScrollPane4);
+        jScrollPane4.setBounds(69, 546, 250, 84);
+
+        jbtnSubmit.setBackground(new java.awt.Color(97, 206, 229));
+        jbtnSubmit.setForeground(new java.awt.Color(255, 255, 255));
         jbtnSubmit.setText("Submit");
         jbtnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnSubmitActionPerformed(evt);
             }
         });
+        add(jbtnSubmit);
+        jbtnSubmit.setBounds(261, 664, 88, 29);
 
+        nextBtn.setBackground(new java.awt.Color(97, 206, 229));
+        nextBtn.setForeground(new java.awt.Color(255, 255, 255));
         nextBtn.setText("Next>>");
         nextBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextBtnActionPerformed(evt);
             }
         });
+        add(nextBtn);
+        nextBtn.setBounds(388, 664, 94, 29);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(downsJBtn)
-                            .addComponent(nervousSystemJBtn)
-                            .addComponent(sensorySystemJBtn)
-                            .addComponent(fragileJBtn)
-                            .addComponent(pradeWillisSyndromeBtn)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3))
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jbtnBack)
-                        .addGap(107, 107, 107)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(jbtnSubmit)
-                        .addGap(39, 39, 39)
-                        .addComponent(nextBtn)))
-                .addGap(75, 381, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jbtnBack))
-                .addGap(43, 43, 43)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nervousSystemJBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(sensorySystemJBtn)
-                .addGap(8, 8, 8)
-                .addComponent(fragileJBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(downsJBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pradeWillisSyndromeBtn)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(durationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3))
-                    .addComponent(jLabel4))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnSubmit)
-                    .addComponent(nextBtn))
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/back.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        add(jLabel5);
+        jLabel5.setBounds(40, 30, 650, 50);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBackActionPerformed
@@ -305,6 +276,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane3;

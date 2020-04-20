@@ -61,7 +61,12 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         jbtnNext = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         updateBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(51, 153, 255));
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("**Welcome to IDD Massachusetts Centre**");
 
         jLabel2.setText("1. Select program you are interested in:");
@@ -79,6 +84,8 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
 
         jLabel3.setText("Program Info: Helps in living needs and health care");
 
+        jbtnNext.setBackground(new java.awt.Color(97, 206, 229));
+        jbtnNext.setForeground(new java.awt.Color(255, 255, 255));
         jbtnNext.setText("Next >>");
         jbtnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,12 +96,16 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Note: Employment Care Service is available only for individuals of  18+ age");
 
+        updateBtn.setBackground(new java.awt.Color(97, 206, 229));
+        updateBtn.setForeground(new java.awt.Color(255, 255, 255));
         updateBtn.setText("My Account");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("jLabel6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -103,10 +114,7 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
@@ -114,26 +122,37 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
                                     .addComponent(jRadioBtnHealthCare)
                                     .addComponent(jRadioBtnLongTermCareService))
                                 .addGap(132, 132, 132)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(updateBtn)
-                                        .addComponent(jLabel4))))))
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(348, 348, 348)
+                                .addComponent(jLabel4))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jbtnNext)
-                            .addComponent(jLabel5))))
-                .addContainerGap(133, Short.MAX_VALUE))
+                            .addComponent(jLabel5)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(updateBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(updateBtn))
-                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(updateBtn)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel6)))
+                .addGap(21, 21, 21)
                 .addComponent(jLabel2)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -145,9 +164,9 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addGap(43, 43, 43)
                 .addComponent(jbtnNext)
-                .addGap(71, 71, 71)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel5)
-                .addGap(104, 104, 104))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -196,6 +215,7 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRadioBtnHealthCare;
     private javax.swing.JRadioButton jRadioBtnLongTermCareService;
     private javax.swing.JButton jbtnNext;
