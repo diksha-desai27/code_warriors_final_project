@@ -5,7 +5,9 @@
  */
 package business.individuals;
 
-import java.util.Date;
+import business.history.IndividualHistory;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,12 +25,13 @@ public class Individual {
     private int zipCode;
     private IDD iddInfo;
     private String serviceType;
+    private List<IndividualHistory> history;
 
     public Individual() {
         registrationId = (int) (System.currentTimeMillis() & 0xfffffff);
     }
     
-   
+    
     public int getRegistrationId() {
         return registrationId;
     }
@@ -109,6 +112,17 @@ public class Individual {
 
     public void setServiceType(String serviceType) {
         this.serviceType = serviceType;
+    }
+
+    public List<IndividualHistory> getHistory() {
+        if(history==null){
+            history = new ArrayList();
+        }
+        return history;
+    }
+
+    public void setHistory(List<IndividualHistory> history) {
+        this.history = history;
     }
     
         

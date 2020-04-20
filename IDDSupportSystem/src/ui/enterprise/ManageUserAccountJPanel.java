@@ -265,20 +265,23 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     public void populateEmployees(Organization organization) {
         dpdEmployee.removeAllItems();
-        for (Employee emp : enterprise.getEmployeeDirectory().getEmployeeList()) {
+        for (Employee emp : organization.getEmployeeDirectory().getEmployeeList()) {
             dpdEmployee.addItem(emp);
         }
     }
 
     public void populateRoles(Organization organization) {
         dpdRole.removeAllItems();
-        System.out.println("type: " + enterprise.getEnterpriseType().toString());
-        if (Enterprise.EnterpriseType.Hospital.toString().equals(enterprise.getEnterpriseType().toString())) {
+        if (Organization.Type.Caregiver.getValue().equalsIgnoreCase(organization.getName())) {
+            dpdRole.addItem(Role.RoleType.Caregiver);
+        } else if (Organization.Type.Reviewer.getValue().equalsIgnoreCase(organization.getName())) {
+            dpdRole.addItem(Role.RoleType.Reviewer);
+        } else if (Organization.Type.Doctor.getValue().equalsIgnoreCase(organization.getName())) {
             dpdRole.addItem(Role.RoleType.Doctor);
+        } else if (Organization.Type.Nurse.getValue().equalsIgnoreCase(organization.getName())) {
             dpdRole.addItem(Role.RoleType.Nurse);
         } else {
-            dpdRole.addItem(Role.RoleType.Caregiver);
-            dpdRole.addItem(Role.RoleType.Reviewer);
+            //
         }
     }
 
@@ -315,53 +318,76 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 //
 
                 System.out.println("getMap: " + enterprise.getEmpMap());
-                if (enterprise.getEmpMap().isEmpty()) {
+                if (enterprise.getEmpMap().isEmpty())
+                {
                     System.out.println("if");
                     UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                    if (org.getName().equals("Doctor Organization")) {
-                        Schedule sch = new Schedule();
-                        enterprise.getSchedule().put(ua1, sch);
-                        System.out.println("hi" + enterprise.getSchedule());
-                    }
-                    enterprise.getEmpMap().put(emp, ua1);
-                    enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                    org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                    system.getEmpMap().put(emp, ua1);
-                    //  System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
-                    //  System.out.println("System HashMap " + system.getEmpMap());
-                    JOptionPane.showMessageDialog(null, "User account created successfully.");
-                } else {
-                    Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
-                    while (empIterator.hasNext()) {
-                        Map.Entry mapElement = (Map.Entry) empIterator.next();
-                        Employee e = ((Employee) mapElement.getKey());
-                        UserAccount ua = ((UserAccount) mapElement.getValue());
-                        if (ua.getUsername().equals(username)) {
-                            JOptionPane.showMessageDialog(null, "Username has been already taken. Please use another username");
-                            break;
-                        } else {
-                            UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                            enterprise.getEmpMap().put(emp, ua1);
-                            enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                            org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                            system.getEmpMap().put(emp, ua1);
-                            if (org.getName().equals("Doctor Organization")) {
-                                Schedule sch = new Schedule();
-                                enterprise.getSchedule().put(ua1, sch);
-                                System.out.println("hi" + enterprise.getSchedule());
-                            }
-                            System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
-                            System.out.println("System HashMap " + system.getEmpMap());
-                            JOptionPane.showMessageDialog(null, "User account created successfully.");
-
+                    
+                    
+                        if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue())) 
+                        {
+                            Schedule sch = new Schedule();
+                            enterprise.getSchedule().put(ua1, sch);
                         }
-                    }
 
-                }
+                        if (org.getName().equals(Organization.Type.Caregiver.getValue())) 
+                        {
+                            emp.setStatus("Available");
+                        }
+
+                        enterprise.getEmpMap().put(emp, ua1);
+                        enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                        org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                        system.getEmpMap().put(emp, ua1);
+                        JOptionPane.showMessageDialog(null, "User account created successfully.");
+                    }
+                    else
+                    {
+                        Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
+                        while (empIterator.hasNext()) 
+                        {
+                            Map.Entry mapElement = (Map.Entry) empIterator.next();
+                            Employee e = ((Employee) mapElement.getKey());
+                            UserAccount ua = ((UserAccount) mapElement.getValue());
+                            if (ua.getUsername().equals(username)) 
+                            {
+                                JOptionPane.showMessageDialog(null, "Username has been already taken. Please use another username");
+                                break;
+                            } 
+                            else 
+                            {
+                                UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                                enterprise.getEmpMap().put(emp, ua1);
+                                enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                                org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                                system.getEmpMap().put(emp, ua1);
+
+                                if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue())) 
+                                {
+                                    Schedule sch = new Schedule();
+                                    enterprise.getSchedule().put(ua1, sch);
+                                    System.out.println("hi" + enterprise.getSchedule());
+                                }
+
+                                if (org.getName().equals(Organization.Type.Caregiver.getValue())) 
+                                {
+                                    emp.setStatus("Available");
+                                }
+                                System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
+                                System.out.println("System HashMap " + system.getEmpMap());
+                                JOptionPane.showMessageDialog(null, "User account created successfully.");
+                                break;
+                            
+                            }
+                        }
+                  
+                    }
                 this.populateTable();
                 usernameTextField.setText("");
                 passwordField.setText("");
-            } else {
+            } 
+                else 
+                {
                 JOptionPane.showMessageDialog(null, "Please enter valid password");
             }
         } else {

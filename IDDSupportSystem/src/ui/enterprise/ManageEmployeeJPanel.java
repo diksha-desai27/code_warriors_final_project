@@ -253,7 +253,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
          
         Organization org = (Organization) dpdOrganizationEmp.getSelectedItem();
         String name = nameTextField.getText();
-   
+  
             org.getEmployeeDirectory().createEmployee(name);
             enterprise.getEmployeeDirectory().createEmployee(name);
             system.getEmployeeDirectory().createEmployee(name);

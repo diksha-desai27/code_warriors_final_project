@@ -156,7 +156,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                     individual = i;
                 }
             }
-            ScheduleMeetingJPanel schedule = new ScheduleMeetingJPanel(userProcessContainer, userAccount, individual, enterprise);
+            ScheduleMeetingJPanel schedule = new ScheduleMeetingJPanel(userProcessContainer, userAccount, individual, enterprise, system);
             userProcessContainer.add("schedule",schedule);
 
             CardLayout layout=(CardLayout)userProcessContainer.getLayout();

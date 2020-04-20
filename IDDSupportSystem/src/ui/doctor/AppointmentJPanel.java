@@ -12,13 +12,17 @@ import business.network.Network;
 import business.schedule.Schedule;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -53,6 +57,13 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         this.birthDateValue.setText(this.individual.getBirthDate());
         this.disabailityValue.setText(this.individual.getIddInfo().getdName());
         this.durationValue.setText(Integer.toString(this.individual.getIddInfo().getDuration()));
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 1);//15 year before
+        Date min = cal.getTime();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.add(Calendar.DATE, 30);//15 year before
+        Date max = cal1.getTime();//actual date
+        appointmentDatehooser.setSelectableDateRange(min, max);
 
         while (empIterator.hasNext()) {
             Map.Entry mapElement = (Map.Entry) empIterator.next();
@@ -105,6 +116,7 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         dpdTime = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         disabailityValue = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         jLabel2.setText("First Name:");
 
@@ -137,6 +149,13 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         dpdTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setText("Appointment Time:");
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,7 +207,9 @@ public class AppointmentJPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(376, 376, 376))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(262, 262, 262)
+                .addGap(36, 36, 36)
+                .addComponent(btnBack)
+                .addGap(161, 161, 161)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -200,7 +221,9 @@ public class AppointmentJPanel extends javax.swing.JPanel {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBack))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(23, 23, 23)
@@ -263,7 +286,7 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         Date date1 = appointmentDatehooser.getDate();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        if (appointmentDatehooser.getDate() != null) {
+        if (appointmentDatehooser.getDate() != null && dpdTime.getSelectedIndex() != 0) {
             String appointmentFormatted = simpleDateFormat.format(date1);
             Iterator appointmentIterator = dateSchedule.entrySet().iterator();
 
@@ -282,15 +305,21 @@ public class AppointmentJPanel extends javax.swing.JPanel {
                         Boolean status = ((Boolean) mappingElement.getValue());
                         if (!dpdTime.getSelectedItem().equals("")) {
                             if (slot.equals(dpdTime.getSelectedItem())) {
-                                status =false;
+                                status = false;
                                 mappingElement.setValue(false);
+                                break;
                             }
                         }
                     }
-                    populateTimeSlot(slotList);
+                    // populateTimeSlot(slotList);
+                    workRequest.setSender(userAccount);
+                    workRequest.setStatus("Appointment Confirmed");
+                    JOptionPane.showMessageDialog(null, "Appointment Scheduled Successfully");
                     break;
                 }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select both time and date to schedule appointment");
         }
     }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
 
@@ -307,9 +336,14 @@ public class AppointmentJPanel extends javax.swing.JPanel {
                 Map.Entry mappedElement = (Map.Entry) appointmentIterator.next();
                 Date date = ((Date) mappedElement.getKey());
                 String newDate = simpleDateFormat.format(date);
-                //  sch = ((Schedule) mapElement.getValue());
-                Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
+                //  sch = ((  System.out.println("in if");Schedule) mapElement.getValue());
+                    System.out.println(appointmentFormatted);
+                    
+                        System.out.println(newDate);
                 if (appointmentFormatted.equals(newDate)) {
+                    System.out.println("in if");
+                    slotList.clear();
+                    Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
                     Iterator timeIterator = getTime.entrySet().iterator();
 
                     while (timeIterator.hasNext()) {
@@ -317,7 +351,7 @@ public class AppointmentJPanel extends javax.swing.JPanel {
                         String slot = ((String) mappingElement.getKey());
                         Boolean status = ((Boolean) mappingElement.getValue());
                         if (status) {
-                            dateSchedule = sch.getDateSchedule();
+                            //  dateSchedule = sch.getDateSchedule();
                             slotList.add(slot);
                         }
                     }
@@ -328,10 +362,22 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_appointmentDatehooserPropertyChange
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+        userJProcessContainer.remove(this);
+        Component[] componentArray = userJProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
+        dwjp.populateTable();
+        CardLayout layout = (CardLayout) userJProcessContainer.getLayout();
+        layout.previous(userJProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser appointmentDatehooser;
     private javax.swing.JLabel birthDateValue;
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel cityValue;
     private javax.swing.JLabel disabailityValue;
     private javax.swing.JLabel disabilityValue;

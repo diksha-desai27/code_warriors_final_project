@@ -30,19 +30,19 @@ public class MainJPanel extends javax.swing.JFrame {
 
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-   
+
     /**
      * Creates new form MainJPanel
      */
     public MainJPanel() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-       // this.leftJPanel.setSize(300, 750);
-      
+        // this.leftJPanel.setSize(300, 750);
+
         this.setSize(1100, 650);
-       
-      //  ImageIcon myImage= new ImageIcon(ToolKit.getDefaultToolKit)
-     //   jLabel4.setIcon(new ImageIcon(new ImageIcon("IDD.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+
+        //  ImageIcon myImage= new ImageIcon(ToolKit.getDefaultToolKit)
+        //   jLabel4.setIcon(new ImageIcon(new ImageIcon("IDD.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
         for (int i = 0; i < system.getUserAccountDirectory().getUserAccountList().size(); i++) {
             System.out.println(system.getUserAccountDirectory().getUserAccountList().get(i).getUsername());
 
@@ -189,7 +189,7 @@ public class MainJPanel extends javax.swing.JFrame {
         Individual individual = null;
         Enterprise isEnterprise = null;
         Organization isOrganization = null;
-System.out.println("user"+userAccount);
+        System.out.println("user" + userAccount);
         if (userAccount == null) {
 
             for (Network n : system.getNetworkList()) {
@@ -226,9 +226,11 @@ System.out.println("user"+userAccount);
                 }
             }
         }
-        
+
         if (userAccount == null) {
             JOptionPane.showMessageDialog(null, "Invalid credentials");
+            this.btnSignUp.setEnabled(true);
+
             return;
         } else {
             CardLayout layout = (CardLayout) rightJPanel.getLayout();
@@ -264,8 +266,8 @@ System.out.println("user"+userAccount);
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
-        
-        IndividualsSignUpJPanel signUpJPanel = new IndividualsSignUpJPanel(btnSignUp,rightJPanel, system, dB4OUtil);
+
+        IndividualsSignUpJPanel signUpJPanel = new IndividualsSignUpJPanel(btnSignUp, rightJPanel, system, dB4OUtil);
         rightJPanel.add("signUpJPanel", signUpJPanel);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
@@ -331,8 +333,7 @@ System.out.println("user"+userAccount);
         this.btnSignUp = btnSignUp;
     }
 
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLogout;
