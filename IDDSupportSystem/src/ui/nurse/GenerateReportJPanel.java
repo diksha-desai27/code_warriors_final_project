@@ -37,6 +37,7 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jBtnSubmit = new javax.swing.JButton();
         jBtnBack = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -85,7 +86,13 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
             }
         });
         add(jBtnBack);
-        jBtnBack.setBounds(10, 340, 110, 42);
+        jBtnBack.setBounds(10, 330, 110, 60);
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/report.png"))); // NOI18N
+        jLabel5.setText("REPORT GENERATION");
+        add(jLabel5);
+        jLabel5.setBounds(30, 30, 350, 50);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSubmitActionPerformed
@@ -104,6 +111,7 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
