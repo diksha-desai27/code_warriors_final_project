@@ -95,21 +95,21 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Network: ");
         add(jLabel1);
-        jLabel1.setBounds(260, 200, 61, 16);
+        jLabel1.setBounds(320, 190, 61, 16);
 
         jLabel2.setText("Enterprise Type:");
         add(jLabel2);
-        jLabel2.setBounds(260, 251, 101, 16);
+        jLabel2.setBounds(320, 240, 101, 16);
 
         jLabel3.setText("Name:");
         add(jLabel3);
-        jLabel3.setBounds(260, 297, 40, 16);
+        jLabel3.setBounds(320, 280, 40, 16);
         add(enterpriseNameTextField);
-        enterpriseNameTextField.setBounds(392, 292, 141, 26);
+        enterpriseNameTextField.setBounds(450, 270, 141, 26);
 
         dpdEnterpriseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(dpdEnterpriseType);
-        dpdEnterpriseType.setBounds(386, 247, 147, 27);
+        dpdEnterpriseType.setBounds(450, 230, 147, 27);
 
         dpdNetwork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dpdNetwork.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +118,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdNetwork);
-        dpdNetwork.setBounds(386, 196, 147, 27);
+        dpdNetwork.setBounds(450, 190, 147, 27);
 
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -127,11 +127,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreate);
-        btnCreate.setBounds(392, 425, 141, 40);
+        btnCreate.setBounds(450, 420, 141, 40);
 
         jLabel4.setText("Username:");
         add(jLabel4);
-        jLabel4.setBounds(260, 337, 66, 25);
+        jLabel4.setBounds(320, 320, 66, 25);
 
         usernameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,13 +139,13 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         });
         add(usernameTextField);
-        usernameTextField.setBounds(392, 336, 141, 26);
+        usernameTextField.setBounds(450, 320, 141, 26);
 
         jLabel5.setText("Password:");
         add(jLabel5);
-        jLabel5.setBounds(260, 385, 63, 16);
+        jLabel5.setBounds(320, 360, 63, 16);
         add(passwordTextField);
-        passwordTextField.setBounds(392, 380, 141, 26);
+        passwordTextField.setBounds(450, 360, 141, 26);
 
         btnCreateAdmin.setText("Create Admin");
         btnCreateAdmin.addActionListener(new java.awt.event.ActionListener() {

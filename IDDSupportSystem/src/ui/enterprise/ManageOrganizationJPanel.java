@@ -114,15 +114,15 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(organizationTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(160, 20, 382, 100);
+        jScrollPane1.setBounds(180, 70, 382, 100);
 
         jLabel1.setText("Organization Type:");
         add(jLabel1);
-        jLabel1.setBounds(160, 160, 119, 16);
+        jLabel1.setBounds(190, 220, 119, 16);
 
         dpdOrganizationType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(dpdOrganizationType);
-        dpdOrganizationType.setBounds(320, 160, 96, 27);
+        dpdOrganizationType.setBounds(370, 220, 96, 27);
 
         btnCreate.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnCreate.setText("Create ");
@@ -132,7 +132,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreate);
-        btnCreate.setBounds(300, 220, 100, 40);
+        btnCreate.setBounds(370, 300, 100, 40);
 
         btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
@@ -143,16 +143,24 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack);
-        btnBack.setBounds(10, 220, 110, 40);
+        btnBack.setBounds(10, 300, 110, 40);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/organization.png"))); // NOI18N
         add(jLabel2);
-        jLabel2.setBounds(40, 20, 80, 40);
+        jLabel2.setBounds(40, 70, 80, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         Type type = (Type)dpdOrganizationType.getSelectedItem();
+        
+        for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()){
+            if(type.getValue().equals(org.getName())){
+                JOptionPane.showMessageDialog(null, "Organization already exists");
+                return;
+            }
+        }
+        
         enterprise.getOrganizationDirectory().createOrganization(type);
         JOptionPane.showMessageDialog(null,type + " added successfully");
         this.populateTable();

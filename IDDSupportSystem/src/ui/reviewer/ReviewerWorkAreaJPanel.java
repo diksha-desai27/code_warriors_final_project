@@ -9,10 +9,18 @@ import business.employee.Employee;
 import business.enterprise.Enterprise;
 import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -23,17 +31,19 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ReviewerWorkAreaJPanel
      */
-    
     JPanel userProcessContainer;
     UserAccount userAccount;
     IndividualDirectory individualDirectory;
     Enterprise enterprise;
-    public ReviewerWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory, Enterprise enterprise) {
+
+    public ReviewerWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, IndividualDirectory individualDirectory, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.individualDirectory = individualDirectory;
         this.enterprise = enterprise;
+
+        populateChart();
     }
 
     /**
@@ -50,6 +60,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         btnManageNetwork1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        chartPanel = new javax.swing.JPanel();
 
         setLayout(null);
 
@@ -65,7 +76,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageNetwork);
-        btnManageNetwork.setBounds(180, 120, 213, 80);
+        btnManageNetwork.setBounds(230, 150, 340, 120);
 
         btnManageNetwork1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnManageNetwork1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/reportGEN.png"))); // NOI18N
@@ -76,21 +87,26 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageNetwork1);
-        btnManageNetwork1.setBounds(180, 230, 213, 90);
+        btnManageNetwork1.setBounds(230, 310, 340, 120);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/reviewER.png"))); // NOI18N
         jLabel2.setText("REVIEWER WORK AREA");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(30, 30, 439, 50);
+        jLabel2.setBounds(30, 40, 439, 50);
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(85, 36, 480, 40);
+        jLabel3.setBounds(85, 36, 630, 60);
+
+        chartPanel.setLayout(new java.awt.BorderLayout());
+        jPanel1.add(chartPanel);
+        chartPanel.setBounds(0, 440, 740, 360);
 
         add(jPanel1);
-        jPanel1.setBounds(-8, -4, 590, 420);
+        jPanel1.setBounds(-8, -4, 740, 800);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetwork1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetwork1ActionPerformed
@@ -99,17 +115,34 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
         // TODO add your handling code here:
-        ManageIndividuals manageIndividuals = new ManageIndividuals(userProcessContainer,userAccount, this.individualDirectory, this.enterprise);
-        userProcessContainer.add("ManageIndividuals",manageIndividuals);
+        ManageIndividuals manageIndividuals = new ManageIndividuals(userProcessContainer, userAccount, this.individualDirectory, this.enterprise);
+        userProcessContainer.add("ManageIndividuals", manageIndividuals);
 
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageNetworkActionPerformed
+
+    public void populateChart() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(4, "Count", "Bad");
+        dataset.setValue(3, "Count", "Average");
+        dataset.setValue(2, "Count", "Good");
+        dataset.setValue(1, "Count", "Very Good");
+        JFreeChart jfreeChart = ChartFactory.createBarChart("Total Count","Feedback","Count", dataset, PlotOrientation.VERTICAL, false, true, false);
+    //    CategoryPlot p = jfreeChart.getCategoryPlot();
+    //    p.setRangeGridlinePaint(Color.BLACK);
+        ChartPanel panel = new ChartPanel(jfreeChart);
+           chartPanel.removeAll();
+           chartPanel.add(panel, BorderLayout.CENTER);
+           chartPanel.validate();
+           
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageNetwork;
     private javax.swing.JButton btnManageNetwork1;
+    private javax.swing.JPanel chartPanel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

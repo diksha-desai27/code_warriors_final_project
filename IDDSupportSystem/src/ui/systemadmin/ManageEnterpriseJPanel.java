@@ -119,7 +119,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Network: ");
         add(jLabel1);
-        jLabel1.setBounds(120, 170, 61, 16);
+        jLabel1.setBounds(360, 170, 61, 16);
 
         dpdNetwork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dpdNetwork.addActionListener(new java.awt.event.ActionListener() {
@@ -128,11 +128,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdNetwork);
-        dpdNetwork.setBounds(240, 170, 147, 27);
+        dpdNetwork.setBounds(480, 170, 147, 27);
 
         jLabel2.setText("Enterprise Type:");
         add(jLabel2);
-        jLabel2.setBounds(120, 220, 101, 16);
+        jLabel2.setBounds(360, 220, 101, 16);
 
         dpdEnterpriseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dpdEnterpriseType.addActionListener(new java.awt.event.ActionListener() {
@@ -141,13 +141,13 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdEnterpriseType);
-        dpdEnterpriseType.setBounds(240, 220, 147, 27);
+        dpdEnterpriseType.setBounds(480, 220, 147, 27);
 
         jLabel3.setText("Name:");
         add(jLabel3);
-        jLabel3.setBounds(120, 280, 40, 16);
+        jLabel3.setBounds(360, 270, 40, 16);
         add(enterpriseNameTextField);
-        enterpriseNameTextField.setBounds(240, 280, 141, 26);
+        enterpriseNameTextField.setBounds(480, 270, 141, 26);
 
         btnCreateEnterprise.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnCreateEnterprise.setText("Create Enterprise");
@@ -157,10 +157,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreateEnterprise);
-        btnCreateEnterprise.setBounds(240, 340, 141, 40);
+        btnCreateEnterprise.setBounds(480, 340, 141, 40);
 
         btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/backbutton.png")); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,7 +168,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack);
-        btnBack.setBounds(20, 340, 110, 42);
+        btnBack.setBounds(20, 340, 120, 40);
 
         btnDelete.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/trash.png"))); // NOI18N
@@ -179,7 +179,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(btnDelete);
-        btnDelete.setBounds(640, 40, 110, 50);
+        btnDelete.setBounds(640, 40, 140, 50);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/case.png"))); // NOI18N
         add(jLabel4);

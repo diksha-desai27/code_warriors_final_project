@@ -66,18 +66,37 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
         saveBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
         jLabel2.setText("Appointment Date:");
+        add(jLabel2);
+        jLabel2.setBounds(50, 140, 119, 16);
+
+        appointmentDate.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        add(appointmentDate);
+        appointmentDate.setBounds(250, 140, 124, 26);
 
         jLabel5.setText("Comments:");
+        add(jLabel5);
+        jLabel5.setBounds(50, 210, 72, 16);
 
         commentsTxtArea.setColumns(20);
         commentsTxtArea.setRows(5);
         jScrollPane2.setViewportView(commentsTxtArea);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Meeting History Information");
+        add(jScrollPane2);
+        jScrollPane2.setBounds(220, 210, 244, 84);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/SCHEDULINGHISTORY.png"))); // NOI18N
+        jLabel8.setText("MEETING HISTORY INFORMATION");
+        add(jLabel8);
+        jLabel8.setBounds(26, 12, 500, 70);
 
         jLabel1.setText("Status:");
+        add(jLabel1);
+        jLabel1.setBounds(50, 340, 119, 26);
 
         dpdStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dpdStatus.addActionListener(new java.awt.event.ActionListener() {
@@ -85,73 +104,30 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
                 dpdStatusActionPerformed(evt);
             }
         });
+        add(dpdStatus);
+        dpdStatus.setBounds(220, 340, 244, 27);
 
+        saveBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/save.png"))); // NOI18N
         saveBtn.setText("Save Details");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
             }
         });
+        add(saveBtn);
+        saveBtn.setBounds(280, 410, 180, 60);
 
-        backBtn.setText("<< Back");
+        backBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
+        backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(backBtn)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(appointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(dpdStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(saveBtn)))
-                .addContainerGap(200, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(appointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dpdStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addComponent(saveBtn)
-                .addContainerGap(165, Short.MAX_VALUE))
-        );
+        add(backBtn);
+        backBtn.setBounds(20, 420, 120, 42);
     }// </editor-fold>//GEN-END:initComponents
 
     private void dpdStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdStatusActionPerformed

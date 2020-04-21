@@ -39,7 +39,7 @@ public class MainJPanel extends javax.swing.JFrame {
         system = dB4OUtil.retrieveSystem();
         // this.leftJPanel.setSize(300, 750);
 
-        this.setSize(1250, 750);
+        this.setSize(1350, 750);
 
         //  ImageIcon myImage= new ImageIcon(ToolKit.getDefaultToolKit)
         //   jLabel4.setIcon(new ImageIcon(new ImageIcon("IDD.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
@@ -155,8 +155,7 @@ public class MainJPanel extends javax.swing.JFrame {
         rightJPanel.setBackground(new java.awt.Color(255, 255, 255));
         rightJPanel.setLayout(new java.awt.CardLayout());
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/IDD.jpg"))); // NOI18N
-        jLabel4.setMaximumSize(new java.awt.Dimension(1200, 800));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/IDD1.png"))); // NOI18N
         rightJPanel.add(jLabel4, "card2");
 
         jSplitPane1.setRightComponent(rightJPanel);
@@ -167,11 +166,11 @@ public class MainJPanel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1520, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
         );
 
         pack();
@@ -190,7 +189,8 @@ public class MainJPanel extends javax.swing.JFrame {
         Enterprise isEnterprise = null;
         Organization isOrganization = null;
         System.out.println("user" + userAccount);
-        //if (userAccount == null) {
+
+        if (userAccount != null) {
 
             for (Network n : system.getNetworkList()) {
                 for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
@@ -217,13 +217,15 @@ public class MainJPanel extends javax.swing.JFrame {
                 }
             }
 
-        //} else {
-        if(isEnterprise==null && isOrganization==null){
-            for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
-                System.out.println(ind.getUserName());
-                if (ind.getUserName().equals(userName)) {
-                    individual = ind;
-                    break;
+            if (isEnterprise == null && isOrganization == null && userAccount == null) {
+                userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+                if (userAccount != null) {
+                    for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
+                        if (ind.getUserName().equals(userName)) {
+                            individual = ind;
+                            break;
+                        }
+                    }
                 }
             }
         }

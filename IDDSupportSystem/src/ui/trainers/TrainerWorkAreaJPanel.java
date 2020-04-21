@@ -66,6 +66,10 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
         manageApplicantsJTable = new javax.swing.JTable();
         scheduleAppointmentBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         manageApplicantsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,44 +92,30 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(manageApplicantsJTable);
 
+        add(jScrollPane2);
+        jScrollPane2.setBounds(80, 90, 594, 150);
+
+        scheduleAppointmentBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        scheduleAppointmentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/workSchedule.png"))); // NOI18N
         scheduleAppointmentBtn.setText("Schedule Trainings");
         scheduleAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scheduleAppointmentBtnActionPerformed(evt);
             }
         });
+        add(scheduleAppointmentBtn);
+        scheduleAppointmentBtn.setBounds(80, 260, 280, 60);
 
-        jLabel3.setText("Trainer Work Area");
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/teacher.png"))); // NOI18N
+        jLabel3.setText(" TRAINER WORK AREA");
+        add(jLabel3);
+        jLabel3.setBounds(20, 20, 340, 50);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(31, 31, 31)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(442, 442, 442)
-                            .addComponent(scheduleAppointmentBtn)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(251, 251, 251)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(326, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(scheduleAppointmentBtn)
-                .addContainerGap(329, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1);
+        jLabel1.setBounds(80, 20, 780, 50);
     }// </editor-fold>//GEN-END:initComponents
 
     private void scheduleAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtnActionPerformed
@@ -153,6 +143,7 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable manageApplicantsJTable;

@@ -75,7 +75,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(networkJTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(160, 30, 322, 95);
+        jScrollPane1.setBounds(160, 60, 322, 95);
 
         backJButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
@@ -86,7 +86,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
         add(backJButton);
-        backJButton.setBounds(147, 240, 120, 42);
+        backJButton.setBounds(20, 260, 120, 42);
 
         btnCreateNetwork.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnCreateNetwork.setText("Create");
@@ -96,19 +96,19 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreateNetwork);
-        btnCreateNetwork.setBounds(330, 240, 100, 40);
+        btnCreateNetwork.setBounds(380, 260, 100, 40);
         add(jLabel1);
         jLabel1.setBounds(240, 30, 0, 0);
 
         jLabel2.setText("Name");
         add(jLabel2);
-        jLabel2.setBounds(170, 150, 36, 16);
+        jLabel2.setBounds(320, 170, 36, 16);
         add(nameTextField);
-        nameTextField.setBounds(260, 150, 94, 26);
+        nameTextField.setBounds(390, 170, 94, 26);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Network.png"))); // NOI18N
         add(jLabel3);
-        jLabel3.setBounds(30, 20, 50, 60);
+        jLabel3.setBounds(30, 50, 50, 60);
     }// </editor-fold>//GEN-END:initComponents
 
      public void populateTable() {
