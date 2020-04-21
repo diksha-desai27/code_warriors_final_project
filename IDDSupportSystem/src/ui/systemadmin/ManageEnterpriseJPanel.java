@@ -6,8 +6,11 @@
 package ui.systemadmin;
 
 import business.EcoSystem;
+import business.employee.Employee;
 import business.enterprise.Enterprise;
 import business.network.Network;
+import business.organization.Organization;
+import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -87,7 +90,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         enterpriseNameTextField = new javax.swing.JTextField();
         btnCreateEnterprise = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -170,17 +172,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         add(btnBack);
         btnBack.setBounds(20, 340, 120, 40);
 
-        btnDelete.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/trash.png"))); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        add(btnDelete);
-        btnDelete.setBounds(640, 40, 140, 50);
-
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/case.png"))); // NOI18N
         add(jLabel4);
         jLabel4.setBounds(39, 30, 120, 60);
@@ -233,37 +224,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-       
-        int selectedRow = enterpriseTable.getSelectedRow();
-        if(selectedRow >= 0) {
-            Enterprise en = (Enterprise) enterpriseTable.getValueAt(selectedRow, 0);
-            for(Network n: system.getNetworkList()) {
-                for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()) {
-                    if(en.equals(e))
-                    {
-                        n.getEnterpriseDirectory().deleteEnterprise(en);
-                        this.populateTable();
-                        JOptionPane.showMessageDialog(null, "Enterprise deleted successfully");
-                        break;
-                    }
-                }
-            }
-               
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Please select an Enterprise to delete.");
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateEnterprise;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JComboBox<Object> dpdEnterpriseType;
     private javax.swing.JComboBox<Object> dpdNetwork;
     private javax.swing.JTextField enterpriseNameTextField;

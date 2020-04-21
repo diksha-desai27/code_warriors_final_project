@@ -71,17 +71,17 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         enterpriseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Enterprise Name", "Network", "Enterprise Type"
+                "Enterprise Name", "Network", "Enterprise Type", "Enterprise Admin"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -177,13 +177,24 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         dpdEnterpriseType.removeAllItems();
         DefaultTableModel model = (DefaultTableModel) enterpriseTable.getModel();
         model.setRowCount(0);
-
+        UserAccount u = null;
         for (Network n : system.getNetworkList()) {
             for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-                Object[] row = new Object[3];
+                Object[] row = new Object[4];
                 row[0] = e;
                 row[1] = n;
                 row[2] = e.getEnterpriseType().getValue();
+                
+                for(UserAccount ua: e.getUserAccountDirectory().getUserAccountList())
+                {
+                    if(ua.getRoleType().getValue().equalsIgnoreCase(Role.RoleType.Admin.getValue()))
+                    {
+                        
+                        u = ua;
+                        row[3] = u;
+
+                    }
+                }
                 model.addRow(row);
             }
         }
@@ -217,6 +228,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     }
                 }
             }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row.");
         }
     }//GEN-LAST:event_btnCreateAdminActionPerformed
 
@@ -253,6 +268,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
             JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
         }
+        this.populateTable();
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
