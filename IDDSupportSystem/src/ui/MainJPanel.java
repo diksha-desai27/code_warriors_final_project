@@ -185,27 +185,31 @@ public class MainJPanel extends javax.swing.JFrame {
         String password = String.valueOf(passwordCharArray);
 
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+        UserAccount userAccountNew = userAccount;
         Individual individual = null;
         Enterprise isEnterprise = null;
         Organization isOrganization = null;
         System.out.println("user" + userAccount);
+        
 
         if (userAccount != null) {
 
             for (Network n : system.getNetworkList()) {
                 for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-                    userAccount = e.getUserAccountDirectory().authenticateUser(userName, password);
-                    if (userAccount == null) {
+                    userAccountNew = e.getUserAccountDirectory().authenticateUser(userName, password);
+                    if (userAccountNew == null) {
                         for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-                            userAccount = o.getUserAccountDirectory().authenticateUser(userName, password);
-                            if (userAccount != null) {
+                            userAccountNew = o.getUserAccountDirectory().authenticateUser(userName, password);
+                            if (userAccountNew != null) {
                                 isEnterprise = e;
                                 isOrganization = o;
+                                userAccount = userAccountNew;
                                 break;
                             }
                         }
                     } else {
                         isEnterprise = e;
+                         userAccount = userAccountNew;
                         break;
                     }
                     if (isOrganization != null) {
@@ -217,12 +221,13 @@ public class MainJPanel extends javax.swing.JFrame {
                 }
             }
 
-            if (isEnterprise == null && isOrganization == null && userAccount == null) {
-                userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
-                if (userAccount != null) {
+            if (isEnterprise == null && isOrganization == null ) {
+                userAccountNew = system.getUserAccountDirectory().authenticateUser(userName, password);
+                if (userAccountNew != null) {
                     for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
                         if (ind.getUserName().equals(userName)) {
                             individual = ind;
+                            userAccount =userAccountNew;
                             break;
                         }
                     }

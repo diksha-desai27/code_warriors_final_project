@@ -38,7 +38,6 @@ public class IndividualRole extends Role {
                 }
             }
         }
-        System.out.println(individual.getIddInfo().getdName());
         if (individual.getIddInfo().getdName() == null || individual.getIddInfo().getdName().equals("")) {
             return new IndividualsRegistrationFormJPanel1(userProcessContainer, account, individual, facilityList);//To change body of generated methods, choose Tools | Templates.
 
