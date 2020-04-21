@@ -104,6 +104,8 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         btnAddDetails = new javax.swing.JButton();
         btnAssign = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         individualHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -357,7 +359,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         int selectedRow = individualHistoryTable.getSelectedRow();
         if (selectedRow >= 0) 
         {
-            IndividualHistory history = (IndividualHistory) individualHistoryTable.getValueAt(selectedRow, 0);
+                IndividualHistory history = (IndividualHistory) individualHistoryTable.getValueAt(selectedRow, 0);
             String status = (String) individualHistoryTable.getValueAt(selectedRow, 4);
             if (status.equalsIgnoreCase("Meeting Scheduled")) 
             {
