@@ -50,7 +50,6 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         btnManageNetwork1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -66,7 +65,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageNetwork);
-        btnManageNetwork.setBounds(440, 150, 260, 90);
+        btnManageNetwork.setBounds(230, 150, 340, 120);
 
         btnManageNetwork1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnManageNetwork1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/reportGEN.png"))); // NOI18N
@@ -77,24 +76,19 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageNetwork1);
-        btnManageNetwork1.setBounds(440, 300, 260, 90);
+        btnManageNetwork1.setBounds(230, 310, 340, 120);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/reviewER.png"))); // NOI18N
         jLabel2.setText("REVIEWER WORK AREA");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(30, 30, 439, 50);
+        jLabel2.setBounds(30, 40, 439, 50);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(85, 36, 630, 40);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/Documents/AED Final Project/Final Project Images/reviewerPortal.png")); // NOI18N
-        jLabel4.setText("jLabel4");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(60, 130, 320, 400);
+        jLabel3.setBounds(85, 36, 630, 60);
 
         add(jPanel1);
         jPanel1.setBounds(-8, -4, 840, 580);
@@ -119,7 +113,6 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageNetwork1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
