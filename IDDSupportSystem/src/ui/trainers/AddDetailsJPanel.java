@@ -91,7 +91,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         for (IndividualHistory ins : workRequest.getIndividual().getHistory()) {
 
             Object[] row = new Object[5];
-            row[0] = workRequest.getIndividual().getRegistrationId();
+            row[0] = ins;
             row[1] = simpleDateFormat.format(ins.getMeetingDate());
             row[2] = ins.getComments();
             row[3] = ins.getStatus();
@@ -179,7 +179,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Registration ID", "Date", "Comments", "Status"
+                "Appointment ID", "Date", "Comments", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -374,6 +374,14 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "You cannot schedule appointment for this date");
                 return;
             }
+            
+            for(IndividualHistory history : workRequest.getIndividual().getHistory()){
+                if(history.getStatus().equalsIgnoreCase("Meeting Scheduled")){
+                    JOptionPane.showMessageDialog(null, "you have a previous appoinment open.Please close it before creating new one.");
+                    return;
+                }
+                
+            }
 
             String appointmentFormatted = simpleDateFormat.format(date1);
             Iterator appointmentIterator = dateSchedule.entrySet().iterator();
@@ -481,7 +489,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = historyJTable.getSelectedRow();
         if (selectedRow >= 0) {
-            int id = (Integer) historyJTable.getValueAt(selectedRow, 0);
+            IndividualHistory history = (IndividualHistory) historyJTable.getValueAt(selectedRow, 0);
             String status = (String) historyJTable.getValueAt(selectedRow, 4);
             if (status.equalsIgnoreCase("Meeting Scheduled")) {
                 AddHistoryJPanel addDetails = new AddHistoryJPanel(userProcessContainer, account, enterprise, workRequest);

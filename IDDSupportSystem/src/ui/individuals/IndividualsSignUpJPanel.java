@@ -20,6 +20,7 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -45,7 +46,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
     /**
      * Creates new form IndividualsSignUpJPanel
      */
-    public IndividualsSignUpJPanel(JButton signUpBtn,JPanel rightJPanel, EcoSystem system, DB4OUtil dB4OUtil) {
+    public IndividualsSignUpJPanel(JButton signUpBtn, JPanel rightJPanel, EcoSystem system, DB4OUtil dB4OUtil) {
         initComponents();
         this.rightJPanel = rightJPanel;
         this.system = system;
@@ -223,6 +224,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
                                         system.getUserAccountDirectory().createUserAccount(userNamejTextField.getText(), String.valueOf(passwordJField.getPassword()), new IndividualRole(), RoleType.Individual);
                                         JOptionPane.showMessageDialog(null, "Account created successfully. Please sign out to login.");
                                         clearFields();
+                                        sendEmail();
                                     }
 
                                 } else {
@@ -252,36 +254,38 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
                 return;
             }
         }
-        
-        String toEmail ="kalesai04@gmail.com";
-        String fromEmail ="kalesai04@gmail.com";
-        String fromEmailPassword = "S@!k@le504";
-        String subjects = "AED Testing";
-        
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable","true");
-        properties.put("mail.smtp.host", "smptp.gmail.com");
-        properties.put("mail.smptp.port","587");
-        
-        Session session = Session.getDefaultInstance(properties,new javax.mail.Authenticator(){
-            protected PasswordAuthentication getPasswordAuthentication(){
-                return new PasswordAuthentication(fromEmail, fromEmailPassword);
-            }
-    });
-        
-        try{
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(fromEmail));
-            message.addRecipients(Message.RecipientType.TO, toEmail);
-            message.setSubject(subjects);
-            message.setText("testing");
-            Transport.send(message);
-        }catch(Exception ex){
-            
-        }
-        
+
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    public void sendEmail() {
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        String string1 = "Dear " + firstNamejTextField + " " + lastNamejTextField + "<br/>Thankyou for registering with us.<br/>You can now login with your credentials into our system<br/><br/>Thankyou,<br/>IDD Support Team";
+        Session session = Session.getDefaultInstance(props);
+        try {
+            InternetAddress fromAddress = new InternetAddress("kalesai04@gmail.com");
+            InternetAddress toAddress = new InternetAddress("kalesai04@gmail.com");
+
+            Message message = new MimeMessage(session);
+            message.setFrom(fromAddress);
+            message.setRecipient(Message.RecipientType.TO, toAddress);
+            message.setSubject("IDD System Registration Confirmation");
+            message.setText(string1);
+
+            Transport.send(message, "growinggreen04@gmail.com", "growinggreen@123");
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here: 
@@ -290,12 +294,12 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         CardLayout crdLyt = (CardLayout) rightJPanel.getLayout();
         crdLyt.next(rightJPanel);
         dB4OUtil.storeSystem(system);
-        
+
         //        Component[] componentArray = rightJPanel.getComponents();
-       // Component component = componentArray[componentArray.length - 1];
-       // MainJPanel mainJPanel = (MainJPanel) component;
-      //  mainJPanel.getBtnSignUp().setEnabled(true);
-      signUpBtn.setEnabled(true);
+        // Component component = componentArray[componentArray.length - 1];
+        // MainJPanel mainJPanel = (MainJPanel) component;
+        //  mainJPanel.getBtnSignUp().setEnabled(true);
+        signUpBtn.setEnabled(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void clearFields() {
