@@ -58,9 +58,6 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         fragileJBtn = new javax.swing.JRadioButton();
         downsJBtn = new javax.swing.JRadioButton();
         pradeWillisSyndromeBtn = new javax.swing.JRadioButton();
-        jLabel4 = new javax.swing.JLabel();
-        durationTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         serviceJTxtArea = new javax.swing.JTextArea();
@@ -76,7 +73,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("WELCOME TO IDD SUPPORT CENTRE");
         add(jLabel1);
-        jLabel1.setBounds(130, 40, 451, 40);
+        jLabel1.setBounds(50, 30, 451, 40);
 
         jLabel2.setText("2. Select which IDD are you facing:");
         add(jLabel2);
@@ -107,43 +104,27 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         add(pradeWillisSyndromeBtn);
         pradeWillisSyndromeBtn.setBounds(43, 278, 172, 23);
 
-        jLabel4.setText("3.For How Long are you Facing this disability?");
-        add(jLabel4);
-        jLabel4.setBounds(43, 343, 289, 16);
-
-        durationTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                durationTxtActionPerformed(evt);
-            }
-        });
-        add(durationTxt);
-        durationTxt.setBounds(350, 333, 86, 26);
-
-        jLabel3.setText("years");
-        add(jLabel3);
-        jLabel3.setBounds(448, 338, 33, 16);
-
-        jLabel6.setText("4. Describe the services and supervision needed");
+        jLabel6.setText("3. Describe the services and supervision needed");
         add(jLabel6);
-        jLabel6.setBounds(43, 388, 303, 16);
+        jLabel6.setBounds(40, 340, 303, 16);
 
         serviceJTxtArea.setColumns(20);
         serviceJTxtArea.setRows(5);
         jScrollPane3.setViewportView(serviceJTxtArea);
 
         add(jScrollPane3);
-        jScrollPane3.setBounds(66, 422, 242, 84);
+        jScrollPane3.setBounds(50, 370, 330, 84);
 
-        jLabel7.setText("6. Describe the expected duration and goals of placement");
+        jLabel7.setText("4. Describe the expected duration and goals of placement");
         add(jLabel7);
-        jLabel7.setBounds(43, 518, 541, 16);
+        jLabel7.setBounds(40, 480, 541, 16);
 
         employmentDurationJTxtArea.setColumns(20);
         employmentDurationJTxtArea.setRows(5);
         jScrollPane4.setViewportView(employmentDurationJTxtArea);
 
         add(jScrollPane4);
-        jScrollPane4.setBounds(69, 546, 250, 84);
+        jScrollPane4.setBounds(60, 510, 320, 84);
 
         jbtnSubmit.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jbtnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/submit.png"))); // NOI18N
@@ -154,7 +135,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
             }
         });
         add(jbtnSubmit);
-        jbtnSubmit.setBounds(70, 660, 150, 40);
+        jbtnSubmit.setBounds(50, 620, 150, 40);
 
         nextBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         nextBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/next.png"))); // NOI18N
@@ -165,7 +146,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
             }
         });
         add(nextBtn);
-        nextBtn.setBounds(530, 660, 120, 40);
+        nextBtn.setBounds(480, 620, 120, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSubmitActionPerformed
@@ -174,10 +155,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "All fields are mandatory");
             return;
         }
-        if (durationTxt.getText().equals("") && serviceJTxtArea.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "All fields are mandatory");
-            return;
-        }
+        
         if (individual.getServiceType().equals("LongTermService")) {
             JOptionPane.showMessageDialog(null, "All fields are mandatory");
             return;
@@ -198,7 +176,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
 
         //  if( individual.getIddInfo()==null){
         //}
-        individual.getIddInfo().setDuration(Integer.parseInt(durationTxt.getText()));
+        
         individual.getIddInfo().setEmploymentDetails(employmentDurationJTxtArea.getText());
         individual.getIddInfo().setServices(serviceJTxtArea.getSelectedText());
         JOptionPane.showMessageDialog(null, "Details Saved Successfully");
@@ -214,15 +192,11 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         sensorySystemJBtn.setSelected(false);
         pradeWillisSyndromeBtn.setSelected(false);
         fragileJBtn.setSelected(false);
-        durationTxt.setText("");
+        
         serviceJTxtArea.setText("");
         employmentDurationJTxtArea.setText("");
     }
 
-
-    private void durationTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_durationTxtActionPerformed
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
@@ -241,13 +215,10 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton downsJBtn;
-    private javax.swing.JTextField durationTxt;
     private javax.swing.JTextArea employmentDurationJTxtArea;
     private javax.swing.JRadioButton fragileJBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane3;

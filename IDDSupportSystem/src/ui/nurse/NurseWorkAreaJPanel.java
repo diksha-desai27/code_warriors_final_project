@@ -116,7 +116,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/nurse.png"))); // NOI18N
         jLabel3.setText("   NURSE WORK AREA");
         add(jLabel3);
-        jLabel3.setBounds(30, 6, 340, 50);
+        jLabel3.setBounds(30, 6, 410, 50);
     }// </editor-fold>//GEN-END:initComponents
     
     public void populateTable() {
