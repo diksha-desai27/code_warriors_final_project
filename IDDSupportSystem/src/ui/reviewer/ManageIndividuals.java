@@ -300,7 +300,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
                     break;
                 }
             }
-            AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise);
+            AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise, "caregiver");
             userProcessContainer.add("AssignCareGiver",assignCareGiver);
 
             CardLayout layout=(CardLayout)userProcessContainer.getLayout();
@@ -323,7 +323,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
                     break;
                 }
             }
-            AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise);
+            AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise, "trainer");
             userProcessContainer.add("AssignCareGiver",assignCareGiver);
 
             CardLayout layout=(CardLayout)userProcessContainer.getLayout();

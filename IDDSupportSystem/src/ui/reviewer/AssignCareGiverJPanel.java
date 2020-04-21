@@ -34,13 +34,15 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     Individual individual;
     Map<Employee, UserAccount> map;
     Enterprise enterprise;
+    String role;
 
-    public AssignCareGiverJPanel(JPanel userProcessContainer, UserAccount userAccount, Individual individual, Enterprise enterprise) {
+    public AssignCareGiverJPanel(JPanel userProcessContainer, UserAccount userAccount, Individual individual, Enterprise enterprise, String role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.individual = individual;
         this.enterprise = enterprise;
+        this.role = role;
         this.displayData();
         this.populateTable();
         if (individual.getServiceType().equals("Medical")) {
@@ -127,7 +129,6 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(assignCareGiverBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -149,6 +150,10 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                         .addGap(1, 1, 1)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,17 +198,29 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                 Map.Entry mapElement = (Map.Entry) empIterator.next();
                 Employee e = ((Employee) mapElement.getKey());
                 UserAccount ua = ((UserAccount) mapElement.getValue());
-                if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) {
-                    if (e.getStatus().equals("Available")) {
+                
+                if(role.equalsIgnoreCase("caregiver"))
+                {
+                    if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) 
+                    {
+                        if (e.getStatus().equals("Available")) 
+                        {
+                            Object row[] = new Object[1];
+                            row[0] = e;
+                            dtm.addRow(row);
+                        }
+                    } 
+                }
+                else
+                {
+                    if (ua.getRoleType().getValue().equalsIgnoreCase("Trainer")) 
+                    {
                         Object row[] = new Object[1];
                         row[0] = e;
                         dtm.addRow(row);
-                    }
-                } else {
-                    Object row[] = new Object[1];
-                    row[0] = e;
-                    dtm.addRow(row);
+                    } 
                 }
+                
 
             }
         }
