@@ -8,6 +8,7 @@ package business.history;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  *
@@ -21,9 +22,10 @@ public class IndividualHistory {
     private List<String> condition;
     private Date meetingDate;
     private int progress;
-    
+    private int appointmentId;
     
     public IndividualHistory() {
+        appointmentId = (int) (System.currentTimeMillis() & 0xfffffff);
         this.status = status;
         this.condition = condition;
         this.comments = comments;
@@ -66,15 +68,13 @@ public class IndividualHistory {
         this.comments = comments;
     }
 
-    public int getProgress() {
-        return progress;
-    }
-
-    public void setProgress(int progress) {
-        this.progress = progress;
+    public int getAppointmentId() {
+        return appointmentId;
     }
     
-    
-    
+    public String toString() {
+        return String.valueOf(appointmentId);
+    }
+ 
     
 }

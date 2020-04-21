@@ -93,9 +93,8 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
             Object[] row = new Object[5];
             row[0] = workRequest.getIndividual().getRegistrationId();
             row[1] = simpleDateFormat.format(ins.getMeetingDate());
-            row[2] = ins.getProgress();
-            row[3] = ins.getComments();
-            row[4] = ins.getStatus();
+            row[2] = ins.getComments();
+            row[3] = ins.getStatus();
             model.addRow(row);
         }
     }
@@ -174,17 +173,17 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
 
         historyJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Registration ID", "Date", "Progress", "Comments", "Status"
+                "Registration ID", "Date", "Comments", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -265,8 +264,9 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnBack)
-                                .addGap(161, 161, 161)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(109, 109, 109)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lastNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -307,7 +307,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                             .addComponent(dpdTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addComponent(scheduleAppointmentBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cityValue, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -502,12 +502,11 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         Individual ind = workRequest.getIndividual();
         Boolean flag = false;
         for (IndividualHistory indHistory : ind.getHistory()) {
-            if (indHistory.getProgress() == 100) {
+            
                 workRequest.setStatus("Completed");
                 flag = true;
                 JOptionPane.showMessageDialog(null, "Status updated successfully");
                 break;
-            }
         }
         if (!flag) {
             JOptionPane.showMessageDialog(null, "You cannot mark the request as compeleted");
