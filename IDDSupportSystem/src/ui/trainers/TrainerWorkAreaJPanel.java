@@ -67,7 +67,6 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
         scheduleAppointmentBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -94,7 +93,7 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(manageApplicantsJTable);
 
         add(jScrollPane2);
-        jScrollPane2.setBounds(280, 100, 594, 150);
+        jScrollPane2.setBounds(80, 90, 594, 150);
 
         scheduleAppointmentBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         scheduleAppointmentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/workSchedule.png"))); // NOI18N
@@ -105,7 +104,7 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(scheduleAppointmentBtn);
-        scheduleAppointmentBtn.setBounds(590, 270, 280, 60);
+        scheduleAppointmentBtn.setBounds(80, 260, 280, 60);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/teacher.png"))); // NOI18N
@@ -117,11 +116,6 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("jLabel1");
         add(jLabel1);
         jLabel1.setBounds(80, 20, 780, 50);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/trainerPortal.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        add(jLabel2);
-        jLabel2.setBounds(80, 80, 190, 280);
     }// </editor-fold>//GEN-END:initComponents
 
     private void scheduleAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtnActionPerformed
@@ -150,7 +144,6 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable manageApplicantsJTable;

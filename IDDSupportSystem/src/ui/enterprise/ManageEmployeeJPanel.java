@@ -178,7 +178,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/enterprise/empManagement.gif"))); // NOI18N
         add(jLabel7);
-        jLabel7.setBounds(430, 310, 320, 170);
+        jLabel7.setBounds(450, 310, 370, 230);
     }// </editor-fold>//GEN-END:initComponents
     
     private void populateDropdown() {

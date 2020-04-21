@@ -85,11 +85,11 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/ui/images/SCHEDULINGHISTORY.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Meeting History Information"/>
+        <Property name="text" type="java.lang.String" value="MEETING HISTORY INFORMATION"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="26" y="12" width="410" height="70"/>
+          <AbsoluteConstraints x="26" y="12" width="500" height="70"/>
         </Constraint>
       </Constraints>
     </Component>
