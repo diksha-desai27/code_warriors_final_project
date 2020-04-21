@@ -119,7 +119,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Network: ");
         add(jLabel1);
-        jLabel1.setBounds(360, 170, 61, 16);
+        jLabel1.setBounds(340, 170, 61, 16);
 
         dpdNetwork.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dpdNetwork.addActionListener(new java.awt.event.ActionListener() {
@@ -128,11 +128,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdNetwork);
-        dpdNetwork.setBounds(480, 170, 147, 27);
+        dpdNetwork.setBounds(457, 170, 170, 27);
 
         jLabel2.setText("Enterprise Type:");
         add(jLabel2);
-        jLabel2.setBounds(360, 220, 101, 16);
+        jLabel2.setBounds(340, 220, 101, 16);
 
         dpdEnterpriseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dpdEnterpriseType.addActionListener(new java.awt.event.ActionListener() {
@@ -141,13 +141,13 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdEnterpriseType);
-        dpdEnterpriseType.setBounds(480, 220, 147, 27);
+        dpdEnterpriseType.setBounds(467, 220, 160, 27);
 
         jLabel3.setText("Name:");
         add(jLabel3);
-        jLabel3.setBounds(360, 270, 40, 16);
+        jLabel3.setBounds(350, 270, 40, 16);
         add(enterpriseNameTextField);
-        enterpriseNameTextField.setBounds(480, 270, 141, 26);
+        enterpriseNameTextField.setBounds(471, 270, 150, 26);
 
         btnCreateEnterprise.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnCreateEnterprise.setText("Create Enterprise");
@@ -157,7 +157,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreateEnterprise);
-        btnCreateEnterprise.setBounds(480, 340, 141, 40);
+        btnCreateEnterprise.setBounds(451, 340, 170, 40);
 
         btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N

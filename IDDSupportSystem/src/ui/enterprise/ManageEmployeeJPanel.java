@@ -13,6 +13,7 @@ import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -81,7 +82,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdOrganization);
-        dpdOrganization.setBounds(270, 80, 120, 27);
+        dpdOrganization.setBounds(270, 80, 270, 27);
 
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,7 +122,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdOrganizationEmp);
-        dpdOrganizationEmp.setBounds(260, 300, 140, 27);
+        dpdOrganizationEmp.setBounds(250, 300, 210, 27);
 
         nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +130,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(nameTextField);
-        nameTextField.setBounds(260, 350, 140, 26);
+        nameTextField.setBounds(250, 350, 200, 26);
 
         btnCreateEmployee.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnCreateEmployee.setText("Create Employee");
@@ -139,7 +140,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreateEmployee);
-        btnCreateEmployee.setBounds(260, 410, 140, 40);
+        btnCreateEmployee.setBounds(220, 410, 230, 40);
 
         btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
@@ -160,10 +161,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         add(jLabel2);
         jLabel2.setBounds(130, 350, 36, 16);
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel4.setText("View Employees");
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel4.setText("VIEW EMPLOYEE");
         add(jLabel4);
-        jLabel4.setBounds(140, 30, 140, 30);
+        jLabel4.setBounds(110, 20, 240, 30);
         add(jSeparator1);
         jSeparator1.setBounds(20, 220, 661, 10);
 
@@ -174,11 +175,11 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/employee.png"))); // NOI18N
         add(jLabel6);
-        jLabel6.setBounds(30, 20, 100, 70);
+        jLabel6.setBounds(40, 0, 100, 70);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/enterprise/empManagement.gif"))); // NOI18N
         add(jLabel7);
-        jLabel7.setBounds(450, 310, 370, 230);
+        jLabel7.setBounds(480, 190, 420, 330);
     }// </editor-fold>//GEN-END:initComponents
     
     private void populateDropdown() {
@@ -219,17 +220,42 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
          
         Organization org = (Organization) dpdOrganizationEmp.getSelectedItem();
         String name = nameTextField.getText();
-  
+        System.out.println("compare: " + Organization.Type.Reviewer.getValue().equals(org.getName()));
+
+        if(Organization.Type.Reviewer.getValue().equals(org.getName()))
+        {
+            
+           if(org.getEmployeeDirectory().getEmployeeList().isEmpty())
+           {
+               System.out.println("user created first time");
+               org.getEmployeeDirectory().createEmployee(name);
+               enterprise.getEmployeeDirectory().createEmployee(name);
+               system.getEmployeeDirectory().createEmployee(name);
+               JOptionPane.showMessageDialog(null, "Employee created successfully");
+           }
+           else
+               
+           {
+               System.out.println("user not crated");
+               JOptionPane.showMessageDialog(null, "Reviewer already exists. You cannot have create more than ONE reviewer");
+
+           }               
+        }
+        else
+        {
+            System.out.println("hello");
             org.getEmployeeDirectory().createEmployee(name);
             enterprise.getEmployeeDirectory().createEmployee(name);
             system.getEmployeeDirectory().createEmployee(name);
-        
+            JOptionPane.showMessageDialog(null, "Employee created successfully");
+        }
+          
         this.populateTable(org);
-        JOptionPane.showMessageDialog(null, "Employee created successfully");
         nameTextField.setText("");
           
     }//GEN-LAST:event_btnCreateEmployeeActionPerformed
 
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
      
      userProcessContainer.remove(this);

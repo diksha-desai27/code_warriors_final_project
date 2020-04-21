@@ -117,51 +117,51 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         jLabel2.setText("First Name:");
         add(jLabel2);
-        jLabel2.setBounds(110, 370, 72, 16);
+        jLabel2.setBounds(70, 370, 72, 16);
 
         jLabel3.setText("Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(450, 380, 70, 16);
+        jLabel3.setBounds(400, 370, 70, 16);
 
         jLabel4.setText("Birth Date:");
         add(jLabel4);
-        jLabel4.setBounds(110, 430, 66, 16);
+        jLabel4.setBounds(70, 430, 66, 16);
 
         firstNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(firstNameValue);
-        firstNameValue.setBounds(240, 370, 100, 30);
+        firstNameValue.setBounds(190, 370, 130, 30);
 
         lastNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(lastNameValue);
-        lastNameValue.setBounds(620, 376, 100, 30);
+        lastNameValue.setBounds(560, 360, 100, 30);
 
         birthDateValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(birthDateValue);
-        birthDateValue.setBounds(240, 426, 140, 30);
+        birthDateValue.setBounds(190, 420, 140, 30);
 
         jLabel5.setText("Disability:");
         add(jLabel5);
-        jLabel5.setBounds(110, 480, 66, 16);
+        jLabel5.setBounds(70, 480, 66, 16);
 
         disabilityValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(disabilityValue);
-        disabilityValue.setBounds(240, 480, 140, 30);
+        disabilityValue.setBounds(190, 470, 140, 30);
 
         jLabel6.setText("Duration of Disability:");
         add(jLabel6);
-        jLabel6.setBounds(450, 480, 140, 20);
+        jLabel6.setBounds(400, 470, 140, 20);
 
         durationValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(durationValue);
-        durationValue.setBounds(620, 480, 100, 30);
+        durationValue.setBounds(560, 470, 100, 30);
 
         jLabel7.setText("Service Requested:");
         add(jLabel7);
-        jLabel7.setBounds(110, 550, 117, 30);
+        jLabel7.setBounds(60, 540, 117, 30);
 
         servicesValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(servicesValue);
-        servicesValue.setBounds(320, 550, 400, 26);
+        servicesValue.setBounds(190, 536, 400, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Individual Information");
@@ -177,15 +177,15 @@ public class ManageIndividuals extends javax.swing.JPanel {
             }
         });
         add(assignCareGiverBtn);
-        assignCareGiverBtn.setBounds(346, 610, 180, 40);
+        assignCareGiverBtn.setBounds(230, 610, 180, 40);
 
         jLabel9.setText("City:");
         add(jLabel9);
-        jLabel9.setBounds(450, 430, 29, 16);
+        jLabel9.setBounds(400, 420, 29, 16);
 
         cityValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(cityValue);
-        cityValue.setBounds(620, 430, 100, 30);
+        cityValue.setBounds(560, 410, 100, 30);
 
         assignTrainerBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         assignTrainerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
@@ -196,7 +196,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
             }
         });
         add(assignTrainerBtn);
-        assignTrainerBtn.setBounds(550, 610, 160, 40);
+        assignTrainerBtn.setBounds(450, 610, 160, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     public void populateTable() {

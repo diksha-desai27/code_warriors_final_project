@@ -151,7 +151,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("First Name");
         add(jLabel2);
-        jLabel2.setBounds(6, 127, 76, 20);
+        jLabel2.setBounds(6, 127, 68, 16);
         add(firstNamejTextField);
         firstNamejTextField.setBounds(161, 122, 164, 26);
 
@@ -163,13 +163,13 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         userNameLabel.setText("User Name");
         add(userNameLabel);
-        userNameLabel.setBounds(10, 220, 102, 20);
+        userNameLabel.setBounds(10, 220, 102, 16);
         add(userNamejTextField);
         userNamejTextField.setBounds(160, 210, 164, 26);
 
         passwordLabel.setText("Password");
         add(passwordLabel);
-        passwordLabel.setBounds(10, 260, 331, 20);
+        passwordLabel.setBounds(10, 260, 331, 16);
         add(passwordJField);
         passwordJField.setBounds(160, 250, 164, 26);
 
@@ -212,12 +212,12 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(individualWRequestJTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(10, 650, 601, 97);
+        jScrollPane1.setBounds(10, 620, 601, 97);
 
-        requestJLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        requestJLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         requestJLabel.setText("MY REQUESTS");
         add(requestJLabel);
-        requestJLabel.setBounds(30, 600, 172, 29);
+        requestJLabel.setBounds(20, 590, 91, 17);
 
         facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -241,7 +241,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(facilityJTable);
 
         add(jScrollPane2);
-        jScrollPane2.setBounds(6, 484, 501, 97);
+        jScrollPane2.setBounds(10, 460, 501, 97);
 
         requestFacilityBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         requestFacilityBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
@@ -254,10 +254,10 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         add(requestFacilityBtn);
         requestFacilityBtn.setBounds(530, 480, 170, 40);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("AVAILABLE FACILITY ");
         add(jLabel5);
-        jLabel5.setBounds(20, 430, 270, 29);
+        jLabel5.setBounds(10, 420, 270, 29);
 
         btnAvailableFacility.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnAvailableFacility.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/time.png"))); // NOI18N
@@ -279,7 +279,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/back.png"))); // NOI18N
         jLabel4.setText("jLabel4");
         add(jLabel4);
-        jLabel4.setBounds(80, 20, 560, 60);
+        jLabel4.setBounds(80, 20, 790, 60);
 
         requestFacilityBtn1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         requestFacilityBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N

@@ -152,7 +152,7 @@ public class AssignToJPanel extends javax.swing.JPanel {
             }
         });
         add(backBtn);
-        backBtn.setBounds(19, 368, 110, 40);
+        backBtn.setBounds(20, 360, 110, 40);
         add(jLabel5);
         jLabel5.setBounds(275, 6, 108, 34);
     }// </editor-fold>//GEN-END:initComponents

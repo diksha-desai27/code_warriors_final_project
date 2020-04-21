@@ -124,14 +124,14 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Comments:");
         add(jLabel5);
-        jLabel5.setBounds(30, 290, 72, 16);
+        jLabel5.setBounds(30, 270, 72, 16);
 
         commentsTxtArea.setColumns(20);
         commentsTxtArea.setRows(5);
         jScrollPane2.setViewportView(commentsTxtArea);
 
         add(jScrollPane2);
-        jScrollPane2.setBounds(140, 300, 244, 84);
+        jScrollPane2.setBounds(140, 270, 244, 84);
 
         assignBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         assignBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
@@ -142,7 +142,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
             }
         });
         add(assignBtn);
-        assignBtn.setBounds(190, 600, 200, 42);
+        assignBtn.setBounds(190, 530, 200, 42);
 
         nurseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,11 +166,11 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
         jScrollPane3.setViewportView(nurseTable);
 
         add(jScrollPane3);
-        jScrollPane3.setBounds(30, 460, 437, 113);
+        jScrollPane3.setBounds(30, 400, 437, 113);
 
         jLabel9.setText("Available Nurse:");
         add(jLabel9);
-        jLabel9.setBounds(30, 410, 102, 16);
+        jLabel9.setBounds(30, 370, 102, 16);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/user1.png"))); // NOI18N
