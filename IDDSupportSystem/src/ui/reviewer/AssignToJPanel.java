@@ -198,30 +198,23 @@ public class AssignToJPanel extends javax.swing.JPanel {
                 Map.Entry mapElement = (Map.Entry) empIterator.next();
                 Employee e = ((Employee) mapElement.getKey());
                 UserAccount ua = ((UserAccount) mapElement.getValue());
-                
-                if(role.equalsIgnoreCase("caregiver"))
-                {
-                    if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) 
-                    {
-                        if (e.getStatus().equals("Available")) 
-                        {
+
+                if (role.equalsIgnoreCase("caregiver")) {
+                    if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) {
+                        if (e.getStatus().equals("Available")) {
                             Object row[] = new Object[2];
                             row[0] = e;
                             row[1] = e.getStatus();
                             dtm.addRow(row);
                         }
-                    } 
-                }
-                else
-                {
-                    if (ua.getRoleType().getValue().equalsIgnoreCase("Trainer")) 
-                    {
+                    }
+                } else {
+                    if (ua.getRoleType().getValue().equalsIgnoreCase("Trainer")) {
                         Object row[] = new Object[2];
                         row[0] = e;
                         dtm.addRow(row);
-                    } 
+                    }
                 }
-                
 
             }
         }
@@ -250,7 +243,7 @@ public class AssignToJPanel extends javax.swing.JPanel {
             if (ua != null) {
                 for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
                     if ((w.getIndividual() != null) && (w.getIndividual().getRegistrationId() == this.individual.getRegistrationId())) {
-                        if (individual.getServiceType().equalsIgnoreCase("MedicalService")) {
+                        if (individual.getServiceType().equals("MedicalService")) {
                             w.setSender(this.userAccount);
                             w.setStatus("Assigned to Caregiver");
                             w.setMessage("");

@@ -27,14 +27,13 @@ public class ManageIndividuals extends javax.swing.JPanel {
     /**
      * Creates new form ManageIndividuals
      */
-    
     JPanel userProcessContainer;
     UserAccount userAccount;
     IndividualDirectory individualDirectory;
     Individual individual;
     Enterprise enterprise;
-    
-    public ManageIndividuals(JPanel userProcessContainer,UserAccount userAccount, IndividualDirectory individualDirectory, Enterprise enterprise) {
+
+    public ManageIndividuals(JPanel userProcessContainer, UserAccount userAccount, IndividualDirectory individualDirectory, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
@@ -251,111 +250,111 @@ public class ManageIndividuals extends javax.swing.JPanel {
                 .addGap(154, 154, 154))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
+
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) individualTable.getModel();
         model.setRowCount(0);
         
-        for(WorkRequest w: userAccount.getWorkQueue().getWorkRequestList())
-        {
+        for (Individual i : this.individualDirectory.getIndividualList()) {
             Object[] row = new Object[4];
-            row[0] = w.getIndividual().getRegistrationId();
-            row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
-            row[2] = w.getStatus();
+            row[0] = i.getRegistrationId();
+            row[1] = i.getFirstName();
+            row[3] = i.getLastName();
             model.addRow(row);
         }
     }
-    
+
     private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
         // TODO add your handling code here:
-       int selectedRow = individualTable.getSelectedRow();
-       if(selectedRow >= 0) {
-           int id = (Integer)individualTable.getValueAt(selectedRow, 0);
-           for(Individual i: this.individualDirectory.getIndividualList()) {
-               if(i.getRegistrationId() == id)
-               {
-                   individual = i;
-                   break;
-               }
-           }
-           firstNameValue.setText(individual.getFirstName());
-           lastNameValue.setText(individual.getLastName());
-           birthDateValue.setText(individual.getBirthDate());
-           cityValue.setText(individual.getCity());
-           disabilityValue.setText(individual.getIddInfo().getdName());
-           durationValue.setText(String.valueOf(individual.getIddInfo().getDuration()));
-           servicesValue.setText(individual.getServiceType());
-       }
-       else
-       {
-           JOptionPane.showMessageDialog(null, "Please select a row");
-       }
+        int selectedRow = individualTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int id = (Integer) individualTable.getValueAt(selectedRow, 0);
+            for (Individual i : this.individualDirectory.getIndividualList()) {
+                if (i.getRegistrationId() == id) {
+                    individual = i;
+                    break;
+                }
+            }
+            firstNameValue.setText(individual.getFirstName());
+            lastNameValue.setText(individual.getLastName());
+            birthDateValue.setText(individual.getBirthDate());
+            cityValue.setText(individual.getCity());
+            disabilityValue.setText(individual.getIddInfo().getdName());
+            durationValue.setText(String.valueOf(individual.getIddInfo().getDuration()));
+            servicesValue.setText(individual.getServiceType());
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
     }//GEN-LAST:event_btnViewDetailsActionPerformed
 
     private void assignCareGiverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignCareGiverBtnActionPerformed
         // TODO add your handling code here:
         int selectedRow = individualTable.getSelectedRow();
-        if(selectedRow >= 0) {
-            int id = (Integer)individualTable.getValueAt(selectedRow, 0);
-            
-            for(WorkRequest w: userAccount.getWorkQueue().getWorkRequestList())
-            {
-                if(w.getIndividual().getRegistrationId() == id)
-                {
-                    if(w.getStatus().equalsIgnoreCase("Requested Facility"))
-                    {
-                        individual = w.getIndividual();
-                        AssignToJPanel assignCareGiver = new AssignToJPanel(userProcessContainer,userAccount, individual, this.enterprise, "caregiver");
-                        userProcessContainer.add("AssignCareGiver",assignCareGiver);
 
-                        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        if (selectedRow >= 0) {
+            int id = (Integer) individualTable.getValueAt(selectedRow, 0);
+
+            for (WorkRequest w : userAccount.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual().getRegistrationId() == id) {
+                    if (w.getStatus().equalsIgnoreCase("Requested Facility")) {
+
+                        if (individual.getServiceType().equals("EmploymentService")) {
+                            JOptionPane.showMessageDialog(null, "You cant assign Care giver to training service");
+                            return;
+                        }
+
+                        individual = w.getIndividual();
+                        AssignToJPanel assignCareGiver = new AssignToJPanel(userProcessContainer, userAccount, individual, this.enterprise, "caregiver");
+                        userProcessContainer.add("AssignCareGiver", assignCareGiver);
+
+                        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                         layout.next(userProcessContainer);
-                    }
-                    else
-                    {
+                    } else {
                         JOptionPane.showMessageDialog(null, "You can assign this request.");
                     }
                     break;
                 }
             }
-           
-        }
-        else {
-            JOptionPane.showMessageDialog(null, "Please select an individual to assign it to the caregiver.");
+
+        } else {
+            JOptionPane
+                    .showMessageDialog(null, "Please select an individual to assign it to the caregiver.");
         }
     }//GEN-LAST:event_assignCareGiverBtnActionPerformed
 
     private void assignTrainerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignTrainerBtnActionPerformed
         // TODO add your handling code here:
         int selectedRow = individualTable.getSelectedRow();
-        if(selectedRow >= 0) {
-            int id = (Integer)individualTable.getValueAt(selectedRow, 0);
-            
-            for(WorkRequest w: userAccount.getWorkQueue().getWorkRequestList())
-            {
-                if(w.getIndividual().getRegistrationId() == id)
-                {
-                    if(w.getStatus().equalsIgnoreCase("Requested Facility"))
-                    {
-                        individual = w.getIndividual();
-                        AssignToJPanel assign = new AssignToJPanel(userProcessContainer,userAccount, individual, this.enterprise, "trainer");
-                        userProcessContainer.add("assign",assign);
 
-                        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        if (selectedRow >= 0) {
+            int id = (Integer) individualTable.getValueAt(selectedRow, 0);
+
+            for (WorkRequest w : userAccount.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual().getRegistrationId() == id) {
+                    if (w.getStatus().equalsIgnoreCase("Requested Facility")) {
+
+                        if (individual.getServiceType().equals("MedicalService")) {
+                            JOptionPane.showMessageDialog(null, "You cant assign trainer to medical service");
+                            return;
+                        }
+                        individual = w.getIndividual();
+                        AssignToJPanel assign = new AssignToJPanel(userProcessContainer, userAccount, individual, this.enterprise, "trainer");
+                        userProcessContainer.add("assign", assign);
+
+                        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                         layout.next(userProcessContainer);
-                    }
-                    else
-                    {
+                    } else {
                         JOptionPane.showMessageDialog(null, "You can assign this request.");
                     }
                     break;
                 }
             }
+        } else {
+
+            JOptionPane
+                    .showMessageDialog(null, "Please select an individual to assign it to the trainer.");
         }
-        else {
-            JOptionPane.showMessageDialog(null, "Please select an individual to assign it to the trainer.");
-        }
-        
+
     }//GEN-LAST:event_assignTrainerBtnActionPerformed
 
 
