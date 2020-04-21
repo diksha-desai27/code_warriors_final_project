@@ -51,35 +51,22 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         lastNamejTextField.setEnabled(false);
         userNamejTextField.setEnabled(false);
 
-        if (userAccount.getWorkQueue().getWorkRequestList().isEmpty()) {
-            this.populateFacilities();
-            facilityJTable.setVisible(true);
-            this.requestFacilityBtn.setVisible(true);
-            this.btnAvailableFacility.setVisible(true);
-            this.requestJLabel.setVisible(false);
-        } else {
-            for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
+        
+          /*  for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
                 if (!wr.getStatus().equalsIgnoreCase("Completed")) {
                     flag = true;
                     break;
                 }
-            }
-            if (flag) {
-                facilityJTable.setVisible(false);
-                this.requestFacilityBtn.setEnabled(false);
-                this.btnAvailableFacility.setEnabled(false);
-                this.requestJLabel.setVisible(true);
-                this.populateData();
-            } else {
-                this.populateFacilities();
-                facilityJTable.setVisible(true);
-                this.requestFacilityBtn.setVisible(true);
-                this.btnAvailableFacility.setVisible(true);
-                this.individualWRequestJTable.setVisible(false);
-                this.requestJLabel.setVisible(false);
-            }
+            } */
+          //  if (flag) {
+             //   facilityJTable.setVisible(false);
 
-        }
+                this.populateData();
+         //   } else {
+                this.populateFacilities();
+               
+          //  }
+
 
     }
 
@@ -91,8 +78,8 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             Object[] row = new Object[4];
             row[0] = wr.getIndividual().getRegistrationId();
             row[1] = wr.getSender();
-            row[2] = wr.getReceiver();
-            row[3] = wr.getStatus();
+            row[2] = wr.getStatus();
+            row[3] = wr.getRating();
             model.addRow(row);
         }
     }
@@ -151,7 +138,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("First Name");
         add(jLabel2);
-        jLabel2.setBounds(6, 127, 68, 16);
+        jLabel2.setBounds(6, 127, 76, 20);
         add(firstNamejTextField);
         firstNamejTextField.setBounds(161, 122, 164, 26);
 
@@ -163,13 +150,13 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         userNameLabel.setText("User Name");
         add(userNameLabel);
-        userNameLabel.setBounds(10, 220, 102, 16);
+        userNameLabel.setBounds(10, 220, 102, 20);
         add(userNamejTextField);
         userNamejTextField.setBounds(160, 210, 164, 26);
 
         passwordLabel.setText("Password");
         add(passwordLabel);
-        passwordLabel.setBounds(10, 260, 331, 16);
+        passwordLabel.setBounds(10, 260, 331, 20);
         add(passwordJField);
         passwordJField.setBounds(160, 250, 164, 26);
 
@@ -198,7 +185,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Registration ID", "Sender", "Receiver", "Status"
+                "Registration ID", "Sender", "Status", "Rating"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -217,7 +204,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         requestJLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         requestJLabel.setText("MY REQUESTS");
         add(requestJLabel);
-        requestJLabel.setBounds(20, 590, 91, 17);
+        requestJLabel.setBounds(20, 590, 90, 17);
 
         facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -315,6 +302,20 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         int selectedRow = facilityJTable.getSelectedRow();
         UserAccount selectedUserAccount = null;
         if (selectedRow >= 0) {
+            
+            for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
+                if (!wr.getStatus().equalsIgnoreCase("Completed")) {
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag){
+                JOptionPane.showMessageDialog(null, "Your previous request is still in processing mode. You cannot request another facility.");
+                return;
+            }
+            
+            
+            
             Enterprise enteprise = (Enterprise) facilityJTable.getValueAt(selectedRow, 0);
             Iterator empIterator = enteprise.getEmpMap().entrySet().iterator();
 
@@ -372,6 +373,9 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                         rightJPanel.add("FeedbackJPanel", feedbackJPanel);
                         CardLayout layout = (CardLayout) rightJPanel.getLayout();
                         layout.next(rightJPanel);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "You cannot provid feedback for this request");
+                        return;
                     }
                 }
             }

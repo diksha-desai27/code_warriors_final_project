@@ -12,11 +12,13 @@ import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ui.nurse.ScheduleMeetingJPanel;
 
 /**
  *
@@ -63,8 +65,6 @@ public class ManageIndividuals extends javax.swing.JPanel {
         birthDateValue = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         disabilityValue = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        durationValue = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         servicesValue = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -72,6 +72,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         cityValue = new javax.swing.JLabel();
         assignTrainerBtn = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -80,7 +81,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/user1.png"))); // NOI18N
         jLabel1.setText("MANAGE INDIVIDUALS");
         add(jLabel1);
-        jLabel1.setBounds(50, 40, 370, 60);
+        jLabel1.setBounds(190, 50, 370, 60);
 
         individualTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,15 +118,15 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         jLabel2.setText("First Name:");
         add(jLabel2);
-        jLabel2.setBounds(70, 370, 72, 16);
+        jLabel2.setBounds(70, 370, 82, 20);
 
         jLabel3.setText("Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(400, 370, 70, 16);
+        jLabel3.setBounds(400, 370, 80, 20);
 
         jLabel4.setText("Birth Date:");
         add(jLabel4);
-        jLabel4.setBounds(70, 430, 66, 16);
+        jLabel4.setBounds(70, 430, 76, 20);
 
         firstNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(firstNameValue);
@@ -141,23 +142,15 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         jLabel5.setText("Disability:");
         add(jLabel5);
-        jLabel5.setBounds(70, 480, 66, 16);
+        jLabel5.setBounds(70, 480, 66, 20);
 
         disabilityValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(disabilityValue);
         disabilityValue.setBounds(190, 470, 140, 30);
 
-        jLabel6.setText("Duration of Disability:");
-        add(jLabel6);
-        jLabel6.setBounds(400, 470, 140, 20);
-
-        durationValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        add(durationValue);
-        durationValue.setBounds(560, 470, 100, 30);
-
         jLabel7.setText("Service Requested:");
         add(jLabel7);
-        jLabel7.setBounds(60, 540, 117, 30);
+        jLabel7.setBounds(60, 540, 134, 30);
 
         servicesValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(servicesValue);
@@ -181,7 +174,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         jLabel9.setText("City:");
         add(jLabel9);
-        jLabel9.setBounds(400, 420, 29, 16);
+        jLabel9.setBounds(400, 420, 33, 20);
 
         cityValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(cityValue);
@@ -197,6 +190,17 @@ public class ManageIndividuals extends javax.swing.JPanel {
         });
         add(assignTrainerBtn);
         assignTrainerBtn.setBounds(450, 610, 160, 40);
+
+        btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack);
+        btnBack.setBounds(30, 60, 120, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     public void populateTable() {
@@ -207,7 +211,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
             Object[] row = new Object[4];
             row[0] = wr.getIndividual().getRegistrationId();
             row[1] = wr.getIndividual().getFirstName() + " " + wr.getIndividual().getLastName();
-            row[3] = wr.getStatus();
+            row[2] = wr.getStatus();
             model.addRow(row);
         }
     }
@@ -228,7 +232,6 @@ public class ManageIndividuals extends javax.swing.JPanel {
             birthDateValue.setText(individual.getBirthDate());
             cityValue.setText(individual.getCity());
             disabilityValue.setText(individual.getIddInfo().getdName());
-            durationValue.setText(String.valueOf(individual.getIddInfo().getDuration()));
             servicesValue.setText(individual.getServiceType());
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row");
@@ -305,15 +308,25 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
     }//GEN-LAST:event_assignTrainerBtnActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ReviewerWorkAreaJPanel reveiwerJPanel = (ReviewerWorkAreaJPanel) component;
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignCareGiverBtn;
     private javax.swing.JButton assignTrainerBtn;
     private javax.swing.JLabel birthDateValue;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnViewDetails;
     private javax.swing.JLabel cityValue;
     private javax.swing.JLabel disabilityValue;
-    private javax.swing.JLabel durationValue;
     private javax.swing.JLabel firstNameValue;
     private javax.swing.JTable individualTable;
     private javax.swing.JLabel jLabel1;
@@ -321,7 +334,6 @@ public class ManageIndividuals extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

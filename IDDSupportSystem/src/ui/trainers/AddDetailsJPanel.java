@@ -82,8 +82,8 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
     }
 
     public void populateHistoryDetails() {
-        
-           String pattern = "yyyy-MM-dd";
+
+        String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         DefaultTableModel model = (DefaultTableModel) historyJTable.getModel();
         model.setRowCount(0);
@@ -286,15 +286,17 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         Individual ind = workRequest.getIndividual();
         Boolean flag = false;
         for (IndividualHistory indHistory : ind.getHistory()) {
+            if (indHistory.getStatus().equalsIgnoreCase("Meeting Scheduled")) {
+                flag = true;
+                break;
+            }
 
-            workRequest.setStatus("Completed");
-            flag = true;
-            JOptionPane.showMessageDialog(null, "Status updated successfully");
-            break;
         }
-        if (!flag) {
+        if (flag) {
             JOptionPane.showMessageDialog(null, "You cannot mark the request as compeleted");
         } else {
+            workRequest.setStatus("Completed");
+            JOptionPane.showMessageDialog(null, "Status updated successfully");
             userProcessContainer.remove(this);
             Component[] componentArray = userProcessContainer.getComponents();
             Component component = componentArray[componentArray.length - 1];
@@ -312,7 +314,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
             IndividualHistory history = (IndividualHistory) historyJTable.getValueAt(selectedRow, 0);
             String status = (String) historyJTable.getValueAt(selectedRow, 3);
             if (status.equalsIgnoreCase("Meeting Scheduled")) {
-                AddHistoryJPanel addDetails = new AddHistoryJPanel(userProcessContainer, account, enterprise, workRequest);
+                AddHistoryJPanel addDetails = new AddHistoryJPanel(userProcessContainer, account, enterprise, workRequest, history);
                 userProcessContainer.add("AddDetailsJPanel", addDetails);
                 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
@@ -350,11 +352,8 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                 Date date = ((Date) mappedElement.getKey());
                 String newDate = simpleDateFormat.format(date);
                 //  sch = ((  System.out.println("in if");Schedule) mapElement.getValue());
-                System.out.println(appointmentFormatted);
-
-                System.out.println(newDate);
                 if (appointmentFormatted.equals(newDate)) {
-                    System.out.println("in if");
+                   
                     slotList.clear();
                     Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
                     Iterator timeIterator = getTime.entrySet().iterator();
@@ -393,9 +392,9 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
                 return;
             }
 
-            for(IndividualHistory history : workRequest.getIndividual().getHistory()){
-                if(history.getStatus().equalsIgnoreCase("Meeting Scheduled")){
-                    JOptionPane.showMessageDialog(null, "you have a previous appoinment open.Please close it before creating new one.");
+            for (IndividualHistory history : workRequest.getIndividual().getHistory()) {
+                if (!history.getStatus().equalsIgnoreCase("Completed")) {
+                    JOptionPane.showMessageDialog(null, "You have a previous appoinment open/rescheduled.Please close it before creating new one.");
                     return;
                 }
 

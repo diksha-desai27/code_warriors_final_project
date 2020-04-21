@@ -127,6 +127,7 @@ public class FeedbackJPanel extends javax.swing.JPanel {
         } else {
             workRequest.setRating(dpdFeedback.getSelectedItem().toString());
             workRequest.setMessage(commentTxt.getText());
+            JOptionPane.showMessageDialog(null, "Feedback saved successfully.");
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 

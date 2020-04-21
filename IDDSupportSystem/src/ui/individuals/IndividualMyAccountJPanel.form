@@ -161,8 +161,8 @@
               <Table columnCount="4" rowCount="4">
                 <Column editable="false" title="Registration ID" type="java.lang.Object"/>
                 <Column editable="false" title="Sender" type="java.lang.Object"/>
-                <Column editable="false" title="Receiver" type="java.lang.Object"/>
                 <Column editable="false" title="Status" type="java.lang.Object"/>
+                <Column editable="false" title="Rating" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>

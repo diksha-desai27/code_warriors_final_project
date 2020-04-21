@@ -27,11 +27,12 @@ public class IndividualRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system, Enterprise enterprise, Individual individual) {
+       facilityList = new ArrayList<Enterprise>();
         if (individual != null) {
             for (Network n : system.getNetworkList()) {
                 if (n.getName().equalsIgnoreCase(individual.getCity())) {
                     for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-                        if (e.enterpriseType.getValue().equals("Facility")) {
+                        if (e.enterpriseType.getValue().equalsIgnoreCase("Facility")) {
                             facilityList.add(e);
                         }
                     }
