@@ -188,7 +188,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(btnUpdate);
-        btnUpdate.setBounds(110, 350, 150, 39);
+        btnUpdate.setBounds(100, 342, 160, 50);
 
         individualWRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -268,7 +268,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAvailableFacility);
-        btnAvailableFacility.setBounds(300, 350, 220, 39);
+        btnAvailableFacility.setBounds(290, 342, 230, 50);
 
         jLabel6.setBackground(new java.awt.Color(107, 200, 223));
         jLabel6.setForeground(new java.awt.Color(102, 204, 255));

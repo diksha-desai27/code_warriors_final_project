@@ -51,51 +51,60 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         btnManageOrganization = new javax.swing.JButton();
         btnManageUserAccount = new javax.swing.JButton();
         btnManageEmployee = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
+        btnManageOrganization.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnManageOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/organization.png"))); // NOI18N
         btnManageOrganization.setText("Manage Organzation");
         btnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageOrganizationActionPerformed(evt);
             }
         });
+        add(btnManageOrganization);
+        btnManageOrganization.setBounds(380, 140, 320, 70);
 
+        btnManageUserAccount.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnManageUserAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/employeeUserAccount.png"))); // NOI18N
         btnManageUserAccount.setText("Manage Employees UserAccount");
         btnManageUserAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageUserAccountActionPerformed(evt);
             }
         });
+        add(btnManageUserAccount);
+        btnManageUserAccount.setBounds(380, 350, 320, 80);
 
+        btnManageEmployee.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnManageEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/employee.png"))); // NOI18N
         btnManageEmployee.setText("Manage Employees");
         btnManageEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageEmployeeActionPerformed(evt);
             }
         });
+        add(btnManageEmployee);
+        btnManageEmployee.setBounds(380, 240, 320, 80);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnManageUserAccount)
-                    .addComponent(btnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(107, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(btnManageOrganization)
-                .addGap(18, 18, 18)
-                .addComponent(btnManageEmployee)
-                .addGap(27, 27, 27)
-                .addComponent(btnManageUserAccount)
-                .addContainerGap(179, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/case.png"))); // NOI18N
+        jLabel1.setText(" ENTERPRISE ADMIN");
+        add(jLabel1);
+        jLabel1.setBounds(30, 30, 350, 70);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2);
+        jLabel2.setBounds(85, 46, 690, 40);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/AdminPortalWelcome.png"))); // NOI18N
+        add(jLabel4);
+        jLabel4.setBounds(80, 40, 250, 500);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
@@ -130,5 +139,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageEmployee;
     private javax.swing.JButton btnManageOrganization;
     private javax.swing.JButton btnManageUserAccount;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

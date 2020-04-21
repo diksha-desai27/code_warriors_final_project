@@ -156,7 +156,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         btnCreateAdmin.setBounds(620, 60, 129, 40);
 
         btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/backbutton.png")); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +166,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         add(btnBack);
         btnBack.setBounds(61, 427, 120, 40);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/Admin3.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Admin3.png"))); // NOI18N
         add(jLabel6);
         jLabel6.setBounds(10, 50, 80, 60);
     }// </editor-fold>//GEN-END:initComponents

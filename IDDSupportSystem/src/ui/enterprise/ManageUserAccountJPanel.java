@@ -75,8 +75,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         dpdOrganization = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         dpdRole = new javax.swing.JComboBox();
-        jLabel6 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +120,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         dpdEmployee.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +147,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setText("Manage User Account");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/employeeUserAccount.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,48 +156,44 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(jLabel6))
+                        .addGap(124, 124, 124)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(btnCreate))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCreate)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)))
-                        .addGap(71, 71, 71)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel7)
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dpdRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(dpdOrganization, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(dpdEmployee, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                    .addComponent(usernameTextField))))))
-                .addGap(238, 238, 238))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(46, 46, 46)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dpdEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dpdOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dpdRole, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel6)
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(dpdOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(dpdEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,42 +201,170 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(dpdRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
-                    .addComponent(btnCreate))
-                .addGap(22, 22, 22))
+                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 705, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGap(0, 522, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void dpdRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dpdRoleActionPerformed
+
+    private void dpdOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdOrganizationActionPerformed
+        Organization org = (Organization) dpdOrganization.getSelectedItem();
+        if (org != null) {
+            this.populateEmployees(org);
+            this.populateRoles(org);
+        }
+    }//GEN-LAST:event_dpdOrganizationActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        AdminWorkAreaJPanel dwjp = (AdminWorkAreaJPanel) component;
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+
+        if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill out all the details");
+        } else if (usernamePatternCorrect()) {
+            if (passwordPatternCorrect()) {
+                String username = usernameTextField.getText();
+                char c[] = passwordField.getPassword();
+                String password = String.valueOf(c);
+
+                Organization org = (Organization) dpdOrganization.getSelectedItem();
+                Employee emp = (Employee) dpdEmployee.getSelectedItem();
+                String value = dpdRole.getSelectedItem().toString();
+                Role role = null;
+                RoleType roleType = null;
+                if (value.equals("Caregiver")) {
+                    role = new CaregiverRole();
+                    roleType = Role.RoleType.Caregiver;
+                } else if (value.equals("Doctor")) {
+                    role = new DoctorRole();
+                    roleType = Role.RoleType.Doctor;
+                } else if (value.equals("Nurse")) {
+                    role = new NurseRole();
+                    roleType = Role.RoleType.Nurse;
+                } else if (value.equals("Reviewer")) {
+                    role = new ReviewerRole();
+                    roleType = Role.RoleType.Reviewer;
+                } else {
+                    role = new TrainerRole();
+                    roleType = Role.RoleType.Trainer;
+                }
+
+                System.out.println("getMap: " + enterprise.getEmpMap());
+                if (enterprise.getEmpMap().isEmpty())
+                {
+                    System.out.println("if");
+                    UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+
+                    if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue()))
+                    {
+                        Schedule sch = new Schedule();
+                        enterprise.getSchedule().put(ua1, sch);
+                    }
+
+                    if (org.getName().equals(Organization.Type.Caregiver.getValue()))
+                    {
+                        emp.setStatus("Available");
+                    }
+
+                    enterprise.getEmpMap().put(emp, ua1);
+                    enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                    org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                    system.getEmpMap().put(emp, ua1);
+                    JOptionPane.showMessageDialog(null, "User account created successfully.");
+                }
+                else
+                {
+                    Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
+                    while (empIterator.hasNext())
+                    {
+                        Map.Entry mapElement = (Map.Entry) empIterator.next();
+                        Employee e = ((Employee) mapElement.getKey());
+                        UserAccount ua = ((UserAccount) mapElement.getValue());
+                        if (ua.getUsername().equals(username))
+                        {
+                            JOptionPane.showMessageDialog(null, "Username has been already taken. Please use another username");
+                            break;
+                        }
+                        else
+                        {
+                            UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                            enterprise.getEmpMap().put(emp, ua1);
+                            enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                            org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                            system.getEmpMap().put(emp, ua1);
+
+                            if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue()))
+                            {
+                                Schedule sch = new Schedule();
+                                enterprise.getSchedule().put(ua1, sch);
+                                System.out.println("hi" + enterprise.getSchedule());
+                            }
+
+                            if (org.getName().equals(Organization.Type.Caregiver.getValue()))
+                            {
+                                emp.setStatus("Available");
+                            }
+                            System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
+                            System.out.println("System HashMap " + system.getEmpMap());
+                            JOptionPane.showMessageDialog(null, "User account created successfully.");
+                            break;
+
+                        }
+                    }
+
+                }
+                this.populateTable();
+                usernameTextField.setText("");
+                passwordField.setText("");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Please enter valid password");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
+        }
+    }//GEN-LAST:event_btnCreateActionPerformed
 
     public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) userTable.getModel();
@@ -286,139 +413,6 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         }
     }
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-
-        if (usernameTextField.getText().equals("") || passwordField.getPassword().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fill out all the details");
-        } else if (usernamePatternCorrect()) {
-            if (passwordPatternCorrect()) {
-                String username = usernameTextField.getText();
-                char c[] = passwordField.getPassword();
-                String password = String.valueOf(c);
-
-                Organization org = (Organization) dpdOrganization.getSelectedItem();
-                Employee emp = (Employee) dpdEmployee.getSelectedItem();
-                String value = dpdRole.getSelectedItem().toString();
-                Role role = null;
-                RoleType roleType = null;
-                if (value.equals("Caregiver")) {
-                    role = new CaregiverRole();
-                    roleType = Role.RoleType.Caregiver;
-                } else if (value.equals("Doctor")) {
-                    role = new DoctorRole();
-                    roleType = Role.RoleType.Doctor;
-                } else if (value.equals("Nurse")) {
-                    role = new NurseRole();
-                    roleType = Role.RoleType.Nurse;
-                } else if (value.equals("Reviewer")) {
-                    role = new ReviewerRole();
-                    roleType = Role.RoleType.Reviewer;
-                } else {
-                     role = new TrainerRole();
-                    roleType = Role.RoleType.Trainer;
-                } 
-
-                System.out.println("getMap: " + enterprise.getEmpMap());
-                if (enterprise.getEmpMap().isEmpty())
-                {
-                    System.out.println("if");
-                    UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                    
-                    
-                        if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue())) 
-                        {
-                            Schedule sch = new Schedule();
-                            enterprise.getSchedule().put(ua1, sch);
-                        }
-
-                        if (org.getName().equals(Organization.Type.Caregiver.getValue())) 
-                        {
-                            emp.setStatus("Available");
-                        }
-
-                        enterprise.getEmpMap().put(emp, ua1);
-                        enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                        org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                        system.getEmpMap().put(emp, ua1);
-                        JOptionPane.showMessageDialog(null, "User account created successfully.");
-                    }
-                    else
-                    {
-                        Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
-                        while (empIterator.hasNext()) 
-                        {
-                            Map.Entry mapElement = (Map.Entry) empIterator.next();
-                            Employee e = ((Employee) mapElement.getKey());
-                            UserAccount ua = ((UserAccount) mapElement.getValue());
-                            if (ua.getUsername().equals(username)) 
-                            {
-                                JOptionPane.showMessageDialog(null, "Username has been already taken. Please use another username");
-                                break;
-                            } 
-                            else 
-                            {
-                                UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                                enterprise.getEmpMap().put(emp, ua1);
-                                enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                                org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                                system.getEmpMap().put(emp, ua1);
-
-                                if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue())) 
-                                {
-                                    Schedule sch = new Schedule();
-                                    enterprise.getSchedule().put(ua1, sch);
-                                    System.out.println("hi" + enterprise.getSchedule());
-                                }
-
-                                if (org.getName().equals(Organization.Type.Caregiver.getValue())) 
-                                {
-                                    emp.setStatus("Available");
-                                }
-                                System.out.println("Enterprise HashMap " + enterprise.getEmpMap());
-                                System.out.println("System HashMap " + system.getEmpMap());
-                                JOptionPane.showMessageDialog(null, "User account created successfully.");
-                                break;
-                            
-                            }
-                        }
-                  
-                    }
-                this.populateTable();
-                usernameTextField.setText("");
-                passwordField.setText("");
-            } 
-                else 
-                {
-                JOptionPane.showMessageDialog(null, "Please enter valid password");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
-        }
-    }//GEN-LAST:event_btnCreateActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        AdminWorkAreaJPanel dwjp = (AdminWorkAreaJPanel) component;
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void dpdOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdOrganizationActionPerformed
-        Organization org = (Organization) dpdOrganization.getSelectedItem();
-        if (org != null) {
-            this.populateEmployees(org);
-            this.populateRoles(org);
-        }
-    }//GEN-LAST:event_dpdOrganizationActionPerformed
-
-    private void dpdRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdRoleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dpdRoleActionPerformed
-
     private boolean usernamePatternCorrect() {
         Pattern p = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher m = p.matcher(usernameTextField.getText());
@@ -443,7 +437,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPasswordField passwordField;
