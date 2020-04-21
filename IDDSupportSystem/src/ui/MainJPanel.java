@@ -39,7 +39,7 @@ public class MainJPanel extends javax.swing.JFrame {
         system = dB4OUtil.retrieveSystem();
         // this.leftJPanel.setSize(300, 750);
 
-        this.setSize(1250, 750);
+        this.setSize(1350, 750);
 
         //  ImageIcon myImage= new ImageIcon(ToolKit.getDefaultToolKit)
         //   jLabel4.setIcon(new ImageIcon(new ImageIcon("IDD.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
