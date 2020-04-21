@@ -72,7 +72,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Organization");
         add(jLabel1);
-        jLabel1.setBounds(240, 80, 81, 16);
+        jLabel1.setBounds(370, 80, 81, 16);
 
         dpdOrganization.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dpdOrganization.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +81,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdOrganization);
-        dpdOrganization.setBounds(340, 80, 120, 27);
+        dpdOrganization.setBounds(480, 80, 120, 27);
 
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,7 +112,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(organizationJTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(160, 120, 480, 92);
+        jScrollPane1.setBounds(310, 120, 480, 92);
 
         dpdOrganizationEmp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         dpdOrganizationEmp.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +121,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdOrganizationEmp);
-        dpdOrganizationEmp.setBounds(280, 330, 140, 27);
+        dpdOrganizationEmp.setBounds(160, 300, 140, 27);
 
         nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +129,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(nameTextField);
-        nameTextField.setBounds(280, 380, 140, 26);
+        nameTextField.setBounds(160, 350, 140, 26);
 
         btnCreateEmployee.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnCreateEmployee.setText("Create Employee");
@@ -139,7 +139,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreateEmployee);
-        btnCreateEmployee.setBounds(240, 440, 160, 40);
+        btnCreateEmployee.setBounds(160, 430, 140, 40);
 
         btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/backbutton.png")); // NOI18N
@@ -150,27 +150,27 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack);
-        btnBack.setBounds(10, 440, 120, 42);
+        btnBack.setBounds(20, 430, 100, 40);
 
         jLabel3.setText("Organization");
         add(jLabel3);
-        jLabel3.setBounds(170, 330, 81, 16);
+        jLabel3.setBounds(60, 300, 90, 20);
 
         jLabel2.setText("Name");
         add(jLabel2);
-        jLabel2.setBounds(170, 380, 36, 16);
+        jLabel2.setBounds(60, 350, 36, 16);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel4.setText("View Employees");
         add(jLabel4);
-        jLabel4.setBounds(280, 40, 140, 30);
+        jLabel4.setBounds(430, 20, 140, 30);
         add(jSeparator1);
         jSeparator1.setBounds(20, 220, 661, 10);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel5.setText("Create Employees");
         add(jLabel5);
-        jLabel5.setBounds(200, 260, 160, 30);
+        jLabel5.setBounds(130, 240, 160, 30);
 
         jLabel6.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/employee.png")); // NOI18N
         add(jLabel6);
@@ -179,7 +179,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/manageEmployee1.gif")); // NOI18N
         jLabel7.setText("jLabel7");
         add(jLabel7);
-        jLabel7.setBounds(390, 240, 430, 330);
+        jLabel7.setBounds(430, 250, 430, 320);
     }// </editor-fold>//GEN-END:initComponents
     
     private void populateDropdown() {

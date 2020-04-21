@@ -3,47 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.trainers;
+package ui.nurse;
 
 import business.enterprise.Enterprise;
 import business.history.IndividualHistory;
+import business.individuals.Individual;
 import business.useraccount.UserAccount;
-import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import ui.reviewer.ManageIndividuals;
 
 /**
  *
- * @author kales
+ * @author dikshadesai
  */
-public class AddHistoryJPanel extends javax.swing.JPanel {
-
+public class AddMeetingHistoryJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
-    UserAccount account;
+    UserAccount userAccount;
     Enterprise enterprise;
-    WorkRequest workRequest;
-
+    Individual individual;
+    IndividualHistory history;
     /**
-     * Creates new form AddHistoryJPanel
+     * Creates new form AddMeetingDetailsJPanel
+     * @param userProcessContainer
+     * @param userAccount
+     * @param enterprise
+     * @param individual
+     * @param history
      */
-    public AddHistoryJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, WorkRequest workRequest) {
+    public AddMeetingHistoryJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, Individual individual, IndividualHistory history) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.account = account;
+        this.userAccount = userAccount;
         this.enterprise = enterprise;
-        this.workRequest = workRequest;
+        this.individual = individual;
+        this.history = history;
+        appointmentDate.setText(String.valueOf(history.getAppointmentId()));
         populateStatus();
-    }
-
-    public void populateStatus() {
-        dpdStatus.removeAllItems();;
-        dpdStatus.insertItemAt("--Select--", 0);
-        dpdStatus.insertItemAt("Completed", 1);
-        dpdStatus.insertItemAt("Rescheduled", 2);
-        dpdStatus.setSelectedIndex(0);
     }
 
     /**
@@ -55,6 +52,7 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         appointmentDate = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -63,9 +61,6 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         dpdStatus = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        progressJTxt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         saveBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
@@ -89,16 +84,6 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setText("Progress:");
-
-        progressJTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                progressJTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("%");
-
         saveBtn.setText("Save Details");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,98 +98,104 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(backBtn)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(dpdStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(appointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(saveBtn)))
+                .addContainerGap(204, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(appointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dpdStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(82, 82, 82)
+                .addComponent(saveBtn)
+                .addContainerGap(119, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(backBtn)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(appointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(dpdStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(progressJTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(saveBtn)))
-                .addContainerGap(200, Short.MAX_VALUE))
+            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(appointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(progressJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dpdStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addComponent(saveBtn)
-                .addContainerGap(119, Short.MAX_VALUE))
+            .addGap(0, 506, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void populateStatus() {
+        dpdStatus.removeAllItems();;
+        dpdStatus.insertItemAt("--Select--", 0);
+        dpdStatus.insertItemAt("Completed", 1);
+        dpdStatus.insertItemAt("Rescheduled", 2);
+        dpdStatus.insertItemAt("Cancelled", 3);
+        dpdStatus.setSelectedIndex(0);
+    }
     private void dpdStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dpdStatusActionPerformed
 
-    private void progressJTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_progressJTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_progressJTxtActionPerformed
-
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        if (commentsTxtArea.getText().equals("") || dpdStatus.getSelectedIndex() == 0 || progressJTxt.getText().equals("")) {
+        if (commentsTxtArea.getText().equals("") || dpdStatus.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Please enter all details");
         } else {
-             
-            if(Integer.parseInt(progressJTxt.getText())<0 || Integer.parseInt(progressJTxt.getText())>100){
-                JOptionPane.showMessageDialog(null, "Please enter progress in valid range(0-100)");
-                return;
-            }
-            for (IndividualHistory indHistory : workRequest.getIndividual().getHistory()) {
-                if (indHistory.getStatus().equals("Meeting Scheduled")) {
-                    indHistory.setComments(commentsTxtArea.getText());
-                    indHistory.setStatus(dpdStatus.getSelectedItem().toString());
+            history.setStatus(dpdStatus.getSelectedItem().toString());
+            history.setComments(commentsTxtArea.getText());
                     JOptionPane.showMessageDialog(null, "Details Saved Successfully");
-                }
-            }
+
 
         }
-
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -212,11 +203,10 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        AddDetailsJPanel addDetailsJPanel = (AddDetailsJPanel) component;
-        addDetailsJPanel.populateHistoryDetails();
+        ScheduleMeetingJPanel schedule = (ScheduleMeetingJPanel) component;
+        schedule.populateTable(individual);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-
     }//GEN-LAST:event_backBtnActionPerformed
 
 
@@ -227,12 +217,10 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<Object> dpdStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField progressJTxt;
     private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables
 }
