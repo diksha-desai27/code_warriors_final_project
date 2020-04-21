@@ -78,17 +78,17 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         individualTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Individual Registration ID", "Individual First Name", "Individual Last Name"
+                "Individual Registration ID", "Individual Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -254,12 +254,10 @@ public class ManageIndividuals extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) individualTable.getModel();
         model.setRowCount(0);
-        
         for(Individual i: this.individualDirectory.getIndividualList()) {
-                Object[] row = new Object[3];
+                Object[] row = new Object[4];
                 row[0] = i.getRegistrationId();
-                row[1] = i.getFirstName();
-                row[2] = i.getLastName();
+                row[1] = i.getFirstName() + " " + i.getLastName();
                 model.addRow(row);
         }
     }
