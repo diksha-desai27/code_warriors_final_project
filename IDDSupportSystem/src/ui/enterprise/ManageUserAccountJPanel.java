@@ -297,7 +297,6 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 
                 if(!system.getUserAccountDirectory().checkIfUsernameIsUnique(username))
                 {
-                    System.out.println("if");
                     JOptionPane.showMessageDialog(null, "Username has been already taken. Please use another username");
                 }
                 else
@@ -321,6 +320,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                         enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                         org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                         system.getEmpMap().put(emp, ua1);
+                        system.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                         JOptionPane.showMessageDialog(null, "User account created successfully.");
                     }
                     else
@@ -350,6 +350,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                                 enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                                 org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
                                 system.getEmpMap().put(emp, ua1);
+                                system.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
 
                                 if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue()))
                                 {
