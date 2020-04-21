@@ -103,7 +103,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnDecline);
-        btnDecline.setBounds(350, 280, 150, 62);
+        btnDecline.setBounds(350, 280, 150, 60);
 
         btnAccept.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N

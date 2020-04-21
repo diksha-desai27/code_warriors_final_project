@@ -128,6 +128,7 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
                 Employee e = ((Employee) mapElement.getKey());
                 UserAccount ua = ((UserAccount) mapElement.getValue());
                 if (ua.getRoleType().getValue().equals("Reviewer")) {
+                    System.out.println(ua.getUsername());
                     selectedUserAccount = ua;
                     break;
 

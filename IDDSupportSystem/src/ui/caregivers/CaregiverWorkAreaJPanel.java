@@ -15,6 +15,13 @@ import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -68,6 +75,12 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         btnShowHistory = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnMarkAsComplete = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         manageApplicantsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,21 +103,35 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(manageApplicantsTable);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(25, 160, 594, 125);
+
+        btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack);
+        btnBack.setBounds(25, 300, 100, 42);
 
+        btnAssign.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnAssign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
         btnAssign.setText("Assign to Doctor");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignActionPerformed(evt);
             }
         });
+        add(btnAssign);
+        btnAssign.setBounds(289, 300, 171, 42);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel1.setText("Manage Applicants");
+        add(jLabel1);
+        jLabel1.setBounds(270, 106, 145, 36);
 
         individualHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,80 +155,52 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         individualHistoryTable.setToolTipText("");
         jScrollPane2.setViewportView(individualHistoryTable);
 
-        jLabel2.setText("Appointment History");
+        add(jScrollPane2);
+        jScrollPane2.setBounds(50, 480, 594, 112);
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel2.setText("Appointment History");
+        add(jLabel2);
+        jLabel2.setBounds(260, 440, 150, 36);
+
+        btnShowHistory.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnShowHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/SCHEDULINGHISTORY.png"))); // NOI18N
         btnShowHistory.setText("Show Appointment History");
         btnShowHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowHistoryActionPerformed(evt);
             }
         });
+        add(btnShowHistory);
+        btnShowHistory.setBounds(440, 390, 260, 50);
+        add(jSeparator1);
+        jSeparator1.setBounds(20, 370, 745, 10);
 
+        btnMarkAsComplete.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnMarkAsComplete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N
         btnMarkAsComplete.setText("Mark As Complete");
         btnMarkAsComplete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMarkAsCompleteActionPerformed(evt);
             }
         });
+        add(btnMarkAsComplete);
+        btnMarkAsComplete.setBounds(472, 297, 195, 49);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(241, 241, 241)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnShowHistory))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(45, 45, 45)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addGap(210, 210, 210)
-                                .addComponent(btnAssign)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnMarkAsComplete)))))
-                .addGap(57, 57, 57))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnAssign)
-                    .addComponent(btnMarkAsComplete))
-                .addGap(34, 34, 34)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnShowHistory)))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(242, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/caregiver.png"))); // NOI18N
+        jLabel3.setText("CAREGIVER WORK AREA");
+        add(jLabel3);
+        jLabel3.setBounds(30, 30, 370, 50);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        add(jLabel4);
+        jLabel4.setBounds(75, 36, 730, 40);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/disability12.gif"))); // NOI18N
+        add(jLabel6);
+        jLabel6.setBounds(440, 610, 320, 140);
     }// </editor-fold>//GEN-END:initComponents
 
     public void populateTable() {
@@ -231,38 +230,28 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
         int selectedRow = manageApplicantsTable.getSelectedRow();
-        if (selectedRow >= 0) 
-        {
+        if (selectedRow >= 0) {
             int id = (Integer) manageApplicantsTable.getValueAt(selectedRow, 0);
-            if (this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
-            {
-                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
-                {
-                    if (w.getIndividual().getRegistrationId() == id) 
-                    {
-                        if(w.getStatus().equalsIgnoreCase("Assigned to caregiver"))
-                        {
+            if (this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
+                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                    if (w.getIndividual().getRegistrationId() == id) {
+                        if (w.getStatus().equalsIgnoreCase("Assigned to caregiver")) {
                             individual = w.getIndividual();
                             AssignToDoctorJPanel assignToDoctorJPanel = new AssignToDoctorJPanel(userProcessContainer, userAccount, individual, enterprise, system);
                             userProcessContainer.add("assignToDoctorJPanel", assignToDoctorJPanel);
                             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                             layout.next(userProcessContainer);
-                        }
-                        else
-                        {
+                        } else {
                             JOptionPane.showMessageDialog(null, "You cannot procces this request.");
                         }
-                        
+
                     }
                     break;
 
                 }
             }
 
-           
-        } 
-        else 
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select the individual to schedule an appointment with the Doctor.");
         }
 
@@ -304,59 +293,75 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Individual ind = null;
         int selectedRow = manageApplicantsTable.getSelectedRow();
-        if(selectedRow >= 0) 
-        {
-            int id = (Integer)manageApplicantsTable.getValueAt(selectedRow, 0);
-            for(Individual i: system.getIndividualDirectory().getIndividualList()) 
-            {
-                if(i.getRegistrationId() == id)
-                {
+        if (selectedRow >= 0) {
+            int id = (Integer) manageApplicantsTable.getValueAt(selectedRow, 0);
+            for (Individual i : system.getIndividualDirectory().getIndividualList()) {
+                if (i.getRegistrationId() == id) {
                     ind = i;
                     break;
                 }
             }
-            
-            if(userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
-            {
-                for (WorkRequest w : userAccount.getWorkQueue().getWorkRequestList()) 
-                {
-                    if(w.getIndividual().equals(ind))
-                    {
-                        if(w.getStatus().equalsIgnoreCase("Medication Completed"))
-                        {
-                             w.setStatus("Request Completed");
-                             break;
-                        }
-                        else
-                        {
+
+            if (userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
+                for (WorkRequest w : userAccount.getWorkQueue().getWorkRequestList()) {
+                    if (w.getIndividual().equals(ind)) {
+                        if (w.getStatus().equalsIgnoreCase("Medication Completed")) {
+                            w.setStatus("Request Completed");
+                            JOptionPane.showMessageDialog(null, "Meication Request Completed Successflly");
+                            sendEmail(w);
+                            break;
+                        } else {
                             JOptionPane.showMessageDialog(null, "You cannot mark it as complete.");
                         }
-                       
+
                     }
 
                 }
             }
-            
+
             Iterator map = enterprise.getEmpMap().entrySet().iterator();
 
-            while (map.hasNext()) 
-            {
+            while (map.hasNext()) {
                 Map.Entry mapElement = (Map.Entry) map.next();
                 Employee e = ((Employee) mapElement.getKey());
                 UserAccount ua = ((UserAccount) mapElement.getValue());
-                
-                if(userAccount.equals(ua))
-                {
+
+                if (userAccount.equals(ua)) {
                     e.setStatus("Available");
                     break;
                 }
             }
-        }
-        else 
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select the individual.");
         }
     }//GEN-LAST:event_btnMarkAsCompleteActionPerformed
+
+    public void sendEmail(WorkRequest workRequest) {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        String string1 = "Hello,<br/>Thank you for choosing IDD Service System. We are glad to let you know that you medical service has been successfully completed.<br/>Please provide feedback for your services by going into your MYACCOUNT section.<br/>Thanks,IDD Support Team";
+        Session session = Session.getDefaultInstance(props);
+        try {
+            InternetAddress fromAddress = new InternetAddress("growinggreen04@gmail.com");
+            InternetAddress toAddress = new InternetAddress(workRequest.getIndividual().getUserName());
+
+            Message message = new MimeMessage(session);
+            message.setFrom(fromAddress);
+            message.setRecipient(Message.RecipientType.TO, toAddress);
+            message.setSubject("IDD System Appointment Confirmation");
+            message.setContent(string1, "text/html");
+
+            Transport.send(message, "growinggreen04@gmail.com", "growinggreen@123");
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -367,6 +372,9 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable individualHistoryTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
