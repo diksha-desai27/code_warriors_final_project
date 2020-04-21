@@ -300,6 +300,13 @@ public class ManageIndividuals extends javax.swing.JPanel {
                     break;
                 }
             }
+            
+              if(individual.getServiceType().equals("EmploymentService")){
+                JOptionPane.showMessageDialog(null, "You cant assign Care giver to training service");
+                return;
+            }
+            
+            
             AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise);
             userProcessContainer.add("AssignCareGiver",assignCareGiver);
 
@@ -323,6 +330,12 @@ public class ManageIndividuals extends javax.swing.JPanel {
                     break;
                 }
             }
+            
+            if(individual.getServiceType().equals("MedicalService")){
+                JOptionPane.showMessageDialog(null, "You cant assign trainer to medical service");
+                return;
+            }
+            
             AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise);
             userProcessContainer.add("AssignCareGiver",assignCareGiver);
 

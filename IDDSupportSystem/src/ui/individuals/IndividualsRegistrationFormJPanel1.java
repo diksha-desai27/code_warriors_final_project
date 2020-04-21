@@ -10,10 +10,16 @@ import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -31,7 +37,7 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
     Individual individual;
     UserAccount userAccount;
     ArrayList<Enterprise> facilityList;
-    
+
     public IndividualsRegistrationFormJPanel1(JPanel rightJPanel, UserAccount userAccount, Individual individual, ArrayList<Enterprise> facilityList) {
         initComponents();
         this.rightJPanel = rightJPanel;
@@ -39,7 +45,7 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.facilityList = facilityList;
         System.out.println(this.individual);
-                System.out.println(facilityList);
+        System.out.println(facilityList);
 
     }
 
@@ -52,15 +58,16 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jRadioBtnHealthCare = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        jRadioBtnLongTermCareService = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jbtnNext = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         updateBtn = new javax.swing.JButton();
+        jHeathCareRadioBtn = new javax.swing.JRadioButton();
+        jEmploymentBtn = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -70,18 +77,9 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
 
         jLabel2.setText("1. Select program you are interested in:");
 
-        jRadioBtnHealthCare.setText("Health Care");
+        jLabel4.setText("Program Info: Help provided in medical area.");
 
-        jLabel4.setText("Program Info: Coverage is through medicaid.");
-
-        jRadioBtnLongTermCareService.setText("Employment care service");
-        jRadioBtnLongTermCareService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioBtnLongTermCareServiceActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Program Info: Helps in living needs and health care");
+        jLabel3.setText("Program Info: Helps in employment training.");
 
         jbtnNext.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jbtnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/next.png"))); // NOI18N
@@ -104,31 +102,35 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
             }
         });
 
+        jHeathCareRadioBtn.setBackground(new java.awt.Color(255, 255, 255));
+        jHeathCareRadioBtn.setText("Health Care");
+
+        jEmploymentBtn.setBackground(new java.awt.Color(255, 255, 255));
+        jEmploymentBtn.setText("Employment Care");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel2))
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioBtnLongTermCareService)
-                                .addGap(114, 114, 114)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)))
-                            .addComponent(jLabel5)
-                            .addComponent(jRadioBtnHealthCare))))
+                            .addComponent(jHeathCareRadioBtn)
+                            .addComponent(jLabel2)
+                            .addComponent(jEmploymentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))))
                 .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -146,13 +148,13 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioBtnHealthCare)
-                    .addComponent(jLabel4))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioBtnLongTermCareService)
+                    .addComponent(jLabel4)
+                    .addComponent(jHeathCareRadioBtn))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jEmploymentBtn)
                     .addComponent(jLabel3))
-                .addGap(40, 40, 40)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnNext)
@@ -165,48 +167,60 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         Date date1 = new Date();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-                   System.out.println("radio"+jRadioBtnHealthCare.isSelected());
 
-        if (!jRadioBtnHealthCare.isSelected() && !jRadioBtnLongTermCareService.isSelected()) {
+        if (!jHeathCareRadioBtn.isSelected() && !jEmploymentBtn.isSelected()) {
             JOptionPane.showMessageDialog(null, "Please Select one service to Procees");
             return;
         }
-           System.out.println("radio"+jRadioBtnHealthCare.isSelected());
-        if (jRadioBtnHealthCare.isSelected()) {
+
+        if (jEmploymentBtn.isSelected()) {
+            Boolean result = calculateAge();
+            if (!result) {
+                JOptionPane.showMessageDialog(null, "You are not eligible to work");
+                return;
+            }
+        }
+
+        if (jHeathCareRadioBtn.isSelected()) {
             individual.setServiceType("MedicalService");
         } else {
             individual.setServiceType("EmploymentService");
         }
-        
-        IndividualsRegistrationFormJPanel2 individualsRegJPanel2 = new IndividualsRegistrationFormJPanel2(userAccount, individual, rightJPanel,facilityList);
+
+        IndividualsRegistrationFormJPanel2 individualsRegJPanel2 = new IndividualsRegistrationFormJPanel2(userAccount, individual, rightJPanel, facilityList);
         rightJPanel.add("individualsRegistrationFormJPanel2", individualsRegJPanel2);
-        
+
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
     }//GEN-LAST:event_jbtnNextActionPerformed
 
-    private void jRadioBtnLongTermCareServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioBtnLongTermCareServiceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioBtnLongTermCareServiceActionPerformed
-
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
-        IndividualMyAccountJPanel myAccount = new IndividualMyAccountJPanel(rightJPanel, userAccount, individual,facilityList);
+        IndividualMyAccountJPanel myAccount = new IndividualMyAccountJPanel(rightJPanel, userAccount, individual, facilityList);
         rightJPanel.add("IndividualMyAccount", myAccount);
-        
+
         CardLayout layout = (CardLayout) rightJPanel.getLayout();
         layout.next(rightJPanel);
     }//GEN-LAST:event_updateBtnActionPerformed
 
+    public Boolean calculateAge() {
+        LocalDate dob = LocalDate.parse(individual.getBirthDate());
+        LocalDate curDate = LocalDate.now();
+        if (Period.between(dob, curDate).getYears() >= 18) {
+            return true;
+        }
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JRadioButton jEmploymentBtn;
+    private javax.swing.JRadioButton jHeathCareRadioBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButton jRadioBtnHealthCare;
-    private javax.swing.JRadioButton jRadioBtnLongTermCareService;
     private javax.swing.JButton jbtnNext;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables

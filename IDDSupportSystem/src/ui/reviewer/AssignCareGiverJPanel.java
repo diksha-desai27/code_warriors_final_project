@@ -232,7 +232,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
             if (ua != null) {
                 for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
                     if ((w.getIndividual() != null) && (w.getIndividual().getRegistrationId() == this.individual.getRegistrationId())) {
-                        if (individual.getServiceType().equals("Medical")) {
+                        if (individual.getServiceType().equals("MedicalService")) {
                             w.setSender(this.userAccount);
                             w.setStatus("Assigned to Caregiver");
                             w.setMessage("");

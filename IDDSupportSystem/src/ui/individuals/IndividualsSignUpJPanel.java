@@ -223,8 +223,9 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
                                         system.getIndividualDirectory().getIndividualList().add(ind);
                                         system.getUserAccountDirectory().createUserAccount(userNamejTextField.getText(), String.valueOf(passwordJField.getPassword()), new IndividualRole(), RoleType.Individual);
                                         JOptionPane.showMessageDialog(null, "Account created successfully. Please sign out to login.");
-                                        clearFields();
+
                                         sendEmail();
+                                        clearFields();
                                     }
 
                                 } else {
@@ -267,17 +268,17 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         props.put("mail.smtp.port", "465");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        String string1 = "Dear " + firstNamejTextField + " " + lastNamejTextField + "<br/>Thankyou for registering with us.<br/>You can now login with your credentials into our system<br/><br/>Thankyou,<br/>IDD Support Team";
+        String string1 = "Dear " + firstNamejTextField.getText() + " " + lastNamejTextField.getText() + "<br/>Thankyou for registering with us.<br/>You can now login with your credentials into our system<br/><br/>Thankyou,<br/>IDD Support Team";
         Session session = Session.getDefaultInstance(props);
         try {
-            InternetAddress fromAddress = new InternetAddress("kalesai04@gmail.com");
-            InternetAddress toAddress = new InternetAddress("kalesai04@gmail.com");
+            InternetAddress fromAddress = new InternetAddress("growinggreen04@gmail.com");
+            InternetAddress toAddress = new InternetAddress(userNamejTextField.getText());
 
             Message message = new MimeMessage(session);
             message.setFrom(fromAddress);
             message.setRecipient(Message.RecipientType.TO, toAddress);
             message.setSubject("IDD System Registration Confirmation");
-            message.setText(string1);
+            message.setContent(string1, "text/html");
 
             Transport.send(message, "growinggreen04@gmail.com", "growinggreen@123");
         } catch (MessagingException ex) {
