@@ -11,6 +11,7 @@ import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -100,7 +101,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) facilityJTable.getModel();
         model.setRowCount(0);
         for (Enterprise e : facilityList) {
-            Object[] row = new Object[2];
+            Object[] row = new Object[1];
             row[0] = e;
             model.addRow(row);
         }
@@ -137,6 +138,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         btnAvailableFacility = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        requestFacilityBtn1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -149,7 +151,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("First Name");
         add(jLabel2);
-        jLabel2.setBounds(6, 127, 68, 16);
+        jLabel2.setBounds(6, 127, 76, 20);
         add(firstNamejTextField);
         firstNamejTextField.setBounds(161, 122, 164, 26);
 
@@ -161,13 +163,13 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         userNameLabel.setText("User Name");
         add(userNameLabel);
-        userNameLabel.setBounds(10, 220, 102, 16);
+        userNameLabel.setBounds(10, 220, 102, 20);
         add(userNamejTextField);
         userNamejTextField.setBounds(160, 210, 164, 26);
 
         passwordLabel.setText("Password");
         add(passwordLabel);
-        passwordLabel.setBounds(10, 260, 331, 16);
+        passwordLabel.setBounds(10, 260, 331, 20);
         add(passwordJField);
         passwordJField.setBounds(160, 250, 164, 26);
 
@@ -186,7 +188,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(btnUpdate);
-        btnUpdate.setBounds(110, 350, 150, 42);
+        btnUpdate.setBounds(110, 350, 150, 39);
 
         individualWRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -250,7 +252,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(requestFacilityBtn);
-        requestFacilityBtn.setBounds(520, 480, 170, 40);
+        requestFacilityBtn.setBounds(530, 480, 170, 40);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("AVAILABLE FACILITY ");
@@ -266,7 +268,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAvailableFacility);
-        btnAvailableFacility.setBounds(300, 350, 220, 42);
+        btnAvailableFacility.setBounds(300, 350, 220, 39);
 
         jLabel6.setBackground(new java.awt.Color(107, 200, 223));
         jLabel6.setForeground(new java.awt.Color(102, 204, 255));
@@ -278,6 +280,17 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         jLabel4.setText("jLabel4");
         add(jLabel4);
         jLabel4.setBounds(80, 20, 560, 60);
+
+        requestFacilityBtn1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        requestFacilityBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
+        requestFacilityBtn1.setText("Add Feedback");
+        requestFacilityBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestFacilityBtn1ActionPerformed(evt);
+            }
+        });
+        add(requestFacilityBtn1);
+        requestFacilityBtn1.setBounds(630, 650, 170, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -328,7 +341,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                 selectedUserAccount.getWorkQueue().getWorkRequestList().add(workRequest);
                 //       rightJPanel.remove(this);
                 populateData();
-              //  this.facilityJTable.setVisible(false);
+                //  this.facilityJTable.setVisible(false);
                 this.requestFacilityBtn.setEnabled(false);
                 this.btnAvailableFacility.setEnabled(false);
             }
@@ -344,6 +357,22 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         this.facilityJTable.setVisible(true);
         this.requestFacilityBtn.setVisible(true);
     }//GEN-LAST:event_btnAvailableFacilityActionPerformed
+
+    private void requestFacilityBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFacilityBtn1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = individualWRequestJTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            WorkRequest wr = (WorkRequest) individualWRequestJTable.getValueAt(selectedRow, 0);
+            if (wr.getStatus().equals("Completed")) {
+                FeedbackJPanel feedbackJPanel = new FeedbackJPanel(rightJPanel, userAccount, wr, individual, facilityList);
+                rightJPanel.add("FeedbackJPanel", feedbackJPanel);
+                CardLayout layout = (CardLayout) rightJPanel.getLayout();
+                layout.next(rightJPanel);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row to proceed");
+        }
+    }//GEN-LAST:event_requestFacilityBtn1ActionPerformed
 
     private boolean passwordPatternCorrect() {
         Pattern q = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=_])(?=\\S+$).{6,20}$");
@@ -372,6 +401,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JPasswordField passwordJField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JButton requestFacilityBtn;
+    private javax.swing.JButton requestFacilityBtn1;
     private javax.swing.JLabel requestJLabel;
     private javax.swing.JLabel userNameLabel;
     private javax.swing.JTextField userNamejTextField;

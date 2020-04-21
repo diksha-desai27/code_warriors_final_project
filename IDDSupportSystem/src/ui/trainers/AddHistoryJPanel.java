@@ -63,9 +63,6 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         dpdStatus = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        progressJTxt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         saveBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
@@ -88,16 +85,6 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
                 dpdStatusActionPerformed(evt);
             }
         });
-
-        jLabel4.setText("Progress:");
-
-        progressJTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                progressJTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("%");
 
         saveBtn.setText("Save Details");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +113,6 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
@@ -135,15 +121,11 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(appointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(dpdStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(progressJTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(dpdStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
+                        .addGap(219, 219, 219)
                         .addComponent(saveBtn)))
                 .addContainerGap(200, Short.MAX_VALUE))
         );
@@ -162,18 +144,13 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(progressJTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dpdStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpdStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addComponent(saveBtn)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -181,20 +158,11 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_dpdStatusActionPerformed
 
-    private void progressJTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_progressJTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_progressJTxtActionPerformed
-
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        if (commentsTxtArea.getText().equals("") || dpdStatus.getSelectedIndex() == 0 || progressJTxt.getText().equals("")) {
+        if (commentsTxtArea.getText().equals("") || dpdStatus.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Please enter all details");
         } else {
-             
-            if(Integer.parseInt(progressJTxt.getText())<0 || Integer.parseInt(progressJTxt.getText())>100){
-                JOptionPane.showMessageDialog(null, "Please enter progress in valid range(0-100)");
-                return;
-            }
             for (IndividualHistory indHistory : workRequest.getIndividual().getHistory()) {
                 if (indHistory.getStatus().equals("Meeting Scheduled")) {
                     indHistory.setComments(commentsTxtArea.getText());
@@ -227,12 +195,9 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<Object> dpdStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField progressJTxt;
     private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables
 }

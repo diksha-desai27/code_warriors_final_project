@@ -23,6 +23,7 @@ public class WorkRequest {
     private Date requestDate;
     private Date resolveDate;
     private Individual individual;
+    private String rating;
     private int requestId;
     
     public WorkRequest(){
@@ -93,6 +94,14 @@ public class WorkRequest {
 
     public void setRequestId(int requestId) {
         this.requestId = requestId;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
 
