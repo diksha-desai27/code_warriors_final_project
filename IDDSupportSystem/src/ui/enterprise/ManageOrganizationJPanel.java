@@ -153,6 +153,14 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         Type type = (Type)dpdOrganizationType.getSelectedItem();
+        
+        for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()){
+            if(type.getValue().equals(org.getName())){
+                JOptionPane.showMessageDialog(null, "Organization already exists");
+                return;
+            }
+        }
+        
         enterprise.getOrganizationDirectory().createOrganization(type);
         JOptionPane.showMessageDialog(null,type + " added successfully");
         this.populateTable();
