@@ -65,7 +65,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageNetwork);
-        btnManageNetwork.setBounds(180, 120, 213, 80);
+        btnManageNetwork.setBounds(180, 120, 290, 110);
 
         btnManageNetwork1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnManageNetwork1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/reportGEN.png"))); // NOI18N
@@ -76,7 +76,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageNetwork1);
-        btnManageNetwork1.setBounds(180, 230, 213, 90);
+        btnManageNetwork1.setBounds(180, 270, 290, 110);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/reviewER.png"))); // NOI18N
@@ -87,10 +87,10 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(85, 36, 480, 40);
+        jLabel3.setBounds(85, 36, 570, 40);
 
         add(jPanel1);
-        jPanel1.setBounds(-8, -4, 590, 420);
+        jPanel1.setBounds(-8, -4, 740, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetwork1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetwork1ActionPerformed
