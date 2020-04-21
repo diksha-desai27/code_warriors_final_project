@@ -142,7 +142,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
             }
         });
         add(assignBtn);
-        assignBtn.setBounds(190, 620, 200, 42);
+        assignBtn.setBounds(190, 600, 200, 42);
 
         nurseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
