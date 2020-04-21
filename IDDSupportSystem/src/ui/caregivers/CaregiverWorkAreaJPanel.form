@@ -31,6 +31,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnMarkAsComplete" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnAssign" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
@@ -49,6 +51,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAssign" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnMarkAsComplete" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="42" max="32767" attributes="0"/>
           </Group>
@@ -129,6 +132,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Applicants"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnMarkAsComplete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mark as Complete"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMarkAsCompleteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
