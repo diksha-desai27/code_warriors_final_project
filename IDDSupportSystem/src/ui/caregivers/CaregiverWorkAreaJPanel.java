@@ -7,6 +7,7 @@ package ui.caregivers;
 
 import business.EcoSystem;
 import business.enterprise.Enterprise;
+import business.history.IndividualHistory;
 import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
@@ -26,14 +27,16 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     Individual individual;
     Enterprise enterprise;
     EcoSystem system;
+
     /**
      * Creates new form CaregiverWorkAreaJPanel
+     *
      * @param userProcessContainer
      * @param userAccount
      * @param enterprise
      * @param system
      */
-    public CaregiverWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system ) {
+    public CaregiverWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
@@ -56,6 +59,10 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         btnAssign = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        individualHistoryTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        btnAssign1 = new javax.swing.JButton();
 
         manageApplicantsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,25 +101,63 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Manage Applicants");
 
+        individualHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Meeting ID", "Date", "Comments", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        individualHistoryTable.setToolTipText("");
+        jScrollPane2.setViewportView(individualHistoryTable);
+
+        jLabel2.setText("Appointment History");
+
+        btnAssign1.setText("Show Appointment History");
+        btnAssign1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssign1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(293, 293, 293)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(120, Short.MAX_VALUE))
+                        .addGap(293, 293, 293)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnBack)
+                                    .addGap(446, 446, 446)
+                                    .addComponent(btnAssign))
+                                .addComponent(btnAssign1))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAssign)
-                        .addGap(90, 90, 90))))
+                        .addGap(241, 241, 241)
+                        .addComponent(jLabel2)))
+                .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,68 +170,104 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnAssign))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAssign1)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(258, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    public void populateTable() {
-            DefaultTableModel dtm = (DefaultTableModel) manageApplicantsTable.getModel();
-            dtm.setRowCount(0);
-            if(this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
-            {
-                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
-                {
-                    if(w.getIndividual()!= null)
-                    {
-                        Object row[] = new Object[5];
-                        row[0] = w.getIndividual().getRegistrationId();
-                        row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
-                        row[2] = w.getSender();
-                        row[3] = w.getStatus();
-                        dtm.addRow(row);
-                    }
 
+    public void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) manageApplicantsTable.getModel();
+        dtm.setRowCount(0);
+        if (this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
+            for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual() != null) {
+                    Object row[] = new Object[5];
+                    row[0] = w.getIndividual().getRegistrationId();
+                    row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
+                    row[2] = w.getSender();
+                    row[3] = w.getStatus();
+                    dtm.addRow(row);
                 }
+
             }
-        
+        }
+
     }
-    
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
         int selectedRow = manageApplicantsTable.getSelectedRow();
-        if(selectedRow >= 0) {
-            int id = (Integer)manageApplicantsTable.getValueAt(selectedRow, 0);
-            for(Individual i: system.getIndividualDirectory().getIndividualList()) {
-                if(i.getRegistrationId() == id)
-                {
+        if (selectedRow >= 0) {
+            int id = (Integer) manageApplicantsTable.getValueAt(selectedRow, 0);
+            for (Individual i : system.getIndividualDirectory().getIndividualList()) {
+                if (i.getRegistrationId() == id) {
                     this.individual = i;
                     break;
                 }
             }
-     
-            AssignToDoctorJPanel assignToDoctorJPanel = new AssignToDoctorJPanel(userProcessContainer,userAccount,individual, enterprise, system);
-            userProcessContainer.add("assignToDoctorJPanel",assignToDoctorJPanel);
-            CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+
+            AssignToDoctorJPanel assignToDoctorJPanel = new AssignToDoctorJPanel(userProcessContainer, userAccount, individual, enterprise, system);
+            userProcessContainer.add("assignToDoctorJPanel", assignToDoctorJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select the individual to schedule an appointment with the Doctor.");
         }
-     
+
 
     }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnAssign1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssign1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = manageApplicantsTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int id = (Integer) manageApplicantsTable.getValueAt(selectedRow, 0);
+            for (Individual i : system.getIndividualDirectory().getIndividualList()) {
+                if (i.getRegistrationId() == id) {
+                    this.individual = i;
+                    break;
+                }
+            }
+            DefaultTableModel dtm = (DefaultTableModel) individualHistoryTable.getModel();
+            dtm.setRowCount(0);
+            if (!individual.getHistory().isEmpty()) {
+                for (IndividualHistory inh : individual.getHistory()) {
+                    Object row[] = new Object[4];
+                    row[0] = inh.getAppointmentId();
+                    row[1] = inh.getMeetingDate();
+                    row[2] = inh.getComments();
+                    row[3] = inh.getStatus();
+                    dtm.addRow(row);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No appointments to show");
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select the individual to show Appointment History.");
+        }
+    }//GEN-LAST:event_btnAssign1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnAssign1;
     private javax.swing.JButton btnBack;
+    private javax.swing.JTable individualHistoryTable;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable manageApplicantsTable;
     // End of variables declaration//GEN-END:variables
 }

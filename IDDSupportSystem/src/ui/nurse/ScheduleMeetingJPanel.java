@@ -345,7 +345,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         int selectedRow = individualHistoryTable.getSelectedRow();
         if (selectedRow >= 0) 
         {
-            IndividualHistory history = (IndividualHistory) individualHistoryTable.getValueAt(selectedRow, 0);
+                IndividualHistory history = (IndividualHistory) individualHistoryTable.getValueAt(selectedRow, 0);
             String status = (String) individualHistoryTable.getValueAt(selectedRow, 4);
             if (status.equalsIgnoreCase("Meeting Scheduled")) 
             {

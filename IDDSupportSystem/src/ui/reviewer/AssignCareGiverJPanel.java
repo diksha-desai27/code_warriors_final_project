@@ -34,13 +34,15 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     Individual individual;
     Map<Employee, UserAccount> map;
     Enterprise enterprise;
+    String role;
 
-    public AssignCareGiverJPanel(JPanel userProcessContainer, UserAccount userAccount, Individual individual, Enterprise enterprise) {
+    public AssignCareGiverJPanel(JPanel userProcessContainer, UserAccount userAccount, Individual individual, Enterprise enterprise, String role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.individual = individual;
         this.enterprise = enterprise;
+        this.role = role;
         this.displayData();
         this.populateTable();
         if (individual.getServiceType().equals("Medical")) {
@@ -127,7 +129,6 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(assignCareGiverBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -149,15 +150,20 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                         .addGap(1, 1, 1)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(backBtn)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
@@ -192,24 +198,37 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                 Map.Entry mapElement = (Map.Entry) empIterator.next();
                 Employee e = ((Employee) mapElement.getKey());
                 UserAccount ua = ((UserAccount) mapElement.getValue());
-                if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) {
-                    if (e.getStatus().equals("Available")) {
+                
+                if(role.equalsIgnoreCase("caregiver"))
+                {
+                    if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) 
+                    {
+                        if (e.getStatus().equals("Available")) 
+                        {
+                            Object row[] = new Object[1];
+                            row[0] = e;
+                            dtm.addRow(row);
+                        }
+                    } 
+                }
+                else
+                {
+                    if (ua.getRoleType().getValue().equalsIgnoreCase("Trainer")) 
+                    {
                         Object row[] = new Object[1];
                         row[0] = e;
                         dtm.addRow(row);
-                    }
-                } else {
-                    Object row[] = new Object[1];
-                    row[0] = e;
-                    dtm.addRow(row);
+                    } 
                 }
+                
 
             }
         }
     }
 
     private void assignCareGiverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignCareGiverBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:'
+        UserAccount caregiver = null;
         int selectedRow = caregiverTable.getSelectedRow();
         if (selectedRow >= 0) {
             UserAccount ua = null;
@@ -220,7 +239,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
             while (empIterator.hasNext()) {
                 Map.Entry mapElement = (Map.Entry) empIterator.next();
                 Employee e1 = ((Employee) mapElement.getKey());
-                UserAccount caregiver = ((UserAccount) mapElement.getValue());
+                caregiver = ((UserAccount) mapElement.getValue());
                 if (e1.equals(e)) {
                     ua = caregiver;
                     emp = e1;
@@ -234,6 +253,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                             w.setSender(this.userAccount);
                             w.setStatus("Assigned to Caregiver");
                             w.setMessage("");
+                            w.setReceiver(caregiver);
                             w.setIndividual(this.individual);
                             ua.getWorkQueue().getWorkRequestList().add(w);
                             emp.setStatus("Reserved");
@@ -244,6 +264,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                             w.setSender(this.userAccount);
                             w.setStatus("Assigned to Trainer");
                             w.setMessage("");
+                            //w.setReceiver(caregiver);
                             w.setIndividual(this.individual);
                             ua.getWorkQueue().getWorkRequestList().add(w);
                             JOptionPane.showMessageDialog(null, individual.getFirstName() + " " + individual.getLastName() + " assigned to trainer " + emp);
