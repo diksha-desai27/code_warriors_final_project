@@ -56,7 +56,6 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         btnSchedule = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -98,7 +97,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         btnBack.setBounds(50, 280, 140, 60);
 
         btnSchedule.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/work-schedule.png"))); // NOI18N
+        btnSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/workSchedule.png"))); // NOI18N
         btnSchedule.setText("Schedule Meeting");
         btnSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,14 +112,11 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         add(jLabel1);
         jLabel1.setBounds(440, 240, 399, 330);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/back.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        add(jLabel2);
-        jLabel2.setBounds(70, 10, 670, 60);
-
-        jLabel3.setText("jLabel3");
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/nurse.png"))); // NOI18N
+        jLabel3.setText("   NURSE WORK AREA");
         add(jLabel3);
-        jLabel3.setBounds(30, 40, 45, 16);
+        jLabel3.setBounds(30, 6, 340, 50);
     }// </editor-fold>//GEN-END:initComponents
     
     public void populateTable() {
@@ -179,7 +175,6 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSchedule;
     private javax.swing.JTable individualsListTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
