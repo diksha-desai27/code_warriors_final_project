@@ -13,6 +13,7 @@ import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -220,17 +221,42 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
          
         Organization org = (Organization) dpdOrganizationEmp.getSelectedItem();
         String name = nameTextField.getText();
-  
+        System.out.println("compare: " + Organization.Type.Reviewer.getValue().equals(org.getName()));
+
+        if(Organization.Type.Reviewer.getValue().equals(org.getName()))
+        {
+            
+           if(org.getEmployeeDirectory().getEmployeeList().isEmpty())
+           {
+               System.out.println("user created first time");
+               org.getEmployeeDirectory().createEmployee(name);
+               enterprise.getEmployeeDirectory().createEmployee(name);
+               system.getEmployeeDirectory().createEmployee(name);
+               JOptionPane.showMessageDialog(null, "Employee created successfully");
+           }
+           else
+               
+           {
+               System.out.println("user not crated");
+               JOptionPane.showMessageDialog(null, "Reviewer already exists. You cannot have create more than ONE reviewer");
+
+           }               
+        }
+        else
+        {
+            System.out.println("hello");
             org.getEmployeeDirectory().createEmployee(name);
             enterprise.getEmployeeDirectory().createEmployee(name);
             system.getEmployeeDirectory().createEmployee(name);
-        
+            JOptionPane.showMessageDialog(null, "Employee created successfully");
+        }
+          
         this.populateTable(org);
-        JOptionPane.showMessageDialog(null, "Employee created successfully");
         nameTextField.setText("");
           
     }//GEN-LAST:event_btnCreateEmployeeActionPerformed
 
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
      
      userProcessContainer.remove(this);
