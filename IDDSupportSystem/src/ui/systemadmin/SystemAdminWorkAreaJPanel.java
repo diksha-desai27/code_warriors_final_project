@@ -54,7 +54,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageNetwork);
-        btnManageNetwork.setBounds(460, 130, 250, 100);
+        btnManageNetwork.setBounds(460, 130, 310, 100);
 
         btnManageEnterprise.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnManageEnterprise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/case.png"))); // NOI18N
@@ -65,7 +65,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageEnterprise);
-        btnManageEnterprise.setBounds(460, 250, 250, 100);
+        btnManageEnterprise.setBounds(460, 250, 310, 100);
 
         btnManageEnterpriseAdmin.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnManageEnterpriseAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Admin3.png"))); // NOI18N
@@ -76,7 +76,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageEnterpriseAdmin);
-        btnManageEnterpriseAdmin.setBounds(460, 370, 250, 90);
+        btnManageEnterpriseAdmin.setBounds(460, 370, 320, 90);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/admin1.png"))); // NOI18N
@@ -87,7 +87,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
         add(jLabel3);
-        jLabel3.setBounds(90, 40, 650, 50);
+        jLabel3.setBounds(90, 40, 670, 50);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/AdminPortalWelcome.png"))); // NOI18N
         add(jLabel4);

@@ -45,9 +45,15 @@ public class UserAccountDirectory {
         return userAccount;
     }
     
+    public UserAccount deleUserAccount(UserAccount userAccount)
+    {
+       userAccountList.remove(userAccount);
+       return userAccount;
+    }
+    
     public boolean checkIfUsernameIsUnique(String username){
         for (UserAccount ua : userAccountList){
-            if (ua.getUsername().equals(username))
+            if (ua.getUsername().equalsIgnoreCase(username))
                 return false;
         }
         return true;
