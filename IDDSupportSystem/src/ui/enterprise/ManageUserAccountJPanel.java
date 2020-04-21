@@ -287,32 +287,48 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     roleType = Role.RoleType.Trainer;
                 }
 
-                System.out.println("getMap: " + enterprise.getEmpMap());
                 if (enterprise.getEmpMap().isEmpty())
                 {
-                    System.out.println("if");
                     UserAccount ua1 = enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                    
 
-                    if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue()))
-                    {
-                        Schedule sch = new Schedule();
-                        enterprise.getSchedule().put(ua1, sch);
-                    }
+                       Iterator empIterator = system.getEmpMap().entrySet().iterator();
+                       while (empIterator.hasNext())
+                       {
+                           Map.Entry mapElement = (Map.Entry) empIterator.next();
+                           Employee e = ((Employee) mapElement.getKey());
+                           UserAccount ua = ((UserAccount) mapElement.getValue());
 
-                    if (org.getName().equals(Organization.Type.Caregiver.getValue()))
-                    {
-                        emp.setStatus("Available");
-                    }
+                            if(ua.getUsername().equalsIgnoreCase(username))
+                            {
+                                JOptionPane.showMessageDialog(null, "Username has been already taken. Please use another username");
+                                break;   
+                            }
+                            else
+                            {
+                                if (org.getName().equals(Organization.Type.Doctor.getValue()) || org.getName().equals(Organization.Type.Nurse.getValue()) || org.getName().equals(Organization.Type.Trainer.getValue()))
+                                {
+                                    Schedule sch = new Schedule();
+                                    enterprise.getSchedule().put(ua1, sch);
+                                }
 
-                    enterprise.getEmpMap().put(emp, ua1);
-                    enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                    org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
-                    system.getEmpMap().put(emp, ua1);
-                    JOptionPane.showMessageDialog(null, "User account created successfully.");
+                                if (org.getName().equals(Organization.Type.Caregiver.getValue()))
+                                {
+                                    emp.setStatus("Available");
+                                }
+
+                                enterprise.getEmpMap().put(emp, ua1);
+                                enterprise.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                                org.getUserAccountDirectory().createUserAccount(username, password, role, roleType);
+                                system.getEmpMap().put(emp, ua1);
+                                JOptionPane.showMessageDialog(null, "User account created successfully.");
+                                break;
+                            }
+                       }  
                 }
                 else
                 {
-                    Iterator empIterator = enterprise.getEmpMap().entrySet().iterator();
+                    Iterator empIterator = system.getEmpMap().entrySet().iterator();
                     while (empIterator.hasNext())
                     {
                         Map.Entry mapElement = (Map.Entry) empIterator.next();
@@ -359,7 +375,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             {
                 JOptionPane.showMessageDialog(null, "Please enter valid password");
             }
-        } else {
+        } 
+        else 
+        {
             JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
         }
     }//GEN-LAST:event_btnCreateActionPerformed
