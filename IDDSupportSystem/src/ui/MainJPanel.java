@@ -71,6 +71,7 @@ public class MainJPanel extends javax.swing.JFrame {
         passwordField = new javax.swing.JPasswordField();
         btnSignUp = new javax.swing.JButton();
         rightJPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,11 +154,18 @@ public class MainJPanel extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(leftJPanel);
 
         rightJPanel.setBackground(new java.awt.Color(255, 255, 255));
-        rightJPanel.setLayout(new java.awt.CardLayout());
+        rightJPanel.setLayout(null);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/IDD.jpg"))); // NOI18N
-        jLabel4.setMaximumSize(new java.awt.Dimension(1200, 800));
-        rightJPanel.add(jLabel4, "card2");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/IDD.jpg"))); // NOI18N
+        rightJPanel.add(jLabel3);
+        jLabel3.setBounds(0, 200, 920, 370);
+
+        jLabel4.setBackground(new java.awt.Color(97, 191, 212));
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(97, 191, 212));
+        jLabel4.setText("WELCOME TO IDD SUPPORT CENTER");
+        rightJPanel.add(jLabel4);
+        jLabel4.setBounds(80, 73, 680, 60);
 
         jSplitPane1.setRightComponent(rightJPanel);
 
@@ -167,11 +175,11 @@ public class MainJPanel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1098, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(workAreaJPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
         );
 
         pack();
@@ -341,6 +349,7 @@ public class MainJPanel extends javax.swing.JFrame {
     private javax.swing.JButton btnSignUp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel leftJPanel;
