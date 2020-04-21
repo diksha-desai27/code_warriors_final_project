@@ -102,7 +102,8 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         dpdMeetingTime = new javax.swing.JComboBox<>();
         btnConfirmMeeting = new javax.swing.JButton();
         btnAddDetails = new javax.swing.JButton();
-        btnAssign = new javax.swing.JButton();
+        btnMarkAsCompleted = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -130,7 +131,11 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Registration ID#");
 
+        registrationIdValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         jLabel2.setText("Name");
+
+        nameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel3.setText("Date");
 
@@ -144,6 +149,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
 
         dpdMeetingTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnConfirmMeeting.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnConfirmMeeting.setText("Confirm Meeting");
         btnConfirmMeeting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +157,8 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnAddDetails.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnAddDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/add.png"))); // NOI18N
         btnAddDetails.setText("Add Details");
         btnAddDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,12 +166,18 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnAssign.setText("Assign to Caregiver");
-        btnAssign.addActionListener(new java.awt.event.ActionListener() {
+        btnMarkAsCompleted.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnMarkAsCompleted.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N
+        btnMarkAsCompleted.setText("Mark as Complete");
+        btnMarkAsCompleted.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssignActionPerformed(evt);
+                btnMarkAsCompletedActionPerformed(evt);
             }
         });
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/workSchedule.png"))); // NOI18N
+        jLabel5.setText("SCHEDULE MEETING");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -171,72 +185,71 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(77, 77, 77)
+                            .addComponent(btnAddDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(79, 79, 79)
+                            .addComponent(btnMarkAsCompleted))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnConfirmMeeting)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(dpdMeetingTime, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(meetingDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(registrationIdValue, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnAssign)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAddDetails)))))
-                .addGap(20, 20, 20))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(206, 206, 206)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnConfirmMeeting)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(registrationIdValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(nameValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dpdMeetingTime, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(meetingDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(registrationIdValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel5)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(nameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(registrationIdValue, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
                         .addGap(27, 27, 27)
                         .addComponent(jLabel3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(meetingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(dpdMeetingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnConfirmMeeting)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAddDetails)
-                        .addGap(195, 195, 195))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAssign)
-                        .addContainerGap(80, Short.MAX_VALUE))))
+                        .addComponent(nameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(meetingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(dpdMeetingTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnConfirmMeeting, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMarkAsCompleted)
+                    .addComponent(btnAddDetails))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -317,33 +330,26 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                     }
                     else
                     {
-                        IndividualHistory id = individual.getHistory().get((individual.getHistory().size())-1);
-                        //for(IndividualHistory id: individual.getHistory())
-                       // {
-                            //if(i)
-                            if(id.getStatus().equalsIgnoreCase("Completed") || id.getStatus().equalsIgnoreCase("Rescheduled") || id.getStatus().equalsIgnoreCase("Cancelled"))
+                        for(IndividualHistory id: individual.getHistory())
+                        {
+                            if(date.equals(id.getMeetingDate()) || id.getMeetingDate().compareTo(date) > 0)
                             {
-                                if(date.equals(id.getMeetingDate()) || id.getMeetingDate().compareTo(date) > 0)
-                                {
-                                    JOptionPane.showMessageDialog(null, "You can't schedule a meeting on this date.");
-                                }
-                                else
-                                {
-                                    IndividualHistory history = new IndividualHistory();
-                                    history.setMeetingDate(date);
-                                    history.setStatus("Meeting Scheduled");
-                                    individual.getHistory().add(history);
-                                }
+                                JOptionPane.showMessageDialog(null, "You can't schedule a meeting on this date.");
+                                break;
                             }
                             else
                             {
-                                JOptionPane.showMessageDialog(null, "You cannot schedule the meeting until now.");
+                                IndividualHistory history = new IndividualHistory();
+                                history.setMeetingDate(date);
+                                history.setStatus("Meeting Scheduled");
+                                individual.getHistory().add(history);
+                                break;
                             }
-                            
-                            
-                       // }
+                        }
                     }
+                    
 
+                    System.out.println("history " + individual.getHistory());
                 }
             }
         } 
@@ -359,7 +365,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         int selectedRow = individualHistoryTable.getSelectedRow();
         if (selectedRow >= 0) 
         {
-                IndividualHistory history = (IndividualHistory) individualHistoryTable.getValueAt(selectedRow, 0);
+            IndividualHistory history = (IndividualHistory) individualHistoryTable.getValueAt(selectedRow, 0);
             String status = (String) individualHistoryTable.getValueAt(selectedRow, 4);
             if (status.equalsIgnoreCase("Meeting Scheduled")) 
             {
@@ -380,7 +386,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAddDetailsActionPerformed
 
-    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+    private void btnMarkAsCompletedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkAsCompletedActionPerformed
         // TODO add your handling code here:
         int selectedRow = individualHistoryTable.getSelectedRow();
         if(selectedRow >= 0)
@@ -401,7 +407,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "You cannot assign to caregiver as the medication is not compeleted");
+                JOptionPane.showMessageDialog(null, "You cannot mark the request as compeleted");
             }
         }
         else
@@ -410,7 +416,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         }
     
         
-    }//GEN-LAST:event_btnAssignActionPerformed
+    }//GEN-LAST:event_btnMarkAsCompletedActionPerformed
     
     public void populateTable(Individual individual)
     {
@@ -419,7 +425,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         for(IndividualHistory history: individual.getHistory())
         {
             Object[] row = new Object[6];
-            row[0] = history;
+            row[0] = history.getAppointmentId();
             row[1] = individual.getFirstName() + " " + individual.getLastName();
             row[2] = history.getMeetingDate();
             row[3] = history.getComments();
@@ -440,14 +446,15 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddDetails;
-    private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnConfirmMeeting;
+    private javax.swing.JButton btnMarkAsCompleted;
     private javax.swing.JComboBox<String> dpdMeetingTime;
     private javax.swing.JTable individualHistoryTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private com.toedter.calendar.JDateChooser meetingDate;

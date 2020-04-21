@@ -46,7 +46,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         manageApplicantsJTable = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
@@ -54,8 +53,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         btnAccept = new javax.swing.JButton();
         jBtnViewReport = new javax.swing.JButton();
         scheduleAppointmentBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        jLabel1.setText("Doctor Work Area");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         manageApplicantsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,87 +80,74 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(manageApplicantsJTable);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(29, 127, 594, 125);
+
+        btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack);
+        btnBack.setBounds(29, 278, 110, 40);
 
+        btnDecline.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnDecline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/close.png"))); // NOI18N
         btnDecline.setText("Decline");
         btnDecline.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeclineActionPerformed(evt);
             }
         });
+        add(btnDecline);
+        btnDecline.setBounds(350, 280, 150, 60);
 
+        btnAccept.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N
         btnAccept.setText("Accept");
         btnAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcceptActionPerformed(evt);
             }
         });
+        add(btnAccept);
+        btnAccept.setBounds(180, 280, 150, 60);
 
+        jBtnViewReport.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jBtnViewReport.setText("Check/Provide Status");
         jBtnViewReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnViewReportActionPerformed(evt);
             }
         });
+        add(jBtnViewReport);
+        jBtnViewReport.setBounds(641, 143, 190, 50);
 
+        scheduleAppointmentBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        scheduleAppointmentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/time.png"))); // NOI18N
         scheduleAppointmentBtn.setText("Schedule Appointment");
         scheduleAppointmentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 scheduleAppointmentBtnActionPerformed(evt);
             }
         });
+        add(scheduleAppointmentBtn);
+        scheduleAppointmentBtn.setBounds(530, 280, 206, 60);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAccept)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnDecline)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scheduleAppointmentBtn)
-                                .addGap(4, 4, 4))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jBtnViewReport)))
-                .addContainerGap(215, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jBtnViewReport)))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDecline)
-                    .addComponent(btnBack)
-                    .addComponent(btnAccept)
-                    .addComponent(scheduleAppointmentBtn))
-                .addContainerGap(283, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/doctor.png"))); // NOI18N
+        jLabel2.setText("    DOCTOR WORK AREA");
+        add(jLabel2);
+        jLabel2.setBounds(20, 30, 380, 60);
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3);
+        jLabel3.setBounds(80, 40, 800, 50);
     }// </editor-fold>//GEN-END:initComponents
 
     public void populateTable() {
@@ -305,7 +294,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDecline;
     private javax.swing.JButton jBtnViewReport;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable manageApplicantsJTable;
     private javax.swing.JButton scheduleAppointmentBtn;

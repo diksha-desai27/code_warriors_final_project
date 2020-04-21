@@ -75,6 +75,12 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         btnShowHistory = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnMarkAsComplete = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         manageApplicantsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,21 +103,35 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(manageApplicantsTable);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(25, 160, 594, 125);
+
+        btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack);
+        btnBack.setBounds(25, 300, 100, 42);
 
+        btnAssign.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnAssign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
         btnAssign.setText("Assign to Doctor");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignActionPerformed(evt);
             }
         });
+        add(btnAssign);
+        btnAssign.setBounds(289, 300, 171, 42);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel1.setText("Manage Applicants");
+        add(jLabel1);
+        jLabel1.setBounds(270, 106, 145, 36);
 
         individualHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,80 +155,52 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         individualHistoryTable.setToolTipText("");
         jScrollPane2.setViewportView(individualHistoryTable);
 
-        jLabel2.setText("Appointment History");
+        add(jScrollPane2);
+        jScrollPane2.setBounds(50, 480, 594, 112);
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel2.setText("Appointment History");
+        add(jLabel2);
+        jLabel2.setBounds(260, 440, 150, 36);
+
+        btnShowHistory.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnShowHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/SCHEDULINGHISTORY.png"))); // NOI18N
         btnShowHistory.setText("Show Appointment History");
         btnShowHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowHistoryActionPerformed(evt);
             }
         });
+        add(btnShowHistory);
+        btnShowHistory.setBounds(440, 390, 260, 50);
+        add(jSeparator1);
+        jSeparator1.setBounds(20, 370, 745, 10);
 
+        btnMarkAsComplete.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnMarkAsComplete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N
         btnMarkAsComplete.setText("Mark As Complete");
         btnMarkAsComplete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMarkAsCompleteActionPerformed(evt);
             }
         });
+        add(btnMarkAsComplete);
+        btnMarkAsComplete.setBounds(472, 297, 195, 49);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(293, 293, 293)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(241, 241, 241)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnShowHistory))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(45, 45, 45)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addGap(210, 210, 210)
-                                .addComponent(btnAssign)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnMarkAsComplete)))))
-                .addGap(57, 57, 57))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnAssign)
-                    .addComponent(btnMarkAsComplete))
-                .addGap(34, 34, 34)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnShowHistory)))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(242, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/caregiver.png"))); // NOI18N
+        jLabel3.setText("CAREGIVER WORK AREA");
+        add(jLabel3);
+        jLabel3.setBounds(30, 30, 370, 50);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        add(jLabel4);
+        jLabel4.setBounds(75, 36, 730, 40);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/disability12.gif"))); // NOI18N
+        add(jLabel6);
+        jLabel6.setBounds(440, 610, 320, 140);
     }// </editor-fold>//GEN-END:initComponents
 
     public void populateTable() {
@@ -380,6 +372,9 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable individualHistoryTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
