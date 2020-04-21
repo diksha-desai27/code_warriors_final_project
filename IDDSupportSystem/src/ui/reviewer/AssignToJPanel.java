@@ -24,10 +24,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author kales
  */
-public class AssignCareGiverJPanel extends javax.swing.JPanel {
+public class AssignToJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form AssignCareGiverJPanel
+     * Creates new form AssignToJPanel
      */
     JPanel userProcessContainer;
     UserAccount userAccount;
@@ -36,7 +36,7 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     String role;
 
-    public AssignCareGiverJPanel(JPanel userProcessContainer, UserAccount userAccount, Individual individual, Enterprise enterprise, String role) {
+    public AssignToJPanel(JPanel userProcessContainer, UserAccount userAccount, Individual individual, Enterprise enterprise, String role) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
@@ -79,17 +79,17 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
 
         caregiverTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Name"
+                "Name", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -198,29 +198,23 @@ public class AssignCareGiverJPanel extends javax.swing.JPanel {
                 Map.Entry mapElement = (Map.Entry) empIterator.next();
                 Employee e = ((Employee) mapElement.getKey());
                 UserAccount ua = ((UserAccount) mapElement.getValue());
-                
-                if(role.equalsIgnoreCase("caregiver"))
-                {
-                    if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) 
-                    {
-                        if (e.getStatus().equals("Available")) 
-                        {
-                            Object row[] = new Object[1];
+
+                if (role.equalsIgnoreCase("caregiver")) {
+                    if (ua.getRoleType().getValue().equalsIgnoreCase("Caregiver")) {
+                        if (e.getStatus().equals("Available")) {
+                            Object row[] = new Object[2];
                             row[0] = e;
+                            row[1] = e.getStatus();
                             dtm.addRow(row);
                         }
-                    } 
-                }
-                else
-                {
-                    if (ua.getRoleType().getValue().equalsIgnoreCase("Trainer")) 
-                    {
-                        Object row[] = new Object[1];
+                    }
+                } else {
+                    if (ua.getRoleType().getValue().equalsIgnoreCase("Trainer")) {
+                        Object row[] = new Object[2];
                         row[0] = e;
                         dtm.addRow(row);
-                    } 
+                    }
                 }
-                
 
             }
         }
