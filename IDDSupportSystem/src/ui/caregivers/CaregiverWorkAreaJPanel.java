@@ -235,7 +235,7 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
             if (this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
                 for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
                     if (w.getIndividual().getRegistrationId() == id) {
-                        if (w.getStatus().equalsIgnoreCase("Assigned to caregiver")) {
+                        if (w.getStatus().equalsIgnoreCase("Assigned to caregiver") || w.getStatus().equalsIgnoreCase("Declined")) {
                             individual = w.getIndividual();
                             AssignToDoctorJPanel assignToDoctorJPanel = new AssignToDoctorJPanel(userProcessContainer, userAccount, individual, enterprise, system);
                             userProcessContainer.add("assignToDoctorJPanel", assignToDoctorJPanel);
