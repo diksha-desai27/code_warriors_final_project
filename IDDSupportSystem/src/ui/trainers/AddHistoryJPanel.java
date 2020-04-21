@@ -197,7 +197,6 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
             }
             for (IndividualHistory indHistory : workRequest.getIndividual().getHistory()) {
                 if (indHistory.getStatus().equals("Meeting Scheduled")) {
-                    indHistory.setProgress(Integer.parseInt(progressJTxt.getText()));
                     indHistory.setComments(commentsTxtArea.getText());
                     indHistory.setStatus(dpdStatus.getSelectedItem().toString());
                     JOptionPane.showMessageDialog(null, "Details Saved Successfully");

@@ -12,6 +12,8 @@ import business.history.IndividualHistory;
 import business.individuals.Individual;
 import business.schedule.Schedule;
 import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
+import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,6 +24,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ui.trainers.AddHistoryJPanel;
 
 /**
  *
@@ -98,26 +101,29 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         dpdMeetingTime = new javax.swing.JComboBox<>();
         btnConfirmMeeting = new javax.swing.JButton();
+        btnAddDetails = new javax.swing.JButton();
+        btnMarkAsCompleted = new javax.swing.JButton();
 
         individualHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Registration ID", "Name", "Date", "Comments", "Status", "Progress"
+                "Meeting ID", "Name", "Date", "Comments", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        individualHistoryTable.setToolTipText("");
         jScrollPane1.setViewportView(individualHistoryTable);
 
         jLabel1.setText("Registration ID#");
@@ -140,6 +146,20 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         btnConfirmMeeting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmMeetingActionPerformed(evt);
+            }
+        });
+
+        btnAddDetails.setText("Add Details");
+        btnAddDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDetailsActionPerformed(evt);
+            }
+        });
+
+        btnMarkAsCompleted.setText("Mark as Complete");
+        btnMarkAsCompleted.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMarkAsCompletedActionPerformed(evt);
             }
         });
 
@@ -169,10 +189,13 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                                 .addComponent(registrationIdValue, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAddDetails)
+                            .addComponent(btnMarkAsCompleted))))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +225,11 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAddDetails)
+                .addGap(33, 33, 33)
+                .addComponent(btnMarkAsCompleted)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -312,6 +339,64 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         }
         this.populateTable(individual);
     }//GEN-LAST:event_btnConfirmMeetingActionPerformed
+
+    private void btnAddDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDetailsActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = individualHistoryTable.getSelectedRow();
+        if (selectedRow >= 0) 
+        {
+            IndividualHistory history = (IndividualHistory) individualHistoryTable.getValueAt(selectedRow, 0);
+            String status = (String) individualHistoryTable.getValueAt(selectedRow, 4);
+            if (status.equalsIgnoreCase("Meeting Scheduled")) 
+            {
+                AddMeetingHistoryJPanel addMeetingHistory = new AddMeetingHistoryJPanel(userProcessContainer, userAccount, enterprise, individual, history);
+                userProcessContainer.add("addMeetingHistory", addMeetingHistory);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } 
+            else 
+            {
+                JOptionPane.showMessageDialog(null, "You cannot add Details for this appointment");
+            }
+
+        } 
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_btnAddDetailsActionPerformed
+
+    private void btnMarkAsCompletedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkAsCompletedActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = individualHistoryTable.getSelectedRow();
+        if(selectedRow >= 0)
+        {
+            IndividualHistory history = (IndividualHistory) individualHistoryTable.getValueAt(selectedRow, 0);
+            String status = (String) individualHistoryTable.getValueAt(selectedRow, 4);
+            if(status.equalsIgnoreCase("Completed"))
+            {
+                for(WorkRequest w: userAccount.getWorkQueue().getWorkRequestList())
+                {
+                    if(w.getIndividual().equals(individual))
+                    {
+                        w.setSender(userAccount);
+                        w.setStatus("Medication Completed");
+                        JOptionPane.showMessageDialog(null, "Status updated successfully");
+                    }
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "You cannot mark the request as compeleted");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Please select a row.");
+        }
+    
+        
+    }//GEN-LAST:event_btnMarkAsCompletedActionPerformed
     
     public void populateTable(Individual individual)
     {
@@ -320,12 +405,11 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         for(IndividualHistory history: individual.getHistory())
         {
             Object[] row = new Object[6];
-            row[0] = individual.getRegistrationId();
+            row[0] = history.getAppointmentId();
             row[1] = individual.getFirstName() + " " + individual.getLastName();
             row[2] = history.getMeetingDate();
             row[3] = history.getComments();
             row[4] = history.getStatus();
-            row[5] = history.getProgress();
             dtm.addRow(row);
         }  
     }
@@ -341,7 +425,9 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddDetails;
     private javax.swing.JButton btnConfirmMeeting;
+    private javax.swing.JButton btnMarkAsCompleted;
     private javax.swing.JComboBox<String> dpdMeetingTime;
     private javax.swing.JTable individualHistoryTable;
     private javax.swing.JLabel jLabel1;
