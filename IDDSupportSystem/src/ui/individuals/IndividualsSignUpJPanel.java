@@ -149,7 +149,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
             }
         });
         add(btnRegister);
-        btnRegister.setBounds(207, 505, 150, 50);
+        btnRegister.setBounds(210, 510, 150, 60);
 
         btnLogout.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Logout2.png"))); // NOI18N
@@ -160,7 +160,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
             }
         });
         add(btnLogout);
-        btnLogout.setBounds(34, 505, 140, 50);
+        btnLogout.setBounds(20, 510, 150, 60);
         add(birthDayChooser);
         birthDayChooser.setBounds(176, 138, 174, 26);
 

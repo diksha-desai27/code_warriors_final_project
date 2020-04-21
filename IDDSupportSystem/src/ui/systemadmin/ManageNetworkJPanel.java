@@ -78,7 +78,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jScrollPane1.setBounds(160, 30, 322, 95);
 
         backJButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        backJButton.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/backbutton.png")); // NOI18N
+        backJButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
         backJButton.setText(" Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +106,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         add(nameTextField);
         nameTextField.setBounds(260, 150, 94, 26);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/Network.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/Network.png"))); // NOI18N
         add(jLabel3);
         jLabel3.setBounds(30, 20, 50, 60);
     }// </editor-fold>//GEN-END:initComponents
