@@ -10,6 +10,7 @@ import business.enterprise.Enterprise;
 import business.individuals.Individual;
 import business.individuals.IndividualDirectory;
 import business.useraccount.UserAccount;
+import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.List;
 import java.util.Map;
@@ -78,17 +79,17 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         individualTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Individual Registration ID", "Individual Name"
+                "Individual Registration ID", "Individual Name", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -254,11 +255,14 @@ public class ManageIndividuals extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) individualTable.getModel();
         model.setRowCount(0);
-        for(Individual i: this.individualDirectory.getIndividualList()) {
-                Object[] row = new Object[4];
-                row[0] = i.getRegistrationId();
-                row[1] = i.getFirstName() + " " + i.getLastName();
-                model.addRow(row);
+        
+        for(WorkRequest w: userAccount.getWorkQueue().getWorkRequestList())
+        {
+            Object[] row = new Object[4];
+            row[0] = w.getIndividual().getRegistrationId();
+            row[1] = w.getIndividual().getFirstName() + " " + w.getIndividual().getLastName();
+            row[2] = w.getStatus();
+            model.addRow(row);
         }
     }
     
@@ -293,18 +297,28 @@ public class ManageIndividuals extends javax.swing.JPanel {
         int selectedRow = individualTable.getSelectedRow();
         if(selectedRow >= 0) {
             int id = (Integer)individualTable.getValueAt(selectedRow, 0);
-            for(Individual i: this.individualDirectory.getIndividualList()) {
-                if(i.getRegistrationId() == id)
+            
+            for(WorkRequest w: userAccount.getWorkQueue().getWorkRequestList())
+            {
+                if(w.getIndividual().getRegistrationId() == id)
                 {
-                    individual = i;
+                    if(w.getStatus().equalsIgnoreCase("Requested Facility"))
+                    {
+                        individual = w.getIndividual();
+                        AssignToJPanel assignCareGiver = new AssignToJPanel(userProcessContainer,userAccount, individual, this.enterprise, "caregiver");
+                        userProcessContainer.add("AssignCareGiver",assignCareGiver);
+
+                        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+                        layout.next(userProcessContainer);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "You can assign this request.");
+                    }
                     break;
                 }
             }
-            AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise, "caregiver");
-            userProcessContainer.add("AssignCareGiver",assignCareGiver);
-
-            CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+           
         }
         else {
             JOptionPane.showMessageDialog(null, "Please select an individual to assign it to the caregiver.");
@@ -316,18 +330,27 @@ public class ManageIndividuals extends javax.swing.JPanel {
         int selectedRow = individualTable.getSelectedRow();
         if(selectedRow >= 0) {
             int id = (Integer)individualTable.getValueAt(selectedRow, 0);
-            for(Individual i: this.individualDirectory.getIndividualList()) {
-                if(i.getRegistrationId() == id)
+            
+            for(WorkRequest w: userAccount.getWorkQueue().getWorkRequestList())
+            {
+                if(w.getIndividual().getRegistrationId() == id)
                 {
-                    individual = i;
+                    if(w.getStatus().equalsIgnoreCase("Requested Facility"))
+                    {
+                        individual = w.getIndividual();
+                        AssignToJPanel assign = new AssignToJPanel(userProcessContainer,userAccount, individual, this.enterprise, "trainer");
+                        userProcessContainer.add("assign",assign);
+
+                        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+                        layout.next(userProcessContainer);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "You can assign this request.");
+                    }
                     break;
                 }
             }
-            AssignCareGiverJPanel assignCareGiver = new AssignCareGiverJPanel(userProcessContainer,userAccount, individual, this.enterprise, "trainer");
-            userProcessContainer.add("AssignCareGiver",assignCareGiver);
-
-            CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
         }
         else {
             JOptionPane.showMessageDialog(null, "Please select an individual to assign it to the trainer.");

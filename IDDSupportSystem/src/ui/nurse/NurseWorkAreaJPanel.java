@@ -157,11 +157,29 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
                     individual = i;
                 }
             }
-            ScheduleMeetingJPanel schedule = new ScheduleMeetingJPanel(userProcessContainer, userAccount, individual, enterprise, system);
-            userProcessContainer.add("schedule",schedule);
+            
+            for(WorkRequest w: this.userAccount.getWorkQueue().getWorkRequestList())
+            {
+                if(w.getIndividual().equals(individual))
+                {
+                    if(w.getStatus().equalsIgnoreCase("Assigned to Nurse"))
+                    {
+                        ScheduleMeetingJPanel schedule = new ScheduleMeetingJPanel(userProcessContainer, userAccount, individual, enterprise, system);
+                        userProcessContainer.add("schedule",schedule);
 
-            CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+                        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+                        layout.next(userProcessContainer);
+                        
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "You cannot schedule the meeting.");
+                       
+                    }
+                    break;
+                }
+            }
+
         }
         else
         {
