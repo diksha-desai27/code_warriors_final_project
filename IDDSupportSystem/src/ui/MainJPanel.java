@@ -189,7 +189,8 @@ public class MainJPanel extends javax.swing.JFrame {
         Enterprise isEnterprise = null;
         Organization isOrganization = null;
         System.out.println("user" + userAccount);
-        //if (userAccount == null) {
+
+        if (userAccount != null) {
 
             for (Network n : system.getNetworkList()) {
                 for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
@@ -216,13 +217,15 @@ public class MainJPanel extends javax.swing.JFrame {
                 }
             }
 
-        //} else {
-        if(isEnterprise==null && isOrganization==null){
-            for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
-                System.out.println(ind.getUserName());
-                if (ind.getUserName().equals(userName)) {
-                    individual = ind;
-                    break;
+            if (isEnterprise == null && isOrganization == null && userAccount == null) {
+                userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+                if (userAccount != null) {
+                    for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
+                        if (ind.getUserName().equals(userName)) {
+                            individual = ind;
+                            break;
+                        }
+                    }
                 }
             }
         }

@@ -313,7 +313,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         int selectedRow = historyJTable.getSelectedRow();
         if (selectedRow >= 0) {
             IndividualHistory history = (IndividualHistory) historyJTable.getValueAt(selectedRow, 0);
-            String status = (String) historyJTable.getValueAt(selectedRow, 4);
+            String status = (String) historyJTable.getValueAt(selectedRow, 3);
             if (status.equalsIgnoreCase("Meeting Scheduled")) {
                 AddHistoryJPanel addDetails = new AddHistoryJPanel(userProcessContainer, account, enterprise, workRequest);
                 userProcessContainer.add("AddDetailsJPanel", addDetails);

@@ -89,7 +89,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
-            row[0] = wr.getRequestId();
+            row[0] = wr.getIndividual().getRegistrationId();
             row[1] = wr.getSender();
             row[2] = wr.getReceiver();
             row[3] = wr.getStatus();
@@ -198,7 +198,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Request ID", "Sender", "Receiver", "Status"
+                "Registration ID", "Sender", "Receiver", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -362,13 +362,18 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = individualWRequestJTable.getSelectedRow();
         if (selectedRow >= 0) {
-            WorkRequest wr = (WorkRequest) individualWRequestJTable.getValueAt(selectedRow, 0);
-            
-            if (wr.getStatus().equals("Completed") || wr.getStatus().equalsIgnoreCase("Request Completed")) {
-                FeedbackJPanel feedbackJPanel = new FeedbackJPanel(rightJPanel, userAccount, wr, individual, facilityList);
-                rightJPanel.add("FeedbackJPanel", feedbackJPanel);
-                CardLayout layout = (CardLayout) rightJPanel.getLayout();
-                layout.next(rightJPanel);
+            int id = (Integer) individualWRequestJTable.getValueAt(selectedRow, 0);
+            for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                if (w.getIndividual().getRegistrationId() == id) {
+                    WorkRequest wr = w;
+
+                    if (wr.getStatus().equals("Completed") || wr.getStatus().equalsIgnoreCase("Request Completed")) {
+                        FeedbackJPanel feedbackJPanel = new FeedbackJPanel(rightJPanel, userAccount, wr, individual, facilityList);
+                        rightJPanel.add("FeedbackJPanel", feedbackJPanel);
+                        CardLayout layout = (CardLayout) rightJPanel.getLayout();
+                        layout.next(rightJPanel);
+                    }
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row to proceed");
