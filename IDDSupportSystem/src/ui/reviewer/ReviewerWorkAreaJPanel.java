@@ -61,6 +61,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         chartPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -76,7 +77,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageNetwork);
-        btnManageNetwork.setBounds(180, 120, 290, 110);
+        btnManageNetwork.setBounds(440, 150, 260, 90);
 
         btnManageNetwork1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnManageNetwork1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/reportGEN.png"))); // NOI18N
@@ -87,7 +88,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnManageNetwork1);
-        btnManageNetwork1.setBounds(180, 270, 290, 110);
+        btnManageNetwork1.setBounds(440, 300, 260, 90);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/reviewER.png"))); // NOI18N
@@ -95,10 +96,16 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(30, 30, 439, 50);
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(85, 36, 570, 40);
+        jLabel3.setBounds(85, 36, 630, 40);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/Documents/AED Final Project/Final Project Images/reviewerPortal.png")); // NOI18N
+        jLabel4.setText("jLabel4");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(60, 130, 320, 400);
 
         chartPanel.setLayout(new java.awt.BorderLayout());
         jPanel1.add(chartPanel);
@@ -127,7 +134,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         dataset.setValue(3, "Count", "Average");
         dataset.setValue(2, "Count", "Good");
         dataset.setValue(1, "Count", "Very Good");
-        JFreeChart jfreeChart = ChartFactory.createAreaChart("Total Count","Feedback","Count", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart jfreeChart = ChartFactory.createBarChart("Total Count","Feedback","Count", dataset, PlotOrientation.VERTICAL, false, true, false);
     //    CategoryPlot p = jfreeChart.getCategoryPlot();
     //    p.setRangeGridlinePaint(Color.BLACK);
         ChartPanel panel = new ChartPanel(jfreeChart);
@@ -144,6 +151,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel chartPanel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
