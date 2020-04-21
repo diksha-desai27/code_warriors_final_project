@@ -42,8 +42,6 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.individualDirectory = individualDirectory;
         this.enterprise = enterprise;
-
-        populateChart();
     }
 
     /**
@@ -60,7 +58,6 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         btnManageNetwork1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        chartPanel = new javax.swing.JPanel();
 
         setLayout(null);
 
@@ -101,18 +98,18 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(85, 36, 630, 60);
 
-        chartPanel.setLayout(new java.awt.BorderLayout());
-        jPanel1.add(chartPanel);
-        chartPanel.setBounds(0, 440, 740, 360);
-
         add(jPanel1);
-
-        jPanel1.setBounds(-8, -4, 740, 800);
-
+        jPanel1.setBounds(-8, -4, 740, 810);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetwork1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetwork1ActionPerformed
         // TODO add your handling code here:
+         ViewStatisticsJPanel viewStatistics = new ViewStatisticsJPanel(userProcessContainer, userAccount, this.individualDirectory, this.enterprise);
+        userProcessContainer.add("ViewStatisticsJPanel", viewStatistics);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
     }//GEN-LAST:event_btnManageNetwork1ActionPerformed
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
@@ -124,27 +121,10 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageNetworkActionPerformed
 
-    public void populateChart() {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(4, "Count", "Bad");
-        dataset.setValue(3, "Count", "Average");
-        dataset.setValue(2, "Count", "Good");
-        dataset.setValue(1, "Count", "Very Good");
-        JFreeChart jfreeChart = ChartFactory.createBarChart("Total Count","Feedback","Count", dataset, PlotOrientation.VERTICAL, false, true, false);
-    //    CategoryPlot p = jfreeChart.getCategoryPlot();
-    //    p.setRangeGridlinePaint(Color.BLACK);
-        ChartPanel panel = new ChartPanel(jfreeChart);
-           chartPanel.removeAll();
-           chartPanel.add(panel, BorderLayout.CENTER);
-           chartPanel.validate();
-           
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageNetwork;
     private javax.swing.JButton btnManageNetwork1;
-    private javax.swing.JPanel chartPanel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

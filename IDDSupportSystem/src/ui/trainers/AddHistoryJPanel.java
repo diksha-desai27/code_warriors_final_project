@@ -25,16 +25,19 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
     UserAccount account;
     Enterprise enterprise;
     WorkRequest workRequest;
+    IndividualHistory history;
 
     /**
      * Creates new form AddHistoryJPanel
      */
-    public AddHistoryJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, WorkRequest workRequest) {
+    public AddHistoryJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, WorkRequest workRequest,IndividualHistory history) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.enterprise = enterprise;
         this.workRequest = workRequest;
+        this.history = history;
+        appointmentDate.setText(String.valueOf(history.getAppointmentId()));
         populateStatus();
     }
 

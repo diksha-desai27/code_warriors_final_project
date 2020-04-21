@@ -51,6 +51,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nervousSystemJBtn = new javax.swing.JRadioButton();
@@ -73,28 +74,33 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("WELCOME TO IDD SUPPORT CENTRE");
         add(jLabel1);
-        jLabel1.setBounds(50, 30, 451, 40);
+        jLabel1.setBounds(50, 30, 441, 40);
 
         jLabel2.setText("2. Select which IDD are you facing:");
         add(jLabel2);
-        jLabel2.setBounds(43, 114, 219, 16);
+        jLabel2.setBounds(43, 114, 250, 20);
 
+        buttonGroup1.add(nervousSystemJBtn);
         nervousSystemJBtn.setText("Nervous System");
         add(nervousSystemJBtn);
-        nervousSystemJBtn.setBounds(43, 142, 133, 23);
+        nervousSystemJBtn.setBounds(43, 142, 147, 29);
 
+        buttonGroup1.add(sensorySystemJBtn);
         sensorySystemJBtn.setText("Sensory System");
         add(sensorySystemJBtn);
-        sensorySystemJBtn.setBounds(43, 177, 130, 23);
+        sensorySystemJBtn.setBounds(43, 177, 145, 29);
 
+        buttonGroup1.add(fragileJBtn);
         fragileJBtn.setText("Fragile X Syndrome");
         add(fragileJBtn);
-        fragileJBtn.setBounds(43, 208, 152, 23);
+        fragileJBtn.setBounds(43, 208, 171, 29);
 
+        buttonGroup1.add(downsJBtn);
         downsJBtn.setText("Down's Syndrome");
         add(downsJBtn);
-        downsJBtn.setBounds(43, 243, 144, 23);
+        downsJBtn.setBounds(43, 243, 161, 29);
 
+        buttonGroup1.add(pradeWillisSyndromeBtn);
         pradeWillisSyndromeBtn.setText("Prade willi's Syndrome");
         pradeWillisSyndromeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,29 +108,29 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
             }
         });
         add(pradeWillisSyndromeBtn);
-        pradeWillisSyndromeBtn.setBounds(43, 278, 172, 23);
+        pradeWillisSyndromeBtn.setBounds(43, 278, 193, 29);
 
         jLabel6.setText("3. Describe the services and supervision needed");
         add(jLabel6);
-        jLabel6.setBounds(40, 340, 303, 16);
+        jLabel6.setBounds(40, 340, 338, 20);
 
         serviceJTxtArea.setColumns(20);
         serviceJTxtArea.setRows(5);
         jScrollPane3.setViewportView(serviceJTxtArea);
 
         add(jScrollPane3);
-        jScrollPane3.setBounds(50, 370, 330, 84);
+        jScrollPane3.setBounds(50, 370, 330, 96);
 
         jLabel7.setText("4. Describe the expected duration and goals of placement");
         add(jLabel7);
-        jLabel7.setBounds(40, 480, 541, 16);
+        jLabel7.setBounds(40, 480, 541, 20);
 
         employmentDurationJTxtArea.setColumns(20);
         employmentDurationJTxtArea.setRows(5);
         jScrollPane4.setViewportView(employmentDurationJTxtArea);
 
         add(jScrollPane4);
-        jScrollPane4.setBounds(60, 510, 320, 84);
+        jScrollPane4.setBounds(60, 510, 320, 96);
 
         jbtnSubmit.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jbtnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/submit.png"))); // NOI18N
@@ -214,6 +220,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton downsJBtn;
     private javax.swing.JTextArea employmentDurationJTxtArea;
     private javax.swing.JRadioButton fragileJBtn;
