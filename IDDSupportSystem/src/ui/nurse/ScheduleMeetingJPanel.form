@@ -24,21 +24,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jSeparator1" min="-2" pref="513" max="-2" attributes="0"/>
-                      <EmptySpace min="54" pref="145" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jSeparator1" alignment="0" min="-2" pref="513" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Component id="btnAddDetails" min="-2" pref="197" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                       <Component id="btnMarkAsCompleted" min="-2" pref="194" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="526" max="-2" attributes="0"/>
-                      <EmptySpace min="41" pref="132" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane1" min="-2" pref="526" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="54" pref="132" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -206,7 +201,7 @@
           <Font name="Lucida Grande" size="14" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/check.png"/>
+          <Image iconType="3" name="/NewImages/check.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Confirm Meeting"/>
       </Properties>
@@ -220,7 +215,7 @@
           <Font name="Lucida Grande" size="14" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/add.png"/>
+          <Image iconType="3" name="/NewImages/add.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Add Details"/>
       </Properties>
@@ -234,7 +229,7 @@
           <Font name="Lucida Grande" size="14" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/checklist.png"/>
+          <Image iconType="3" name="/NewImages/checklist.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Mark as Complete"/>
       </Properties>

@@ -150,7 +150,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         dpdMeetingTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnConfirmMeeting.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnConfirmMeeting.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/check.png")); // NOI18N
+        btnConfirmMeeting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N
         btnConfirmMeeting.setText("Confirm Meeting");
         btnConfirmMeeting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +159,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         });
 
         btnAddDetails.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnAddDetails.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/add.png")); // NOI18N
+        btnAddDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/add.png"))); // NOI18N
         btnAddDetails.setText("Add Details");
         btnAddDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,7 +168,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         });
 
         btnMarkAsCompleted.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnMarkAsCompleted.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/checklist.png")); // NOI18N
+        btnMarkAsCompleted.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/checklist.png"))); // NOI18N
         btnMarkAsCompleted.setText("Mark as Complete");
         btnMarkAsCompleted.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,17 +187,14 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 145, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(btnAddDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(102, 102, 102)
                         .addComponent(btnMarkAsCompleted, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 132, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 132, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
