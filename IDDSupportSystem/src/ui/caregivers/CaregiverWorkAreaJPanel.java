@@ -15,6 +15,13 @@ import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -223,38 +230,28 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
         int selectedRow = manageApplicantsTable.getSelectedRow();
-        if (selectedRow >= 0) 
-        {
+        if (selectedRow >= 0) {
             int id = (Integer) manageApplicantsTable.getValueAt(selectedRow, 0);
-            if (this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
-            {
-                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) 
-                {
-                    if (w.getIndividual().getRegistrationId() == id) 
-                    {
-                        if(w.getStatus().equalsIgnoreCase("Assigned to caregiver"))
-                        {
+            if (this.userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
+                for (WorkRequest w : this.userAccount.getWorkQueue().getWorkRequestList()) {
+                    if (w.getIndividual().getRegistrationId() == id) {
+                        if (w.getStatus().equalsIgnoreCase("Assigned to caregiver")) {
                             individual = w.getIndividual();
                             AssignToDoctorJPanel assignToDoctorJPanel = new AssignToDoctorJPanel(userProcessContainer, userAccount, individual, enterprise, system);
                             userProcessContainer.add("assignToDoctorJPanel", assignToDoctorJPanel);
                             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
                             layout.next(userProcessContainer);
-                        }
-                        else
-                        {
+                        } else {
                             JOptionPane.showMessageDialog(null, "You cannot procces this request.");
                         }
-                        
+
                     }
                     break;
 
                 }
             }
 
-           
-        } 
-        else 
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select the individual to schedule an appointment with the Doctor.");
         }
 
@@ -296,59 +293,75 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Individual ind = null;
         int selectedRow = manageApplicantsTable.getSelectedRow();
-        if(selectedRow >= 0) 
-        {
-            int id = (Integer)manageApplicantsTable.getValueAt(selectedRow, 0);
-            for(Individual i: system.getIndividualDirectory().getIndividualList()) 
-            {
-                if(i.getRegistrationId() == id)
-                {
+        if (selectedRow >= 0) {
+            int id = (Integer) manageApplicantsTable.getValueAt(selectedRow, 0);
+            for (Individual i : system.getIndividualDirectory().getIndividualList()) {
+                if (i.getRegistrationId() == id) {
                     ind = i;
                     break;
                 }
             }
-            
-            if(userAccount.getWorkQueue().getWorkRequestList().size() > 0) 
-            {
-                for (WorkRequest w : userAccount.getWorkQueue().getWorkRequestList()) 
-                {
-                    if(w.getIndividual().equals(ind))
-                    {
-                        if(w.getStatus().equalsIgnoreCase("Medication Completed"))
-                        {
-                             w.setStatus("Request Completed");
-                             break;
-                        }
-                        else
-                        {
+
+            if (userAccount.getWorkQueue().getWorkRequestList().size() > 0) {
+                for (WorkRequest w : userAccount.getWorkQueue().getWorkRequestList()) {
+                    if (w.getIndividual().equals(ind)) {
+                        if (w.getStatus().equalsIgnoreCase("Medication Completed")) {
+                            w.setStatus("Request Completed");
+                            JOptionPane.showMessageDialog(null, "Meication Request Completed Successflly");
+                            sendEmail(w);
+                            break;
+                        } else {
                             JOptionPane.showMessageDialog(null, "You cannot mark it as complete.");
                         }
-                       
+
                     }
 
                 }
             }
-            
+
             Iterator map = enterprise.getEmpMap().entrySet().iterator();
 
-            while (map.hasNext()) 
-            {
+            while (map.hasNext()) {
                 Map.Entry mapElement = (Map.Entry) map.next();
                 Employee e = ((Employee) mapElement.getKey());
                 UserAccount ua = ((UserAccount) mapElement.getValue());
-                
-                if(userAccount.equals(ua))
-                {
+
+                if (userAccount.equals(ua)) {
                     e.setStatus("Available");
                     break;
                 }
             }
-        }
-        else 
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Please select the individual.");
         }
     }//GEN-LAST:event_btnMarkAsCompleteActionPerformed
+
+    public void sendEmail(WorkRequest workRequest) {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        String string1 = "Hello,<br/>Thank you for choosing IDD Service System. We are glad to let you know that you medical service has been successfully completed.<br/>Please provide feedback for your services by going into your MYACCOUNT section.<br/>Thanks,IDD Support Team";
+        Session session = Session.getDefaultInstance(props);
+        try {
+            InternetAddress fromAddress = new InternetAddress("growinggreen04@gmail.com");
+            InternetAddress toAddress = new InternetAddress(workRequest.getIndividual().getUserName());
+
+            Message message = new MimeMessage(session);
+            message.setFrom(fromAddress);
+            message.setRecipient(Message.RecipientType.TO, toAddress);
+            message.setSubject("IDD System Appointment Confirmation");
+            message.setContent(string1, "text/html");
+
+            Transport.send(message, "growinggreen04@gmail.com", "growinggreen@123");
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
