@@ -48,6 +48,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -74,17 +75,20 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(networkJTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(171, 85, 322, 95);
+        jScrollPane1.setBounds(160, 30, 322, 95);
 
-        backJButton.setText("<< Back");
+        backJButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        backJButton.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/backbutton.png")); // NOI18N
+        backJButton.setText(" Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
         add(backJButton);
-        backJButton.setBounds(260, 290, 97, 29);
+        backJButton.setBounds(147, 240, 120, 42);
 
+        btnCreateNetwork.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnCreateNetwork.setText("Create");
         btnCreateNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,15 +96,19 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreateNetwork);
-        btnCreateNetwork.setBounds(420, 290, 84, 29);
+        btnCreateNetwork.setBounds(330, 240, 100, 40);
         add(jLabel1);
         jLabel1.setBounds(240, 30, 0, 0);
 
         jLabel2.setText("Name");
         add(jLabel2);
-        jLabel2.setBounds(290, 218, 36, 16);
+        jLabel2.setBounds(170, 150, 36, 16);
         add(nameTextField);
-        nameTextField.setBounds(399, 213, 94, 26);
+        nameTextField.setBounds(260, 150, 94, 26);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/Network.png")); // NOI18N
+        add(jLabel3);
+        jLabel3.setBounds(30, 20, 50, 60);
     }// </editor-fold>//GEN-END:initComponents
 
      public void populateTable() {
@@ -159,6 +167,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreateNetwork;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JTable networkJTable;
