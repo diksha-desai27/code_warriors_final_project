@@ -59,7 +59,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         setLayout(null);
 
         btnManageOrganization.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnManageOrganization.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/organization.png")); // NOI18N
+        btnManageOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/organization.png"))); // NOI18N
         btnManageOrganization.setText("Manage Organzation");
         btnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,10 +67,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageOrganization);
-        btnManageOrganization.setBounds(380, 140, 290, 70);
+        btnManageOrganization.setBounds(380, 140, 320, 70);
 
         btnManageUserAccount.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnManageUserAccount.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/employeeUserAccount.png")); // NOI18N
+        btnManageUserAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/employeeUserAccount.png"))); // NOI18N
         btnManageUserAccount.setText("Manage Employees UserAccount");
         btnManageUserAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,10 +78,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageUserAccount);
-        btnManageUserAccount.setBounds(380, 350, 292, 80);
+        btnManageUserAccount.setBounds(380, 350, 320, 80);
 
         btnManageEmployee.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnManageEmployee.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/employee.png")); // NOI18N
+        btnManageEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/employee.png"))); // NOI18N
         btnManageEmployee.setText("Manage Employees");
         btnManageEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,20 +89,20 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnManageEmployee);
-        btnManageEmployee.setBounds(380, 240, 290, 80);
+        btnManageEmployee.setBounds(380, 240, 320, 80);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/case.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/case.png"))); // NOI18N
         jLabel1.setText(" ENTERPRISE ADMIN");
         add(jLabel1);
         jLabel1.setBounds(30, 30, 350, 70);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/BackgroundBlue.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(85, 46, 600, 40);
+        jLabel2.setBounds(85, 46, 690, 40);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/AdminPortalWelcome.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/AdminPortalWelcome.png"))); // NOI18N
         add(jLabel4);
         jLabel4.setBounds(80, 40, 250, 500);
     }// </editor-fold>//GEN-END:initComponents
