@@ -96,7 +96,7 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
         jLabel5.setText("Note: Employment Care Service is available only for individuals of  18+ age");
 
         updateBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        updateBtn.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/user1.png")); // NOI18N
+        updateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/user1.png"))); // NOI18N
         updateBtn.setText("My Account");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +144,7 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
                     .addComponent(updateBtn))
                 .addGap(39, 39, 39)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioBtnHealthCare)
                     .addComponent(jLabel4))
@@ -154,7 +154,7 @@ public class IndividualsRegistrationFormJPanel1 extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addGap(40, 40, 40)
                 .addComponent(jLabel5)
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnNext)
                 .addGap(21, 21, 21))
         );

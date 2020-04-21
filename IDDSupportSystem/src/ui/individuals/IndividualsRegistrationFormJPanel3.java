@@ -110,7 +110,7 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
         add(requestFacilityBtn);
         requestFacilityBtn.setBounds(470, 240, 190, 42);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/facilitator request.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/facilitatorRequest.gif"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
         jLabel2.setBounds(320, 300, 443, 344);

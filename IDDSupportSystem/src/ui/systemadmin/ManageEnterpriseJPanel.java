@@ -171,7 +171,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         btnBack.setBounds(20, 340, 110, 42);
 
         btnDelete.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnDelete.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/trash.png")); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/trash.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +181,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         add(btnDelete);
         btnDelete.setBounds(640, 40, 110, 50);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/sayalipathare/pathare_sayali_001029759/code_warriors_final_project/IDDSupportSystem/images/case.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/case.png"))); // NOI18N
         add(jLabel4);
         jLabel4.setBounds(39, 30, 120, 60);
     }// </editor-fold>//GEN-END:initComponents
