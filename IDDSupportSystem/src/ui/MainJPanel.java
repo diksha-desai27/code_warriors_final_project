@@ -221,7 +221,7 @@ public class MainJPanel extends javax.swing.JFrame {
                 }
             }
 
-            if (isEnterprise == null && isOrganization == null && userAccount == null) {
+            if (isEnterprise == null && isOrganization == null ) {
                 userAccountNew = system.getUserAccountDirectory().authenticateUser(userName, password);
                 if (userAccountNew != null) {
                     for (Individual ind : system.getIndividualDirectory().getIndividualList()) {
