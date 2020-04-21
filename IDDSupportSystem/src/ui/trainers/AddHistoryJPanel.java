@@ -90,9 +90,9 @@ public class AddHistoryJPanel extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/SCHEDULINGHISTORY.png"))); // NOI18N
-        jLabel8.setText("Meeting History Information");
+        jLabel8.setText("MEETING HISTORY INFORMATION");
         add(jLabel8);
-        jLabel8.setBounds(26, 12, 410, 70);
+        jLabel8.setBounds(26, 12, 500, 70);
 
         jLabel1.setText("Status:");
         add(jLabel1);
