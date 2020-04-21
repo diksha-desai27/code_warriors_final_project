@@ -113,7 +113,6 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         firstNameValue = new javax.swing.JLabel();
         lastNameValue = new javax.swing.JLabel();
-        birthDateValue = new javax.swing.JLabel();
         disabilityValue = new javax.swing.JLabel();
         durationValue = new javax.swing.JLabel();
         servicesValue = new javax.swing.JLabel();
@@ -138,23 +137,19 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("First Name:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(50, 190, 72, 20);
+        jLabel2.setBounds(50, 200, 72, 20);
 
         jLabel3.setText("Last Name:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(310, 190, 80, 20);
+        jLabel3.setBounds(360, 200, 80, 20);
 
         firstNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(firstNameValue);
-        firstNameValue.setBounds(160, 190, 130, 26);
+        firstNameValue.setBounds(200, 200, 140, 26);
 
         lastNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.add(lastNameValue);
-        lastNameValue.setBounds(450, 190, 160, 26);
-
-        birthDateValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(birthDateValue);
-        birthDateValue.setBounds(630, 230, 150, 30);
+        lastNameValue.setBounds(470, 200, 160, 26);
         jPanel1.add(disabilityValue);
         disabilityValue.setBounds(646, 415, 132, 20);
         jPanel1.add(durationValue);
@@ -165,7 +160,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Individual Information");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(250, 120, 229, 32);
+        jLabel8.setBounds(250, 110, 229, 32);
 
         scheduleAppointmentBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         scheduleAppointmentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/time.png"))); // NOI18N
@@ -176,7 +171,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(scheduleAppointmentBtn);
-        scheduleAppointmentBtn.setBounds(420, 330, 206, 42);
+        scheduleAppointmentBtn.setBounds(180, 350, 206, 42);
 
         cityValue.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(cityValue);
@@ -184,7 +179,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("Appointment Date:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(310, 240, 143, 20);
+        jLabel7.setBounds(50, 250, 143, 20);
 
         appointmentDatehooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -192,15 +187,15 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(appointmentDatehooser);
-        appointmentDatehooser.setBounds(450, 230, 160, 30);
+        appointmentDatehooser.setBounds(200, 250, 160, 30);
 
         dpdTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(dpdTime);
-        dpdTime.setBounds(450, 280, 174, 27);
+        dpdTime.setBounds(190, 300, 174, 27);
 
         jLabel9.setText("Appointment Time:");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(310, 280, 143, 20);
+        jLabel9.setBounds(50, 310, 143, 20);
         jPanel1.add(disabailityValue);
         disabailityValue.setBounds(375, 186, 768, 26);
 
@@ -218,7 +213,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Meeting History");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(280, 390, 145, 36);
+        jLabel4.setBounds(280, 410, 145, 36);
 
         historyJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -242,7 +237,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(historyJTable);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(50, 450, 594, 112);
+        jScrollPane1.setBounds(50, 460, 594, 112);
 
         meetingDetailsBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         meetingDetailsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/workSchedule.png"))); // NOI18N
@@ -276,7 +271,9 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,7 +456,6 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser appointmentDatehooser;
-    private javax.swing.JLabel birthDateValue;
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel cityValue;
     private javax.swing.JButton completedBtn;

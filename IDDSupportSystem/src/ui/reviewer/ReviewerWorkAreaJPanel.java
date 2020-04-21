@@ -91,7 +91,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setBounds(85, 36, 630, 60);
 
         add(jPanel1);
-        jPanel1.setBounds(-8, -4, 840, 580);
+        jPanel1.setBounds(-8, -4, 840, 540);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetwork1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetwork1ActionPerformed
