@@ -104,6 +104,8 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         btnAddDetails = new javax.swing.JButton();
         btnMarkAsCompleted = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         individualHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},

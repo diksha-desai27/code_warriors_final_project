@@ -22,6 +22,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -345,10 +352,13 @@ public class AppointmentJPanel extends javax.swing.JPanel {
                             }
                         }
                     }
+                    sendEmail(workRequest,appointmentFormatted);
                     // populateTimeSlot(slotList);
                     workRequest.setSender(userAccount);
                     workRequest.setStatus("Appointment Confirmed");
                     JOptionPane.showMessageDialog(null, "Appointment Scheduled Successfully");
+                    appointmentDatehooser.setDate(null);
+                    dpdTime.removeAllItems();
                     break;
                 }
             }
@@ -356,6 +366,34 @@ public class AppointmentJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select both time and date to schedule appointment");
         }
     }//GEN-LAST:event_scheduleAppointmentBtnActionPerformed
+
+    public void sendEmail(WorkRequest workRequest,String date) {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        String string1 = "Hello,<br/>Your Appointment with Doctor "+ userAccount.getUsername() + " has been scheduled on " +date + " at " + dpdTime.getSelectedItem()+ "<br/>Thankyou,<br/>IDD Support Team";
+        Session session = Session.getDefaultInstance(props);
+        try {
+            InternetAddress fromAddress = new InternetAddress("growinggreen04@gmail.com");
+            InternetAddress toAddress = new InternetAddress(workRequest.getSender().getUsername());
+
+            Message message = new MimeMessage(session);
+            message.setFrom(fromAddress);
+            message.setRecipient(Message.RecipientType.TO, toAddress);
+            message.setSubject("IDD System Appointment Confirmation");
+            message.setContent(string1, "text/html");
+
+            Transport.send(message, "growinggreen04@gmail.com", "growinggreen@123");
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

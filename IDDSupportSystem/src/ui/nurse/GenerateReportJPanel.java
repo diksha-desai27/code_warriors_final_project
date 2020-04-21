@@ -43,7 +43,7 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Blood Pressure");
         add(jLabel1);
-        jLabel1.setBounds(120, 120, 92, 16);
+        jLabel1.setBounds(120, 110, 92, 16);
         add(jTextField1);
         jTextField1.setBounds(260, 110, 94, 26);
 
