@@ -78,7 +78,7 @@ public class FeedbackJPanel extends javax.swing.JPanel {
 
         dpdFeedback.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(dpdFeedback);
-        dpdFeedback.setBounds(200, 100, 154, 27);
+        dpdFeedback.setBounds(200, 100, 240, 27);
 
         jLabel3.setText("Comments:");
         add(jLabel3);
@@ -89,7 +89,7 @@ public class FeedbackJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(commentTxt);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(210, 170, 154, 84);
+        jScrollPane1.setBounds(200, 170, 230, 84);
 
         saveBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/save.png"))); // NOI18N
