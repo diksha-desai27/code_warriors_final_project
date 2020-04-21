@@ -363,6 +363,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         int selectedRow = individualWRequestJTable.getSelectedRow();
         if (selectedRow >= 0) {
             WorkRequest wr = (WorkRequest) individualWRequestJTable.getValueAt(selectedRow, 0);
+            
             if (wr.getStatus().equals("Completed") || wr.getStatus().equalsIgnoreCase("Request Completed")) {
                 FeedbackJPanel feedbackJPanel = new FeedbackJPanel(rightJPanel, userAccount, wr, individual, facilityList);
                 rightJPanel.add("FeedbackJPanel", feedbackJPanel);

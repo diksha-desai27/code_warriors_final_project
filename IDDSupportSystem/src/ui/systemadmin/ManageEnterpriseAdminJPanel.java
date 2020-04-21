@@ -28,6 +28,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem system;
     Enterprise enterprise;
+
     /**
      * Creates new form ManageEnterpriseAdminJPanel
      */
@@ -170,16 +171,15 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         add(jLabel6);
         jLabel6.setBounds(10, 50, 80, 60);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     public void populateTable() {
         dpdNetwork.removeAllItems();
         dpdEnterpriseType.removeAllItems();
         DefaultTableModel model = (DefaultTableModel) enterpriseTable.getModel();
         model.setRowCount(0);
-        
-        for(Network n: system.getNetworkList()) {
-            for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList())
-            {
+
+        for (Network n : system.getNetworkList()) {
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
                 Object[] row = new Object[3];
                 row[0] = e;
                 row[1] = n;
@@ -188,7 +188,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         }
     }
-    
+
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTextFieldActionPerformed
@@ -198,12 +198,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         dpdNetwork.removeAllItems();
         dpdEnterpriseType.removeAllItems();
         int SelectedRow = enterpriseTable.getSelectedRow();
-        if(SelectedRow >= 0) {
-            Enterprise e = (Enterprise)enterpriseTable.getValueAt(SelectedRow, 0);
-            for(Network n: system.getNetworkList()) {
-                for(Enterprise e1: n.getEnterpriseDirectory().getEnterpriseList())
-                {
-                    if(e1.equals(e)) {
+        if (SelectedRow >= 0) {
+            Enterprise e = (Enterprise) enterpriseTable.getValueAt(SelectedRow, 0);
+            for (Network n : system.getNetworkList()) {
+                for (Enterprise e1 : n.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (e1.equals(e)) {
                         enterprise = e;
                         dpdNetwork.insertItemAt(n, 0);
                         dpdNetwork.setSelectedIndex(0);
@@ -223,58 +222,53 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-         if (usernameTextField.getText().equals("") || passwordTextField.getPassword().equals("")) {
+        if (usernameTextField.getText().equals("") || passwordTextField.getPassword().equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill out all the details");
-        }
-        else
-            if (usernamePatternCorrect()) {
-                if (passwordPatternCorrect()) {
-                    String username = usernameTextField.getText();
-                    char c[]= passwordTextField.getPassword();
-                    String password = String.valueOf(c);
-                    System.out.println("list: " + enterprise.getUserAccountDirectory().getUserAccountList());
-                    if(enterprise.getUserAccountDirectory().getUserAccountList().isEmpty())
-                    {
-                        System.out.println("id");
+        } else if (usernamePatternCorrect()) {
+            if (passwordPatternCorrect()) {
+                String username = usernameTextField.getText();
+                char c[] = passwordTextField.getPassword();
+                String password = String.valueOf(c);
+                System.out.println("list: " + enterprise.getUserAccountDirectory().getUserAccountList());
+                if (enterprise.getUserAccountDirectory().getUserAccountList().isEmpty()) {
+                    if (system.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
                         enterprise.getUserAccountDirectory().createUserAccount(username, password, new AdminRole(), RoleType.Admin);
-                        System.out.println(system.getUserAccountDirectory().getUserAccountList());
+                        system.getUserAccountDirectory().createUserAccount(username, password, new AdminRole(), RoleType.Admin);
                         JOptionPane.showMessageDialog(null, "Admin created successfully");
+                    } else {
+                          JOptionPane.showMessageDialog(null, "Username already taken");
                     }
-                     else
-                    {
-                        System.out.println("else");
-                        JOptionPane.showMessageDialog(null, "Enterprise Admin already exists.");
-                    }
-                    enterpriseNameTextField.setText("");
-                    usernameTextField.setText("");
-                    passwordTextField.setText("");
-                }
-                else {
-                    JOptionPane.showMessageDialog(null, "Please enter valid password");
-                }
-            }
-            else 
-            {
 
-                JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
+                } else {
+                    System.out.println("else");
+                    JOptionPane.showMessageDialog(null, "Enterprise Admin already exists.");
+                }
+                enterpriseNameTextField.setText("");
+                usernameTextField.setText("");
+                passwordTextField.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter valid password");
             }
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Username is invalid. Username must be in the format: xx_xx@xx.xx");
+        }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-         SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = new SystemAdminWorkAreaJPanel(userProcessContainer, system);
-        userProcessContainer.add("systemAdminWorkAreaJPanel",systemAdminWorkAreaJPanel);
-       
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
-       layout.next(userProcessContainer);
+        SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = new SystemAdminWorkAreaJPanel(userProcessContainer, system);
+        userProcessContainer.add("systemAdminWorkAreaJPanel", systemAdminWorkAreaJPanel);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void dpdNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpdNetworkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dpdNetworkActionPerformed
 
-    
-        private boolean usernamePatternCorrect() {
+    private boolean usernamePatternCorrect() {
         Pattern p = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher m = p.matcher(usernameTextField.getText());
         Boolean b = m.matches();

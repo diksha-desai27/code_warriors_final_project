@@ -255,11 +255,11 @@ public class ManageIndividuals extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) individualTable.getModel();
         model.setRowCount(0);
         
-        for (Individual i : this.individualDirectory.getIndividualList()) {
+        for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
-            row[0] = i.getRegistrationId();
-            row[1] = i.getFirstName();
-            row[3] = i.getLastName();
+            row[0] = wr.getIndividual().getRegistrationId();
+            row[1] = wr.getIndividual().getFirstName() + " " + wr.getIndividual().getLastName();
+            row[3] = wr.getStatus();
             model.addRow(row);
         }
     }
