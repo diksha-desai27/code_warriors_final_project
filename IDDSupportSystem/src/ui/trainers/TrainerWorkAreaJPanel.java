@@ -104,7 +104,7 @@ public class TrainerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(scheduleAppointmentBtn);
-        scheduleAppointmentBtn.setBounds(80, 260, 280, 60);
+        scheduleAppointmentBtn.setBounds(260, 270, 280, 60);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/teacher.png"))); // NOI18N

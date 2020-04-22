@@ -105,14 +105,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         btnAccept.setBounds(310, 270, 150, 60);
 
         jBtnViewReport.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jBtnViewReport.setText("Check/Provide Status");
+        jBtnViewReport.setText("Provide Data");
         jBtnViewReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnViewReportActionPerformed(evt);
             }
         });
         add(jBtnViewReport);
-        jBtnViewReport.setBounds(640, 130, 190, 50);
+        jBtnViewReport.setBounds(640, 130, 130, 50);
 
         scheduleAppointmentBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         scheduleAppointmentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/time.png"))); // NOI18N

@@ -46,13 +46,13 @@ public class GenerateReportJPanel extends javax.swing.JPanel {
         add(jLabel1);
         jLabel1.setBounds(120, 110, 92, 16);
         add(jTextField1);
-        jTextField1.setBounds(260, 110, 94, 26);
+        jTextField1.setBounds(260, 110, 140, 26);
 
         jLabel2.setText("Heart Rate");
         add(jLabel2);
         jLabel2.setBounds(120, 170, 65, 16);
         add(jTextField2);
-        jTextField2.setBounds(260, 160, 94, 26);
+        jTextField2.setBounds(260, 160, 140, 26);
 
         jLabel3.setText("Height");
         add(jLabel3);

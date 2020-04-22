@@ -31,7 +31,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/ui/images/organization.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Manage Organzation"/>
+        <Property name="text" type="java.lang.String" value="Manage Organization"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageOrganizationActionPerformed"/>
