@@ -74,31 +74,31 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("WELCOME TO IDD SUPPORT CENTRE");
         add(jLabel1);
-        jLabel1.setBounds(50, 30, 441, 40);
+        jLabel1.setBounds(50, 30, 451, 40);
 
         jLabel2.setText("2. Select which IDD are you facing:");
         add(jLabel2);
-        jLabel2.setBounds(43, 114, 250, 20);
+        jLabel2.setBounds(43, 114, 219, 16);
 
         buttonGroup1.add(nervousSystemJBtn);
         nervousSystemJBtn.setText("Nervous System");
         add(nervousSystemJBtn);
-        nervousSystemJBtn.setBounds(43, 142, 147, 29);
+        nervousSystemJBtn.setBounds(43, 142, 133, 23);
 
         buttonGroup1.add(sensorySystemJBtn);
         sensorySystemJBtn.setText("Sensory System");
         add(sensorySystemJBtn);
-        sensorySystemJBtn.setBounds(43, 177, 145, 29);
+        sensorySystemJBtn.setBounds(43, 177, 130, 23);
 
         buttonGroup1.add(fragileJBtn);
         fragileJBtn.setText("Fragile X Syndrome");
         add(fragileJBtn);
-        fragileJBtn.setBounds(43, 208, 171, 29);
+        fragileJBtn.setBounds(43, 208, 152, 23);
 
         buttonGroup1.add(downsJBtn);
         downsJBtn.setText("Down's Syndrome");
         add(downsJBtn);
-        downsJBtn.setBounds(43, 243, 161, 29);
+        downsJBtn.setBounds(43, 243, 144, 23);
 
         buttonGroup1.add(pradeWillisSyndromeBtn);
         pradeWillisSyndromeBtn.setText("Prade willi's Syndrome");
@@ -108,29 +108,29 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
             }
         });
         add(pradeWillisSyndromeBtn);
-        pradeWillisSyndromeBtn.setBounds(43, 278, 193, 29);
+        pradeWillisSyndromeBtn.setBounds(43, 278, 172, 23);
 
         jLabel6.setText("3. Describe the services and supervision needed");
         add(jLabel6);
-        jLabel6.setBounds(40, 340, 338, 20);
+        jLabel6.setBounds(40, 340, 303, 16);
 
         serviceJTxtArea.setColumns(20);
         serviceJTxtArea.setRows(5);
         jScrollPane3.setViewportView(serviceJTxtArea);
 
         add(jScrollPane3);
-        jScrollPane3.setBounds(50, 370, 330, 96);
+        jScrollPane3.setBounds(50, 370, 330, 84);
 
         jLabel7.setText("4. Describe the expected duration and goals of placement");
         add(jLabel7);
-        jLabel7.setBounds(40, 480, 541, 20);
+        jLabel7.setBounds(40, 480, 541, 16);
 
         employmentDurationJTxtArea.setColumns(20);
         employmentDurationJTxtArea.setRows(5);
         jScrollPane4.setViewportView(employmentDurationJTxtArea);
 
         add(jScrollPane4);
-        jScrollPane4.setBounds(60, 510, 320, 96);
+        jScrollPane4.setBounds(60, 510, 320, 84);
 
         jbtnSubmit.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jbtnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/submit.png"))); // NOI18N
@@ -152,7 +152,7 @@ public class IndividualsRegistrationFormJPanel2 extends javax.swing.JPanel {
             }
         });
         add(nextBtn);
-        nextBtn.setBounds(480, 620, 120, 40);
+        nextBtn.setBounds(540, 620, 120, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSubmitActionPerformed

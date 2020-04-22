@@ -97,7 +97,7 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
         jScrollPane1.setViewportView(facilityJTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(43, 120, 501, 97);
+        jScrollPane1.setBounds(43, 120, 501, 110);
 
         requestFacilityBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         requestFacilityBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N

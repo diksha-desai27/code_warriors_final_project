@@ -122,7 +122,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         dpdOrganizationType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(dpdOrganizationType);
-        dpdOrganizationType.setBounds(370, 220, 96, 27);
+        dpdOrganizationType.setBounds(370, 220, 190, 27);
 
         btnCreate.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnCreate.setText("Create ");
@@ -132,7 +132,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreate);
-        btnCreate.setBounds(370, 300, 100, 40);
+        btnCreate.setBounds(460, 290, 100, 40);
 
         btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N

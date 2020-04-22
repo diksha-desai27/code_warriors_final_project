@@ -53,7 +53,6 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         individualsListTable = new javax.swing.JTable();
-        btnBack = new javax.swing.JButton();
         btnSchedule = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -85,17 +84,6 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         add(jScrollPane1);
         jScrollPane1.setBounds(10, 100, 594, 125);
 
-        btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack);
-        btnBack.setBounds(50, 280, 140, 60);
-
         btnSchedule.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/workSchedule.png"))); // NOI18N
         btnSchedule.setText("Schedule Meeting");
@@ -105,12 +93,12 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnSchedule);
-        btnSchedule.setBounds(260, 280, 200, 60);
+        btnSchedule.setBounds(410, 250, 200, 60);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/nurseScheduling.gif"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1);
-        jLabel1.setBounds(440, 240, 399, 330);
+        jLabel1.setBounds(550, 280, 310, 340);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/nurse.png"))); // NOI18N
@@ -140,11 +128,6 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
             }
     }
     
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleActionPerformed
         // TODO add your handling code here:
         int selectedRow = individualsListTable.getSelectedRow();
@@ -189,7 +172,6 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSchedule;
     private javax.swing.JTable individualsListTable;
     private javax.swing.JLabel jLabel1;
