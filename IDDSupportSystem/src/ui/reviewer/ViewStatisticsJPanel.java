@@ -54,7 +54,7 @@ public class ViewStatisticsJPanel extends javax.swing.JPanel {
 
     public void getStatistics() {
         for (WorkRequest wr : userAccount.getWorkQueue().getWorkRequestList()) {
-            if (wr.getStatus().equals("Completed")) {
+            if (wr.getStatus().equalsIgnoreCase("Completed") || wr.getStatus().equalsIgnoreCase("Request Completed")) {
                 completedList.add(wr);
             }
         }
