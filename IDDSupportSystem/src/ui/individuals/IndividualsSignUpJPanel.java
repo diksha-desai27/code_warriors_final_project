@@ -271,7 +271,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
         String string1 = "Dear " + firstNamejTextField.getText() + " " + lastNamejTextField.getText() + "<br/>Thankyou for registering with us.<br/>You can now login with your credentials into our system<br/><br/>Thankyou,<br/>IDD Support Team";
         Session session = Session.getDefaultInstance(props);
         try {
-            InternetAddress fromAddress = new InternetAddress("growinggreen04@gmail.com");
+            InternetAddress fromAddress = new InternetAddress("iddservicesystem@gmail.com");
             InternetAddress toAddress = new InternetAddress(userNamejTextField.getText());
 
             Message message = new MimeMessage(session);
@@ -280,7 +280,7 @@ public class IndividualsSignUpJPanel extends javax.swing.JPanel {
             message.setSubject("IDD System Registration Confirmation");
             message.setContent(string1, "text/html");
 
-            Transport.send(message, "growinggreen04@gmail.com", "growinggreen@123");
+            Transport.send(message, "iddservicesystem@gmail.com", "javaIdd@123");
         } catch (MessagingException ex) {
             ex.printStackTrace();
         }

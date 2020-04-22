@@ -122,7 +122,6 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         facilityJTable = new javax.swing.JTable();
         requestFacilityBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        btnAvailableFacility = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         requestFacilityBtn1 = new javax.swing.JButton();
@@ -138,7 +137,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("First Name");
         add(jLabel2);
-        jLabel2.setBounds(6, 127, 68, 16);
+        jLabel2.setBounds(6, 127, 76, 20);
         add(firstNamejTextField);
         firstNamejTextField.setBounds(161, 122, 164, 26);
 
@@ -150,13 +149,13 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         userNameLabel.setText("User Name");
         add(userNameLabel);
-        userNameLabel.setBounds(10, 220, 102, 16);
+        userNameLabel.setBounds(10, 220, 102, 20);
         add(userNamejTextField);
         userNamejTextField.setBounds(160, 210, 164, 26);
 
         passwordLabel.setText("Password");
         add(passwordLabel);
-        passwordLabel.setBounds(10, 260, 331, 16);
+        passwordLabel.setBounds(10, 260, 331, 20);
         add(passwordJField);
         passwordJField.setBounds(160, 250, 164, 26);
 
@@ -204,21 +203,21 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         requestJLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         requestJLabel.setText("MY REQUESTS");
         add(requestJLabel);
-        requestJLabel.setBounds(20, 590, 91, 17);
+        requestJLabel.setBounds(20, 590, 90, 17);
 
         facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Facility Name", "Facility Contact Number"
+                "Facility Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -245,17 +244,6 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         jLabel5.setText("AVAILABLE FACILITY ");
         add(jLabel5);
         jLabel5.setBounds(10, 420, 270, 29);
-
-        btnAvailableFacility.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnAvailableFacility.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/time.png"))); // NOI18N
-        btnAvailableFacility.setText("Check Available Facility ");
-        btnAvailableFacility.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAvailableFacilityActionPerformed(evt);
-            }
-        });
-        add(btnAvailableFacility);
-        btnAvailableFacility.setBounds(340, 340, 230, 50);
 
         jLabel6.setBackground(new java.awt.Color(107, 200, 223));
         jLabel6.setForeground(new java.awt.Color(102, 204, 255));
@@ -343,8 +331,8 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                 //       rightJPanel.remove(this);
                 populateData();
                 //  this.facilityJTable.setVisible(false);
-                this.requestFacilityBtn.setEnabled(false);
-                this.btnAvailableFacility.setEnabled(false);
+             //   this.requestFacilityBtn.setEnabled(false);
+                //this.btnAvailableFacility.setEnabled(false);
             }
 
         } else {
@@ -352,12 +340,6 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_requestFacilityBtnActionPerformed
-
-    private void btnAvailableFacilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvailableFacilityActionPerformed
-        // TODO add your handling code here:
-        this.facilityJTable.setVisible(true);
-        this.requestFacilityBtn.setVisible(true);
-    }//GEN-LAST:event_btnAvailableFacilityActionPerformed
 
     private void requestFacilityBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestFacilityBtn1ActionPerformed
         // TODO add your handling code here:
@@ -392,7 +374,6 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAvailableFacility;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPasswordField confirmJPassword;
     private javax.swing.JLabel confirmLabel;
