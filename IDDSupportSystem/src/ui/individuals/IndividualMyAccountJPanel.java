@@ -138,7 +138,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("First Name");
         add(jLabel2);
-        jLabel2.setBounds(6, 127, 76, 20);
+        jLabel2.setBounds(6, 127, 68, 16);
         add(firstNamejTextField);
         firstNamejTextField.setBounds(161, 122, 164, 26);
 
@@ -150,13 +150,13 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
 
         userNameLabel.setText("User Name");
         add(userNameLabel);
-        userNameLabel.setBounds(10, 220, 102, 20);
+        userNameLabel.setBounds(10, 220, 102, 16);
         add(userNamejTextField);
         userNamejTextField.setBounds(160, 210, 164, 26);
 
         passwordLabel.setText("Password");
         add(passwordLabel);
-        passwordLabel.setBounds(10, 260, 331, 20);
+        passwordLabel.setBounds(10, 260, 331, 16);
         add(passwordJField);
         passwordJField.setBounds(160, 250, 164, 26);
 
@@ -175,7 +175,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(btnUpdate);
-        btnUpdate.setBounds(100, 342, 160, 50);
+        btnUpdate.setBounds(160, 340, 160, 50);
 
         individualWRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,7 +204,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
         requestJLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         requestJLabel.setText("MY REQUESTS");
         add(requestJLabel);
-        requestJLabel.setBounds(20, 590, 90, 17);
+        requestJLabel.setBounds(20, 590, 91, 17);
 
         facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -239,7 +239,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(requestFacilityBtn);
-        requestFacilityBtn.setBounds(530, 480, 170, 40);
+        requestFacilityBtn.setBounds(520, 460, 170, 40);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("AVAILABLE FACILITY ");
@@ -255,7 +255,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAvailableFacility);
-        btnAvailableFacility.setBounds(290, 342, 230, 50);
+        btnAvailableFacility.setBounds(340, 340, 230, 50);
 
         jLabel6.setBackground(new java.awt.Color(107, 200, 223));
         jLabel6.setForeground(new java.awt.Color(102, 204, 255));
@@ -277,7 +277,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
             }
         });
         add(requestFacilityBtn1);
-        requestFacilityBtn1.setBounds(630, 650, 170, 40);
+        requestFacilityBtn1.setBounds(620, 620, 170, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed

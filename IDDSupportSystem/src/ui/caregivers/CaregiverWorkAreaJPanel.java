@@ -67,7 +67,6 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         manageApplicantsTable = new javax.swing.JTable();
-        btnBack = new javax.swing.JButton();
         btnAssign = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -106,17 +105,6 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1);
         jScrollPane1.setBounds(50, 120, 594, 125);
-
-        btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack);
-        btnBack.setBounds(20, 270, 100, 42);
 
         btnAssign.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnAssign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
@@ -175,7 +163,7 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         add(btnShowHistory);
         btnShowHistory.setBounds(490, 350, 260, 50);
         add(jSeparator1);
-        jSeparator1.setBounds(20, 330, 745, 12);
+        jSeparator1.setBounds(20, 330, 990, 12);
 
         btnMarkAsComplete.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnMarkAsComplete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N
@@ -201,7 +189,7 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/disability12.gif"))); // NOI18N
         add(jLabel6);
-        jLabel6.setBounds(420, 540, 370, 140);
+        jLabel6.setBounds(650, 540, 370, 140);
     }// </editor-fold>//GEN-END:initComponents
 
     public void populateTable() {
@@ -222,11 +210,6 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         }
 
     }
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
@@ -370,7 +353,6 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssign;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnMarkAsComplete;
     private javax.swing.JButton btnShowHistory;
     private javax.swing.JTable individualHistoryTable;

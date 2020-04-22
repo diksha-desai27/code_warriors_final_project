@@ -82,7 +82,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(dpdOrganization);
-        dpdOrganization.setBounds(270, 80, 270, 27);
+        dpdOrganization.setBounds(270, 80, 330, 27);
 
         organizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,7 +140,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
         add(btnCreateEmployee);
-        btnCreateEmployee.setBounds(220, 410, 230, 40);
+        btnCreateEmployee.setBounds(250, 410, 210, 40);
 
         btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
@@ -179,7 +179,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/enterprise/empManagement.gif"))); // NOI18N
         add(jLabel7);
-        jLabel7.setBounds(480, 190, 420, 330);
+        jLabel7.setBounds(560, 320, 290, 270);
     }// </editor-fold>//GEN-END:initComponents
     
     private void populateDropdown() {

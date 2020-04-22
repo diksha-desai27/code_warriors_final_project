@@ -48,7 +48,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         manageApplicantsJTable = new javax.swing.JTable();
-        btnBack = new javax.swing.JButton();
         btnDecline = new javax.swing.JButton();
         btnAccept = new javax.swing.JButton();
         jBtnViewReport = new javax.swing.JButton();
@@ -83,17 +82,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         add(jScrollPane1);
         jScrollPane1.setBounds(29, 127, 594, 125);
 
-        btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-        add(btnBack);
-        btnBack.setBounds(29, 278, 110, 40);
-
         btnDecline.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnDecline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/close.png"))); // NOI18N
         btnDecline.setText("Decline");
@@ -103,7 +91,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnDecline);
-        btnDecline.setBounds(350, 280, 150, 60);
+        btnDecline.setBounds(480, 270, 150, 60);
 
         btnAccept.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N
@@ -114,7 +102,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAccept);
-        btnAccept.setBounds(180, 280, 150, 60);
+        btnAccept.setBounds(310, 270, 150, 60);
 
         jBtnViewReport.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jBtnViewReport.setText("Check/Provide Status");
@@ -124,7 +112,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(jBtnViewReport);
-        jBtnViewReport.setBounds(641, 143, 190, 50);
+        jBtnViewReport.setBounds(640, 130, 190, 50);
 
         scheduleAppointmentBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         scheduleAppointmentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/time.png"))); // NOI18N
@@ -135,7 +123,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(scheduleAppointmentBtn);
-        scheduleAppointmentBtn.setBounds(530, 280, 206, 60);
+        scheduleAppointmentBtn.setBounds(650, 270, 206, 60);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/doctor.png"))); // NOI18N
@@ -167,11 +155,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
     }
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
         // TODO add your handling code here:
@@ -291,7 +274,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDecline;
     private javax.swing.JButton jBtnViewReport;
     private javax.swing.JLabel jLabel2;

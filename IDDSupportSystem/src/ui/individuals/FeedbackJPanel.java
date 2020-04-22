@@ -89,7 +89,7 @@ public class FeedbackJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(commentTxt);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(200, 170, 230, 84);
+        jScrollPane1.setBounds(210, 170, 230, 84);
 
         saveBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/save.png"))); // NOI18N
@@ -100,7 +100,7 @@ public class FeedbackJPanel extends javax.swing.JPanel {
             }
         });
         add(saveBtn);
-        saveBtn.setBounds(220, 309, 160, 60);
+        saveBtn.setBounds(280, 310, 160, 60);
 
         backBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N

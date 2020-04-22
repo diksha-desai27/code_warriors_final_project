@@ -118,7 +118,7 @@ public class ViewStatisticsJPanel extends javax.swing.JPanel {
         chartPanel.setBackground(new java.awt.Color(255, 255, 255));
         chartPanel.setLayout(new java.awt.BorderLayout());
         jPanel2.add(chartPanel);
-        chartPanel.setBounds(-20, 200, 1110, 390);
+        chartPanel.setBounds(-20, 200, 1110, 510);
 
         backBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
