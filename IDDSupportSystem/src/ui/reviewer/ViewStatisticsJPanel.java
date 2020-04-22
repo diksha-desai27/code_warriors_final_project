@@ -65,13 +65,13 @@ public class ViewStatisticsJPanel extends javax.swing.JPanel {
             this.notificationTxt.setText("");
             chartPanel.setVisible(true);
             for (WorkRequest wr : completedList) {
-                if (wr.getStatus().equalsIgnoreCase("Bad")) {
+                if (wr.getRating().equalsIgnoreCase("Bad")) {
                     countBad++;
-                } else  if (wr.getStatus().equalsIgnoreCase("Good")) {
+                } else  if (wr.getRating().equalsIgnoreCase("Good")) {
                     countGood++;
-                }else  if (wr.getStatus().equalsIgnoreCase("Very Good")) {
+                }else  if (wr.getRating().equalsIgnoreCase("Very Good")) {
                     countVeryGood++;
-                }else if(wr.getStatus().equalsIgnoreCase("Average")){
+                }else if(wr.getRating().equalsIgnoreCase("Average")){
                     countAverage++;
                 }
               
