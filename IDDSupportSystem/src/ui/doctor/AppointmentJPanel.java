@@ -252,7 +252,6 @@ public class AppointmentJPanel extends javax.swing.JPanel {
 
                 System.out.println(newDate);
                 if (appointmentFormatted.equals(newDate)) {
-                    System.out.println("in if");
                     slotList.clear();
                     Map<String, Boolean> getTime = ((Map<String, Boolean>) mappedElement.getValue());
                     Iterator timeIterator = getTime.entrySet().iterator();
@@ -329,7 +328,7 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         String string1 = "Hello,<br/>Your Appointment with Doctor "+ userAccount.getUsername() + " has been scheduled on " +date + " at " + dpdTime.getSelectedItem()+ "<br/>Thankyou,<br/>IDD Support Team";
         Session session = Session.getDefaultInstance(props);
         try {
-            InternetAddress fromAddress = new InternetAddress("growinggreen04@gmail.com");
+            InternetAddress fromAddress = new InternetAddress("iddservicesystem@gmail.com");
             InternetAddress toAddress = new InternetAddress(workRequest.getSender().getUsername());
 
             Message message = new MimeMessage(session);
@@ -338,7 +337,7 @@ public class AppointmentJPanel extends javax.swing.JPanel {
             message.setSubject("IDD System Appointment Confirmation");
             message.setContent(string1, "text/html");
 
-            Transport.send(message, "growinggreen04@gmail.com", "growinggreen@123");
+            Transport.send(message, "iddservicesystem@gmail.com", "javaIdd@123");
         } catch (MessagingException ex) {
             ex.printStackTrace();
         }

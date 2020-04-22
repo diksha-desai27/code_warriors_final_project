@@ -72,22 +72,22 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("WELCOME TO IDD SUPPORT CENTRE");
         add(jLabel1);
-        jLabel1.setBounds(43, 42, 451, 30);
+        jLabel1.setBounds(43, 42, 441, 32);
 
         facilityJTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         facilityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Facility Name", "Facility Contact Number"
+                "Facility Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -108,7 +108,7 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
             }
         });
         add(requestFacilityBtn);
-        requestFacilityBtn.setBounds(470, 240, 190, 42);
+        requestFacilityBtn.setBounds(470, 240, 190, 39);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/facilitatorRequest.gif"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -166,7 +166,7 @@ public class IndividualsRegistrationFormJPanel3 extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) facilityJTable.getModel();
         model.setRowCount(0);
         for (Enterprise e : facilityList) {
-            Object[] row = new Object[2];
+            Object[] row = new Object[1];
             row[0] = e;
             model.addRow(row);
         }

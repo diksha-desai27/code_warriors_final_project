@@ -375,6 +375,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_appointmentDatehooserPropertyChange
 
     private void scheduleAppointmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleAppointmentBtnActionPerformed
+
         Date date1 = appointmentDatehooser.getDate();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -393,7 +394,7 @@ public class AddDetailsJPanel extends javax.swing.JPanel {
             }
 
             for (IndividualHistory history : workRequest.getIndividual().getHistory()) {
-                if (!history.getStatus().equalsIgnoreCase("Completed")) {
+                if (history.getStatus().equalsIgnoreCase("Meeting Scheduled")) {
                     JOptionPane.showMessageDialog(null, "You have a previous appoinment open/rescheduled.Please close it before creating new one.");
                     return;
                 }
