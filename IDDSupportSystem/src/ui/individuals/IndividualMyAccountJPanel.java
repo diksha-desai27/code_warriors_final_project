@@ -356,7 +356,7 @@ public class IndividualMyAccountJPanel extends javax.swing.JPanel {
                         CardLayout layout = (CardLayout) rightJPanel.getLayout();
                         layout.next(rightJPanel);
                     }else{
-                        JOptionPane.showMessageDialog(null, "You cannot provid feedback for this request");
+                        JOptionPane.showMessageDialog(null, "You cannot provide feedback for this request");
                         return;
                     }
                 }

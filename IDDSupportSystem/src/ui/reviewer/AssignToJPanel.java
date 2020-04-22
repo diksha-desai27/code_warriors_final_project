@@ -109,7 +109,7 @@ public class AssignToJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("First Name");
         add(jLabel2);
-        jLabel2.setBounds(120, 150, 76, 20);
+        jLabel2.setBounds(120, 150, 68, 16);
 
         firstNameValue.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         firstNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -125,11 +125,11 @@ public class AssignToJPanel extends javax.swing.JPanel {
             }
         });
         add(assignCareGiverBtn);
-        assignCareGiverBtn.setBounds(460, 360, 141, 40);
+        assignCareGiverBtn.setBounds(441, 360, 170, 40);
 
         jLabel3.setText("Last Name");
         add(jLabel3);
-        jLabel3.setBounds(390, 150, 74, 20);
+        jLabel3.setBounds(390, 150, 66, 16);
 
         lastNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(lastNameValue);
@@ -137,7 +137,7 @@ public class AssignToJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Registration #");
         add(jLabel4);
-        jLabel4.setBounds(120, 100, 101, 20);
+        jLabel4.setBounds(120, 100, 88, 20);
 
         registrationValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(registrationValue);

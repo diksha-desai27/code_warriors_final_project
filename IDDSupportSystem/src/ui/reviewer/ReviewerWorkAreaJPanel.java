@@ -62,7 +62,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBounds(new java.awt.Rectangle(-8, -4, 1350, 810));
+        jPanel1.setBounds(new java.awt.Rectangle(-8, -4, 1350, 800));
         jPanel1.setLayout(null);
 
         btnManageNetwork.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -100,7 +100,7 @@ public class ReviewerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3.setBounds(85, 36, 770, 60);
 
         add(jPanel1);
-        jPanel1.setBounds(-8, -4, 1070, 810);
+        jPanel1.setBounds(-8, -4, 1070, 800);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetwork1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetwork1ActionPerformed

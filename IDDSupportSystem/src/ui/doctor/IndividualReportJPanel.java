@@ -99,7 +99,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("First Name:");
         add(jLabel2);
-        jLabel2.setBounds(40, 110, 82, 20);
+        jLabel2.setBounds(40, 110, 72, 16);
 
         firstNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(firstNameValue);
@@ -107,7 +107,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(290, 110, 80, 20);
+        jLabel3.setBounds(290, 110, 70, 16);
 
         lastNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(lastNameValue);
@@ -115,7 +115,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Condition:");
         add(jLabel4);
-        jLabel4.setBounds(40, 160, 74, 20);
+        jLabel4.setBounds(40, 160, 66, 16);
 
         conditionJList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -129,14 +129,14 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Comments:");
         add(jLabel5);
-        jLabel5.setBounds(30, 270, 82, 20);
+        jLabel5.setBounds(30, 270, 72, 16);
 
         commentsTxtArea.setColumns(20);
         commentsTxtArea.setRows(5);
         jScrollPane2.setViewportView(commentsTxtArea);
 
         add(jScrollPane2);
-        jScrollPane2.setBounds(140, 270, 166, 96);
+        jScrollPane2.setBounds(140, 270, 244, 84);
 
         assignBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         assignBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
@@ -147,7 +147,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
             }
         });
         add(assignBtn);
-        assignBtn.setBounds(190, 530, 200, 39);
+        assignBtn.setBounds(240, 540, 230, 42);
 
         nurseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -175,7 +175,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Available Nurse:");
         add(jLabel9);
-        jLabel9.setBounds(30, 370, 116, 20);
+        jLabel9.setBounds(30, 370, 102, 16);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/user1.png"))); // NOI18N
@@ -192,7 +192,7 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack);
-        btnBack.setBounds(40, 530, 100, 39);
+        btnBack.setBounds(40, 530, 100, 42);
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
@@ -236,7 +236,14 @@ public class IndividualReportJPanel extends javax.swing.JPanel {
                     workRequest.setMessage("");
                     nurse.getWorkQueue().getWorkRequestList().add(workRequest);
                     JOptionPane.showMessageDialog(null, workRequest.getIndividual().getFirstName() + " " + workRequest.getIndividual().getLastName() + " assigned to Nurse " + nurse.getUsername());
-
+                    
+                    userProcessContainer.remove(this);
+                    Component[] componentArray = userProcessContainer.getComponents();
+                    Component component = componentArray[componentArray.length - 1];
+                    DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
+                    dwjp.populateTable();
+                    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                    layout.previous(userProcessContainer);
                 }
             }
         } else {

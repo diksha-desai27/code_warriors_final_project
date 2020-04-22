@@ -104,7 +104,7 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(manageApplicantsTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(50, 120, 594, 125);
+        jScrollPane1.setBounds(50, 120, 760, 125);
 
         btnAssign.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnAssign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/request.png"))); // NOI18N
@@ -115,12 +115,12 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAssign);
-        btnAssign.setBounds(280, 270, 171, 42);
+        btnAssign.setBounds(601, 270, 200, 42);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("Manage Applicants");
         add(jLabel1);
-        jLabel1.setBounds(260, 90, 190, 36);
+        jLabel1.setBounds(50, 80, 190, 36);
 
         individualHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,12 +145,12 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(individualHistoryTable);
 
         add(jScrollPane2);
-        jScrollPane2.setBounds(50, 430, 594, 112);
+        jScrollPane2.setBounds(50, 430, 680, 112);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel2.setText("Appointment History");
         add(jLabel2);
-        jLabel2.setBounds(260, 390, 200, 36);
+        jLabel2.setBounds(50, 370, 200, 36);
 
         btnShowHistory.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnShowHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/SCHEDULINGHISTORY.png"))); // NOI18N
@@ -161,7 +161,7 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnShowHistory);
-        btnShowHistory.setBounds(490, 350, 260, 50);
+        btnShowHistory.setBounds(420, 360, 310, 50);
         add(jSeparator1);
         jSeparator1.setBounds(20, 330, 990, 12);
 
@@ -174,7 +174,7 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnMarkAsComplete);
-        btnMarkAsComplete.setBounds(470, 270, 195, 49);
+        btnMarkAsComplete.setBounds(40, 270, 250, 49);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/caregiver.png"))); // NOI18N
@@ -293,7 +293,7 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
                     if (w.getIndividual().equals(ind)) {
                         if (w.getStatus().equalsIgnoreCase("Medication Completed")) {
                             w.setStatus("Request Completed");
-                            JOptionPane.showMessageDialog(null, "Meication Request Completed Successflly");
+                            JOptionPane.showMessageDialog(null, "Meidcation Request Completed Successfully");
                             sendEmail(w);
                             break;
                         } else {
