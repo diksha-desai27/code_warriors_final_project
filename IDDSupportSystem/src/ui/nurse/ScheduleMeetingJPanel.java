@@ -168,7 +168,7 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
 
         btnMarkAsCompleted.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnMarkAsCompleted.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N
-        btnMarkAsCompleted.setText("Mark as Complete");
+        btnMarkAsCompleted.setText("Assign to Caregiver");
         btnMarkAsCompleted.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMarkAsCompletedActionPerformed(evt);
@@ -183,19 +183,6 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(btnAddDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
-                        .addComponent(btnMarkAsCompleted))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +203,16 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                                 .addComponent(meetingDate, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(dpdMeetingTime, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 0, 0))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnMarkAsCompleted)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(btnAddDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 147, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,12 +243,12 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMarkAsCompleted)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddDetails))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(btnMarkAsCompleted, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -342,6 +338,14 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
                             }
                             else
                             {
+                                 for (IndividualHistory history : individual.getHistory())
+                                 {
+                                    if (history.getStatus().equalsIgnoreCase("Meeting Scheduled") ) {
+                                        JOptionPane.showMessageDialog(null, "You have a previous appoinment open/rescheduled.Please close it before creating new one.");
+                                        return;
+                                    }
+
+                                   }
                                 IndividualHistory history = new IndividualHistory();
                                 history.setMeetingDate(date);
                                 history.setStatus("Meeting Scheduled");
@@ -423,14 +427,16 @@ public class ScheduleMeetingJPanel extends javax.swing.JPanel {
     
     public void populateTable(Individual individual)
     {
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         DefaultTableModel dtm = (DefaultTableModel) individualHistoryTable.getModel();
         dtm.setRowCount(0);
         for(IndividualHistory history: individual.getHistory())
         {
             Object[] row = new Object[6];
-            row[0] = history.getAppointmentId();
+            row[0] = history;
             row[1] = individual.getFirstName() + " " + individual.getLastName();
-            row[2] = history.getMeetingDate();
+            row[2] = simpleDateFormat.format(history.getMeetingDate());
             row[3] = history.getComments();
             row[4] = history.getStatus();
             dtm.addRow(row);

@@ -13,6 +13,7 @@ import business.individuals.Individual;
 import business.useraccount.UserAccount;
 import business.workqueue.WorkRequest;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
@@ -260,6 +261,8 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnShowHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowHistoryActionPerformed
         // TODO add your handling code here:
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         int selectedRow = manageApplicantsTable.getSelectedRow();
         if (selectedRow >= 0) {
             int id = (Integer) manageApplicantsTable.getValueAt(selectedRow, 0);
@@ -274,8 +277,8 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
             if (!individual.getHistory().isEmpty()) {
                 for (IndividualHistory inh : individual.getHistory()) {
                     Object row[] = new Object[4];
-                    row[0] = inh.getAppointmentId();
-                    row[1] = inh.getMeetingDate();
+                    row[0] = inh;
+                    row[1] = simpleDateFormat.format(inh.getMeetingDate());
                     row[2] = inh.getComments();
                     row[3] = inh.getStatus();
                     dtm.addRow(row);
@@ -334,6 +337,7 @@ public class CaregiverWorkAreaJPanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(null, "Please select the individual.");
         }
+        this.populateTable();
     }//GEN-LAST:event_btnMarkAsCompleteActionPerformed
 
     public void sendEmail(WorkRequest workRequest) {
