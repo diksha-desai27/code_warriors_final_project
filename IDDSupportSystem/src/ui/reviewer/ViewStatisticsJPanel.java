@@ -71,7 +71,7 @@ public class ViewStatisticsJPanel extends javax.swing.JPanel {
                     countGood++;
                 }else  if (wr.getStatus().equals("Very Good")) {
                     countVeryGood++;
-                }else{
+                }else if(wr.getStatus().equals("Average")){
                     countAverage++;
                 }
               

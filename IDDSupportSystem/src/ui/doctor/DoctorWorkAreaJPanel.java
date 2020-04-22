@@ -80,7 +80,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(manageApplicantsJTable);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(29, 127, 594, 125);
+        jScrollPane1.setBounds(29, 127, 660, 125);
 
         btnDecline.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnDecline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/close.png"))); // NOI18N
@@ -91,7 +91,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnDecline);
-        btnDecline.setBounds(480, 270, 150, 60);
+        btnDecline.setBounds(200, 270, 150, 60);
 
         btnAccept.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/check.png"))); // NOI18N
@@ -102,7 +102,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAccept);
-        btnAccept.setBounds(310, 270, 150, 60);
+        btnAccept.setBounds(30, 270, 150, 60);
 
         jBtnViewReport.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jBtnViewReport.setText("Provide Data");
@@ -112,7 +112,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(jBtnViewReport);
-        jBtnViewReport.setBounds(640, 130, 130, 50);
+        jBtnViewReport.setBounds(740, 130, 130, 50);
 
         scheduleAppointmentBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         scheduleAppointmentBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/time.png"))); // NOI18N
@@ -123,7 +123,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(scheduleAppointmentBtn);
-        scheduleAppointmentBtn.setBounds(650, 270, 206, 60);
+        scheduleAppointmentBtn.setBounds(450, 270, 240, 60);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/doctor.png"))); // NOI18N
@@ -226,7 +226,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         layout.next(userProcessContainer);
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "You cannot schedule an apointment for" + wr.getIndividual().getFirstName() + wr.getIndividual().getLastName());
+                        JOptionPane.showMessageDialog(null, "You cannot schedule an apointment for " + wr.getIndividual().getFirstName() + " " + wr.getIndividual().getLastName());
                     }
                     break;
                 }
@@ -259,7 +259,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         layout.next(userProcessContainer);
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "You cannot chek/generate report for" + wr.getIndividual().getFirstName() + wr.getIndividual().getLastName());
+                        JOptionPane.showMessageDialog(null, "You cannot check/generate report for " + wr.getIndividual().getFirstName() + " " + wr.getIndividual().getLastName());
                     }
                     break;
                 }

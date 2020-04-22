@@ -114,19 +114,19 @@ public class ManageIndividuals extends javax.swing.JPanel {
             }
         });
         add(btnViewDetails);
-        btnViewDetails.setBounds(620, 170, 141, 40);
+        btnViewDetails.setBounds(610, 150, 141, 40);
 
         jLabel2.setText("First Name:");
         add(jLabel2);
-        jLabel2.setBounds(70, 370, 82, 20);
+        jLabel2.setBounds(70, 370, 72, 16);
 
         jLabel3.setText("Last Name:");
         add(jLabel3);
-        jLabel3.setBounds(400, 370, 80, 20);
+        jLabel3.setBounds(400, 370, 70, 16);
 
         jLabel4.setText("Birth Date:");
         add(jLabel4);
-        jLabel4.setBounds(70, 430, 76, 20);
+        jLabel4.setBounds(70, 430, 66, 16);
 
         firstNameValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(firstNameValue);
@@ -142,7 +142,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         jLabel5.setText("Disability:");
         add(jLabel5);
-        jLabel5.setBounds(70, 480, 66, 20);
+        jLabel5.setBounds(70, 480, 66, 16);
 
         disabilityValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(disabilityValue);
@@ -150,7 +150,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
 
         jLabel7.setText("Service Requested:");
         add(jLabel7);
-        jLabel7.setBounds(60, 540, 134, 30);
+        jLabel7.setBounds(60, 540, 117, 30);
 
         servicesValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(servicesValue);
@@ -170,11 +170,11 @@ public class ManageIndividuals extends javax.swing.JPanel {
             }
         });
         add(assignCareGiverBtn);
-        assignCareGiverBtn.setBounds(230, 610, 180, 40);
+        assignCareGiverBtn.setBounds(190, 610, 200, 40);
 
         jLabel9.setText("City:");
         add(jLabel9);
-        jLabel9.setBounds(400, 420, 33, 20);
+        jLabel9.setBounds(400, 420, 29, 16);
 
         cityValue.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(cityValue);
@@ -189,7 +189,7 @@ public class ManageIndividuals extends javax.swing.JPanel {
             }
         });
         add(assignTrainerBtn);
-        assignTrainerBtn.setBounds(450, 610, 160, 40);
+        assignTrainerBtn.setBounds(410, 610, 200, 40);
 
         btnBack.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N

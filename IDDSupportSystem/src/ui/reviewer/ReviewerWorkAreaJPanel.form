@@ -24,12 +24,12 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
-          <Rectangle value="[-8, -4, 1350, 810]"/>
+          <Rectangle value="[-8, -4, 1350, 800]"/>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="-8" y="-4" width="1070" height="810"/>
+          <AbsoluteConstraints x="-8" y="-4" width="1070" height="800"/>
         </Constraint>
       </Constraints>
 

@@ -172,7 +172,7 @@ public class AppointmentJPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(scheduleAppointmentBtn);
-        scheduleAppointmentBtn.setBounds(200, 400, 206, 42);
+        scheduleAppointmentBtn.setBounds(200, 400, 280, 42);
         jPanel1.add(cityValue);
         cityValue.setBounds(180, 370, 108, 16);
 

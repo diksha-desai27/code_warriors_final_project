@@ -93,12 +93,12 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(btnSchedule);
-        btnSchedule.setBounds(410, 250, 200, 60);
+        btnSchedule.setBounds(300, 250, 310, 60);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/nurseScheduling.gif"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1);
-        jLabel1.setBounds(450, 320, 300, 300);
+        jLabel1.setBounds(540, 310, 330, 330);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/nurse.png"))); // NOI18N
