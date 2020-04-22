@@ -66,7 +66,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -176,10 +175,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/employee.png"))); // NOI18N
         add(jLabel6);
         jLabel6.setBounds(40, 0, 100, 70);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/enterprise/empManagement.gif"))); // NOI18N
-        add(jLabel7);
-        jLabel7.setBounds(490, 320, 390, 270);
     }// </editor-fold>//GEN-END:initComponents
     
     private void populateDropdown() {
@@ -301,7 +296,6 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField nameTextField;

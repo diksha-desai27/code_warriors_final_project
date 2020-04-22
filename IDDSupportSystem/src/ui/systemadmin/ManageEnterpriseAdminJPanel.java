@@ -105,7 +105,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         add(jLabel3);
         jLabel3.setBounds(320, 280, 40, 16);
         add(enterpriseNameTextField);
-        enterpriseNameTextField.setBounds(450, 270, 141, 26);
+        enterpriseNameTextField.setBounds(450, 280, 141, 26);
 
         dpdEnterpriseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(dpdEnterpriseType);
