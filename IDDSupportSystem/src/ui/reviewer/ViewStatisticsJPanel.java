@@ -93,9 +93,9 @@ public class ViewStatisticsJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        chartPanel = new javax.swing.JPanel();
         backBtn = new javax.swing.JButton();
         notificationTxt = new javax.swing.JLabel();
+        chartPanel = new javax.swing.JPanel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
@@ -105,20 +105,15 @@ public class ViewStatisticsJPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NewImages/reviewER.png"))); // NOI18N
-        jLabel2.setText("REVIEWER WORK AREA");
+        jLabel2.setText("FEEDBACK STATISTICS");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(30, 40, 439, 50);
+        jLabel2.setBounds(260, 40, 439, 50);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/BackgroundBlue.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(85, 36, 630, 60);
-
-        chartPanel.setBackground(new java.awt.Color(255, 255, 255));
-        chartPanel.setLayout(new java.awt.BorderLayout());
-        jPanel2.add(chartPanel);
-        chartPanel.setBounds(-20, 200, 1110, 510);
+        jLabel3.setBounds(140, 30, 630, 60);
 
         backBtn.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/backbutton.png"))); // NOI18N
@@ -129,32 +124,34 @@ public class ViewStatisticsJPanel extends javax.swing.JPanel {
             }
         });
         jPanel2.add(backBtn);
-        backBtn.setBounds(20, 110, 110, 40);
+        backBtn.setBounds(30, 100, 110, 40);
         jPanel2.add(notificationTxt);
-        notificationTxt.setBounds(240, 150, 270, 50);
+        notificationTxt.setBounds(320, 170, 270, 50);
+
+        chartPanel.setBackground(new java.awt.Color(255, 255, 255));
+        chartPanel.setLayout(new java.awt.BorderLayout());
+        jPanel2.add(chartPanel);
+        chartPanel.setBounds(0, 250, 940, 490);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 30, 840, 540);
+        jPanel2.setBounds(0, 0, 940, 800);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 727, Short.MAX_VALUE)
+            .addGap(0, 939, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 807, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addContainerGap()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -169,6 +166,7 @@ public class ViewStatisticsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backBtnActionPerformed
 
     public void populateChart() {
+        System.out.println("in chart");
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(countBad, "Count", "Bad");
         dataset.setValue(countAverage, "Count", "Average");

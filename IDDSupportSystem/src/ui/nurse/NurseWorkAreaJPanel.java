@@ -98,7 +98,7 @@ public class NurseWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/nurseScheduling.gif"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1);
-        jLabel1.setBounds(550, 280, 310, 340);
+        jLabel1.setBounds(450, 320, 300, 300);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/nurse.png"))); // NOI18N

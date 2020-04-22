@@ -8,15 +8,13 @@ package ui;
 import business.DB4OUtil.DB4OUtil;
 import business.EcoSystem;
 import business.enterprise.Enterprise;
-import business.enterprise.EnterpriseDirectory;
 import business.individuals.Individual;
 import business.network.Network;
 import business.organization.Organization;
 import business.useraccount.UserAccount;
 import java.awt.CardLayout;
-import java.awt.Image;
-import java.util.List;
-import javax.swing.ImageIcon;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,8 +37,10 @@ public class MainJPanel extends javax.swing.JFrame {
         system = dB4OUtil.retrieveSystem();
         // this.leftJPanel.setSize(300, 750);
 
-        this.setSize(1350, 750);
-
+       // this.setSize(1350, 750);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(1350, screenSize.height);
+        this.setResizable(false);
         //  ImageIcon myImage= new ImageIcon(ToolKit.getDefaultToolKit)
         //   jLabel4.setIcon(new ImageIcon(new ImageIcon("IDD.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
         for (int i = 0; i < system.getUserAccountDirectory().getUserAccountList().size(); i++) {
@@ -275,6 +275,8 @@ public class MainJPanel extends javax.swing.JFrame {
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
 
+        usernameJTextField.setText("");
+        passwordField.setText("");
         IndividualsSignUpJPanel signUpJPanel = new IndividualsSignUpJPanel(btnSignUp, rightJPanel, system, dB4OUtil);
         rightJPanel.add("signUpJPanel", signUpJPanel);
         CardLayout layout = (CardLayout) rightJPanel.getLayout();

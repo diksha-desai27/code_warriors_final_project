@@ -60,7 +60,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         btnManageOrganization.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnManageOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/organization.png"))); // NOI18N
-        btnManageOrganization.setText("Manage Organzation");
+        btnManageOrganization.setText("Manage Organization");
         btnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageOrganizationActionPerformed(evt);

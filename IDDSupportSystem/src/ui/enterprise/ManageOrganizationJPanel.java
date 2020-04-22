@@ -122,7 +122,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         dpdOrganizationType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(dpdOrganizationType);
-        dpdOrganizationType.setBounds(370, 220, 190, 27);
+        dpdOrganizationType.setBounds(350, 220, 230, 27);
 
         btnCreate.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnCreate.setText("Create ");
